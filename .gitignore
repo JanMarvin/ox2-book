@@ -3,8 +3,8 @@
 .RData
 .Ruserdata
 
-_book
+docs
 index_cache
 
 /.quarto/
-
+/_site/
