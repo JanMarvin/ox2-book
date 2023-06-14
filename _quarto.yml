@@ -12,6 +12,7 @@ book:
     - chapters/openxlsx2_style_manual.qmd
     - chapters/conditional-formatting.qmd
     - chapters/openxlsx2_charts_manual.qmd
+    - chapters/openxlsx2_pivot_tables.qmd
     - references.qmd
 
 bibliography: references.bib

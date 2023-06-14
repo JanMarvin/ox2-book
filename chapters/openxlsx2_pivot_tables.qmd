@@ -1,0 +1,110 @@
+---
+title: "Pivot tables"
+---
+
+```{r setup, include = FALSE}
+library(openxlsx2)
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+wb <- wb_workbook()$
+  add_worksheet()$
+  add_data(x = esoph)
+
+df <- wb_data(wb)
+
+wb$add_pivot_table(df, rows = "agegp", cols = "tobgp", data = c("ncontrols"))
+wb$add_pivot_table(df, rows = "agegp", data = c("ncontrols", "ncases"))
+wb$add_pivot_table(df, rows = "agegp", cols = "tobgp", data = c("ncontrols", "ncases"))
+
+```
+
+```{r}
+wb <- wb_workbook()$
+  add_worksheet()$
+  add_data(x = mtcars)
+
+df <- wb_data(wb)
+
+wb$add_pivot_table(df, dims = "A1", rows = "cyl", cols = "gear", data = c("disp", "hp"))
+wb$add_pivot_table(df, dims = "A10", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = "count")
+wb$add_pivot_table(df, dims = "A20", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = "average")
+wb$add_pivot_table(df, dims = "A30", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = c("sum", "average"))
+```
+
+
+```{r}
+## Pivot table example 1
+wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = F)
+
+df <- wb_data(wb)
+
+# basic pivot table with filter, rows, cols and data
+wb$add_pivot_table(df, dims = "A3", filter = "mpg", rows = "cyl", cols = "gear", data = "disp")
+
+# same pivot table, but with "count" instead of "sum" and no style
+wb$add_pivot_table(df, dims = "A10", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp", "am"), fun = "count", params = list(no_style = TRUE))
+
+# nested pivot table with two variables for column, row and data and two different functions
+# uses an autoformatid (not that I like it, just because I can do it)
+wb$add_pivot_table(df, dims = "A20", sheet = 2, rows = c("cyl", "mpg"), cols = c("vs","gear"), data = c("disp", "hp"), fun = c("sum", "average"),
+                   params = list(applyAlignmentFormats   = "1",
+                                 applyNumberFormats      = "1",
+                                 applyBorderFormats      = "1",
+                                 applyFontFormats        = "1",
+                                 applyPatternFormats     = "1",
+                                 applyWidthHeightFormats = "1",
+                                 autoFormatId = "4099"))
+
+# multiple filters on a pivot table
+wb$add_pivot_table(df, dims = "A3", filter = c("am", "vs", "mpg", "hp", "wt"), rows = "cyl", cols = "gear", data = "disp")
+
+# using custom caption
+wb$add_pivot_table(df, dims = "A20", sheet = 3, rows = "cyl", cols = "gear", data = c("disp", "hp"), params = list(colHeaderCaption = "test caption"))
+
+# wb$open()
+```
+
+```{r}
+## Pivot table example 2
+# pivot table with blanks and character variables on column and row
+wb <- wb_workbook()$add_worksheet()$add_data(x = esoph)
+df <- wb_data(wb, dims = "A1:E95")
+wb$add_pivot_table(df, rows = "agegp", cols = "tobgp", data = c("ncontrols"))
+# wb$open()
+```
+
+```{r pivottabler}
+# original pivot table as reference
+library(pivottabler)
+
+pt <- PivotTable$new()
+pt$addData(bhmtrains) 
+pt$addColumnDataGroups("TrainCategory") 
+pt$addRowDataGroups("TOC", 
+                    outlineBefore=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue")), 
+                    outlineTotal=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue"))) 
+pt$addRowDataGroups("PowerType", addTotal=FALSE) 
+pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
+# pt$renderPivot() # does not render in quarto?
+
+# use A:P
+wb <- wb_workbook()$add_worksheet()$add_data(x = bhmtrains, na.strings = NULL)
+df <- wb_data(wb, dims = "A:P")
+
+# use TrainCategory on column and data
+wb$add_pivot_table(
+  df, 
+  rows = c("TOC", "PowerType"),
+  cols = "TrainCategory",
+  data = "TrainCategory",
+  fun = "count"
+)
+# wb$open()
+```
+

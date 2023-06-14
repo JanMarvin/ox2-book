@@ -21,6 +21,7 @@ Suggests:
     ggplot2,
     knitr,
     mschart (>= 0.4),
+    pivottabler,
     quarto,
     rmarkdown,
     roxygen2,
