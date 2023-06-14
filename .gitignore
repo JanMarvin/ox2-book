@@ -5,6 +5,8 @@
 
 docs
 index_cache
+README.html
+README_files
 
 /.quarto/
 /_site/
