@@ -458,3 +458,63 @@ wb$add_conditional_formatting(
   rule = "OR($A1=1,$A1=3,$A1=5,$A1=7)"
 )
 ```
+
+## (Not) Contains Blanks
+
+```{r}
+wb$add_worksheet("contains blanks")
+wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL)
+wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL, startCol = 2)
+wb$add_conditional_formatting(cols = 1, rows = 1:4, type = "containsBlanks")
+wb$add_conditional_formatting(cols = 2, rows = 1:4, type = "notContainsBlanks")
+```
+
+
+## (Not) Contains Errors
+
+```{r}
+wb$add_worksheet("contains errors")
+wb$add_data(x = c(1, NaN), colNames = FALSE)
+wb$add_data(x = c(1, NaN), colNames = FALSE, startCol = 2)
+wb$add_conditional_formatting(cols = 1, rows = 1:3, type = "containsErrors")
+wb$add_conditional_formatting(cols = 2, rows = 1:3, type = "notContainsErrors")
+```
+
+
+## Iconset
+
+```{r}
+wb$add_worksheet("iconset")
+wb$add_data(x = c(100, 50, 30), colNames = FALSE)
+wb$add_conditional_formatting(
+  cols = 1,
+  rows = 1:6,
+  rule = c(-67, -33, 0, 33, 67),
+  type = "iconSet",
+  params = list(
+    percent = FALSE,
+    iconSet = "5Arrows",
+    reverse = TRUE)
+  )
+```
+
+
+## Unique Values
+
+```{r}
+wb$add_worksheet("unique values")
+wb$add_data(x = c(1:4, 1:2), colNames = FALSE)
+wb$add_conditional_formatting(cols = 1, rows = 1:6, type = "uniqueValues")
+```
+
+
+## Sparklines
+
+```{r}
+sl <- create_sparklines("Sheet 1", "A3:K3", "L3")
+wb <- wb_workbook() %>%
+   wb_add_worksheet() %>%
+   wb_add_data(x = mtcars) %>%
+   wb_add_sparklines(sparklines = sl)
+```
+

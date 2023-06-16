@@ -33,6 +33,7 @@ wb$worksheets[[1]]$sheet_data$cc$v[3] <- 2
 # we expect a value of 2
 wb_to_df(wb, colNames = FALSE)
 ```
+
 Now, lets assume we modify the data in cell `A1`.
 
 ```{r}
@@ -44,7 +45,7 @@ wb_to_df(wb, colNames = FALSE)
 
 What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:
 
-```
+```         
 <c r="C1">
   <f>A1 + B1</f>
   <v>2</v>
@@ -96,6 +97,7 @@ wb <- wb_workbook()$add_worksheet()$
 ```
 
 Similar a the coefficients of a linear regression
+
 ```{r}
 # we expect to find this in D1:E1
 coef(lm(head(cars)))
@@ -105,9 +107,16 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
+# Cell error handling
+
+```{r}
+# wb_add_ignore_error()
+```
+
+
 # cm formulas
 
-Similar to array formulas, these cell metadata formulas hide to the user that they are array formulas. Using these is implemented in `openxlsx2` > 0.6.1:
+Similar to array formulas, these cell metadata formulas hide to the user that they are array formulas. Using these is implemented in `openxlsx2` \> 0.6.1:
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
@@ -116,17 +125,20 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
-# `dataTable` formulas^[this example was originally provided by @zykezero for `openxlsx`.]
+# `dataTable` formulas[^openxlsx2_formulas_manual-1]
 
-#### `dataTable` formula differences ####
-|   |     A       |  B   |      C        |
-|---|-------------|------|---------------|
-| 1 | SalesPrice  | COGS | SalesQuantity |
-| 2 |     20      |  5   |      1        |
-| 3 |     30      |  11  |      2        |
-| 4 |     40      |  13  |      3        |
+[^openxlsx2_formulas_manual-1]: this example was originally provided by @zykezero for `openxlsx`.
 
-Given a basic table like the above, a similarly basic formula for "Total_Sales" would be "=A2 * C2" with the row value changing at each row.
+#### `dataTable` formula differences
+
+|     | A          | B    | C             |
+|-----|------------|------|---------------|
+| 1   | SalesPrice | COGS | SalesQuantity |
+| 2   | 20         | 5    | 1             |
+| 3   | 30         | 11   | 2             |
+| 4   | 40         | 13   | 3             |
+
+Given a basic table like the above, a similarly basic formula for "Total_Sales" would be "=A2 \* C2" with the row value changing at each row.
 
 An implementation for this formula using `wb_add_formula()` would look this (taken from current documentation) lets say we've read in the data and assigned it to the table "company_sales"
 
@@ -151,15 +163,15 @@ wb <- wb_workbook()$
 
 Then we create the workbook, worksheet, and use `wb_add_data_table()`.
 
-One of the advantages of the open xml `dataTable` syntax is that we don't have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These `dataTable` have named columns that we can use instead of letters.
-When writing the formulas within the `dataTable` we would use the following syntax `[@[column_name]]` to reference the current row. So the "Total_Sales" formula written in open xml in `dataTable` would look like this; `=[@[SalesPrice]] * [@[SalesQuantity]]`
+One of the advantages of the open xml `dataTable` syntax is that we don't have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These `dataTable` have named columns that we can use instead of letters. When writing the formulas within the `dataTable` we would use the following syntax `[@[column_name]]` to reference the current row. So the "Total_Sales" formula written in open xml in `dataTable` would look like this; `=[@[SalesPrice]] * [@[SalesQuantity]]`
 
 If we are writing the formula outside of the `dataTable` we have to reference the table name. In this case lets say the table name is 'daily_sales' `=daily_sales[@[SalesPrice]] * daily_sales[@[SalesQuantity]]`
 
 However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that open xml requires for selecting the current row is different.
 
 In open xml the `dataTable` formula looks like this:
-```
+
+```         
 <calculatedColumnFormula>
   daily_sales[[#This Row],[SalesPrice]]*daily_sales[[#ThisRow],[SalesQuantity]]
 </calculatedColumnFormula>
@@ -203,32 +215,30 @@ wb$
 
 And if we open the workbook to view the table we created we can see that the formula has worked.
 
-|   |     A       |  B   |      C        |D|E|F|G|
-|---|-------------|------|---------------|-|-|-|-|
-| 1 | SalesPrice  | COGS | SalesQuantity |GrossProfit|	Total_COGS|	Total_Sales|	Total_GrossProfit|
-| 2 |     20      |  5   |      1        |15|	5|	20|	15|
-| 3 |     30      |  11  |      2        |19|	22|	60|	38|
-| 4 |     40      |  13  |      3        |27|	39|	120|	81|
+|     | A          | B    | C             | D           | E          | F           | G                 |
+|--------|------------|--------|---------------|--------|--------|--------|--------|
+| 1   | SalesPrice | COGS | SalesQuantity | GrossProfit | Total_COGS | Total_Sales | Total_GrossProfit |
+| 2   | 20         | 5    | 1             | 15          | 5          | 20          | 15                |
+| 3   | 30         | 11   | 2             | 19          | 22         | 60          | 38                |
+| 4   | 40         | 13   | 3             | 27          | 39         | 120         | 81                |
 
 We can also see that it has replaced `[#This Row]` with `@`.
 
-|   |     A       |  B   |      C        |           D             |               E               |                  F                  |                  G                 |
-|---|-------------|------|---------------|-------------------------|-------------------------------|-------------------------------------|------------------------------------|
-| 1 | SalesPrice  | COGS | SalesQuantity |  GrossProfit            |	         Total_COGS           |	         Total_Sales                |	        Total_GrossProfit          |
-| 2 |     20      |  5   |      1        |=[@SalesPrice] - [@COGS] |	=[@COGS] \* [@SalesQuantity]  |	=[@SalesPrice] \* [@SalesQuantity]  | =[@[Total\_Sales]] - [@[Total\_COGS]]|
-| 3 |     30      |  11  |      2        |=[@SalesPrice] - [@COGS] |	=[@COGS] \* [@SalesQuantity]  |	=[@SalesPrice] \* [@SalesQuantity]  | =[@[Total\_Sales]] - [@[Total\_COGS]]|
-| 4 |     40      |  13  |      3        |=[@SalesPrice] - [@COGS] |	=[@COGS] \* [@SalesQuantity]  |	=[@SalesPrice] \* [@SalesQuantity]  | =[@[Total\_Sales]] - [@[Total\_COGS]]|
-
+|     | A          | B    | C             | D                        | E                            | F                                  | G                                             |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| 1   | SalesPrice | COGS | SalesQuantity | GrossProfit              | Total_COGS                   | Total_Sales                        | Total_GrossProfit                             |
+| 2   | 20         | 5    | 1             | =[@SalesPrice] - [@COGS] | =[@COGS] \* [@SalesQuantity] | =[@SalesPrice] \* [@SalesQuantity] | =\[\@\[Total_Sales\]\] - \[\@\[Total_COGS\]\] |
+| 3   | 30         | 11   | 2             | =[@SalesPrice] - [@COGS] | =[@COGS] \* [@SalesQuantity] | =[@SalesPrice] \* [@SalesQuantity] | =\[\@\[Total_Sales\]\] - \[\@\[Total_COGS\]\] |
+| 4   | 40         | 13   | 3             | =[@SalesPrice] - [@COGS] | =[@COGS] \* [@SalesQuantity] | =[@SalesPrice] \* [@SalesQuantity] | =\[\@\[Total_Sales\]\] - \[\@\[Total_COGS\]\] |
 
 For completion, the formula as we wrote it appears as;
 
-|           D             |               E               |                  F                  |                  G                 |
-|-------------------------|-------------------------------|-------------------------------------|------------------------------------|
-|  GrossProfit            |	         Total_COGS           |	         Total_Sales                |	        Total_GrossProfit          |
-|=grossprofit[[#This Row],[SalesPrice]] - grossprofit[[#This Row],[COGS]] |	=grossprofit[[#This Row],[COGS]] \* grossprofit[[#This Row],[SalesQuantity]]  |	=grossprofit[[#This Row],[SalesPrice]] \* grossprofit[[#This Row],[SalesQuantity]]  | =grossprofit[[#This Row],[Total\_Sales]] - grossprofit[[#This Row],[Total\_COGS]]|
-|=grossprofit[[#This Row],[SalesPrice]] - grossprofit[[#This Row],[COGS]] |	=grossprofit[[#This Row],[COGS]] \* grossprofit[[#This Row],[SalesQuantity]]  |	=grossprofit[[#This Row],[SalesPrice]] \* grossprofit[[#This Row],[SalesQuantity]]  | =grossprofit[[#This Row],[Total\_Sales]] - grossprofit[[#This Row],[Total\_COGS]]|
-|=grossprofit[[#This Row],[SalesPrice]] - grossprofit[[#This Row],[COGS]] |	=grossprofit[[#This Row],[COGS]] \* grossprofit[[#This Row],[SalesQuantity]]  |	=grossprofit[[#This Row],[SalesPrice]] \* grossprofit[[#This Row],[SalesQuantity]]  | =grossprofit[[#This Row],[Total\_Sales]] - grossprofit[[#This Row],[Total\_COGS]]|
-
+| D                                                                                    | E                                                                                        | F                                                                                              | G                                                                                           |
+|-----------------|-----------------|--------------------|-------------------|
+| GrossProfit                                                                          | Total_COGS                                                                               | Total_Sales                                                                                    | Total_GrossProfit                                                                           |
+| =grossprofit\[\[#This Row\],\[SalesPrice\]\] - grossprofit\[\[#This Row\],\[COGS\]\] | =grossprofit\[\[#This Row\],\[COGS\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[SalesPrice\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[Total_Sales\]\] - grossprofit\[\[#This Row\],\[Total_COGS\]\] |
+| =grossprofit\[\[#This Row\],\[SalesPrice\]\] - grossprofit\[\[#This Row\],\[COGS\]\] | =grossprofit\[\[#This Row\],\[COGS\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[SalesPrice\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[Total_Sales\]\] - grossprofit\[\[#This Row\],\[Total_COGS\]\] |
+| =grossprofit\[\[#This Row\],\[SalesPrice\]\] - grossprofit\[\[#This Row\],\[COGS\]\] | =grossprofit\[\[#This Row\],\[COGS\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[SalesPrice\]\] \* grossprofit\[\[#This Row\],\[SalesQuantity\]\] | =grossprofit\[\[#This Row\],\[Total_Sales\]\] - grossprofit\[\[#This Row\],\[Total_COGS\]\] |
 
 ```{r}
 #### sum dataTable examples

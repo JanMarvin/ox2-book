@@ -9,5 +9,4 @@ install.packages(
 )
 ```
 
-
 This is a work in progress book describing the features of `openxlsx2` [@openxlsx2]. Having written a book before, I never imagined to do this again and therefore I shall not do it. But still I consider it a nice addition to have something more flexible as our `vignettes`.

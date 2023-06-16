@@ -37,7 +37,6 @@ wb$add_pivot_table(df, dims = "A20", sheet = 2, rows = "cyl", cols = "gear", dat
 wb$add_pivot_table(df, dims = "A30", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = c("sum", "average"))
 ```
 
-
 ```{r}
 ## Pivot table example 1
 wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = F)
@@ -91,7 +90,9 @@ pt$addRowDataGroups("TOC",
                     outlineTotal=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue"))) 
 pt$addRowDataGroups("PowerType", addTotal=FALSE) 
 pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
-# pt$renderPivot() # does not render in quarto?
+
+# disabled due to: Error: Functions that produce HTML output found in document targeting pdf output.
+# pt$renderPivot()
 
 # use A:P
 wb <- wb_workbook()$add_worksheet()$add_data(x = bhmtrains, na.strings = NULL)
@@ -107,4 +108,3 @@ wb$add_pivot_table(
 )
 # wb$open()
 ```
-
