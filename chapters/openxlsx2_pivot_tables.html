@@ -284,21 +284,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineTotal=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>))) </span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"PowerType"</span>, <span class="at">addTotal=</span><span class="cn">FALSE</span>) </span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"TotalTrains"</span>, <span class="at">summariseExpression=</span><span class="st">"n()"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># pt$renderPivot() # does not render in quarto?</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># use A:P</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> bhmtrains, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A:P"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># use TrainCategory on column and data</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  df, </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="fu">c</span>(<span class="st">"TOC"</span>, <span class="st">"PowerType"</span>),</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="st">"TrainCategory"</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="st">"TrainCategory"</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> <span class="st">"count"</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># disabled due to: Error: Functions that produce HTML output found in document targeting pdf output.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># pt$renderPivot()</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># use A:P</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> bhmtrains, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A:P"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># use TrainCategory on column and data</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  df, </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="fu">c</span>(<span class="st">"TOC"</span>, <span class="st">"PowerType"</span>),</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="st">"TrainCategory"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="st">"TrainCategory"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> <span class="st">"count"</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

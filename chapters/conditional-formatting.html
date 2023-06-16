@@ -208,6 +208,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#top-n" id="toc-top-n" class="nav-link" data-scroll-target="#top-n"><span class="header-section-number">4.14</span> Top N</a></li>
   <li><a href="#bottom-n" id="toc-bottom-n" class="nav-link" data-scroll-target="#bottom-n"><span class="header-section-number">4.15</span> Bottom N</a></li>
   <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">4.16</span> Logical Operators</a></li>
+  <li><a href="#not-contains-blanks" id="toc-not-contains-blanks" class="nav-link" data-scroll-target="#not-contains-blanks"><span class="header-section-number">4.17</span> (Not) Contains Blanks</a></li>
+  <li><a href="#not-contains-errors" id="toc-not-contains-errors" class="nav-link" data-scroll-target="#not-contains-errors"><span class="header-section-number">4.18</span> (Not) Contains Errors</a></li>
+  <li><a href="#iconset" id="toc-iconset" class="nav-link" data-scroll-target="#iconset"><span class="header-section-number">4.19</span> Iconset</a></li>
+  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">4.20</span> Unique Values</a></li>
+  <li><a href="#sparklines" id="toc-sparklines" class="nav-link" data-scroll-target="#sparklines"><span class="header-section-number">4.21</span> Sparklines</a></li>
   </ul>
 </nav>
     </div>
@@ -686,6 +691,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"OR($A1=1,$A1=3,$A1=5,$A1=7)"</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="not-contains-blanks" class="level2" data-number="4.17">
+<h2 data-number="4.17" class="anchored" data-anchor-id="not-contains-blanks"><span class="header-section-number">4.17</span> (Not) Contains Blanks</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains blanks"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>, <span class="at">startCol =</span> <span class="dv">2</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">1</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">type =</span> <span class="st">"containsBlanks"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">type =</span> <span class="st">"notContainsBlanks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="not-contains-errors" class="level2" data-number="4.18">
+<h2 data-number="4.18" class="anchored" data-anchor-id="not-contains-errors"><span class="header-section-number">4.18</span> (Not) Contains Errors</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains errors"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">startCol =</span> <span class="dv">2</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">1</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">type =</span> <span class="st">"containsErrors"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">type =</span> <span class="st">"notContainsErrors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="iconset" class="level2" data-number="4.19">
+<h2 data-number="4.19" class="anchored" data-anchor-id="iconset"><span class="header-section-number">4.19</span> Iconset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"iconset"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">30</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="dv">1</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">67</span>, <span class="sc">-</span><span class="dv">33</span>, <span class="dv">0</span>, <span class="dv">33</span>, <span class="dv">67</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"iconSet"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">iconSet =</span> <span class="st">"5Arrows"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="unique-values" class="level2" data-number="4.20">
+<h2 data-number="4.20" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">4.20</span> Unique Values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"unique values"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">1</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">type =</span> <span class="st">"uniqueValues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sparklines" class="level2" data-number="4.21">
+<h2 data-number="4.21" class="anchored" data-anchor-id="sparklines"><span class="header-section-number">4.21</span> Sparklines</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sl <span class="ot">&lt;-</span> <span class="fu">create_sparklines</span>(<span class="st">"Sheet 1"</span>, <span class="st">"A3:K3"</span>, <span class="st">"L3"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_sparklines</span>(<span class="at">sparklines =</span> sl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
