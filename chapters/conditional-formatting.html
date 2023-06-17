@@ -696,6 +696,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="not-contains-blanks" class="level2" data-number="4.17">
 <h2 data-number="4.17" class="anchored" data-anchor-id="not-contains-blanks"><span class="header-section-number">4.17</span> (Not) Contains Blanks</h2>
 <div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/cf_blanks.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains blanks"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>, <span class="at">startCol =</span> <span class="dv">2</span>)</span>
@@ -706,6 +711,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="not-contains-errors" class="level2" data-number="4.18">
 <h2 data-number="4.18" class="anchored" data-anchor-id="not-contains-errors"><span class="header-section-number">4.18</span> (Not) Contains Errors</h2>
 <div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/cf_errors.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains errors"</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">startCol =</span> <span class="dv">2</span>)</span>
@@ -715,6 +725,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="iconset" class="level2" data-number="4.19">
 <h2 data-number="4.19" class="anchored" data-anchor-id="iconset"><span class="header-section-number">4.19</span> Iconset</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/cf_iconset.png" class="img-fluid"></p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"iconset"</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">30</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
@@ -733,6 +748,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="unique-values" class="level2" data-number="4.20">
 <h2 data-number="4.20" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">4.20</span> Unique Values</h2>
 <div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/cf_unique.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"unique values"</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">cols =</span> <span class="dv">1</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">type =</span> <span class="st">"uniqueValues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -740,6 +760,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sparklines" class="level2" data-number="4.21">
 <h2 data-number="4.21" class="anchored" data-anchor-id="sparklines"><span class="header-section-number">4.21</span> Sparklines</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/sparklines.png" class="img-fluid"></p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sl <span class="ot">&lt;-</span> <span class="fu">create_sparklines</span>(<span class="st">"Sheet 1"</span>, <span class="st">"A3:K3"</span>, <span class="st">"L3"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
