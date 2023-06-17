@@ -90,10 +90,14 @@ pt$addRowDataGroups("TOC",
                     outlineTotal=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue"))) 
 pt$addRowDataGroups("PowerType", addTotal=FALSE) 
 pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
+```
 
-# disabled due to: Error: Functions that produce HTML output found in document targeting pdf output.
-# pt$renderPivot()
 
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/pv_pivottabler.png")
+```
+
+```{r}
 # use A:P
 wb <- wb_workbook()$add_worksheet()$add_data(x = bhmtrains, na.strings = NULL)
 df <- wb_data(wb, dims = "A:P")
@@ -107,4 +111,8 @@ wb$add_pivot_table(
   fun = "count"
 )
 # wb$open()
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/pv_openxlsx2.png")
 ```

@@ -461,6 +461,10 @@ wb$add_conditional_formatting(
 
 ## (Not) Contains Blanks
 
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/cf_blanks.png")
+```
+
 ```{r}
 wb$add_worksheet("contains blanks")
 wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL)
@@ -472,6 +476,10 @@ wb$add_conditional_formatting(cols = 2, rows = 1:4, type = "notContainsBlanks")
 
 ## (Not) Contains Errors
 
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/cf_errors.png")
+```
+
 ```{r}
 wb$add_worksheet("contains errors")
 wb$add_data(x = c(1, NaN), colNames = FALSE)
@@ -482,6 +490,10 @@ wb$add_conditional_formatting(cols = 2, rows = 1:3, type = "notContainsErrors")
 
 
 ## Iconset
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/cf_iconset.png")
+```
 
 ```{r}
 wb$add_worksheet("iconset")
@@ -501,6 +513,10 @@ wb$add_conditional_formatting(
 
 ## Unique Values
 
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/cf_unique.png")
+```
+
 ```{r}
 wb$add_worksheet("unique values")
 wb$add_data(x = c(1:4, 1:2), colNames = FALSE)
@@ -509,6 +525,10 @@ wb$add_conditional_formatting(cols = 1, rows = 1:6, type = "uniqueValues")
 
 
 ## Sparklines
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sparklines.png")
+```
 
 ```{r}
 sl <- create_sparklines("Sheet 1", "A3:K3", "L3")
