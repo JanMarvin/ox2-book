@@ -368,19 +368,28 @@ wb <- wb_load(system.file("extdata", "oxlsx2_sheet.xlsx", package = "openxlsx2")
 # wb_open(wb)
 ```
 
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/sy_copycellstyle.png")
+```
+
 # Style strings
 
 Using `fmt_txt()` is possible to style strings independently of the cell containing the string.
 
 ```{r}
-txt <- paste(
-  fmt_txt("Embracing the full potential of "),
-  fmt_txt("openxlsx2", bold = TRUE, size = 16),
-  fmt_txt(" with "),
-  fmt_txt("fmt_txt()", font = "Courier"),
+txt <- 
+  fmt_txt("Embracing the full potential of ") +
+  fmt_txt("openxlsx2", bold = TRUE, size = 16) +
+  fmt_txt(" with ") +
+  fmt_txt("fmt_txt()", font = "Courier") +
   fmt_txt(" !")
-)
-wb <- wb_workbook()$add_worksheet()$add_data(x = txt)
+
+wb <- wb_workbook()$add_worksheet()$add_data(x = txt, colNames = FALSE)
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sy_fmttxt.png")
 ```
 
 As shown above it is possible to combine multiple styles together into a longer string. It is even possible to use `fmt_txt()` as `na.strings`:
@@ -392,6 +401,11 @@ df[df < 4] <- NA
 na_red <- fmt_txt("N/A", color = wb_color("red"), italic = TRUE, bold = TRUE)
 
 wb <- wb_workbook()$add_worksheet()$add_data(x = df, na.strings = na_red)
+```
+
+
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/sy_redna.png")
 ```
 
 # Create custom table styles
@@ -499,4 +513,158 @@ wb$add_style(xml)
 # create a table and apply the custom style
 wb <- wb %>%
   wb_add_data_table(x = mtcars, tableStyle = "red_table")
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sy_redtable.png")
+```
+
+# Named styles
+
+```{r}
+wb <- wb_workbook()$add_worksheet()
+
+name <- "Normal"
+dims <- "A1"
+wb$add_data(dims = dims, x = name)
+
+name <- "Bad"
+dims <- "B1"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Good"
+dims <- "C1"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Neutral"
+dims <- "D1"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Calculation"
+dims <- "A2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Check Cell"
+dims <- "B2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Explanatory Text"
+dims <- "C2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Input"
+dims <- "D2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Linked Cell"
+dims <- "E2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Note"
+dims <- "F2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Output"
+dims <- "G2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Warning Text"
+dims <- "H2"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Heading 1"
+dims <- "A3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Heading 2"
+dims <- "B3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Heading 3"
+dims <- "C3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Heading 4"
+dims <- "D3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Title"
+dims <- "E3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Total"
+dims <- "F3"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+for (i in seq_len(6)) {
+  
+  name <- paste0("20% - Accent", i)
+  dims <- paste0(int2col(i), "4")
+  wb$add_named_style(dims = dims, name = name)
+  wb$add_data(dims = dims, x = name)
+  
+  name <- paste0("40% - Accent", i)
+  dims <- paste0(int2col(i), "5")
+  wb$add_named_style(dims = dims, name = name)
+  wb$add_data(dims = dims, x = name)
+  
+  name <- paste0("60% - Accent", i)
+  dims <- paste0(int2col(i), "6")
+  wb$add_named_style(dims = dims, name = name)
+  wb$add_data(dims = dims, x = name)
+  
+  name <- paste0("Accent", i)
+  dims <- paste0(int2col(i), "7")
+  wb$add_named_style(dims = dims, name = name)
+  wb$add_data(dims = dims, x = name)
+  
+}
+
+name <- "Comma"
+dims <- "A8"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Comma [0]"
+dims <- "B8"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Currency"
+dims <- "C8"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Currency [0]"
+dims <- "D8"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+name <- "Per cent"
+dims <- "E8"
+wb$add_named_style(dims = dims, name = name)
+wb$add_data(dims = dims, x = name)
+
+# wb$open()
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sy_namedstyle.png")
 ```
