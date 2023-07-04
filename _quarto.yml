@@ -13,6 +13,7 @@ book:
     - chapters/conditional-formatting.qmd
     - chapters/openxlsx2_charts_manual.qmd
     - chapters/openxlsx2_pivot_tables.qmd
+    - chapters/openxlsx2_form_control.qmd
     - references.qmd
 
 bibliography: references.bib
