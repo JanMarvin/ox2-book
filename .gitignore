@@ -11,3 +11,5 @@ README_files
 
 /.quarto/
 /_site/
+
+^*.Rproj$
