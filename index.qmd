@@ -9,4 +9,18 @@ install.packages(
 )
 ```
 
-This is a work in progress book describing the features of `openxlsx2` [@openxlsx2]. Having written a book before, I never imagined to do this again and therefore I shall not do it. But still I consider it a nice addition to have something more flexible as our `vignettes`.
+This is a work in progress book describing the features of [`openxlsx2`](https://github.com/JanMarvin/openxlsx2/) [@openxlsx2]. Having written a book before, I never imagined to do this again and therefore I shall not do it. But still I consider it a nice addition to have something more flexible as our `vignettes`.
+
+This manual was compiled using:
+
+```{r}
+R.version
+```
+
+and
+
+```{r}
+packageVersion("openxlsx2")
+```
+
+Graphics might reflect earlier states and are not constantly updated. If you find any irregularities where our code produces different output than expected, please let us know in the issue tracker at <https://github.com/JanMarvin/openxlsx2/>.

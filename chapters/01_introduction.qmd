@@ -2,7 +2,7 @@
 title: "Introduction"
 ---
 
-Unfortunately the entire business world is still built almost entirely on Microsofts Office tools and whenever data is involved, this means that is is largely built on the spreadsheet software Excel. R users that want to interact with this previously closed source file format had to rely on various packages. Packages that create workbook objects like `xlsx` [@xlsx] and `openxlsx` [@openxlsx] and packages for special tasks namely`*readxl` [@readxl] and `writexl` [@writexl], some are Windows exclusive interacting with Excel via a DCOM server `RDCOMClient` and `RExcel` [^01_introduction-1].
+Unfortunately the entire business world is still built almost entirely on Microsofts Office tools and whenever data is involved, this means that is is largely built on the spreadsheet software Excel. R users that want to interact with this previously closed source file format had to rely on various packages (the following is not necessarily a complete list of all packages). Packages that create workbook objects like `xlsx` [@xlsx] and `openxlsx` [@openxlsx] and packages for special tasks namely `readxl` [@readxl], `readxlsb`[@readxlsb], `tidyxl` [@tidyxl], `writexl` [@writexl] and `WriteXLS` [@writexls], some are Windows exclusive interacting with Excel via a DCOM server `RDCOMClient` and `RExcel` [^01_introduction-1], some are not, `XLconnect`.
 
 [^01_introduction-1]: See https://github.com/omegahat/RDCOMClient.
 
@@ -28,7 +28,8 @@ remotes::install_github("JanMarvin/openxlsx2")
 ```
 
 Or from [r-universe](https://r-universe.dev/) with:
-```R
+
+``` r
 # Enable repository from janmarvin
 options(repos = c(
   janmarvin = 'https://janmarvin.r-universe.dev',
@@ -41,9 +42,8 @@ install.packages('openxlsx2')
 
 We offer two different variants how to work with `openxlsx2`.
 
-* The first one is to simply work with R objects. It is possible to read ([`read_xlsx()`](https://janmarvin.github.io/openxlsx2/reference/read_xlsx.html)) and write ([`write_xlsx()`](https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html)) data from and to files. We offer a number of options in the commands to support various features of the openxml format, including reading and writing named ranges and tables. Furthermore, there are several ways to read certain information of an openxml spreadsheet without having opened it in a spreadsheet software before, e.g. to get the contained sheet names or tables.
-* As a second variant `openxlsx2` offers the work with so called [`wbWorkbook`](https://janmarvin.github.io/openxlsx2/reference/wbWorkbook.html) objects. Here an openxml file is read into a corresponding `wbWorkbook` object ([`wb_load()`](https://janmarvin.github.io/openxlsx2/reference/wb_load.html)) or a new one is created ([`wb_workbook()`](https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html)). Afterwards the object can be further modified using various functions. For example, worksheets can be added or removed, the layout of cells or entire worksheets can be changed, and cells can be modified (overwritten or rewritten). Afterwards the `wbWorkbook` objects can be written as openxml files and processed by suitable spreadsheet software.
-
+-   The first one is to simply work with R objects. It is possible to read ([`read_xlsx()`](https://janmarvin.github.io/openxlsx2/reference/read_xlsx.html)) and write ([`write_xlsx()`](https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html)) data from and to files. We offer a number of options in the commands to support various features of the openxml format, including reading and writing named ranges and tables. Furthermore, there are several ways to read certain information of an openxml spreadsheet without having opened it in a spreadsheet software before, e.g. to get the contained sheet names or tables.
+-   As a second variant `openxlsx2` offers the work with so called [`wbWorkbook`](https://janmarvin.github.io/openxlsx2/reference/wbWorkbook.html) objects. Here an openxml file is read into a corresponding `wbWorkbook` object ([`wb_load()`](https://janmarvin.github.io/openxlsx2/reference/wb_load.html)) or a new one is created ([`wb_workbook()`](https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html)). Afterwards the object can be further modified using various functions. For example, worksheets can be added or removed, the layout of cells or entire worksheets can be changed, and cells can be modified (overwritten or rewritten). Afterwards the `wbWorkbook` objects can be written as openxml files and processed by suitable spreadsheet software.
 
 ## Example
 
@@ -80,26 +80,24 @@ if (interactive()) wb$open()
 
 For a full list of all authors that have made this package possible and for whom we are greatful, please see:
 
-```r
+``` r
 system.file("AUTHORS", package = "openxlsx2")
 ```
 
-If you feel like you should be included on this list, please let us know.
-If you have something to contribute, you are welcome.
-If something is not working as expected, open issues or if you have solved an issue, open a pull request.
-Please be respectful and be aware that we are volunteers doing this for fun in our unpaid free time.
-We will work on problems when we have time or need.
-
+If you feel like you should be included on this list, please let us know. If you have something to contribute, you are welcome. If something is not working as expected, open issues or if you have solved an issue, open a pull request. Please be respectful and be aware that we are volunteers doing this for fun in our unpaid free time. We will work on problems when we have time or need.
 
 ## License
 
 The `openxlsx2` package is licensed under the MIT license and is based on [`openxlsx`](https://github.com/ycphs/openxlsx) (by Alexander Walker and Philipp Schauberger; COPYRIGHT 2014-2022) and [`pugixml`](https://github.com/zeux/pugixml) (by Arseny Kapoulkine; COPYRIGHT 2006-2022). Both released under the MIT license.
 
-
 ## A note on speed and memory usage
 
-The current state of `openxlsx2` is that it is reasonably fast. That is, it works well with reasonably large input data when reading or writing. It may not work well with data that tests the limits of the openxml specification. Things may slow down on the R side of things, and performance and usability will depend on the speed and size of the local operating system's CPU and memory.
+The current state of `openxlsx2` is that it is reasonably fast. That is, it works well with reasonably large input data when reading or writing. It may not work well with data that tests the limits of the `openxml` specification. Things may slow down on the R side of things, and performance and usability will depend on the speed and size of the local operating system's CPU and memory.
 
 Note that there are at least two cases where `openxlsx2` constructs potentially large data frames (i) when loading, `openxlsx2` usually needs to read the entire input file into pugixml and convert it into long data frame(s), and `wb_to_df()` converts one long data frame into two data frames that construct the output object and (ii) when adding data to the workbook, `openxlsx2` reshapes the input data frame into a long data frame and stores it in the workbook, and writes the entire worksheet into a pugixml file that is written when it is complete. Applying cell styles, date conversions etc. will further slow down the process and finally the sheets will be zipped to provide the xlsx output.
 
 Therefore, if you are faced with an unreasonably large dataset, either give yourself enough time, use another package to write the xlsx output (`openxlsx2` was not written with the intention of working with maximum memory efficiency), and by all means use other ways to store data (binary file formats or a database). However, we are always happy to improve, so if you have found a way to improve what we are currently doing, please let us know and open an issue or a pull request.
+
+## Invitation to contribute
+
+We have put a lot of work into `openxls2` to make it useful for our needs, improving what we found useful about `openxlsx` and removing what we didn't need. We do not claim to be omniscient about all the things you can do with spreadsheet software, nor do we claim to be omniscient about all the things you can do in `openxlsx2`. Nevertheless, we are quite fond of our little package and invite others to try it out and comment on what they like and of course what they think we are missing or if something doesn't work. `openxlsx2` is a complex piece of software that certainly does not work bug-free, even if we did our best. If you want to contribute to the development of `openxlsx2`, please be our guest on our Github. Join or open a discussion, post or fix issues or write us a mail.

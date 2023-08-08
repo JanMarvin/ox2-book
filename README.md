@@ -4,30 +4,24 @@ This is an approach to bundle and extend the [`openxlsx2`](https://github.com/Ja
 
 It contains
 
-* the basic manual
-* the charts manual
-* the style manual
-* the formulas manual
-* conditional formatting
+-   the basic manual
+-   the charts manual
+-   the style manual
+-   the formulas manual
+-   conditional formatting
 
 To be added
 
-* New features:
-  * Sparklines
-  * Missing conditional formatting
-  * Themes
-  * fmt_txt()
-  * named cell styles
-  * pivot tables
-  * copying cells
-  * hms and labels
-
-* Nice to have
-  * cloning worksheets
-  * locking workbooks, cells etc.
-  * Custom `openxlsx2` extensions
-  * Various options
-  * custom table styles
-  * more on pipes and chaining
-  * Hidden gems from disscussions
-  
+-   New features:
+    -   Themes
+    -   pivot tables
+    -   copying cells
+    -   hms and labels
+-   Nice to have
+    -   cloning worksheets
+    -   locking workbooks, cells etc.
+    -   freezing
+    -   data validation
+    -   Custom `openxlsx2` extensions
+    -   Various options
+    -   Hidden gems from disscussions

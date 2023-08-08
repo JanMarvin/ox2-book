@@ -14,8 +14,8 @@ library(openxlsx2)
 
 ```{r}
 wb <- wb_workbook()
-negStyle <- create_dxfs_style(font_color = wb_color(hex = "FF9C0006"), bgFill = wb_color(hex = "FFFFC7CE"))
-posStyle <- create_dxfs_style(font_color = wb_color(hex = "FF006100"), bgFill = wb_color(hex = "FFC6EFCE"))
+negStyle <- create_dxfs_style(font_color = wb_color(hex = "FF9C0006"), bg_fill = wb_color(hex = "FFFFC7CE"))
+posStyle <- create_dxfs_style(font_color = wb_color(hex = "FF006100"), bg_fill = wb_color(hex = "FFC6EFCE"))
 wb$styles_mgr$add(negStyle, "negStyle")
 wb$styles_mgr$add(posStyle, "posStyle")
 ```
@@ -29,18 +29,16 @@ knitr::include_graphics("../img/cf_cells.png")
 ```{r}
 wb$add_worksheet("cellIs")
 wb$add_data("cellIs", -5:5)
-wb$add_data("cellIs", LETTERS[1:11], startCol = 2)
+wb$add_data("cellIs", LETTERS[1:11], start_col = 2)
 wb$add_conditional_formatting(
   "cellIs",
-  cols = 1,
-  rows = 1:11,
+  dims = "A1:A11",
   rule = "!=0",
   style = "negStyle"
 )
 wb$add_conditional_formatting(
   "cellIs",
-  cols = 1,
-  rows = 1:11,
+  dims = "A1:A11",
   rule = "==0",
   style = "posStyle"
 )
@@ -55,18 +53,16 @@ knitr::include_graphics("../img/cf_moving_row.png")
 ```{r}
 wb$add_worksheet("Moving Row")
 wb$add_data("Moving Row", -5:5)
-wb$add_data("Moving Row", LETTERS[1:11], startCol = 2)
+wb$add_data("Moving Row", LETTERS[1:11], start_col = 2)
 wb$add_conditional_formatting(
   "Moving Row",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "$A1<0",
   style = "negStyle"
 )
 wb$add_conditional_formatting(
   "Moving Row",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "$A1>0",
   style = "posStyle"
 )
@@ -81,18 +77,16 @@ knitr::include_graphics("../img/cf_moving_col.png")
 ```{r}
 wb$add_worksheet("Moving Col")
 wb$add_data("Moving Col", -5:5)
-wb$add_data("Moving Col", LETTERS[1:11], startCol = 2)
+wb$add_data("Moving Col", LETTERS[1:11], start_col = 2)
 wb$add_conditional_formatting(
   "Moving Col",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "A$1<0",
   style = "negStyle"
 )
 wb$add_conditional_formatting(
   "Moving Col",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "A$1>0",
   style = "posStyle"
 )
@@ -107,18 +101,16 @@ knitr::include_graphics("../img/cf_dependent_on.png")
 ```{r}
 wb$add_worksheet("Dependent on")
 wb$add_data("Dependent on", -5:5)
-wb$add_data("Dependent on", LETTERS[1:11], startCol = 2)
+wb$add_data("Dependent on", LETTERS[1:11], start_col = 2)
 wb$add_conditional_formatting(
   "Dependent on",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "$A$1 < 0",
   style = "negStyle"
 )
 wb$add_conditional_formatting(
   "Dependent on",
-  cols = 1:2,
-  rows = 1:11,
+  dims = "A1:B11",
   rule = "$A$1>0",
   style = "posStyle"
 )
@@ -130,15 +122,13 @@ wb$add_conditional_formatting(
 wb$add_data("Dependent on", data.frame(x = 1:10, y = runif(10)), startRow = 15)
 wb$add_conditional_formatting(
   "Dependent on",
-  cols = 1,
-  rows = 16:25,
+  dims = "A16:A25",
   rule = "B16<0.5",
   style = "negStyle"
 )
 wb$add_conditional_formatting(
   "Dependent on",
-  cols = 1,
-  rows = 16:25,
+  dims = "A16:A25",
   rule = "B16>=0.5",
   style = "posStyle"
 )
@@ -155,8 +145,7 @@ wb$add_worksheet("Duplicates")
 wb$add_data("Duplicates", sample(LETTERS[1:15], size = 10, replace = TRUE))
 wb$add_conditional_formatting(
   "Duplicates",
-  cols = 1,
-  rows = 1:10,
+  dims = "A1:A10",
   type = "duplicatedValues"
 )
 ```
@@ -173,8 +162,7 @@ wb$add_worksheet("containsText")
 wb$add_data("containsText", sapply(1:10, fn))
 wb$add_conditional_formatting(
   "containsText",
-  cols = 1,
-  rows = 1:10,
+  dim = "A1:A10",
   type = "containsText",
   rule = "A"
 )
@@ -189,11 +177,10 @@ knitr::include_graphics("../img/cf_contains_no_text.png")
 
 ```{r}
 fn <- function(x) paste(sample(LETTERS, 10), collapse = "-")
-wb$add_data("notcontainsText", sapply(1:10, fn))
+wb$add_data("notcontainsText", x = sapply(1:10, fn))
 wb$add_conditional_formatting(
   "notcontainsText",
-  cols = 1,
-  rows = 1:10,
+  dim = "A1:A10",
   type = "notContainsText",
   rule = "A"
 )
@@ -208,11 +195,10 @@ knitr::include_graphics("../img/cf_begins_with.png")
 ```{r}
 fn <- function(x) paste(sample(LETTERS, 10), collapse = "-")
 wb$add_worksheet("beginsWith")
-wb$add_data("beginsWith", sapply(1:100, fn))
+wb$add_data("beginsWith", x = sapply(1:100, fn))
 wb$add_conditional_formatting(
   "beginsWith",
-  cols = 1,
-  rows = 1:100,
+  dim = "A1:A100",
   type = "beginsWith",
   rule = "A"
 )
@@ -227,11 +213,10 @@ knitr::include_graphics("../img/cf_ends_with.png")
 ```{r}
 fn <- function(x) paste(sample(LETTERS, 10), collapse = "-")
 wb$add_worksheet("endsWith")
-wb$add_data("endsWith", sapply(1:100, fn))
+wb$add_data("endsWith", x = sapply(1:100, fn))
 wb$add_conditional_formatting(
   "endsWith",
-  cols = 1,
-  rows = 1:100,
+  dim = "A1:A100",
   type = "endsWith",
   rule = "A"
 )
@@ -246,7 +231,7 @@ knitr::include_graphics("../img/cf_color_scale.png")
 ```{r}
 df <- read_xlsx("https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx", sheet = 5)
 wb$add_worksheet("colorScale", zoom = 30)
-wb$add_data("colorScale", df, colNames = FALSE) ## write data.frame
+wb$add_data("colorScale", x = df, col_names = FALSE) ## write data.frame
 ```
 
 Rule is a vector or colors of length 2 or 3 (any hex color or any of `colors()`). If rule is `NULL`, min and max of cells is used. Rule must be the same length as style or L.
@@ -254,96 +239,13 @@ Rule is a vector or colors of length 2 or 3 (any hex color or any of `colors()`)
 ```{r}
 wb$add_conditional_formatting(
   "colorScale",
-  cols = c(1, ncol(df)),
-  rows = seq_len(nrow(df)),
+  dims = wb_dims(x = df, col_names = FALSE),
   style = c("black", "white"),
   rule = c(0, 255),
   type = "colorScale"
 )
 wb$set_col_widths("colorScale", cols = seq_along(df), widths = 1.07)
 wb$set_row_heights("colorScale", rows = seq_len(nrow(df)), heights = 7.5)
-```
-
-## Databars
-
-```{r echo=FALSE, warning=FALSE, out.width="100%"}
-knitr::include_graphics("../img/cf_databar.png")
-```
-
-```{r}
-wb$add_worksheet("databar")
-## Databars
-wb$add_data("databar", -5:5, startCol = 1)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 1,
-  rows = 1:11,
-  type = "dataBar"
-) ## Default colors
-
-wb$add_data("databar", -5:5, startCol = 3)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 3,
-  rows = 1:11,
-  type = "dataBar",
-  params = list(
-    showValue = FALSE,
-    gradient = FALSE
-  )
-) ## Default colors
-
-wb$add_data("databar", -5:5, startCol = 5)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 5,
-  rows = 1:11,
-  type = "dataBar",
-  style = c("#a6a6a6"),
-  params = list(showValue = FALSE)
-)
-
-wb$add_data("databar", -5:5, startCol = 7)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 7,
-  rows = 1:11,
-  type = "dataBar",
-  style = c("red"),
-  params = list(
-    showValue = TRUE,
-    gradient = FALSE
-  )
-)
-
-# custom color
-wb$add_data("databar", -5:5, startCol = 9)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 9,
-  rows = 1:11,
-  type = "dataBar",
-  style = c("#a6a6a6", "#a6a6a6"),
-  params = list(showValue = TRUE, gradient = FALSE)
-)
-
-# with rule
-wb$add_data(x = -5:5, startCol = 11)
-wb <- wb_add_conditional_formatting(
-  wb,
-  "databar",
-  cols = 11,
-  rows = 1:11,
-  type = "dataBar",
-  rule = c(0, 5),
-  style = c("#a6a6a6", "#a6a6a6"),
-  params = list(showValue = TRUE, gradient = FALSE)
-)
 ```
 
 ## Between
@@ -359,8 +261,7 @@ wb$add_worksheet("between")
 wb$add_data("between", -5:5)
 wb$add_conditional_formatting(
   "between",
-  cols = 1,
-  rows = 1:11,
+  dims = "A1:A11",
   type = "between",
   rule = c(-2, 2)
 )
@@ -377,26 +278,24 @@ knitr::include_graphics("../img/cf_top_n.png")
 wb$add_data("topN", data.frame(x = 1:10, y = rnorm(10)))
 ```
 
-Highlight top 5 values in column x
+Highlight top 5 values in column `x`
 
 ```{r}
 wb$add_conditional_formatting(
   "topN",
-  cols = 1,
-  rows = 2:11,
+  dims = "A2:A11",
   style = "posStyle",
   type = "topN",
   params = list(rank = 5)
 )
 ```
 
-Highlight top 20 percentage in column y
+Highlight top 20 percentage in column `y`
 
 ```{r}
 wb$add_conditional_formatting(
   "topN",
-  cols = 2,
-  rows = 2:11,
+  dims = "B2:B11",
   style = "posStyle",
   type = "topN",
   params = list(rank = 20, percent = TRUE)
@@ -414,26 +313,24 @@ knitr::include_graphics("../img/cf_bottom_n.png")
 wb$add_data("bottomN", data.frame(x = 1:10, y = rnorm(10)))
 ```
 
-Highlight bottom 5 values in column x
+Highlight bottom 5 values in column `x`
 
 ```{r}
 wb$add_conditional_formatting(
   "bottomN",
-  cols = 1,
-  rows = 2:11,
+  dims = "A2:A11",
   style = "negStyle",
   type = "bottomN",
   params = list(rank = 5)
 )
 ```
 
-Highlight bottom 20 percentage in column y
+Highlight bottom 20 percentage in column `y`
 
 ```{r}
 wb$add_conditional_formatting(
   "bottomN",
-  cols = 2,
-  rows = 2:11,
+  dims = "B2:B11",
   style = "negStyle",
   type = "bottomN",
   params = list(rank = 20, percent = TRUE)
@@ -453,8 +350,7 @@ You can use Excels logical Operators
 wb$add_data("logical operators", 1:10)
 wb$add_conditional_formatting(
   "logical operators",
-  cols = 1,
-  rows = 1:10,
+  dims = "A1:A10",
   rule = "OR($A1=1,$A1=3,$A1=5,$A1=7)"
 )
 ```
@@ -468,11 +364,10 @@ knitr::include_graphics("../img/cf_blanks.png")
 ```{r}
 wb$add_worksheet("contains blanks")
 wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL)
-wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL, startCol = 2)
-wb$add_conditional_formatting(cols = 1, rows = 1:4, type = "containsBlanks")
-wb$add_conditional_formatting(cols = 2, rows = 1:4, type = "notContainsBlanks")
+wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL, start_col = 2)
+wb$add_conditional_formatting(dims = "A1:A4", type = "containsBlanks")
+wb$add_conditional_formatting(dims = "B1:B4", type = "notContainsBlanks")
 ```
-
 
 ## (Not) Contains Errors
 
@@ -483,11 +378,10 @@ knitr::include_graphics("../img/cf_errors.png")
 ```{r}
 wb$add_worksheet("contains errors")
 wb$add_data(x = c(1, NaN), colNames = FALSE)
-wb$add_data(x = c(1, NaN), colNames = FALSE, startCol = 2)
-wb$add_conditional_formatting(cols = 1, rows = 1:3, type = "containsErrors")
-wb$add_conditional_formatting(cols = 2, rows = 1:3, type = "notContainsErrors")
+wb$add_data(x = c(1, NaN), colNames = FALSE, start_col = 2)
+wb$add_conditional_formatting(dims = "A1:A3", type = "containsErrors")
+wb$add_conditional_formatting(dims = "A1:A3", type = "notContainsErrors")
 ```
-
 
 ## Iconset
 
@@ -499,8 +393,7 @@ knitr::include_graphics("../img/cf_iconset.png")
 wb$add_worksheet("iconset")
 wb$add_data(x = c(100, 50, 30), colNames = FALSE)
 wb$add_conditional_formatting(
-  cols = 1,
-  rows = 1:6,
+  dims = "A1:A6",
   rule = c(-67, -33, 0, 33, 67),
   type = "iconSet",
   params = list(
@@ -509,7 +402,6 @@ wb$add_conditional_formatting(
     reverse = TRUE)
   )
 ```
-
 
 ## Unique Values
 
@@ -520,11 +412,88 @@ knitr::include_graphics("../img/cf_unique.png")
 ```{r}
 wb$add_worksheet("unique values")
 wb$add_data(x = c(1:4, 1:2), colNames = FALSE)
-wb$add_conditional_formatting(cols = 1, rows = 1:6, type = "uniqueValues")
+wb$add_conditional_formatting(dims = "A1:A6", type = "uniqueValues")
 ```
 
 
-## Sparklines
+# Databars
+
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/cf_databar.png")
+```
+
+```{r}
+wb$add_worksheet("databar")
+## Databars
+wb$add_data("databar", -5:5, start_col = 1)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = "A1:A11",
+  type = "dataBar"
+) ## Default colors
+
+wb$add_data("databar", -5:5, start_col = 3)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = "A1:A10",
+  type = "dataBar",
+  params = list(
+    showValue = FALSE,
+    gradient = FALSE
+  )
+) ## Default colors
+
+wb$add_data("databar", -5:5, start_col = 5)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = "E1:E11",
+  type = "dataBar",
+  style = c("#a6a6a6"),
+  params = list(showValue = FALSE)
+)
+
+wb$add_data("databar", -5:5, start_col = 7)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = "G1:G11",
+  type = "dataBar",
+  style = c("red"),
+  params = list(
+    showValue = TRUE,
+    gradient = FALSE
+  )
+)
+
+# custom color
+wb$add_data("databar", -5:5, start_col = 9)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = wb_dims(cols = 9, rows = 1:11),
+  type = "dataBar",
+  style = c("#a6a6a6", "#a6a6a6"),
+  params = list(showValue = TRUE, gradient = FALSE)
+)
+
+# with rule
+wb$add_data(x = -5:5, start_col = 11)
+wb <- wb_add_conditional_formatting(
+  wb,
+  "databar",
+  dims = wb_dims(cols = 11, rows = 1:11),
+  type = "dataBar",
+  rule = c(0, 5),
+  style = c("#a6a6a6", "#a6a6a6"),
+  params = list(showValue = TRUE, gradient = FALSE)
+)
+```
+
+
+# Sparklines
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sparklines.png")
@@ -537,4 +506,3 @@ wb <- wb_workbook() %>%
    wb_add_data(x = mtcars) %>%
    wb_add_sparklines(sparklines = sl)
 ```
-
