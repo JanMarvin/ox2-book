@@ -92,7 +92,6 @@ pt$addRowDataGroups("PowerType", addTotal=FALSE)
 pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
 ```
 
-
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/pv_pivottabler.png")
 ```
@@ -112,6 +111,26 @@ wb$add_pivot_table(
 )
 # wb$open()
 ```
+
+```{r}
+## Pivot table example 1
+wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = F)
+
+wb$add_numfmt(dims = wb_dims(x = mtcars, cols = "disp"), numfmt = "$ #,###")
+
+df <- wb_data(wb)
+
+# basic pivot table with filter, rows, cols and data
+wb$add_pivot_table(
+  df,
+  rows = "cyl", cols = "gear",
+  data = c("disp", "hp"),
+  fun = c("sum", "count"),
+  params = list(
+    numfmt = c(formatCode = "$ ###", formatCode = "#")
+  ))
+```
+
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/pv_openxlsx2.png")
