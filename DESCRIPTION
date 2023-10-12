@@ -17,14 +17,15 @@ Imports:
 LinkingTo:
     Rcpp
 Suggests:
-    covr,
+    flexlsx,
+    flextable,
     ggplot2,
     knitr,
     mschart (>= 0.4),
+    msoc,
     pivottabler,
     quarto,
     rmarkdown,
-    roxygen2,
     rvg,
     testthat (>= 3.0.0),
     waldo
@@ -34,4 +35,3 @@ Encoding: UTF-8
 Remotes:
     JanMarvin/msoc,
     pteridin/flexlsx
-
