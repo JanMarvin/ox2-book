@@ -32,6 +32,6 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Remotes:
-    JanMarvin/msoc
+    JanMarvin/msoc,
     pteridin/flexlsx
 
