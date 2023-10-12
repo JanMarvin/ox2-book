@@ -1,0 +1,61 @@
+# Extending `openxlsx2`
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(123)
+```
+
+
+
+```{r setup}
+library(openxlsx2)
+```
+
+## `msoc` - Encrypting / Decrypting workbooks
+
+You might want to look at `msoc` [@msoc] for openxml file level encryption/decryption.
+
+```{r}
+library(msoc)
+
+xlsx <- temp_xlsx()
+
+# let us write some worksheet
+wb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)
+
+# now we can encrypt it
+encrypt(xlsx, xlsx, pass = "msoc")
+
+# the file is encrypted, we can not read it
+try(wb <- wb_load(xlsx))
+
+# we have to decrypt it first
+decrypt(xlsx, xlsx, pass = "msoc")
+
+# now we can load it again
+wb_load(xlsx)$to_df() %>% head()
+```
+
+
+## `flexlsx` - Exporting `flextable` to workbooks
+
+Using `flexlsx` [@flexlsx] you can extend `openxlsx2` to write `flextable`[@flextable].
+
+```{r}
+library(flexlsx)
+
+wb <- wb_workbook()$add_worksheet("mtcars")
+
+# Create a flextable and an openxlsx2 workbook
+ft <- flextable::as_flextable(table(mtcars[,1:2]))
+
+# add the flextable ft to the workbook, sheet "mtcars"
+# offset the table to cell 'C2'
+wb <- flexlsx::wb_add_flextable(wb, "mtcars", ft, dims = "C2")
+
+if (interactive()) wb$open()
+```
+

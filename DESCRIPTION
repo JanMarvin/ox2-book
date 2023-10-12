@@ -31,3 +31,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Encoding: UTF-8
+Remotes:
+    JanMarvin/msoc
+    pteridin/flexlsx
+
