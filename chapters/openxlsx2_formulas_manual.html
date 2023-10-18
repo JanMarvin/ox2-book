@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The openxlsx2 book - 6&nbsp; openxlsx2 formulas manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/openxlsx2_pivot_tables.html" rel="next">
+<link href="../chapters/openxlsx2_charts_manual.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_formulas_manual.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">The <code>openxlsx2</code> book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_basic_manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_charts_manual.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">charts</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_pivot_tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pivot tables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_form_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Form control</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#simple-formulas" id="toc-simple-formulas" class="nav-link active" data-scroll-target="#simple-formulas"><span class="header-section-number">7</span> Simple formulas</a></li>
+  <li><a href="#array-formulas" id="toc-array-formulas" class="nav-link" data-scroll-target="#array-formulas"><span class="header-section-number">8</span> Array formulas</a></li>
+  <li><a href="#array-formulas-creating-multiple-fields" id="toc-array-formulas-creating-multiple-fields" class="nav-link" data-scroll-target="#array-formulas-creating-multiple-fields"><span class="header-section-number">9</span> Array formulas creating multiple fields</a></li>
+  <li><a href="#cell-error-handling" id="toc-cell-error-handling" class="nav-link" data-scroll-target="#cell-error-handling"><span class="header-section-number">10</span> Cell error handling</a></li>
+  <li><a href="#cells-metadata-cm-formulas" id="toc-cells-metadata-cm-formulas" class="nav-link" data-scroll-target="#cells-metadata-cm-formulas"><span class="header-section-number">11</span> cells metadata (cm) formulas</a></li>
+  <li><a href="#datatable-formulasopenxlsx2_formulas_manual-1" id="toc-datatable-formulasopenxlsx2_formulas_manual-1" class="nav-link" data-scroll-target="#datatable-formulasopenxlsx2_formulas_manual-1"><span class="header-section-number">12</span> <code>dataTable</code> formulas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below you find various examples how to create formulas with <code>openxlsx2</code>. Though, before we start with the examples, let us begin with a word of warning. Please be aware, while it is possible to create all these formulas, they are not evaluated unless they are opened in spreadsheet software. Even worse, if there are cells containing the result of some formula, it can not be trusted unless the formula is evaluated in spreadsheet software.</p>
+<p>This can be shown in a simple example: We have a spreadsheet with a formula <code>A1 + B1</code>. This formula was evaluated with spreadsheet software as <code>A1 + B1 = 2</code>. Therefore if we read the cell, we see the value 2. Lets recreate this output in <code>openxlsx2</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create artificial xlsx file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">t</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="at">col_names =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">dims =</span> <span class="st">"C1"</span>, <span class="at">x =</span> <span class="st">"A1 + B1"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Users should never modify cc as shown here</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>worksheets[[<span class="dv">1</span>]]<span class="sc">$</span>sheet_data<span class="sc">$</span>cc<span class="sc">$</span>v[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect a value of 2</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, lets assume we modify the data in cell <code>A1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="dv">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect 3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What happened? Even though we see cells <code>A1</code> and <code>B1</code> show a value of <code>2</code> and <code>1</code> our formula in <code>C1</code> was not updated. It still shows a value of <code>2</code>. This is because <code>openxlsx2</code> does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:</p>
+<pre><code>&lt;c r="C1"&gt;
+  &lt;f&gt;A1 + B1&lt;/f&gt;
+  &lt;v&gt;2&lt;/v&gt;
+&lt;/c&gt;</code></pre>
+<p>And when we read from this cell, we always return the value of <code>v</code>. In this case it is obvious, but still wrong and it is a good idea to check if underlying fields contain formulas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">show_formula =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B       C</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 A1 + B1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If <code>openxlsx2</code> writes formulas, as shown in the examples below, the fields will be entirely blank. These fields will only be evaluated and filled, once the output file is opened in spreadsheet software.</p>
+<p>The only way to avoid surprises is to be aware of this all the time and similar, checking for similar things all the time.</p>
+<section id="simple-formulas" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Simple formulas</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"SUM(A2, B2)"</span>, <span class="at">dims =</span> <span class="st">"D2"</span>)<span class="sc">$</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2 + B2"</span>, <span class="at">dims =</span> <span class="st">"D3"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="array-formulas" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Array formulas</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2:A7 * B2:B7"</span>, <span class="at">dims =</span> <span class="st">"C2:C7"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="array-formulas-creating-multiple-fields" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Array formulas creating multiple fields</h1>
+<p>In the example below we want to use <code>MMULT()</code> which creates a matrix multiplication. This requires us to write an array formula and to specify the region where the output will be written to.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m1, <span class="at">startCol =</span> <span class="dv">1</span>)<span class="sc">$</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m2, <span class="at">startCol =</span> <span class="dv">4</span>)<span class="sc">$</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"MMULT(A2:B4, D2:F3)"</span>, <span class="at">dims =</span> <span class="st">"H2:J4"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similar a the coefficients of a linear regression</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect to find this in D1:E1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(<span class="fu">head</span>(cars)))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)        dist </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5.2692308   0.1153846</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"LINEST(A2:A7, B2:B7, TRUE)"</span>, <span class="at">dims =</span> <span class="st">"D2:E2"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cell-error-handling" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Cell error handling</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wb_add_ignore_error()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cells-metadata-cm-formulas" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> cells metadata (cm) formulas</h1>
+<p>Similar to array formulas, these cell metadata (cm) formulas hide to the user that they are array formulas. Using these is implemented in <code>openxlsx2</code> &gt; 0.6.1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">'SUM(ABS(A2:A7))'</span>, <span class="at">dims =</span> <span class="st">"D2"</span>, <span class="at">cm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in write_data2(wb = wb, sheet = sheet, data = x, name = name, colNames</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = colNames, : modifications with cm formulas are experimental. use at own risk</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="datatable-formulasopenxlsx2_formulas_manual-1" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> <code>dataTable</code> formulas<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
+<section id="datatable-formula-differences" class="level4" data-number="12.0.0.1">
+<h4 data-number="12.0.0.1" class="anchored" data-anchor-id="datatable-formula-differences"><span class="header-section-number">12.0.0.1</span> <code>dataTable</code> formula differences</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>sales_price</td>
+<td>COGS</td>
+<td>sales_quantity</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>20</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>30</td>
+<td>11</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>40</td>
+<td>13</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Given a basic table like the above, a similarly basic formula for <code>total_sales</code> would be “= A2 * C2” with the row value changing at each row.</p>
+<p>An implementation for this formula using <code>wb_add_formula()</code> would look this (taken from current documentation) lets say we’ve read in the data and assigned it to the table <code>company_sales</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## creating example data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>company_sales <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sales_price =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">COGS =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">13</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sales_quantity =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## write in the formula</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>company_sales<span class="sc">$</span>total_sales  <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">paste0</span>(<span class="st">"A"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">+</span> 1L), <span class="fu">paste0</span>(<span class="st">"C"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">+</span> 1L), <span class="at">sep =</span> <span class="st">" * "</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## add the formula class</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(company_sales<span class="sc">$</span>total_sales) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(company_sales<span class="sc">$</span>total_sales), <span class="st">"formula"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## write a workbook</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"Total Sales"</span>)<span class="sc">$</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data_table</span>(<span class="at">x =</span> company_sales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we create the workbook, worksheet, and use <code>wb_add_data_table()</code>.</p>
+<p>One of the advantages of the open xml <code>dataTable</code> syntax is that we don’t have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These <code>dataTable</code> have named columns that we can use instead of letters. When writing the formulas within the <code>dataTable</code> we would use the following syntax <code>[@[column_name]]</code> to reference the current row. So the <code>total_sales</code> formula written in open xml in <code>dataTable</code> would look like this; <code>=[@[sales_price]] * [@[sales_quantity]]</code></p>
+<p>If we are writing the formula outside of the <code>dataTable</code> we have to reference the table name. In this case lets say the table name is ‘daily_sales’ <code>=daily_sales[@[sales_price]] * daily_sales[@[sales_quantity]]</code></p>
+<p>However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that open xml requires for selecting the current row is different.</p>
+<p>In open xml the <code>dataTable</code> formula looks like this:</p>
+<pre><code>&lt;calculatedColumnFormula&gt;
+  daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
+&lt;/calculatedColumnFormula&gt;</code></pre>
+<p>Now we can see that open xml replaces <code>[@[sales_price]]</code> with <code>daily_sales[[#This Row],[sales_price]]</code> We must then use this syntax when writing formulas for <code>dataTable</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Because we want the `dataTable` formula to propagate down the entire column of the data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## we can assign the formula by itself to any column and allow that single string to be repeated for each row.</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## creating example data</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>example_data <span class="ot">&lt;-</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sales_price =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">COGS =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">13</span>),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sales_quantity =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="do">## base R method</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>gross_profit       <span class="ot">&lt;-</span> <span class="st">"daily_sales[[#This Row],[sales_price]] - daily_sales[[#This Row],[COGS]]"</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>total_COGS        <span class="ot">&lt;-</span> <span class="st">"daily_sales[[#This Row],[COGS]] * daily_sales[[#This Row],[sales_quantity]]"</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>total_sales       <span class="ot">&lt;-</span> <span class="st">"daily_sales[[#This Row],[sales_price]] * daily_sales[[#This Row],[sales_quantity]]"</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>total_gross_profit <span class="ot">&lt;-</span> <span class="st">"daily_sales[[#This Row],[total_sales]] - daily_sales[[#This Row],[total_COGS]]"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_data<span class="sc">$</span>gross_profit)       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(example_data<span class="sc">$</span>gross_profit),       <span class="st">"formula"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_data<span class="sc">$</span>total_COGS)        <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(example_data<span class="sc">$</span>total_COGS),          <span class="st">"formula"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_data<span class="sc">$</span>total_sales)       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(example_data<span class="sc">$</span>total_sales),         <span class="st">"formula"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_data<span class="sc">$</span>total_gross_profit) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(example_data<span class="sc">$</span>total_gross_profit), <span class="st">"formula"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"Daily Sales"</span>)<span class="sc">$</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data_table</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x           =</span> example_data,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_style =</span> <span class="st">"TableStyleMedium2"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_name  =</span> <span class="st">"daily_sales"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And if we open the workbook to view the table we created we can see that the formula has worked.</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>sales_price</td>
+<td>COGS</td>
+<td>sales_quantity</td>
+<td>gross_profit</td>
+<td>total_COGS</td>
+<td>total_sales</td>
+<td>total_gross_profit</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>20</td>
+<td>5</td>
+<td>1</td>
+<td>15</td>
+<td>5</td>
+<td>20</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>30</td>
+<td>11</td>
+<td>2</td>
+<td>19</td>
+<td>22</td>
+<td>60</td>
+<td>38</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>40</td>
+<td>13</td>
+<td>3</td>
+<td>27</td>
+<td>39</td>
+<td>120</td>
+<td>81</td>
+</tr>
+</tbody>
+</table>
+<p>We can also see that it has replaced <code>[#This Row]</code> with <code>@</code>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>sales_price</td>
+<td>COGS</td>
+<td>sales_quantity</td>
+<td>gross_profit</td>
+<td>total_COGS</td>
+<td>total_sales</td>
+<td>total_gross_profit</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>20</td>
+<td>5</td>
+<td>1</td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> - <span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=[@[total_sales]] - [@[total_COGS]]</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>30</td>
+<td>11</td>
+<td>2</td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> - <span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=[@[total_sales]] - [@[total_COGS]]</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>40</td>
+<td>13</td>
+<td>3</td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> - <span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="COGS">(<a href="../references.html#ref-COGS" role="doc-biblioref"><strong>COGS?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=<span class="citation" data-cites="sales_price">(<a href="../references.html#ref-sales_price" role="doc-biblioref"><strong>sales_price?</strong></a>)</span> * <span class="citation" data-cites="sales_quantity">(<a href="../references.html#ref-sales_quantity" role="doc-biblioref"><strong>sales_quantity?</strong></a>)</span></td>
+<td>=[@[total_sales]] - [@[total_COGS]]</td>
+</tr>
+</tbody>
+</table>
+<p>For completion, the formula as we wrote it appears as;</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gross_profit</td>
+<td>total_COGS</td>
+<td>total_sales</td>
+<td>total_gross_profit</td>
+</tr>
+<tr class="even">
+<td>=gross_profit[[#This Row],[sales_price]] - gross_profit[[#This Row],[COGS]]</td>
+<td>=gross_profit[[#This Row],[COGS]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[sales_price]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[total_sales]] - gross_profit[[#This Row],[total_COGS]]</td>
+</tr>
+<tr class="odd">
+<td>=gross_profit[[#This Row],[sales_price]] - gross_profit[[#This Row],[COGS]]</td>
+<td>=gross_profit[[#This Row],[COGS]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[sales_price]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[total_sales]] - gross_profit[[#This Row],[total_COGS]]</td>
+</tr>
+<tr class="even">
+<td>=gross_profit[[#This Row],[sales_price]] - gross_profit[[#This Row],[COGS]]</td>
+<td>=gross_profit[[#This Row],[COGS]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[sales_price]] * gross_profit[[#This Row],[sales_quantity]]</td>
+<td>=gross_profit[[#This Row],[total_sales]] - gross_profit[[#This Row],[total_COGS]]</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### sum dataTable examples</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"sum_examples"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">### Note: dataTable formula do not need to be used inside of dataTables. dataTable formula are for referencing the data within the dataTable.</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>sum_examples <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">description =</span> <span class="fu">c</span>(<span class="st">"sum_sales_price"</span>, <span class="st">"sum_product_Price_Quantity"</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="fu">c</span>( <span class="st">""</span>, <span class="st">""</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> sum_examples)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># add formulas</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"sum(daily_sales[[#Data],[sales_price]])"</span>, <span class="at">dims =</span> <span class="st">"B2"</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"sum(daily_sales[[#Data],[sales_price]] * daily_sales[[#Data],[sales_quantity]])"</span>, <span class="at">dims =</span> <span class="st">"B3"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="do">#### dataTable referencing</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"dt_references"</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="do">### Adding the headers by themselves.</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_formula</span>(</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"daily_sales[[#Headers],[sales_price]:[total_gross_profit]]"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:G1"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">array =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="do">### Adding the raw data by reference and selecting them directly.</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_formula</span>(</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"daily_sales[[#Data],[sales_price]:[total_gross_profit]]"</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_row =</span> <span class="dv">2</span>,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:G4"</span>,</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">array =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>this example was originally provided by <span class="citation" data-cites="zykezero">(<a href="../references.html#ref-zykezero" role="doc-biblioref"><strong>zykezero?</strong></a>)</span> for <code>openxlsx</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/openxlsx2_charts_manual.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">charts</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/openxlsx2_pivot_tables.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pivot tables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
