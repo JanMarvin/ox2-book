@@ -212,7 +212,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#adding-pivot-tables" id="toc-adding-pivot-tables" class="nav-link active" data-scroll-target="#adding-pivot-tables"><span class="header-section-number">7.1</span> Adding pivot tables</a></li>
+  <li><a href="#adding-slicers-to-pivot-tables" id="toc-adding-slicers-to-pivot-tables" class="nav-link" data-scroll-target="#adding-slicers-to-pivot-tables"><span class="header-section-number">7.2</span> Adding slicers to pivot tables</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -234,6 +241,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="adding-pivot-tables" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="adding-pivot-tables"><span class="header-section-number">7.1</span> Adding pivot tables</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
@@ -352,8 +361,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../img/pv_openxlsx2.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
+<section id="adding-slicers-to-pivot-tables" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="adding-slicers-to-pivot-tables"><span class="header-section-number">7.2</span> Adding slicers to pivot tables</h2>
+<p>Since <code>openxlsx2</code> 1.1 it is possible to add slicers to pivot tables created with <code>wb_add_pivot_tables()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B7:D9"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">edit_as =</span> <span class="st">"twoCell"</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Sheet 1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>varname <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"vs"</span>, <span class="st">"drat"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Sheet 2</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first pivot</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>)<span class="sc">$</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B18:D24"</span>, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> <span class="st">"drat"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">columnCount =</span> <span class="dv">5</span>))<span class="sc">$</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># second pivot</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"G3"</span>, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"gear"</span>, <span class="at">cols =</span> <span class="st">"carb"</span>, <span class="at">data =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars2"</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"G12:I16"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars2"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">sortOrder =</span> <span class="st">"descending"</span>, <span class="at">caption =</span> <span class="st">"Wow!"</span>))</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="do">### Sheet 3</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"gear"</span>, <span class="at">cols =</span> <span class="st">"carb"</span>, <span class="at">data =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars3"</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"A12:D16"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars3"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
