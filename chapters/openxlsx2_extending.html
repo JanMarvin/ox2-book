@@ -276,7 +276,7 @@ div.csl-indent {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can encrypt it</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">encrypt</span>(xlsx, xlsx, <span class="at">pass =</span> <span class="st">"msoc"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/RtmpmUPQSz/temp_xlsx_1ebb7339b37c.xlsx"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/Rtmp0wSTWh/temp_xlsx_1f665e760fc8.xlsx"</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># the file is encrypted, we can not read it</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(wb <span class="ot">&lt;-</span> <span class="fu">wb_load</span>(xlsx))</span>
@@ -285,7 +285,7 @@ div.csl-indent {
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># we have to decrypt it first</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">decrypt</span>(xlsx, xlsx, <span class="at">pass =</span> <span class="st">"msoc"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/RtmpmUPQSz/temp_xlsx_1ebb7339b37c.xlsx"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/Rtmp0wSTWh/temp_xlsx_1f665e760fc8.xlsx"</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can load it again</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_load</span>(xlsx)<span class="sc">$</span><span class="fu">to_df</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
