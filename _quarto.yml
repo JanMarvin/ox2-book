@@ -27,4 +27,14 @@ format:
   pdf:
     documentclass: scrreprt
 
-editor: visual
+editor: source
+
+channel-type: 3 # "post-message"
+
+# Set default options for every bookpage that may or may not include webR.
+webr: 
+  show-startup-message: false     # Display status of webR initialization
+
+# Attach webR extension for the project
+filters:
+  - webr
