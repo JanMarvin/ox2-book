@@ -587,7 +587,6 @@ await globalThis.webR.init();
 
 // Run R code without focusing on storing data.
 await globalThis.webR.evalRVoid(`
-#| echo = FALSE
 webr::install(
    'openxlsx2',
    repos = c(
