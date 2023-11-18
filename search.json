@@ -312,7 +312,7 @@
     "href": "chapters/openxlsx2_formulas_manual.html#footnotes",
     "title": "6  openxlsx2 formulas manual",
     "section": "",
-    "text": "this example was originally provided by (zykezero?) for openxlsx.↩︎"
+    "text": "this example was originally provided by @zykezero for openxlsx.↩︎"
   },
   {
     "objectID": "chapters/openxlsx2_pivot_tables.html#adding-pivot-tables",
@@ -340,7 +340,7 @@
     "href": "chapters/openxlsx2_extending.html#msoc---encrypting-decrypting-workbooks",
     "title": "9  Extending openxlsx2",
     "section": "9.1 msoc - Encrypting / Decrypting workbooks",
-    "text": "9.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\n\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpvDXGrz/temp_xlsx_1d1137140ff6.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Warning in unzip(file, exdir = xmlDir): error 1 in extracting from zip file\n#&gt; Error in wb_load(xlsx) : object 'sheets' not found\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpvDXGrz/temp_xlsx_1d1137140ff6.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() %&gt;% head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
+    "text": "9.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\n\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpYXf0xZ/temp_xlsx_1bcd594e2976.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Warning in unzip(file, exdir = xmlDir): error 1 in extracting from zip file\n#&gt; Error in wb_load(xlsx) : object 'sheets' not found\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpYXf0xZ/temp_xlsx_1bcd594e2976.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() %&gt;% head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
   },
   {
     "objectID": "chapters/openxlsx2_extending.html#flexlsx---exporting-flextable-to-workbooks",
