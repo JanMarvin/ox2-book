@@ -199,3 +199,40 @@ wb$
 if (interactive()) wb$open()
 ```
 
+```{r}
+
+wb <- wb_workbook() %>%
+  wb_add_worksheet("table") %>%
+  wb_add_worksheet("data") %>%
+  wb_add_data(x = datasets::esoph)
+
+df <- wb_data(wb)
+
+# add a pivot table and a slicer and preselect
+# a few cases and style it a bit
+wb <- wb %>%
+  wb_add_pivot_table(
+    df, dims = "A3", sheet = "table",
+    rows = "agegp", cols = "tobgp", data = "ncases",
+    slicer = "alcgp", pivot_table = "pt1",
+    param = list(
+      show_data_as = c("percentOfRow"),
+      numfmt = c(formatCode = "0.0%"),
+      compact = FALSE, outline = FALSE, compactData = FALSE,
+      rowGrandTotals = FALSE, colGrandTotals = FALSE,
+      choose = c(agegp = 'x > "25-34"')
+    )
+  ) %>% 
+  wb_add_slicer(
+    x = df, dims = "B14:D18", 
+    slicer = "alcgp", pivot_table = "pt1", 
+    param = list(
+      columnCount = 2,
+      choose = c(alcgp = 'x %in% c("40-79", "80-119")')
+    )
+  )
+
+if (interactive()) wb$open()
+
+```
+
