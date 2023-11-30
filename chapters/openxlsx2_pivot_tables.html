@@ -419,6 +419,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"table"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"data"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> datasets<span class="sc">::</span>esoph)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add a pivot table and a slicer and preselect</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># a few cases and style it a bit</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">sheet =</span> <span class="st">"table"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="st">"ncases"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">slicer =</span> <span class="st">"alcgp"</span>, <span class="at">pivot_table =</span> <span class="st">"pt1"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">param =</span> <span class="fu">list</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_data_as =</span> <span class="fu">c</span>(<span class="st">"percentOfRow"</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">numfmt =</span> <span class="fu">c</span>(<span class="at">formatCode =</span> <span class="st">"0.0%"</span>),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">compact =</span> <span class="cn">FALSE</span>, <span class="at">outline =</span> <span class="cn">FALSE</span>, <span class="at">compactData =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">rowGrandTotals =</span> <span class="cn">FALSE</span>, <span class="at">colGrandTotals =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">choose =</span> <span class="fu">c</span>(<span class="at">agegp =</span> <span class="st">'x &gt; "25-34"'</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_slicer</span>(</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B14:D18"</span>, </span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">slicer =</span> <span class="st">"alcgp"</span>, <span class="at">pivot_table =</span> <span class="st">"pt1"</span>, </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">param =</span> <span class="fu">list</span>(</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">columnCount =</span> <span class="dv">2</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">choose =</span> <span class="fu">c</span>(<span class="at">alcgp =</span> <span class="st">'x %in% c("40-79", "80-119")'</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
