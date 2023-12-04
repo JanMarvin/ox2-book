@@ -17,6 +17,8 @@ Even though they are a long requested feature, it took a while until support was
 
 The state of pivot tables is now that they work quite well, though they bring a few features users should be aware of. Most importantly, our function only provides the spreadsheet with an instruction set how to create the pivot table, while the actual sheet where the table is supposed to appear remains empty until it is evaluated by the spreadsheet software. This is similar to our approach with formulas.
 
+Please, though, be a little careful if you start experimenting with pivot table params as there are actual cases, where the instruction set results into spreadsheet software crashes. Make copies and try to prevent some headaches afterwards.
+
 ## Adding pivot tables
 
 ```{r}
@@ -75,9 +77,62 @@ wb$add_pivot_table(df, dims = "A18", rows = "agegp", cols = "tobgp", data = c("n
 knitr::include_graphics("../img/pt_three_types.png")
 ```
 
+
+### Sorting
+
+Using `sort_item` it is possible to order the pivot table. `sort_item` can take either integers or characters, the latter is beneficial in cases as below, where the variable you want to sort is a factor. Though, be aware that pivot table uses a different approach to distinct unique elements and that `Berlin` and `BERLIN` are identical to it. You can check for distinct cases with `openxlsx2:::distinct()`.
+
+```{r}
+library(openxlsx2)
+
+tbl_prueba_2 <- data.frame(
+  var_1 = as.Date(rep(
+    c(
+      "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01",
+      "2023-07-01", "2023-08-01", "2023-09-01", "2023-10-01", "2023-11-01",
+      "2023-12-01", "2024-01-01", "2024-02-01", "2024-03-01"
+    ),
+    each = 2L
+  )),
+  var_2 = rep(2:15, each = 2L),
+  year = rep(c(2023, 2024), c(22L, 6L)),
+  month = ordered(
+    rep(
+      c(
+        "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+        "Jan", "Feb", "Mar"
+      ),
+      each = 2L
+    ),
+    levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+  )
+)
+
+
+wb_1 <- wb_workbook() |>
+  wb_add_worksheet() |>
+  wb_add_data(x = tbl_prueba_2)
+
+df <- wb_data(wb_1)
+
+wb_1 <- wb_1 |>
+  wb_add_pivot_table(
+    x = df,
+    cols = c("year", "month"),
+    data = "var_2",
+    fun = "sum",
+    params = list(
+      sort_item = list(month = rev(levels(tbl_prueba_2$month)))
+    )
+  ) 
+
+if (interactive()) wb_1$open()
+```
+
+
 ### Aggregation functions
 
-The default aggregation function is `SUM`, but others are possible as well: `AVERAGE, COUNT, COUNTA, MAX, MIN, PRODUCT, STDEV, STDEVP, SUM, VAR, VARP`. This is limited to functions available in the openxml specification.
+The default aggregation function is `SUM`, but others are possible as well: `AVERAGE, COUNT, COUNTA, MAX, MIN, PRODUCT, STDEV, STDEVP, SUM, VAR, VARP`. This is limited to functions available in the openxml specification. Each data variable can use a different function.
 
 ```{r}
 wb <- wb_workbook()$
@@ -93,12 +148,13 @@ wb$add_pivot_table(df, dims = "A30", sheet = 2, rows = "cyl", cols = "gear", dat
 ```
 
 ```{r echo=FALSE, warning=FALSE}
-knitr::include_graphics("../img/pt_funs.png")
+knitr::include_graphics("../img/pt_four_types.png")
 ```
+
 
 ### Styling pivot tables
 
-There is no real support for individual pivot table styles. As seen they can be disable and auto format styles can be applied (see annex `G.3 - Built-in PivotTable AutoFormats` of @ECMA16pt1)
+There is no real support for individual pivot table styles. Aside from the default style, it is possible to disable the style and to apply auto format styles (for various styles see annex `G.3 - Built-in PivotTable AutoFormats` of @ECMA16pt1). In the example below style id `4099` is applied, ids range from `4096` to `4117`.
 
 ```{r}
 wb <- wb_workbook() %>% 
@@ -142,7 +198,34 @@ if (interactive()) wb$open()
 knitr::include_graphics("../img/pt_styles.png")
 ```
 
-With `params` it is possible to tweak many pivot table arguments such as `params = list(col_header_caption = "test caption")`
+With `params` it is possible to tweak many pivot table arguments such as `params = list(col_header_caption = "test caption")`. This way it is also possible to apply built in pivot table styles. The default is `PivotStyleLight16` (for more built in styles see `G.1 Built-in Table Styles` of @ECMA16pt1).
+
+```{r}
+
+library(openxlsx2)
+
+wb <- wb_workbook()$
+  add_worksheet("table")$
+  add_worksheet("data")$add_data(x = mtcars)
+
+df <- wb_data(wb)
+
+wb$add_pivot_table(df, sheet = "table", dims = "A1", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleMedium23"))
+wb$add_pivot_table(df, sheet = "table", dims = "A10", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleLight19"))
+wb$add_pivot_table(df, sheet = "table", dims = "A19", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleDark11"))
+
+wb$add_pivot_table(df, sheet = "table", dims = "G1", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleMedium28"))
+wb$add_pivot_table(df, sheet = "table", dims = "G10", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleMedium13"))
+wb$add_pivot_table(df, sheet = "table", dims = "G19", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleDark20"))
+
+if (interactive()) wb$open()
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/pt_param_style.png")
+```
+
 
 ### Pivot table `dims`
 
@@ -183,6 +266,11 @@ wb$add_pivot_table(
 if (interactive()) wb$open()
 ```
 
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/pv_openxlsx2.png")
+```
+
 ### Using number formats
 
 ```{r}
@@ -205,14 +293,11 @@ wb$add_pivot_table(
 ```
 
 
-```{r echo=FALSE, warning=FALSE}
-knitr::include_graphics("../img/pv_openxlsx2.png")
-```
-
-
 ## Adding slicers to pivot tables
 
-Since `openxlsx2` release 1.1 it is possible to add slicers to pivot tables created with `wb_add_pivot_tables()`.
+Since `openxlsx2` release 1.1 it is possible to add slicers to pivot tables created with `wb_add_pivot_tables()`. For this to work you have to provide a name for a pivot table name you are going to add and make sure that the slicer variable is actually 'activated' in the pivot table. Adding slicers to loaded pivot tables is not possible and the creation of slicers needs to go hand in hand with a pivot table.
+
+It is possible to apply slicer styles with `params = list(style = "SlicerStyleLight2")`
 
 ```{r}
 wb <- wb_workbook() %>%
@@ -226,10 +311,12 @@ wb$
     pivot_table = "mtcars"
   )$
   add_slicer(x = df, dims = "B7:D9", slicer = "vs", pivot_table = "mtcars",
-             params = list(edit_as = "twoCell"))
+             params = list(edit_as = "twoCell", style = "SlicerStyleLight2"))
 
 if (interactive()) wb$open()
 ```
+
+It is possible to tweak the number of columns in a slicer using `columnCount` and to add a `caption` and change the sorting order to `descending`.
 
 ```{r}
 wb <- wb_workbook() %>%
@@ -270,6 +357,11 @@ wb$
 if (interactive()) wb$open()
 ```
 
+
+## Choosing variable filters
+
+Using the `choose` param argument it is possible to select subsets of the data. The code looks like this: `choose = c(agegp = 'x > "25-34"')`. The variable name as seen in the `wb_data()` object, `x` is mandatory and some expression that R understands. This can be something like `%in%`, `==`, `<`, `>`, or `!=`.
+
 ```{r}
 wb <- wb_workbook() %>%
   wb_add_worksheet("table") %>%
@@ -308,3 +400,12 @@ if (interactive()) wb$open()
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/pt_pivot_slicers.png")
 ```
+
+
+## Final remarks
+
+As of now it is not possible to add charts to pivot tables. This would require pivot table evaluation to construct the `wb_data()` object to use for and access to the area where the pivot table is stored on the sheet.
+
+It is always a good idea to check that the constructed pivot table and the expected pivot table match. Either construct the pivot table manually or as shown here via `pivottabler` or maybe with either `data.table` or `dplyr`. It is a little tricky for `openxlsx2` to check if the pivot table works, when we have no real way to validate that it does.
+
+There are still missing features such as `timelines` and it is currently not possible to calculate fields in pivot tables. Please note that this is also not something we are currently developing.
