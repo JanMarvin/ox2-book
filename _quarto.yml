@@ -16,6 +16,7 @@ book:
     - chapters/openxlsx2_pivot_tables.qmd
     - chapters/openxlsx2_form_control.qmd
     - chapters/openxlsx2_extending.qmd
+    - chapters/openxlsx2_clone_and_copy.qmd
     - chapters/openxlsx2_upgrade_from_openxlsx.qmd
     - references.qmd
 

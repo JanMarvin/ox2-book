@@ -1,0 +1,61 @@
+---
+title: "Cloning and copying"
+---
+
+```{r setup, include = FALSE}
+library(openxlsx2)
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+When using `openxlsx2` there are multiple ways to modify the workbook including various ways to copy and clone sheets, cells and styles.
+
+## Copying cells
+
+It is possible to copy cells into different regions of the worksheet using `wb_copy_cells()`. There are three ways to copy cells: (1) as is, including styles, (2) as value replacing all formulas and (3) as reference to the cell origin. This can be seen in the following image, the transposed cell contains a formula pointing to the original cell.
+
+```{r}
+mm <- matrix(1:6, 2)
+wb <- wb_workbook()$add_worksheet()$
+  add_data(x = mm, col_names = FALSE)$
+  add_fill(dims = "A1:C1", color = wb_color(theme = 5))$
+  add_fill(dims = "A2:C2", color = wb_color(theme = 3))$
+  add_fill(dims = "A3:C3", color = wb_color(theme = 4))
+
+dat <- wb_data(wb, dims = "A1:C3", col_names = FALSE)
+
+wb$copy_cells(dims = "E1", data = dat)
+wb$copy_cells(dims = "E5", data = dat, as_value = TRUE)
+wb$copy_cells(dims = "E9", data = dat, as_ref   = TRUE)
+
+wb$copy_cells(dims = "I1", data = dat, transpose = TRUE)
+wb$copy_cells(dims = "I5", data = dat, transpose = TRUE, as_value = TRUE)
+wb$copy_cells(dims = "I9", data = dat, transpose = TRUE, as_ref   = TRUE)
+
+if (interactive()) wb$open()
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/copy_cells.png")
+```
+
+
+## Cloning worksheets
+
+Sometimes it is not enough to copy a cell range, sometimes you need to copy entire worksheets. This can be done using `wb_clone_worksheet()`. You can clone a worksheet in a workbook, but also across workbooks, though the first option is simpler and might provide more features. Cloning worksheets around that contain (pivot) tables and slicers for instance might be impossible and some other features of the workbook might also not be present. In addition it is not guaranteed that a clone will look identical to the original worksheet if relative theme colors are used. As always, be careful if you use this feature and test that it works, before you start cloning production worksheets.
+
+```{r}
+fl <- system.file("extdata", "oxlsx2_sheet.xlsx", package = "openxlsx2")
+wb_from <- wb_load(fl)
+
+# clone worksheet from SUM to NOT_SUM
+wb_from$clone_worksheet(old = "SUM", new = "NOT_SUM")
+
+# clone worksheet across workbooks including styles and shared strings
+wb$clone_worksheet(old = "SUM", new = "SUM", from = wb_from)
+```
+
