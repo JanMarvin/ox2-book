@@ -1,0 +1,124 @@
+---
+title: "Of strings and numbers"
+---
+
+
+```{r setup, include = FALSE}
+library(openxlsx2)
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Contrary to `R`, spreadsheets do not require identicial data types. While in `R` a column always consists of a unique type (the base types supported by `openxlsx2` are `character`, `integer`, `numeric`, `Date`, and `POSIXct`/`POSIXlt`), spreadsheets might consist of arbitary mixes of data types. E.g. it is not uncommon, to have tables consisting of multiple rows. In addition some spreadsheet software has issues identifiying certain date types and a well known issue of spreadsheets is the number stored as text error. Below we will describe ways to write data with `openxlsx2` and how to handle the most common types characters and numerics. Though in addition `openxlsx2` also supports dates, date formats and makes use of the `hms` date class.
+
+```{r}
+wb <- wb_workbook()
+```
+
+## Default numeric data frame
+
+Using a few rows of the `cars` data frame we show how to write numerics. The strings are left aligned and the numbers right aligned.
+
+```{r}
+# default data frame
+dat <- data.frame(
+  speed = c(4, 4, 7, 7, 8, 9),
+  dist = c(2, 10, 4, 22, 16, 10)
+)
+
+# Consisting only of numerics
+str(dat)
+
+wb$add_worksheet("dat")$add_data(x = dat)
+```
+
+
+## Data frame with multiple row header
+
+Now we alter the data frame with a second row adding the column label. Since `R` does not know mixed column types the entire data frame is converted to characters.
+
+```{r}
+# add subtitle to the data
+dat_w_subtitle <- data.frame(
+  speed = c("Speed (mph)", 4, 4, 7, 7, 8, 9),
+  dis = c("Stopping distance (ft)", 2, 10, 4, 22, 16, 10)
+)
+# Check that both columns are character
+str(dat_w_subtitle)
+
+# write data as is. this creates number stored as text error
+# this can be surpressed with: wb_add_ignore_error(number_stored_as_text)
+wb$add_worksheet("dat_w_subtitle")$add_data(x = dat_w_subtitle)
+```
+
+Now the data is written as strings. Therefore the numbers are not written as `4`, but as `"4"`. In the openxml format characters are treated differently as numbers and are stored as inline strings (`openxlsx2` default) or as shared string. The file loads fine, but now all cells are right alligned and the previous numeric cells are all showing the number stored as text error. Spreadsheet software will treat these cells independently of the data type, so it does not matter other that the error is thrown and that number formats are not applied.
+
+Since conversions to character are sometimes not wanted, we provide a way to detect these numbers stored as text and will convert them when the data is written into the workbook.
+
+```{r}
+# write character string, but write string numbers as numerics
+options("openxlsx2.string_nums" = TRUE)
+wb$add_worksheet("string_nums")$add_data(x = dat_w_subtitle)
+options("openxlsx2.string_nums" = NULL)
+```
+
+This way the data is written as numerics, but still right aligned. This is due to the cell style, otherwise it looks entirely identical to previous attemt. Since this conversion is not generally wanted this option needs to be enabled explicitly. Gernally `openxlsx2` assumes that the users are mature and want what they request.
+
+## How to write multiple header rows?
+
+The better approach to avoid the entire conversion is to write the column headers and the column data separately. The recommended approach to this would be something like this:
+
+```{r}
+wb$add_worksheet("characters and numbers")$
+  add_data(x = dat_w_subtitle[1, ])$
+  add_data(dims = wb_dims(x = dat, col_names = FALSE, from_row = 3),
+           x = dat, col_names = FALSE)
+```
+
+## Labelled data
+
+In addition to pure `numbers` and `characters` it is also possible to write `labelled` vectors such as factors or columns modified with the `labelled` package.
+
+```{r}
+# Factors
+x <- c("Man", "Male", "Man", "Lady", "Female")
+xf <- factor(x, levels = c("Male", "Man" , "Lady",   "Female"),
+             labels = c("Male", "Male", "Female", "Female"))
+
+wb$add_worksheet("factors")$add_data(x = data.frame(x, xf))
+
+# Labelled
+v <- labelled::labelled(
+  c(1, 2, 2, 2, 3, 9, 1, 3, 2, NA),
+  c(yes = 1, no = 3, "don't know" = 8, refused = 9)
+)
+
+wb$add_worksheet("labelled")$add_data(x = v)
+```
+
+```{r unload, include = FALSE}
+unloadNamespace("labelled")
+unloadNamespace("haven")
+```
+
+## Hour - Minute - Second
+
+If the `hms` package is loaded `openxlsx2` makes use of this as well. Otherwise the data would be returned as 
+
+```{r}
+set.seed(123)
+wb$add_worksheet("hms")$add_data(x = hms::hms(sample(1:100000, 5, TRUE)))
+
+df <- wb_to_df(wb, sheet = "hms")
+str(df)
+
+
+unloadNamespace("hms")
+df <- wb_to_df(wb, sheet = "hms")
+str(df)
+```
+
+

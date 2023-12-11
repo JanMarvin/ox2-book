@@ -9,6 +9,7 @@ book:
     - index.qmd
     - chapters/01_introduction.qmd
     - chapters/openxlsx2_basic_manual.qmd
+    - chapters/openxlsx2_number_and_string.qmd
     - chapters/openxlsx2_style_manual.qmd
     - chapters/conditional-formatting.qmd
     - chapters/openxlsx2_charts_manual.qmd

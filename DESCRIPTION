@@ -28,7 +28,9 @@ Suggests:
     rmarkdown,
     rvg,
     testthat (>= 3.0.0),
-    waldo
+    waldo,
+    labelled,
+    hms
 VignetteBuilder:
     knitr
 Encoding: UTF-8
