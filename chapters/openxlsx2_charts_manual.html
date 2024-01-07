@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The openxlsx2 book - 6&nbsp; charts</title>
+<title>The openxlsx2 book - 6&nbsp; Charts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_charts_manual.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">charts</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_charts_manual.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Charts</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -173,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_charts_manual.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">charts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Charts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -228,10 +228,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#add-plot-to-workbook" id="toc-add-plot-to-workbook" class="nav-link active" data-scroll-target="#add-plot-to-workbook"><span class="header-section-number">6.1</span> Add plot to workbook</a></li>
-  <li><a href="#add-ggplot2-plot-to-workbook" id="toc-add-ggplot2-plot-to-workbook" class="nav-link" data-scroll-target="#add-ggplot2-plot-to-workbook"><span class="header-section-number">6.2</span> Add <code>{ggplot2}</code> plot to workbook</a></li>
-  <li><a href="#add-plot-via-rvg" id="toc-add-plot-via-rvg" class="nav-link" data-scroll-target="#add-plot-via-rvg"><span class="header-section-number">6.3</span> Add plot via <code>{rvg}</code></a></li>
-  <li><a href="#add-mschart-plots" id="toc-add-mschart-plots" class="nav-link" data-scroll-target="#add-mschart-plots"><span class="header-section-number">6.4</span> Add <code>{mschart}</code> plots</a></li>
+  <li><a href="#adding-a-chart-as-an-image-to-a-workbook" id="toc-adding-a-chart-as-an-image-to-a-workbook" class="nav-link active" data-scroll-target="#adding-a-chart-as-an-image-to-a-workbook"><span class="header-section-number">6.1</span> Adding a chart as an image to a workbook</a></li>
+  <li><a href="#adding-ggplot2-plots-to-a-workbook" id="toc-adding-ggplot2-plots-to-a-workbook" class="nav-link" data-scroll-target="#adding-ggplot2-plots-to-a-workbook"><span class="header-section-number">6.2</span> Adding <code>{ggplot2}</code> plots to a workbook</a></li>
+  <li><a href="#adding-plots-via-rvg" id="toc-adding-plots-via-rvg" class="nav-link" data-scroll-target="#adding-plots-via-rvg"><span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code></a></li>
+  <li><a href="#adding-mschart-plots" id="toc-adding-mschart-plots" class="nav-link" data-scroll-target="#adding-mschart-plots"><span class="header-section-number">6.4</span> Adding <code>{mschart}</code> plots</a>
+  <ul class="collapse">
+  <li><a href="#add-chart-and-data" id="toc-add-chart-and-data" class="nav-link" data-scroll-target="#add-chart-and-data"><span class="header-section-number">6.4.1</span> Add chart and data</a></li>
+  <li><a href="#add-chart-using-wb_data" id="toc-add-chart-using-wb_data" class="nav-link" data-scroll-target="#add-chart-using-wb_data"><span class="header-section-number">6.4.2</span> Add chart using <code>wb_data()</code></a></li>
+  <li><a href="#add-and-fill-a-chartsheet" id="toc-add-and-fill-a-chartsheet" class="nav-link" data-scroll-target="#add-and-fill-a-chartsheet"><span class="header-section-number">6.4.3</span> Add and fill a chartsheet</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -240,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">charts</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Charts</span></h1>
 </div>
 
 
@@ -255,15 +260,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The following manual will present various ways to add plots and charts to <code>openxlsx2</code> worksheets and even chartsheets. This assumes that you have basic knowledge how to handle <code>openxlsx2</code> and are familiar with either the default <code>R</code> <code>graphics</code> functions like <code>plot()</code> or <code>barplot()</code> and <code>grDevices</code>, or with the packages <code>{ggplot2}</code>, <code>{rvg}</code> or <code>{mschart}</code>. There are plenty of other manuals that cover using these better than we could ever tell you to.</p>
+<p>The following manual will present various ways to add plots and charts to <code>openxlsx2</code> worksheets and even chartsheets. This assumes that you have basic knowledge how to handle <code>openxlsx2</code> and are familiar with either the default <code>R</code> <code>graphics</code> functions like <code>plot()</code> or <code>barplot()</code> and <code>grDevices</code>, or with the packages <a href="https://ggplot2-book.org/"><code>{ggplot2}</code></a>, <code>{rvg}</code> or <a href="https://ardata-fr.github.io/officeverse/charts-with-mschart.html"><code>{mschart}</code></a>. There are plenty of other manuals that cover using these packages better than we could ever tell you to.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2) <span class="co"># openxlsx2 &gt;= 0.4 for mschart and rvg support</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## create a workbook</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="add-plot-to-workbook" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="add-plot-to-workbook"><span class="header-section-number">6.1</span> Add plot to workbook</h2>
+<section id="adding-a-chart-as-an-image-to-a-workbook" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="adding-a-chart-as-an-image-to-a-workbook"><span class="header-section-number">6.1</span> Adding a chart as an image to a workbook</h2>
 <p>You can include any image in PNG or JPEG format. Simply open a device and save the output and pass it to the worksheet with <code>wb_add_image()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myplot <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".jpg"</span>)</span>
@@ -277,128 +282,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add basic plots to the workbook</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_image"</span>)<span class="sc">$</span><span class="fu">add_image</span>(<span class="at">file =</span> myplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_img.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The plot output added as image</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="add-ggplot2-plot-to-workbook" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="add-ggplot2-plot-to-workbook"><span class="header-section-number">6.2</span> Add <code>{ggplot2}</code> plot to workbook</h2>
+<section id="adding-ggplot2-plots-to-a-workbook" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="adding-ggplot2-plots-to-a-workbook"><span class="header-section-number">6.2</span> Adding <code>{ggplot2}</code> plots to a workbook</h2>
 <p>You can include <code>{ggplot2}</code> plots similar to how you would include them with <code>openxlsx</code>. Call the plot first and afterwards use <code>wb_add_plot()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">"ggplot2"</span>)) {</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">fill =</span> <span class="fu">as.factor</span>(gear))) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Gas Mileage"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add ggplot to the workbook</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_plot"</span>)<span class="sc">$</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_plot</span>(<span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="fl">3.5</span>, <span class="at">fileType =</span> <span class="st">"png"</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">fill =</span> <span class="fu">as.factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Gas Mileage"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add ggplot to the workbook</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_plot"</span>)<span class="sc">$</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_plot</span>(<span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="fl">3.5</span>, <span class="at">fileType =</span> <span class="st">"png"</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="openxlsx2_charts_manual_files/figure-html/ggplot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_ggplot2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The ggplot2 output</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="add-plot-via-rvg" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="add-plot-via-rvg"><span class="header-section-number">6.3</span> Add plot via <code>{rvg}</code></h2>
+<section id="adding-plots-via-rvg" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="adding-plots-via-rvg"><span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code></h2>
 <p>If you want vector graphics that can be modified in spreadsheet software the <code>dml_xlsx()</code> device comes in handy. You can pass the output via <code>wb_add_drawing()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">"ggplot2"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">requireNamespace</span>(<span class="st">"rvg"</span>)) {</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvg)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvg)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## create rvg example</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xml"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dml_xlsx</span>(<span class="at">file =</span>  tmp, <span class="at">fonts =</span> <span class="fu">list</span>(<span class="at">sans =</span> <span class="st">"Bradley Hand"</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Width)) <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"With font Bradley Hand"</span>) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"sans"</span>, <span class="at">base_size =</span> <span class="dv">18</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## create rvg example</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".xml"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dml_xlsx</span>(<span class="at">file =</span>  tmp, <span class="at">fonts =</span> <span class="fu">list</span>(<span class="at">sans =</span> <span class="st">"Bradley Hand"</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Width)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"With font Bradley Hand"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"sans"</span>, <span class="at">base_size =</span> <span class="dv">18</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; png </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add rvg to the workbook</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_drawing"</span>)<span class="sc">$</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_drawing</span>(<span class="at">xml =</span> tmp)<span class="sc">$</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_drawing</span>(<span class="at">xml =</span> tmp, <span class="at">dims =</span> <span class="cn">NULL</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: rvg</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_drawing</span>(<span class="at">xml =</span> tmp, <span class="at">dims =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_rvg.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">An rvg chart is a vector graphic that can be modified in spreadsheet software (this screenshot differs from the code above as the second chart below has been removed)</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
-<section id="add-mschart-plots" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="add-mschart-plots"><span class="header-section-number">6.4</span> Add <code>{mschart}</code> plots</h2>
-<p>If you want native open xml charts, have a look at <code>{mschart}</code>. Create one of the chart files and pass it to the workbook with <code>wb_add_mschart()</code>. There are two options possible. 1. Either the default <code>{mschart}</code> output identical to the one in <code>{officer}</code>. Passing a data object and let <code>{mschart}</code> prepare the data. In this case <code>wb_add_mschart()</code> will add a new data region. 2. Passing a <code>wb_data()</code> object to <code>{mschart}</code>. This object contains references to the data on the worksheet and allows using data “as is”.</p>
+<section id="adding-mschart-plots" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="adding-mschart-plots"><span class="header-section-number">6.4</span> Adding <code>{mschart}</code> plots</h2>
+<p>If you want native open xml charts, have a look at <code>{mschart}</code>. Create one of the chart files and pass it to the workbook with <code>wb_add_mschart()</code>.</p>
+<p>There are two options possible.</p>
+<ol type="1">
+<li><p>Either the default <code>{mschart}</code> output identical to the one in <code>{officer}</code>. Passing a data object and let <code>{mschart}</code> prepare the data. In this case <code>wb_add_mschart()</code> will add a new data region.</p></li>
+<li><p>Passing a <code>wb_data()</code> object to <code>{mschart}</code>. This object contains references to the data on the worksheet and allows using data “as is”.</p></li>
+</ol>
+<section id="add-chart-and-data" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="add-chart-and-data"><span class="header-section-number">6.4.1</span> Add chart and data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">"mschart"</span>)) {</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mschart)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mschart) <span class="co"># mschart &gt;= 0.4 for openxlsx2 support</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## create chart from mschart object (this creates new input data)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mylc <span class="ot">&lt;-</span> <span class="fu">ms_linechart</span>(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> browser_ts,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"date"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"freq"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"browser"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## create chart from mschart object (this creates new input data)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mylc <span class="ot">&lt;-</span> <span class="fu">ms_linechart</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> browser_ts,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"date"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"freq"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"browser"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_mschart"</span>)<span class="sc">$</span><span class="fu">add_mschart</span>(<span class="at">dims =</span> <span class="st">"A10:G25"</span>, <span class="at">graph =</span> mylc)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_mschart"</span>)<span class="sc">$</span><span class="fu">add_mschart</span>(<span class="at">dims =</span> <span class="st">"A10:G25"</span>, <span class="at">graph =</span> mylc)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">## create chart referencing worksheet cells as input</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># write data starting at B2</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_mschart - wb_data"</span>)<span class="sc">$</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> mtcars, <span class="at">dims =</span> <span class="st">"B2"</span>)<span class="sc">$</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">rownames</span>(mtcars)), <span class="at">dims =</span> <span class="st">"A2"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># create wb_data object this will tell this mschart</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># from this PR to create a file corresponding to openxlsx2</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A2:G10"</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># create a few mscharts</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>scatter_plot <span class="ot">&lt;-</span> <span class="fu">ms_scatterchart</span>(</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"mpg"</span>,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>bar_plot <span class="ot">&lt;-</span> <span class="fu">ms_barchart</span>(</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>area_plot <span class="ot">&lt;-</span> <span class="fu">ms_areachart</span>(</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>line_plot <span class="ot">&lt;-</span> <span class="fu">ms_linechart</span>(</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>),</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># add the charts to the data</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"F4:L20"</span>, <span class="at">graph =</span> scatter_plot) <span class="sc">%&gt;%</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"F21:L37"</span>, <span class="at">graph =</span> bar_plot) <span class="sc">%&gt;%</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"M4:S20"</span>, <span class="at">graph =</span> area_plot) <span class="sc">%&gt;%</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"M21:S37"</span>, <span class="at">graph =</span> line_plot)</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co"># add chartsheet</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_chartsheet</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">graph =</span> scatter_plot)</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required namespace: mschart</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## create chart referencing worksheet cells as input</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># write data starting at B2</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"add_mschart - wb_data"</span>)<span class="sc">$</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> mtcars, <span class="at">dims =</span> <span class="st">"B2"</span>)<span class="sc">$</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">rownames</span>(mtcars)), <span class="at">dims =</span> <span class="st">"A2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_mschart.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">An mschart graph</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="add-chart-using-wb_data" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="add-chart-using-wb_data"><span class="header-section-number">6.4.2</span> Add chart using <code>wb_data()</code></h3>
+<p>These are native spreadsheet charts that are dynamic in terms of the data visible on the sheet. It is therefore possible to hide columns or rows of the data, e.g.&nbsp;with groups, so that the chart shows more data when a group is expanded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create wb_data object this will tell this mschart</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from this PR to create a file corresponding to openxlsx2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A2:G10"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a few mscharts</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scatter_plot <span class="ot">&lt;-</span> <span class="fu">ms_scatterchart</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>bar_plot <span class="ot">&lt;-</span> <span class="fu">ms_barchart</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>area_plot <span class="ot">&lt;-</span> <span class="fu">ms_areachart</span>(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>line_plot <span class="ot">&lt;-</span> <span class="fu">ms_linechart</span>(</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"name"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># add the charts to the data</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"F4:L20"</span>, <span class="at">graph =</span> scatter_plot) <span class="sc">%&gt;%</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"F21:L37"</span>, <span class="at">graph =</span> bar_plot) <span class="sc">%&gt;%</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"M4:S20"</span>, <span class="at">graph =</span> area_plot) <span class="sc">%&gt;%</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">dims =</span> <span class="st">"M21:S37"</span>, <span class="at">graph =</span> line_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_mschart4.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Multiple mschart graphs in a single spreadsheet</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="add-and-fill-a-chartsheet" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="add-and-fill-a-chartsheet"><span class="header-section-number">6.4.3</span> Add and fill a chartsheet</h3>
+<p>Finally it is possible to add <code>mschart</code> charts on a so called chartsheet. These are special sheets that contain only a chart object, referencing data from another sheet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add chartsheet</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_chartsheet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_mschart</span>(<span class="at">graph =</span> scatter_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/chrt_mschart_chartsheet.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A mschart graph on a chartsheet</figcaption>
+</figure>
+</div>
+</div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
