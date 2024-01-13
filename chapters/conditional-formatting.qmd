@@ -11,6 +11,29 @@ set.seed(123)
 library(openxlsx2)
 ```
 
+With `openxlsx2` it is possible to add conditional formatting, databars, and sparklines to the spreadsheet as a dynamic layer to data visualization, enhancing the interpretation and analysis of information. They help with presenting complex data sets, providing a visual representation that goes beyond raw numbers. It is possible to modify each with various style options.
+
+**1. Conditional Formatting:**
+Conditional formatting enables users to apply a cell style overlay based on predefined rules. This can highlight patterns, trends, and anomalies within the data. The rules make it possible to provide a visual highlighting without having to style every cell individually.
+
+**2. Databars:**
+Databars are a specific type of conditional formatting that adds horizontal bars within cells to represent the values they contain. Similar to a `barplot` just spreading as an overlay across multiple rows. The length of the bar corresponds to the magnitude of the data, allowing for a quick and intuitive comparison between different values.
+
+**3. Sparklines:**
+Sparklines are compact, miniature charts embedded within a single cell, offering a condensed visual representation of trends or variations in a dataset. These tiny graphs, such as line charts, bar charts, or win/loss charts, provide a quick overview of the data's trajectory without the need for a separate chart. Sparklines are especially valuable when it is required to maintain a compact layout while still conveying the overall patterns in the data.
+
+## Conditional Formatting
+
+Conditional formatting is helpful to visually emphasize trends, outliers, or other important aspects of the data it is applied to. In `openxlsx2` conditional formatting is applied as follows:
+
+1. Select dimension range: First select, the range of cells to which the conditional formatting is applied to.
+
+2. Define a rule: Define a rule or condition that will be used for the formatting.
+
+3. Define a style: (optional) the style used by conditional formatting of various cells can differ. This styles can include for example changes to the font, background, borders.
+
+We will use the following workbook and the two styles to differentiate in negative and positive values.
+
 ```{r}
 wb <- wb_workbook()
 wb$add_dxfs_style(name = "negStyle", font_color = wb_color(hex = "FF9C0006"), bg_fill = wb_color(hex = "FFFFC7CE"))
