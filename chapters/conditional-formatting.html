@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The openxlsx2 book - 5&nbsp; Conditional Formatting</title>
+<title>The openxlsx2 book - 5&nbsp; Conditional Formatting, Databars, and Sparklines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/conditional-formatting.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/conditional-formatting.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,13 +161,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -196,20 +196,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -228,27 +228,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rule-applies-to-all-each-cell-in-range" id="toc-rule-applies-to-all-each-cell-in-range" class="nav-link active" data-scroll-target="#rule-applies-to-all-each-cell-in-range"><span class="header-section-number">5.1</span> Rule applies to all each cell in range</a></li>
-  <li><a href="#highlight-row-dependent-on-first-cell-in-row" id="toc-highlight-row-dependent-on-first-cell-in-row" class="nav-link" data-scroll-target="#highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">5.2</span> Highlight row dependent on first cell in row</a></li>
-  <li><a href="#highlight-column-dependent-on-first-cell-in-column" id="toc-highlight-column-dependent-on-first-cell-in-column" class="nav-link" data-scroll-target="#highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">5.3</span> Highlight column dependent on first cell in column</a></li>
-  <li><a href="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" id="toc-highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="nav-link" data-scroll-target="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">5.4</span> Highlight entire range cols X rows dependent only on cell A1</a></li>
-  <li><a href="#highlight-cells-in-column-1-based-on-value-in-column-2" id="toc-highlight-cells-in-column-1-based-on-value-in-column-2" class="nav-link" data-scroll-target="#highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">5.5</span> Highlight cells in column 1 based on value in column 2</a></li>
-  <li><a href="#highlight-duplicates-using-default-style" id="toc-highlight-duplicates-using-default-style" class="nav-link" data-scroll-target="#highlight-duplicates-using-default-style"><span class="header-section-number">5.6</span> Highlight duplicates using default style</a></li>
-  <li><a href="#cells-containing-text" id="toc-cells-containing-text" class="nav-link" data-scroll-target="#cells-containing-text"><span class="header-section-number">5.7</span> Cells containing text</a></li>
-  <li><a href="#cells-not-containing-text" id="toc-cells-not-containing-text" class="nav-link" data-scroll-target="#cells-not-containing-text"><span class="header-section-number">5.8</span> Cells not containing text</a></li>
-  <li><a href="#cells-begins-with-text" id="toc-cells-begins-with-text" class="nav-link" data-scroll-target="#cells-begins-with-text"><span class="header-section-number">5.9</span> Cells begins with text</a></li>
-  <li><a href="#cells-ends-with-text" id="toc-cells-ends-with-text" class="nav-link" data-scroll-target="#cells-ends-with-text"><span class="header-section-number">5.10</span> Cells ends with text</a></li>
-  <li><a href="#colorscale-colors-cells-based-on-cell-value" id="toc-colorscale-colors-cells-based-on-cell-value" class="nav-link" data-scroll-target="#colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">5.11</span> Colorscale colors cells based on cell value</a></li>
-  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">5.12</span> Between</a></li>
-  <li><a href="#top-n" id="toc-top-n" class="nav-link" data-scroll-target="#top-n"><span class="header-section-number">5.13</span> Top N</a></li>
-  <li><a href="#bottom-n" id="toc-bottom-n" class="nav-link" data-scroll-target="#bottom-n"><span class="header-section-number">5.14</span> Bottom N</a></li>
-  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">5.15</span> Logical Operators</a></li>
-  <li><a href="#not-contains-blanks" id="toc-not-contains-blanks" class="nav-link" data-scroll-target="#not-contains-blanks"><span class="header-section-number">5.16</span> (Not) Contains Blanks</a></li>
-  <li><a href="#not-contains-errors" id="toc-not-contains-errors" class="nav-link" data-scroll-target="#not-contains-errors"><span class="header-section-number">5.17</span> (Not) Contains Errors</a></li>
-  <li><a href="#iconset" id="toc-iconset" class="nav-link" data-scroll-target="#iconset"><span class="header-section-number">5.18</span> Iconset</a></li>
-  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">5.19</span> Unique Values</a></li>
-  <li><a href="#databars" id="toc-databars" class="nav-link" data-scroll-target="#databars"><span class="header-section-number">6</span> Databars</a></li>
-  <li><a href="#sparklines" id="toc-sparklines" class="nav-link" data-scroll-target="#sparklines"><span class="header-section-number">7</span> Sparklines</a></li>
+  <li><a href="#conditional-formatting" id="toc-conditional-formatting" class="nav-link active" data-scroll-target="#conditional-formatting"><span class="header-section-number">5.1</span> Conditional Formatting</a>
+  <ul class="collapse">
+  <li><a href="#rule-applies-to-all-each-cell-in-range" id="toc-rule-applies-to-all-each-cell-in-range" class="nav-link" data-scroll-target="#rule-applies-to-all-each-cell-in-range"><span class="header-section-number">5.1.1</span> Rule applies to all each cell in range</a></li>
+  <li><a href="#highlight-row-dependent-on-first-cell-in-row" id="toc-highlight-row-dependent-on-first-cell-in-row" class="nav-link" data-scroll-target="#highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">5.1.2</span> Highlight row dependent on first cell in row</a></li>
+  <li><a href="#highlight-column-dependent-on-first-cell-in-column" id="toc-highlight-column-dependent-on-first-cell-in-column" class="nav-link" data-scroll-target="#highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">5.1.3</span> Highlight column dependent on first cell in column</a></li>
+  <li><a href="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" id="toc-highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="nav-link" data-scroll-target="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">5.1.4</span> Highlight entire range cols X rows dependent only on cell A1</a></li>
+  <li><a href="#highlight-cells-in-column-1-based-on-value-in-column-2" id="toc-highlight-cells-in-column-1-based-on-value-in-column-2" class="nav-link" data-scroll-target="#highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">5.1.5</span> Highlight cells in column 1 based on value in column 2</a></li>
+  <li><a href="#highlight-duplicates-using-default-style" id="toc-highlight-duplicates-using-default-style" class="nav-link" data-scroll-target="#highlight-duplicates-using-default-style"><span class="header-section-number">5.1.6</span> Highlight duplicates using default style</a></li>
+  <li><a href="#cells-containing-text" id="toc-cells-containing-text" class="nav-link" data-scroll-target="#cells-containing-text"><span class="header-section-number">5.1.7</span> Cells containing text</a></li>
+  <li><a href="#cells-not-containing-text" id="toc-cells-not-containing-text" class="nav-link" data-scroll-target="#cells-not-containing-text"><span class="header-section-number">5.1.8</span> Cells not containing text</a></li>
+  <li><a href="#cells-begins-with-text" id="toc-cells-begins-with-text" class="nav-link" data-scroll-target="#cells-begins-with-text"><span class="header-section-number">5.1.9</span> Cells begins with text</a></li>
+  <li><a href="#cells-ends-with-text" id="toc-cells-ends-with-text" class="nav-link" data-scroll-target="#cells-ends-with-text"><span class="header-section-number">5.1.10</span> Cells ends with text</a></li>
+  <li><a href="#colorscale-colors-cells-based-on-cell-value" id="toc-colorscale-colors-cells-based-on-cell-value" class="nav-link" data-scroll-target="#colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">5.1.11</span> Colorscale colors cells based on cell value</a></li>
+  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">5.1.12</span> Between</a></li>
+  <li><a href="#top-n" id="toc-top-n" class="nav-link" data-scroll-target="#top-n"><span class="header-section-number">5.1.13</span> Top N</a></li>
+  <li><a href="#bottom-n" id="toc-bottom-n" class="nav-link" data-scroll-target="#bottom-n"><span class="header-section-number">5.1.14</span> Bottom N</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">5.1.15</span> Logical Operators</a></li>
+  <li><a href="#not-contains-blanks" id="toc-not-contains-blanks" class="nav-link" data-scroll-target="#not-contains-blanks"><span class="header-section-number">5.1.16</span> (Not) Contains Blanks</a></li>
+  <li><a href="#not-contains-errors" id="toc-not-contains-errors" class="nav-link" data-scroll-target="#not-contains-errors"><span class="header-section-number">5.1.17</span> (Not) Contains Errors</a></li>
+  <li><a href="#iconset" id="toc-iconset" class="nav-link" data-scroll-target="#iconset"><span class="header-section-number">5.1.18</span> Iconset</a></li>
+  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">5.1.19</span> Unique Values</a></li>
+  </ul></li>
+  <li><a href="#databars" id="toc-databars" class="nav-link" data-scroll-target="#databars"><span class="header-section-number">5.2</span> Databars</a></li>
+  <li><a href="#sparklines" id="toc-sparklines" class="nav-link" data-scroll-target="#sparklines"><span class="header-section-number">5.3</span> Sparklines</a></li>
   </ul>
 </nav>
     </div>
@@ -257,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></h1>
 </div>
 
 
@@ -272,229 +275,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>With <code>openxlsx2</code> it is possible to add conditional formatting, databars, and sparklines to the spreadsheet as a dynamic layer to data visualization, enhancing the interpretation and analysis of information. They help with presenting complex data sets, providing a visual representation that goes beyond raw numbers. It is possible to modify each with various style options.</p>
+<p><strong>1. Conditional Formatting:</strong> Conditional formatting enables users to apply a cell style overlay based on predefined rules. This can highlight patterns, trends, and anomalies within the data. The rules make it possible to provide a visual highlighting without having to style every cell individually.</p>
+<p><strong>2. Databars:</strong> Databars are a specific type of conditional formatting that adds horizontal bars within cells to represent the values they contain. Similar to a <code>barplot</code> just spreading as an overlay across multiple rows. The length of the bar corresponds to the magnitude of the data, allowing for a quick and intuitive comparison between different values.</p>
+<p><strong>3. Sparklines:</strong> Sparklines are compact, miniature charts embedded within a single cell, offering a condensed visual representation of trends or variations in a dataset. These tiny graphs, such as line charts, bar charts, or win/loss charts, provide a quick overview of the data’s trajectory without the need for a separate chart. Sparklines are especially valuable when it is required to maintain a compact layout while still conveying the overall patterns in the data.</p>
+<section id="conditional-formatting" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="conditional-formatting"><span class="header-section-number">5.1</span> Conditional Formatting</h2>
+<p>Conditional formatting is helpful to visually emphasize trends, outliers, or other important aspects of the data it is applied to. In <code>openxlsx2</code> conditional formatting is applied as follows:</p>
+<ol type="1">
+<li><p>Select dimension range: First select, the range of cells to which the conditional formatting is applied to.</p></li>
+<li><p>Define a rule: Define a rule or condition that will be used for the formatting.</p></li>
+<li><p>Define a style: (optional) the style used by conditional formatting of various cells can differ. This styles can include for example changes to the font, background, borders.</p></li>
+</ol>
+<p>We will use the following workbook and the two styles to differentiate in negative and positive values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_dxfs_style</span>(<span class="at">name =</span> <span class="st">"negStyle"</span>, <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF9C0006"</span>), <span class="at">bg_fill =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FFFFC7CE"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_dxfs_style</span>(<span class="at">name =</span> <span class="st">"posStyle"</span>, <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF006100"</span>), <span class="at">bg_fill =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FFC6EFCE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>negStyle <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(<span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF9C0006"</span>), <span class="at">bg_fill =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FFFFC7CE"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>posStyle <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(<span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF006100"</span>), <span class="at">bg_fill =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FFC6EFCE"</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(negStyle, <span class="st">"negStyle"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(posStyle, <span class="st">"posStyle"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="rule-applies-to-all-each-cell-in-range" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="rule-applies-to-all-each-cell-in-range"><span class="header-section-number">5.1</span> Rule applies to all each cell in range</h2>
+<section id="rule-applies-to-all-each-cell-in-range" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="rule-applies-to-all-each-cell-in-range"><span class="header-section-number">5.1.1</span> Rule applies to all each cell in range</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_cells.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"cellIs"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"cellIs"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"cellIs"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cellIs"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"!=0"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cellIs"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"==0"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"cellIs"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"cellIs"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"cellIs"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cellIs"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"!=0"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cellIs"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"==0"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="highlight-row-dependent-on-first-cell-in-row" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">5.2</span> Highlight row dependent on first cell in row</h2>
+<section id="highlight-row-dependent-on-first-cell-in-row" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">5.1.2</span> Highlight row dependent on first cell in row</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_moving_row.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Moving Row"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Row"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Row"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Row"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A1&lt;0"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Row"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A1&gt;0"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Moving Row"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Row"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Row"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Row"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A1&lt;0"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Row"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A1&gt;0"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="highlight-column-dependent-on-first-cell-in-column" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">5.3</span> Highlight column dependent on first cell in column</h2>
+<section id="highlight-column-dependent-on-first-cell-in-column" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">5.1.3</span> Highlight column dependent on first cell in column</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_moving_col.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Moving Col"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Col"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Col"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Col"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A$1&lt;0"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Col"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A$1&gt;0"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Moving Col"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Col"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Moving Col"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Col"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A$1&lt;0"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Moving Col"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A$1&gt;0"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">5.4</span> Highlight entire range cols X rows dependent only on cell A1</h2>
+<section id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">5.1.4</span> Highlight entire range cols X rows dependent only on cell A1</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_dependent_on.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Dependent on"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A$1 &lt; 0"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A$1&gt;0"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Dependent on"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A$1 &lt; 0"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:B11"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"$A$1&gt;0"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="highlight-cells-in-column-1-based-on-value-in-column-2" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">5.5</span> Highlight cells in column 1 based on value in column 2</h2>
+<section id="highlight-cells-in-column-1-based-on-value-in-column-2" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">5.1.5</span> Highlight cells in column 1 based on value in column 2</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">10</span>)), <span class="at">startRow =</span> <span class="dv">15</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A16:A25"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"B16&lt;0.5"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A16:A25"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"B16&gt;=0.5"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Dependent on"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">10</span>)), <span class="at">startRow =</span> <span class="dv">15</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A16:A25"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"B16&lt;0.5"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dependent on"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A16:A25"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"B16&gt;=0.5"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="highlight-duplicates-using-default-style" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="highlight-duplicates-using-default-style"><span class="header-section-number">5.6</span> Highlight duplicates using default style</h2>
+<section id="highlight-duplicates-using-default-style" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="highlight-duplicates-using-default-style"><span class="header-section-number">5.1.6</span> Highlight duplicates using default style</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_duplicates.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Duplicates"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Duplicates"</span>, <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>], <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Duplicates"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"duplicatedValues"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"Duplicates"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"Duplicates"</span>, <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>], <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Duplicates"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"duplicatedValues"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cells-containing-text" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="cells-containing-text"><span class="header-section-number">5.7</span> Cells containing text</h2>
+<section id="cells-containing-text" class="level3" data-number="5.1.7">
+<h3 data-number="5.1.7" class="anchored" data-anchor-id="cells-containing-text"><span class="header-section-number">5.1.7</span> Cells containing text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_contains_text.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"containsText"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"containsText"</span>, <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, fn))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"containsText"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A10"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"containsText"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"notcontainsText"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"containsText"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"containsText"</span>, <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, fn))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"containsText"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A10"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"containsText"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"notcontainsText"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cells-not-containing-text" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="cells-not-containing-text"><span class="header-section-number">5.8</span> Cells not containing text</h2>
+<section id="cells-not-containing-text" class="level3" data-number="5.1.8">
+<h3 data-number="5.1.8" class="anchored" data-anchor-id="cells-not-containing-text"><span class="header-section-number">5.1.8</span> Cells not containing text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_contains_no_text.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"notcontainsText"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, fn))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"notcontainsText"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A10"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"notContainsText"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"notcontainsText"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, fn))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"notcontainsText"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A10"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"notContainsText"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cells-begins-with-text" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="cells-begins-with-text"><span class="header-section-number">5.9</span> Cells begins with text</h2>
+<section id="cells-begins-with-text" class="level3" data-number="5.1.9">
+<h3 data-number="5.1.9" class="anchored" data-anchor-id="cells-begins-with-text"><span class="header-section-number">5.1.9</span> Cells begins with text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_begins_with.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"beginsWith"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"beginsWith"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, fn))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"beginsWith"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A100"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"beginsWith"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"beginsWith"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"beginsWith"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, fn))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"beginsWith"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A100"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"beginsWith"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cells-ends-with-text" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="cells-ends-with-text"><span class="header-section-number">5.10</span> Cells ends with text</h2>
+<section id="cells-ends-with-text" class="level3" data-number="5.1.10">
+<h3 data-number="5.1.10" class="anchored" data-anchor-id="cells-ends-with-text"><span class="header-section-number">5.1.10</span> Cells ends with text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_ends_with.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"endsWith"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"endsWith"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, fn))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"endsWith"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A100"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"endsWith"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="fu">sample</span>(LETTERS, <span class="dv">10</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"endsWith"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"endsWith"</span>, <span class="at">x =</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, fn))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"endsWith"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dim =</span> <span class="st">"A1:A100"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"endsWith"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"A"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="colorscale-colors-cells-based-on-cell-value" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">5.11</span> Colorscale colors cells based on cell value</h2>
+<section id="colorscale-colors-cells-based-on-cell-value" class="level3" data-number="5.1.11">
+<h3 data-number="5.1.11" class="anchored" data-anchor-id="colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">5.1.11</span> Colorscale colors cells based on cell value</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -506,25 +517,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"colorScale"</span>, <span class="at">zoom =</span> <span class="dv">30</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"colorScale"</span>, <span class="at">x =</span> df, <span class="at">col_names =</span> <span class="cn">FALSE</span>) <span class="do">## write data.frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"colorScale"</span>, <span class="at">zoom =</span> <span class="dv">30</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"colorScale"</span>, <span class="at">x =</span> df, <span class="at">col_names =</span> <span class="cn">FALSE</span>) <span class="do">### write data.frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rule is a vector or colors of length 2 or 3 (any hex color or any of <code>colors()</code>). If rule is <code>NULL</code>, min and max of cells is used. Rule must be the same length as style or L.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"colorScale"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> df, <span class="at">col_names =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"white"</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">255</span>),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"colorScale"</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">set_col_widths</span>(<span class="st">"colorScale"</span>, <span class="at">cols =</span> <span class="fu">seq_along</span>(df), <span class="at">widths =</span> <span class="fl">1.07</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">set_row_heights</span>(<span class="st">"colorScale"</span>, <span class="at">rows =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(df)), <span class="at">heights =</span> <span class="fl">7.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"colorScale"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> df, <span class="at">col_names =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"white"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">255</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"colorScale"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">set_col_widths</span>(<span class="st">"colorScale"</span>, <span class="at">cols =</span> <span class="fu">seq_along</span>(df), <span class="at">widths =</span> <span class="fl">1.07</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">set_row_heights</span>(<span class="st">"colorScale"</span>, <span class="at">rows =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(df)), <span class="at">heights =</span> <span class="fl">7.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="between" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="between"><span class="header-section-number">5.12</span> Between</h2>
+<section id="between" class="level3" data-number="5.1.12">
+<h3 data-number="5.1.12" class="anchored" data-anchor-id="between"><span class="header-section-number">5.1.12</span> Between</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_between.png" class="img-fluid"></p>
@@ -532,83 +543,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Highlight cells in interval [-2, 2]</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"between"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"between"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"between"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"between"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"topN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"between"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"between"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"between"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"between"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"topN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="top-n" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="top-n"><span class="header-section-number">5.13</span> Top N</h2>
+<section id="top-n" class="level3" data-number="5.1.13">
+<h3 data-number="5.1.13" class="anchored" data-anchor-id="top-n"><span class="header-section-number">5.1.13</span> Top N</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_top_n.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"topN"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"topN"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Highlight top 5 values in column <code>x</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"topN"</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:A11"</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"topN"</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">5</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"topN"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:A11"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"topN"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">5</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Highlight top 20 percentage in column <code>y</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"topN"</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"B2:B11"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"topN"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">20</span>, <span class="at">percent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"bottomN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"topN"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"B2:B11"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"posStyle"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"topN"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">20</span>, <span class="at">percent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"bottomN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="bottom-n" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="bottom-n"><span class="header-section-number">5.14</span> Bottom N</h2>
+<section id="bottom-n" class="level3" data-number="5.1.14">
+<h3 data-number="5.1.14" class="anchored" data-anchor-id="bottom-n"><span class="header-section-number">5.1.14</span> Bottom N</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_bottom_n.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"bottomN"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"bottomN"</span>, <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Highlight bottom 5 values in column <code>x</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottomN"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:A11"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bottomN"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">5</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottomN"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:A11"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bottomN"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">5</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Highlight bottom 20 percentage in column <code>y</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottomN"</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"B2:B11"</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bottomN"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">20</span>, <span class="at">percent =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"logical operators"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottomN"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"B2:B11"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="st">"negStyle"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"bottomN"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">rank =</span> <span class="dv">20</span>, <span class="at">percent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"logical operators"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="logical-operators" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">5.15</span> Logical Operators</h2>
+<section id="logical-operators" class="level3" data-number="5.1.15">
+<h3 data-number="5.1.15" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">5.1.15</span> Logical Operators</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_logical_operators.png" class="img-fluid"></p>
@@ -616,168 +627,169 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can use Excels logical Operators</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"logical operators"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"logical operators"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"OR($A1=1,$A1=3,$A1=5,$A1=7)"</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"logical operators"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"logical operators"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="st">"OR($A1=1,$A1=3,$A1=5,$A1=7)"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="not-contains-blanks" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="not-contains-blanks"><span class="header-section-number">5.16</span> (Not) Contains Blanks</h2>
+<section id="not-contains-blanks" class="level3" data-number="5.1.16">
+<h3 data-number="5.1.16" class="anchored" data-anchor-id="not-contains-blanks"><span class="header-section-number">5.1.16</span> (Not) Contains Blanks</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_blanks.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains blanks"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>, <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A4"</span>, <span class="at">type =</span> <span class="st">"containsBlanks"</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"B1:B4"</span>, <span class="at">type =</span> <span class="st">"notContainsBlanks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains blanks"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="st">''</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="cn">NULL</span>, <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A4"</span>, <span class="at">type =</span> <span class="st">"containsBlanks"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"B1:B4"</span>, <span class="at">type =</span> <span class="st">"notContainsBlanks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="not-contains-errors" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="not-contains-errors"><span class="header-section-number">5.17</span> (Not) Contains Errors</h2>
+<section id="not-contains-errors" class="level3" data-number="5.1.17">
+<h3 data-number="5.1.17" class="anchored" data-anchor-id="not-contains-errors"><span class="header-section-number">5.1.17</span> (Not) Contains Errors</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_errors.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains errors"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">start_col =</span> <span class="dv">2</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A3"</span>, <span class="at">type =</span> <span class="st">"containsErrors"</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A3"</span>, <span class="at">type =</span> <span class="st">"notContainsErrors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"contains errors"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NaN</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>, <span class="at">start_col =</span> <span class="dv">2</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A3"</span>, <span class="at">type =</span> <span class="st">"containsErrors"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A3"</span>, <span class="at">type =</span> <span class="st">"notContainsErrors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="iconset" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="iconset"><span class="header-section-number">5.18</span> Iconset</h2>
+<section id="iconset" class="level3" data-number="5.1.18">
+<h3 data-number="5.1.18" class="anchored" data-anchor-id="iconset"><span class="header-section-number">5.1.18</span> Iconset</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_iconset.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"iconset"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">30</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A6"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">67</span>, <span class="sc">-</span><span class="dv">33</span>, <span class="dv">0</span>, <span class="dv">33</span>, <span class="dv">67</span>),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"iconSet"</span>,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">iconSet =</span> <span class="st">"5Arrows"</span>,</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"iconset"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">30</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A6"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">67</span>, <span class="sc">-</span><span class="dv">33</span>, <span class="dv">0</span>, <span class="dv">33</span>, <span class="dv">67</span>),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"iconSet"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">iconSet =</span> <span class="st">"5Arrows"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="unique-values" class="level2" data-number="5.19">
-<h2 data-number="5.19" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">5.19</span> Unique Values</h2>
+<section id="unique-values" class="level3" data-number="5.1.19">
+<h3 data-number="5.1.19" class="anchored" data-anchor-id="unique-values"><span class="header-section-number">5.1.19</span> Unique Values</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_unique.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"unique values"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A6"</span>, <span class="at">type =</span> <span class="st">"uniqueValues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"unique values"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">colNames =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_conditional_formatting</span>(<span class="at">dims =</span> <span class="st">"A1:A6"</span>, <span class="at">type =</span> <span class="st">"uniqueValues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="databars" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Databars</h1>
+</section>
+<section id="databars" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="databars"><span class="header-section-number">5.2</span> Databars</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/cf_databar.png" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"databar"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Databars</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">1</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>) <span class="do">## Default colors</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">3</span>)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">showValue =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient =</span> <span class="cn">FALSE</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>) <span class="do">## Default colors</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">5</span>)</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"E1:E11"</span>,</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>),</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">7</span>)</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"G1:G11"</span>,</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"red"</span>),</span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">showValue =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient =</span> <span class="cn">FALSE</span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co"># custom color</span></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">9</span>)</span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">cols =</span> <span class="dv">9</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>),</span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>, <span class="st">"#a6a6a6"</span>),</span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">TRUE</span>, <span class="at">gradient =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="co"># with rule</span></span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">11</span>)</span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>  wb,</span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">cols =</span> <span class="dv">11</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>),</span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>, <span class="st">"#a6a6a6"</span>),</span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">TRUE</span>, <span class="at">gradient =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"databar"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">### Databars</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">1</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A11"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>) <span class="do">### Default colors</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">3</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A1:A10"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">showValue =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient =</span> <span class="cn">FALSE</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>) <span class="do">### Default colors</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">5</span>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"E1:E11"</span>,</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>),</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">7</span>)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"G1:G11"</span>,</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"red"</span>),</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">showValue =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient =</span> <span class="cn">FALSE</span></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="co"># custom color</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"databar"</span>, <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">9</span>)</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">cols =</span> <span class="dv">9</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>),</span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>, <span class="st">"#a6a6a6"</span>),</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">TRUE</span>, <span class="at">gradient =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a><span class="co"># with rule</span></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">start_col =</span> <span class="dv">11</span>)</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_add_conditional_formatting</span>(</span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>  wb,</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>  <span class="st">"databar"</span>,</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">cols =</span> <span class="dv">11</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>),</span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataBar"</span>,</span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">rule =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">style =</span> <span class="fu">c</span>(<span class="st">"#a6a6a6"</span>, <span class="st">"#a6a6a6"</span>),</span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(<span class="at">showValue =</span> <span class="cn">TRUE</span>, <span class="at">gradient =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sparklines" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Sparklines</h1>
+<section id="sparklines" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sparklines"><span class="header-section-number">5.3</span> Sparklines</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/sparklines.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sl <span class="ot">&lt;-</span> <span class="fu">create_sparklines</span>(<span class="st">"Sheet 1"</span>, <span class="st">"A3:K3"</span>, <span class="st">"L3"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars) <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_sparklines</span>(<span class="at">sparklines =</span> sl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sl <span class="ot">&lt;-</span> <span class="fu">create_sparklines</span>(<span class="st">"Sheet 1"</span>, <span class="st">"A3:K3"</span>, <span class="st">"L3"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">wb_add_sparklines</span>(<span class="at">sparklines =</span> sl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1020,7 +1032,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/openxlsx2_style_manual.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -49,7 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/openxlsx2_upgrade_from_openxlsx.html" rel="prev">
+<link href="./chapters/openxlsx2_extending.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,13 +145,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -163,7 +163,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -180,20 +180,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -258,20 +258,21 @@ Seamless <span>R</span> and <span>C++</span> Integration.”</span>
 </div>
 <div id="ref-msoc" class="csl-entry" role="listitem">
 Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office
-Open Xml Files</em>.
+Open Xml Files</em>. <a href="https://janmarvin.github.io/msoc/">https://janmarvin.github.io/msoc/</a>.
 </div>
 <div id="ref-tidyxl" class="csl-entry" role="listitem">
 Garmonsway, Duncan. 2022. <em>Tidyxl: Read Untidy Excel Files</em>. <a href="https://CRAN.R-project.org/package=tidyxl">https://CRAN.R-project.org/package=tidyxl</a>.
 </div>
 <div id="ref-flextable" class="csl-entry" role="listitem">
 Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions
-for Tabular Reporting</em>.
+for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.
 </div>
 <div id="ref-flexlsx" class="csl-entry" role="listitem">
 Heidler, Tobias. 2023. <em>Flexlsx: Exporting Flextables to Excel</em>.
+<a href="https://github.com/pteridin/flexlsx">https://github.com/pteridin/flexlsx</a>.
 </div>
 <div id="ref-pugixml" class="csl-entry" role="listitem">
-Kapoulkine, Arseny. 2006-2022. <em>Pugixml</em>. <a href="https://pugixml.org">https://pugixml.org</a>.
+Kapoulkine, Arseny. 2006-2023. <em>Pugixml</em>. <a href="https://pugixml.org">https://pugixml.org</a>.
 </div>
 <div id="ref-writexl" class="csl-entry" role="listitem">
 Ooms, Jeroen. 2023. <em>Writexl: Export Data Frames to Excel ’Xlsx’
@@ -529,8 +530,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapters/openxlsx2_upgrade_from_openxlsx.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span>
+      <a href="./chapters/openxlsx2_extending.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -180,13 +180,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,7 +198,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,20 +215,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,7 +279,7 @@ div.csl-indent {
 
 <p>Unfortunately the entire business world is still built almost entirely on Microsofts Office tools and whenever data is involved, this means that is is largely built on the spreadsheet software Excel. R users that want to interact with this previously closed source file format had to rely on various packages (the following is not necessarily a complete list of all packages). Packages that create workbook objects like <code>xlsx</code> <span class="citation" data-cites="xlsx">(<a href="../references.html#ref-xlsx" role="doc-biblioref">Dragulescu and Arendt 2023</a>)</span> and <code>openxlsx</code> <span class="citation" data-cites="openxlsx">(<a href="../references.html#ref-openxlsx" role="doc-biblioref">Schauberger and Walker 2023</a>)</span> and packages for special tasks namely <code>readxl</code> <span class="citation" data-cites="readxl">(<a href="../references.html#ref-readxl" role="doc-biblioref">Wickham and Bryan 2023</a>)</span>, <code>readxlsb</code><span class="citation" data-cites="readxlsb">(<a href="../references.html#ref-readxlsb" role="doc-biblioref">Allen 2023</a>)</span>, <code>tidyxl</code> <span class="citation" data-cites="tidyxl">(<a href="../references.html#ref-tidyxl" role="doc-biblioref">Garmonsway 2022</a>)</span>, <code>writexl</code> <span class="citation" data-cites="writexl">(<a href="../references.html#ref-writexl" role="doc-biblioref">Ooms 2023</a>)</span> and <code>WriteXLS</code> <span class="citation" data-cites="writexls">(<a href="../references.html#ref-writexls" role="doc-biblioref">Schwartz 2022</a>)</span>, some are Windows exclusive interacting with Excel via a DCOM server <code>RDCOMClient</code> and <code>RExcel</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, some are not, <code>XLconnect</code>.</p>
 <p>In Excel 2007 a new open standard called OOXML(short for office open xml)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> which we will refer to as <em>openxml</em> was introduced. In December 2006 this standard was accepted by the ECMA and it subsequently replaced the previously used <code>xls</code> files wherever people are working with spreadsheet software (after all we are all aware that accounting does not really care whatever file format they are using as long as it opens up in their favorite spreadsheet software). The openxml standard introduced the so called Excel 2007 workbook format <code>xlsx</code>. These files are a collection of zipped XML-files. This makes is easy to import the files to R, because all you need is a tool to unzip the files and an XML-parser to import the files as data frames. Still, since there are various tasks available to interact with spreadsheet file, there are also various tools required. If all you want to do is read from files <code>readxl</code> is probably enough, if all you want to do is write xlsx files <code>writexl</code> is probably the fastest choice available. Yet there are a plethora of other tasks available and this book is about them.</p>
-<p>The predecessor to <code>openxlsx2</code> <span class="citation" data-cites="openxlsx2">(<a href="../references.html#ref-openxlsx2" role="doc-biblioref">Barbone and Garbuszus 2023</a>)</span> called <code>openxlsx</code> (originally founded by Andrew Walker) was inspired by the <code>rJava</code> based <code>xlsx</code> package, but dropped the <code>rJava</code> dependency, and the support for the old <code>xls</code> files and wrote a custom XML parser in <code>Rcpp</code> <span class="citation" data-cites="Rcpp">(<a href="../references.html#ref-Rcpp" role="doc-biblioref">Eddelbuettel and François 2011</a>)</span>. Later Phillip Schauberger picked up the abandoned <code>openxlsx</code> package and continues to maintain it. Finally <code>openxlsx2</code> was forked from <code>openxlsx</code> to include (1) the <code>pugixml</code> <span class="citation" data-cites="pugixml">(<a href="../references.html#ref-pugixml" role="doc-biblioref">Kapoulkine 2006-2022</a>)</span> library to address shortcomings of the <code>openxlsx</code> XML parser and (2) to switch to the <code>R6</code> <span class="citation" data-cites="R6">(<a href="../references.html#ref-R6" role="doc-biblioref">Chang 2021</a>)</span> package to introduce modern programming flows. Since then <code>openxlsx2</code> has evolved a lot, includes many new features and is approaching a stable API release <code>1.0</code>. This manual is supposed to bundle and extend the existing vignettes and to document the changes.</p>
+<p>The predecessor to <code>openxlsx2</code> <span class="citation" data-cites="openxlsx2">(<a href="../references.html#ref-openxlsx2" role="doc-biblioref">Barbone and Garbuszus 2023</a>)</span> called <code>openxlsx</code> (originally founded by Andrew Walker) was inspired by the <code>rJava</code> based <code>xlsx</code> package, but dropped the <code>rJava</code> dependency, and the support for the old <code>xls</code> files and wrote a custom XML parser in <code>Rcpp</code> <span class="citation" data-cites="Rcpp">(<a href="../references.html#ref-Rcpp" role="doc-biblioref">Eddelbuettel and François 2011</a>)</span>. Later Phillip Schauberger picked up the abandoned <code>openxlsx</code> package and continues to maintain it. Finally <code>openxlsx2</code> was forked from <code>openxlsx</code> to include (1) the <code>pugixml</code> <span class="citation" data-cites="pugixml">(<a href="../references.html#ref-pugixml" role="doc-biblioref">Kapoulkine 2006-2023</a>)</span> library to address shortcomings of the <code>openxlsx</code> XML parser and (2) to switch from <code>methods</code> to the <code>R6</code> <span class="citation" data-cites="R6">(<a href="../references.html#ref-R6" role="doc-biblioref">Chang 2021</a>)</span> package to introduce modern programming flows. Since then <code>openxlsx2</code> has evolved a lot, includes many new features and is in a semi-stable API state since release <code>1.0</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> This manual is supposed to bundle and extend the existing vignettes and to document the changes.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
 <p>You can install the stable version of <code>openxlsx2</code> with:</p>
@@ -371,7 +371,7 @@ Worksheets:
 </section>
 <section id="license" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="license"><span class="header-section-number">1.5</span> License</h2>
-<p>The <code>openxlsx2</code> package is licensed under the MIT license and is based on <a href="https://github.com/ycphs/openxlsx"><code>openxlsx</code></a> (by Alexander Walker and Philipp Schauberger; COPYRIGHT 2014-2022) and <a href="https://github.com/zeux/pugixml"><code>pugixml</code></a> (by Arseny Kapoulkine; COPYRIGHT 2006-2022). Both released under the MIT license.</p>
+<p>The <code>openxlsx2</code> package is licensed under the MIT license and is based on <a href="https://github.com/ycphs/openxlsx"><code>openxlsx</code></a> (by Alexander Walker and Philipp Schauberger; COPYRIGHT 2014-2022) and <a href="https://github.com/zeux/pugixml"><code>pugixml</code></a> (by Arseny Kapoulkine; COPYRIGHT 2006-2023). Both released under the MIT license.</p>
 </section>
 <section id="a-note-on-speed-and-memory-usage" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="a-note-on-speed-and-memory-usage"><span class="header-section-number">1.6</span> A note on speed and memory usage</h2>
@@ -404,7 +404,7 @@ Eddelbuettel, Dirk, and Romain François. 2011. <span>“<span>Rcpp</span>: Seam
 Garmonsway, Duncan. 2022. <em>Tidyxl: Read Untidy Excel Files</em>. <a href="https://CRAN.R-project.org/package=tidyxl">https://CRAN.R-project.org/package=tidyxl</a>.
 </div>
 <div id="ref-pugixml" class="csl-entry" role="listitem">
-Kapoulkine, Arseny. 2006-2022. <em>Pugixml</em>. <a href="https://pugixml.org">https://pugixml.org</a>.
+Kapoulkine, Arseny. 2006-2023. <em>Pugixml</em>. <a href="https://pugixml.org">https://pugixml.org</a>.
 </div>
 <div id="ref-writexl" class="csl-entry" role="listitem">
 Ooms, Jeroen. 2023. <em>Writexl: Export Data Frames to Excel ’Xlsx’ Format</em>. <a href="https://CRAN.R-project.org/package=writexl">https://CRAN.R-project.org/package=writexl</a>.
@@ -425,6 +425,7 @@ Wickham, Hadley, and Jennifer Bryan. 2023. <em>Readxl: Read Excel Files</em>. <a
 <ol>
 <li id="fn1"><p>See https://github.com/omegahat/RDCOMClient.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>See https://wikipedia.org/wiki/Office_Open_XML.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>With ‘semi-stable’ we promise not to break the API unless we come across a bug that forces us to. All breaking changes are mentioned in the <a href="https://janmarvin.github.io/openxlsx2/news/index.html">changelog</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

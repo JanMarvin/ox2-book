@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The openxlsx2 book - 4&nbsp; styling</title>
+<title>The openxlsx2 book - 4&nbsp; Styling of worksheets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_style_manual.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_style_manual.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,13 +161,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -196,20 +196,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -233,29 +233,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-quick-way-using-high-level-functions" id="toc-the-quick-way-using-high-level-functions" class="nav-link" data-scroll-target="#the-quick-way-using-high-level-functions"><span class="header-section-number">4.1.1</span> the quick way: using high level functions</a></li>
   <li><a href="#the-long-way-using-bare-metal-functions" id="toc-the-long-way-using-bare-metal-functions" class="nav-link" data-scroll-target="#the-long-way-using-bare-metal-functions"><span class="header-section-number">4.1.2</span> the long way: using bare metal functions</a></li>
   </ul></li>
-  <li><a href="#working-with-number-formats" id="toc-working-with-number-formats" class="nav-link" data-scroll-target="#working-with-number-formats"><span class="header-section-number">5</span> Working with number formats</a>
+  <li><a href="#working-with-number-formats" id="toc-working-with-number-formats" class="nav-link" data-scroll-target="#working-with-number-formats"><span class="header-section-number">4.2</span> Working with number formats</a>
   <ul class="collapse">
-  <li><a href="#numfmts" id="toc-numfmts" class="nav-link" data-scroll-target="#numfmts"><span class="header-section-number">5.1</span> numfmts</a></li>
-  <li><a href="#numfmts2" id="toc-numfmts2" class="nav-link" data-scroll-target="#numfmts2"><span class="header-section-number">5.2</span> numfmts2</a></li>
+  <li><a href="#numfmts" id="toc-numfmts" class="nav-link" data-scroll-target="#numfmts"><span class="header-section-number">4.2.1</span> numfmts</a></li>
+  <li><a href="#numfmts2" id="toc-numfmts2" class="nav-link" data-scroll-target="#numfmts2"><span class="header-section-number">4.2.2</span> numfmts2</a></li>
   </ul></li>
-  <li><a href="#modifying-the-column-widths" id="toc-modifying-the-column-widths" class="nav-link" data-scroll-target="#modifying-the-column-widths"><span class="header-section-number">6</span> Modifying the column widths</a>
+  <li><a href="#modifying-the-column-and-row-widths" id="toc-modifying-the-column-and-row-widths" class="nav-link" data-scroll-target="#modifying-the-column-and-row-widths"><span class="header-section-number">4.3</span> Modifying the column and row widths</a>
   <ul class="collapse">
-  <li><a href="#wb_set_col_widths" id="toc-wb_set_col_widths" class="nav-link" data-scroll-target="#wb_set_col_widths"><span class="header-section-number">6.1</span> wb_set_col_widths</a></li>
+  <li><a href="#wb_set_col_widths" id="toc-wb_set_col_widths" class="nav-link" data-scroll-target="#wb_set_col_widths"><span class="header-section-number">4.3.1</span> wb_set_col_widths</a></li>
+  <li><a href="#wb_set_row_heigths" id="toc-wb_set_row_heigths" class="nav-link" data-scroll-target="#wb_set_row_heigths"><span class="header-section-number">4.3.2</span> wb_set_row_heigths</a></li>
   </ul></li>
-  <li><a href="#adding-borders" id="toc-adding-borders" class="nav-link" data-scroll-target="#adding-borders"><span class="header-section-number">7</span> Adding borders</a>
+  <li><a href="#adding-borders" id="toc-adding-borders" class="nav-link" data-scroll-target="#adding-borders"><span class="header-section-number">4.4</span> Adding borders</a>
   <ul class="collapse">
-  <li><a href="#add-borders" id="toc-add-borders" class="nav-link" data-scroll-target="#add-borders"><span class="header-section-number">7.1</span> add borders</a></li>
-  <li><a href="#styled-table" id="toc-styled-table" class="nav-link" data-scroll-target="#styled-table"><span class="header-section-number">7.2</span> styled table</a>
-  <ul class="collapse">
-  <li><a href="#the-quick-way-using-high-level-functions-1" id="toc-the-quick-way-using-high-level-functions-1" class="nav-link" data-scroll-target="#the-quick-way-using-high-level-functions-1"><span class="header-section-number">7.2.1</span> the quick way: using high level functions</a></li>
-  <li><a href="#the-long-way-creating-everything-from-the-bone" id="toc-the-long-way-creating-everything-from-the-bone" class="nav-link" data-scroll-target="#the-long-way-creating-everything-from-the-bone"><span class="header-section-number">7.2.2</span> the long way: creating everything from the bone</a></li>
+  <li><a href="#add-borders" id="toc-add-borders" class="nav-link" data-scroll-target="#add-borders"><span class="header-section-number">4.4.1</span> add borders</a></li>
+  <li><a href="#styled-table" id="toc-styled-table" class="nav-link" data-scroll-target="#styled-table"><span class="header-section-number">4.4.2</span> styled table</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#use-workbook-colors-and-modify-them" id="toc-use-workbook-colors-and-modify-them" class="nav-link" data-scroll-target="#use-workbook-colors-and-modify-them"><span class="header-section-number">8</span> Use workbook colors and modify them</a></li>
-  <li><a href="#copy-cell-styles" id="toc-copy-cell-styles" class="nav-link" data-scroll-target="#copy-cell-styles"><span class="header-section-number">9</span> Copy cell styles</a></li>
-  <li><a href="#style-strings" id="toc-style-strings" class="nav-link" data-scroll-target="#style-strings"><span class="header-section-number">10</span> Style strings</a></li>
-  <li><a href="#create-custom-table-styles" id="toc-create-custom-table-styles" class="nav-link" data-scroll-target="#create-custom-table-styles"><span class="header-section-number">11</span> Create custom table styles</a></li>
-  <li><a href="#named-styles" id="toc-named-styles" class="nav-link" data-scroll-target="#named-styles"><span class="header-section-number">12</span> Named styles</a></li>
+  <li><a href="#use-workbook-colors-and-modify-them" id="toc-use-workbook-colors-and-modify-them" class="nav-link" data-scroll-target="#use-workbook-colors-and-modify-them"><span class="header-section-number">4.5</span> Use workbook colors and modify them</a></li>
+  <li><a href="#copy-cell-styles" id="toc-copy-cell-styles" class="nav-link" data-scroll-target="#copy-cell-styles"><span class="header-section-number">4.6</span> Copy cell styles</a></li>
+  <li><a href="#style-strings" id="toc-style-strings" class="nav-link" data-scroll-target="#style-strings"><span class="header-section-number">4.7</span> Style strings</a></li>
+  <li><a href="#create-custom-table-styles" id="toc-create-custom-table-styles" class="nav-link" data-scroll-target="#create-custom-table-styles"><span class="header-section-number">4.8</span> Create custom table styles</a></li>
+  <li><a href="#named-styles" id="toc-named-styles" class="nav-link" data-scroll-target="#named-styles"><span class="header-section-number">4.9</span> Named styles</a></li>
   </ul>
 </nav>
     </div>
@@ -264,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></h1>
 </div>
 
 
@@ -419,11 +416,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="working-with-number-formats" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Working with number formats</h1>
+<section id="working-with-number-formats" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="working-with-number-formats"><span class="header-section-number">4.2</span> Working with number formats</h2>
+<section id="numfmts" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="numfmts"><span class="header-section-number">4.2.1</span> numfmts</h3>
 <p>Per default <code>openxlsx2</code> will pick up number formats for selected R classes.</p>
-<section id="numfmts" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="numfmts"><span class="header-section-number">5.1</span> numfmts</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create Workbook object and add worksheets</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
@@ -434,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span> <span class="ot">=</span> <span class="fu">Sys.Date</span>() <span class="sc">-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">19</span>,</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"T"</span> <span class="ot">=</span> <span class="cn">TRUE</span>, <span class="st">"F"</span> <span class="ot">=</span> <span class="cn">FALSE</span>,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Time"</span> <span class="ot">=</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">19</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cash"</span> <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">"$"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>), <span class="st">"Cash2"</span> <span class="ot">=</span> <span class="dv">31</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cash"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="st">"Cash2"</span> <span class="ot">=</span> <span class="dv">31</span><span class="sc">:</span><span class="dv">50</span>,</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"hLink"</span> <span class="ot">=</span> <span class="st">"https://CRAN.R-project.org/"</span>,</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Percentage"</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">20</span>),</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TinyNumbers"</span> <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">20</span>) <span class="sc">/</span> <span class="fl">1E9</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
@@ -450,9 +447,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"S1"</span>, <span class="at">x =</span> df, <span class="at">start_row =</span> <span class="dv">4</span>, <span class="at">row_names =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data_table</span>(<span class="st">"S2"</span>, <span class="at">x =</span> df, <span class="at">start_row =</span> <span class="dv">4</span>, <span class="at">row_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/worksheet_builtin_styles.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
 </section>
-<section id="numfmts2" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="numfmts2"><span class="header-section-number">5.2</span> numfmts2</h2>
+<section id="numfmts2" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="numfmts2"><span class="header-section-number">4.2.2</span> numfmts2</h3>
 <p>In addition, you can set the style to be picked up using <code>openxlsx2</code> options.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
@@ -466,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span> <span class="ot">=</span> <span class="fu">Sys.Date</span>() <span class="sc">-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">19</span>,</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"T"</span> <span class="ot">=</span> <span class="cn">TRUE</span>, <span class="st">"F"</span> <span class="ot">=</span> <span class="cn">FALSE</span>,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Time"</span> <span class="ot">=</span> <span class="fu">Sys.time</span>() <span class="sc">-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">19</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cash"</span> <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">"$"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>), <span class="st">"Cash2"</span> <span class="ot">=</span> <span class="dv">31</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cash"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="st">"Cash2"</span> <span class="ot">=</span> <span class="dv">31</span><span class="sc">:</span><span class="dv">50</span>,</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"hLink"</span> <span class="ot">=</span> <span class="st">"https://CRAN.R-project.org/"</span>,</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Percentage"</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">20</span>),</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TinyNumbers"</span> <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">20</span>) <span class="sc">/</span> <span class="fl">1E9</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
@@ -482,130 +484,168 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="st">"test"</span>, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="modifying-the-column-widths" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Modifying the column widths</h1>
-<section id="wb_set_col_widths" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="wb_set_col_widths"><span class="header-section-number">6.1</span> wb_set_col_widths</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars, <span class="at">row_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_set_col_widths</span>(<span class="at">cols =</span> cols, <span class="at">widths =</span> <span class="st">"auto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="../img/worksheet_builtin_styles.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># disable styles via options</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"openxlsx2.dateFormat"</span> <span class="ot">=</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"openxlsx2.datetimeFormat"</span> <span class="ot">=</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"openxlsx2.numFmt"</span> <span class="ot">=</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="adding-borders" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Adding borders</h1>
-<section id="add-borders" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="add-borders"><span class="header-section-number">7.1</span> add borders</h2>
+<section id="modifying-the-column-and-row-widths" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="modifying-the-column-and-row-widths"><span class="header-section-number">4.3</span> Modifying the column and row widths</h2>
+<section id="wb_set_col_widths" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="wb_set_col_widths"><span class="header-section-number">4.3.1</span> wb_set_col_widths</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full inner grid</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S1"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:K33"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inner_hgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_hcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>),</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">inner_vgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_vcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># only horizontal grid</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S2"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="at">dims =</span> <span class="st">"A2:K33"</span>, <span class="at">inner_hgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_hcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># only vertical grid</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S3"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="at">dims =</span> <span class="st">"A2:K33"</span>, <span class="at">inner_vgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_vcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>))</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># no inner grid</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S4"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="st">"S4"</span>, <span class="at">dims =</span> <span class="st">"A2:K33"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars, <span class="at">row_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>cols_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>cols_2 <span class="ot">&lt;-</span> <span class="st">"G:L"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_set_col_widths</span>(<span class="at">cols =</span> cols_1, <span class="at">widths =</span> <span class="st">"auto"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_set_col_widths</span>(<span class="at">cols =</span> cols_2, <span class="at">widths =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="styled-table" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="styled-table"><span class="header-section-number">7.2</span> styled table</h2>
+<section id="wb_set_row_heigths" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="wb_set_row_heigths"><span class="header-section-number">4.3.2</span> wb_set_row_heigths</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_set_row_heights</span>(<span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">heights =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="adding-borders" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="adding-borders"><span class="header-section-number">4.4</span> Adding borders</h2>
+<section id="add-borders" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="add-borders"><span class="header-section-number">4.4.1</span> add borders</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full inner grid</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S1"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dims =</span> <span class="st">"A2:K33"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inner_hgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_hcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">inner_vgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_vcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># only horizontal grid</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S2"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> mtcars, <span class="at">select =</span> <span class="st">"data"</span>), <span class="at">inner_hgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_hcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># only vertical grid</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S3"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="at">dims =</span>  <span class="fu">wb_dims</span>(<span class="at">x =</span> mtcars, <span class="at">select =</span> <span class="st">"data"</span>), <span class="at">inner_vgrid =</span> <span class="st">"thin"</span>, <span class="at">inner_vcolor =</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF808080"</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># no inner grid</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_worksheet</span>(<span class="st">"S4"</span>, <span class="at">grid_lines =</span> <span class="cn">FALSE</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_border</span>(<span class="st">"S4"</span>, <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> mtcars, <span class="at">select =</span> <span class="st">"data"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="../img/ws_border_1.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="../img/ws_border_2.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="../img/ws_border_3.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="../img/ws_border_4.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</section>
+<section id="styled-table" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="styled-table"><span class="header-section-number">4.4.2</span> styled table</h3>
 <p>Below we show you two ways how to create styled tables with <code>openxlsx2</code> one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="../img/styled_table.png" class="img-fluid"></p>
 </div>
 </div>
-<section id="the-quick-way-using-high-level-functions-1" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="the-quick-way-using-high-level-functions-1"><span class="header-section-number">7.2.1</span> the quick way: using high level functions</h3>
+<section id="the-quick-way-using-high-level-functions-1" class="level4" data-number="4.4.2.1">
+<h4 data-number="4.4.2.1" class="anchored" data-anchor-id="the-quick-way-using-high-level-functions-1"><span class="header-section-number">4.4.2.1</span> the quick way: using high level functions</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add some dummy data to the worksheet</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(mat)))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"test"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mat, <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">start_col =</span> <span class="dv">2</span>, <span class="at">start_row =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center first row</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_cell_style</span>(<span class="at">dims =</span> <span class="st">"B2:C2"</span>, <span class="at">horizontal =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add border for first row</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_border</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">dims =</span> <span class="st">"B2:C2"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">bottom_border =</span> <span class="st">"thin"</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">top_border =</span> <span class="st">"double"</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">left_border =</span> <span class="cn">NULL</span>, <span class="at">right_border =</span> <span class="cn">NULL</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add border for last row</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_border</span>(</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">dims =</span> <span class="st">"B4:C4"</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">bottom_border =</span> <span class="st">"double"</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_border =</span> <span class="cn">NULL</span>, <span class="at">left_border =</span> <span class="cn">NULL</span>, <span class="at">right_border =</span> <span class="cn">NULL</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add some dummy data to the worksheet</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(mat)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dims_head <span class="ot">&lt;-</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> mat, <span class="at">from_col =</span> <span class="dv">2</span>, <span class="at">from_row =</span> <span class="dv">2</span>, <span class="at">select =</span> <span class="st">"col_names"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>dims_data <span class="ot">&lt;-</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> mat, <span class="at">from_col =</span> <span class="dv">2</span>, <span class="at">from_row =</span> <span class="dv">2</span>, <span class="at">select =</span> <span class="st">"data"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"test"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mat, <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">start_col =</span> <span class="dv">2</span>, <span class="at">start_row =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># center first row</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_cell_style</span>(<span class="at">dims =</span> dims_head, <span class="at">horizontal =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add border for first row</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_border</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">dims =</span> dims_head,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">bottom_border =</span> <span class="st">"thin"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">top_border =</span> <span class="st">"double"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">left_border =</span> <span class="cn">NULL</span>, <span class="at">right_border =</span> <span class="cn">NULL</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add border for last row</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_border</span>(</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">dims =</span> dims_data,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">1</span>), <span class="at">bottom_border =</span> <span class="st">"double"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_border =</span> <span class="cn">NULL</span>, <span class="at">left_border =</span> <span class="cn">NULL</span>, <span class="at">right_border =</span> <span class="cn">NULL</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="the-long-way-creating-everything-from-the-bone" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="the-long-way-creating-everything-from-the-bone"><span class="header-section-number">7.2.2</span> the long way: creating everything from the bone</h3>
+<section id="the-long-way-creating-everything-from-the-bone" class="level4" data-number="4.4.2.2">
+<h4 data-number="4.4.2.2" class="anchored" data-anchor-id="the-long-way-creating-everything-from-the-bone"><span class="header-section-number">4.4.2.2</span> the long way: creating everything from the bone</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add some dummy data to the worksheet</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(mat)))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"test"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mat, <span class="at">start_col =</span> <span class="dv">2</span>, <span class="at">start_row =</span> <span class="dv">2</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a border style and assign it to the workbook</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>black <span class="ot">&lt;-</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF000000"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>top_border <span class="ot">&lt;-</span> <span class="fu">create_border</span>(</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">top =</span> <span class="st">"double"</span>, <span class="at">top_color =</span> black,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom =</span> <span class="st">"thin"</span>, <span class="at">bottom_color =</span> black</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>bottom_border <span class="ot">&lt;-</span> <span class="fu">create_border</span>(<span class="at">bottom =</span> <span class="st">"double"</span>, <span class="at">bottom_color =</span> black)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(top_border, <span class="st">"top_border"</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(bottom_border, <span class="st">"bottom_border"</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new cell style, that uses the fill, the font and the border style</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>top_cellxfs <span class="ot">&lt;-</span> <span class="fu">create_cell_style</span>(</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">numFmtId =</span> <span class="dv">0</span>,</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">horizontal =</span> <span class="st">"center"</span>,</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">borderId =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_border_id</span>(<span class="st">"top_border"</span>)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>bottom_cellxfs <span class="ot">&lt;-</span> <span class="fu">create_cell_style</span>(</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">numFmtId =</span> <span class="dv">0</span>,</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">borderId =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_border_id</span>(<span class="st">"bottom_border"</span>)</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># assign this style to the workbook</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(top_cellxfs, <span class="st">"top_styles"</span>)</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(bottom_cellxfs, <span class="st">"bottom_styles"</span>)</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co"># assign the new cell style to the header row of our data set</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>cell <span class="ot">&lt;-</span> <span class="st">"B2:C2"</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_set_cell_style</span>(<span class="at">dims =</span> cell, <span class="at">style =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_xf_id</span>(<span class="st">"top_styles"</span>))</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>cell <span class="ot">&lt;-</span> <span class="st">"B4:C4"</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_set_cell_style</span>(<span class="at">dims =</span> cell, <span class="at">style =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_xf_id</span>(<span class="st">"bottom_styles"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add some dummy data to the worksheet</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(mat)))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"test"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mat, <span class="at">start_col =</span> <span class="dv">2</span>, <span class="at">start_row =</span> <span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a border style and assign it to the workbook</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>black <span class="ot">&lt;-</span> <span class="fu">wb_color</span>(<span class="at">hex =</span> <span class="st">"FF000000"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>top_border <span class="ot">&lt;-</span> <span class="fu">create_border</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">top =</span> <span class="st">"double"</span>, <span class="at">top_color =</span> black,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom =</span> <span class="st">"thin"</span>, <span class="at">bottom_color =</span> black</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>bottom_border <span class="ot">&lt;-</span> <span class="fu">create_border</span>(<span class="at">bottom =</span> <span class="st">"double"</span>, <span class="at">bottom_color =</span> black)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(top_border, <span class="st">"top_border"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(bottom_border, <span class="st">"bottom_border"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new cell style, that uses the fill, the font and the border style</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>top_cellxfs <span class="ot">&lt;-</span> <span class="fu">create_cell_style</span>(</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">numFmtId =</span> <span class="dv">0</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">horizontal =</span> <span class="st">"center"</span>,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">borderId =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_border_id</span>(<span class="st">"top_border"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>bottom_cellxfs <span class="ot">&lt;-</span> <span class="fu">create_cell_style</span>(</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">numFmtId =</span> <span class="dv">0</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">borderId =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_border_id</span>(<span class="st">"bottom_border"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># assign this style to the workbook</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(top_cellxfs, <span class="st">"top_styles"</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">add</span>(bottom_cellxfs, <span class="st">"bottom_styles"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># assign the new cell style to the header row of our data set</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>cell <span class="ot">&lt;-</span> <span class="st">"B2:C2"</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_set_cell_style</span>(<span class="at">dims =</span> cell, <span class="at">style =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_xf_id</span>(<span class="st">"top_styles"</span>))</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>cell <span class="ot">&lt;-</span> <span class="st">"B4:C4"</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_set_cell_style</span>(<span class="at">dims =</span> cell, <span class="at">style =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_xf_id</span>(<span class="st">"bottom_styles"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 </section>
-<section id="use-workbook-colors-and-modify-them" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Use workbook colors and modify them</h1>
+<section id="use-workbook-colors-and-modify-them" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="use-workbook-colors-and-modify-them"><span class="header-section-number">4.5</span> Use workbook colors and modify them</h2>
 <p>The loop below will apply the tint attribute to the fill color</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -618,30 +658,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_worksheet</span>(<span class="st">"S1"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>tints <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>) {</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (tnt <span class="cf">in</span> tints) {</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    col <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i <span class="sc">+</span> <span class="dv">1</span>), <span class="fu">which</span>(tints <span class="sc">%in%</span> tnt))</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (tnt <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_add_fill</span>(<span class="at">dims =</span> col, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> i))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_add_fill</span>(<span class="at">dims =</span> col, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> i, <span class="at">tint =</span> tnt))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_worksheet</span>(<span class="st">"S1"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tints <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (tnt <span class="cf">in</span> tints) {</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    col <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i <span class="sc">+</span> <span class="dv">1</span>), <span class="fu">which</span>(tints <span class="sc">%in%</span> tnt))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (tnt <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_add_fill</span>(<span class="at">dims =</span> col, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> i))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> <span class="fu">wb_add_fill</span>(<span class="at">dims =</span> col, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> i, <span class="at">tint =</span> tnt))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="copy-cell-styles" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Copy cell styles</h1>
+<section id="copy-cell-styles" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="copy-cell-styles"><span class="header-section-number">4.6</span> Copy cell styles</h2>
 <p>It is possible to copy the styles of several cells at once. In the following example, the styles of some cells from a formatted workbook are applied to a previously empty cell range. Be careful though, <code>wb_get_cell_style()</code> returns only some styles, so you have to make sure that the copy-from and copy-to dimensions match in a meaningful way.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_load</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"oxlsx2_sheet.xlsx"</span>, <span class="at">package =</span> <span class="st">"openxlsx2"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_set_cell_style</span>(<span class="dv">1</span>, <span class="st">"A30:G35"</span>, <span class="fu">wb_get_cell_style</span>(., <span class="dv">1</span>, <span class="st">"A10:G15"</span>))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wb_open(wb)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_load</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"oxlsx2_sheet.xlsx"</span>, <span class="at">package =</span> <span class="st">"openxlsx2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_set_cell_style</span>(<span class="dv">1</span>, <span class="st">"A30:G35"</span>, <span class="fu">wb_get_cell_style</span>(., <span class="dv">1</span>, <span class="st">"A10:G15"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wb_open(wb)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -649,18 +689,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="style-strings" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Style strings</h1>
+<section id="style-strings" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="style-strings"><span class="header-section-number">4.7</span> Style strings</h2>
 <p>Using <code>fmt_txt()</code> is possible to style strings independently of the cell containing the string.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">&lt;-</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"Embracing the full potential of "</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"openxlsx2"</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">" with "</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"fmt_txt()"</span>, <span class="at">font =</span> <span class="st">"Courier"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">" !"</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> txt, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>txt <span class="ot">&lt;-</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"Embracing the full potential of "</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"openxlsx2"</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">" with "</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">"fmt_txt()"</span>, <span class="at">font =</span> <span class="st">"Courier"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_txt</span>(<span class="st">" !"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> txt, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -669,12 +709,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As shown above it is possible to combine multiple styles together into a longer string. It is even possible to use <code>fmt_txt()</code> as <code>na.strings</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df[df <span class="sc">&lt;</span> <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>na_red <span class="ot">&lt;-</span> <span class="fu">fmt_txt</span>(<span class="st">"N/A"</span>, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>), <span class="at">italic =</span> <span class="cn">TRUE</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> df, <span class="at">na.strings =</span> na_red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df[df <span class="sc">&lt;</span> <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>na_red <span class="ot">&lt;-</span> <span class="fu">fmt_txt</span>(<span class="st">"N/A"</span>, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>), <span class="at">italic =</span> <span class="cn">TRUE</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> df, <span class="at">na.strings =</span> na_red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -682,110 +722,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="create-custom-table-styles" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Create custom table styles</h1>
+<section id="create-custom-table-styles" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="create-custom-table-styles"><span class="header-section-number">4.8</span> Create custom table styles</h2>
 <p>With <code>create_tablestyle()</code> it is possible to create your own table styles. This function uses <code>create_dxfs_style()</code> (just like your spreadsheet software does). Therefore, it is not quite as user-friendly. The following example shows how the function creates a red table style. The various dxfs styles must be created and assigned to the workbook (similar styles are used in conditional formatting). In <code>create_tablestyle()</code> these styles are assigned to the table style elements. Once the table style is created, it must also be assigned to the workbook. After that you can use it in the workbook like any other table style.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a red table style</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dx0 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="cn">NULL</span>, <span class="at">top_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>dx1 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="cn">NULL</span>, <span class="at">top_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>dx2 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>dx3 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>dx4 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>dx5 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>dx6 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_style =</span> <span class="st">"double"</span>,</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>dx7 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="st">"white"</span>),</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">bgFill =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">fgColor =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>)</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>dx8 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>)</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="at">grid_lines =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx0)</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx1)</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx2)</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx3)</span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx4)</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx5)</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx6)</span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx7)</span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx8)</span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="co"># finally create the table</span></span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>xml <span class="ot">&lt;-</span> <span class="fu">create_tablestyle</span>(</span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>  <span class="at">name                 =</span> <span class="st">"red_table"</span>,</span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">whole_table          =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx8"</span>),</span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">header_row           =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx7"</span>),</span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_row            =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx6"</span>),</span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_column         =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx5"</span>),</span>
-<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_column          =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx4"</span>),</span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_row_stripe     =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx3"</span>),</span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_row_stripe    =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx2"</span>),</span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_column_stripe  =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx1"</span>),</span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_column_stripe =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx0"</span>)</span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(xml)</span>
-<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="co"># create a table and apply the custom style</span></span>
-<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
-<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data_table</span>(<span class="at">x =</span> mtcars, <span class="at">table_style =</span> <span class="st">"red_table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a red table style</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dx0 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="cn">NULL</span>, <span class="at">top_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>dx1 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="cn">NULL</span>, <span class="at">top_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>dx2 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>dx3 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>dx4 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>dx5 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>dx6 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_style =</span> <span class="st">"double"</span>,</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="cn">NULL</span>, <span class="at">left_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="cn">NULL</span>, <span class="at">right_style =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="cn">NULL</span>, <span class="at">bottom_style =</span> <span class="cn">NULL</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>dx7 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_color =</span> <span class="fu">wb_color</span>(<span class="st">"white"</span>),</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">text_bold =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">bgFill =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">fgColor =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>)</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>dx8 <span class="ot">&lt;-</span> <span class="fu">create_dxfs_style</span>(</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">left_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">top_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">right_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>),</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">bottom_color =</span> <span class="fu">wb_color</span>(<span class="st">"red"</span>)</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="at">grid_lines =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx0)</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx1)</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx2)</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx3)</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx4)</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx5)</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx6)</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx7)</span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(dx8)</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="co"># finally create the table</span></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>xml <span class="ot">&lt;-</span> <span class="fu">create_tablestyle</span>(</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>  <span class="at">name                 =</span> <span class="st">"red_table"</span>,</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">whole_table          =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx8"</span>),</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">header_row           =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx7"</span>),</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_row            =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx6"</span>),</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_column         =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx5"</span>),</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_column          =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx4"</span>),</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_row_stripe     =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx3"</span>),</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_row_stripe    =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx2"</span>),</span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_column_stripe  =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx1"</span>),</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_column_stripe =</span> wb<span class="sc">$</span>styles_mgr<span class="sc">$</span><span class="fu">get_dxf_id</span>(<span class="st">"dx0"</span>)</span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_style</span>(xml)</span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a><span class="co"># create a table and apply the custom style</span></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data_table</span>(<span class="at">x =</span> mtcars, <span class="at">table_style =</span> <span class="st">"red_table"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -793,150 +833,150 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="named-styles" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Named styles</h1>
+<section id="named-styles" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="named-styles"><span class="header-section-number">4.9</span> Named styles</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Normal"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A1"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Bad"</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B1"</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Good"</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C1"</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Neutral"</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D1"</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Calculation"</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A2"</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Check Cell"</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B2"</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Explanatory Text"</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C2"</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Input"</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D2"</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Linked Cell"</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E2"</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Note"</span></span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"F2"</span></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Output"</span></span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"G2"</span></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Warning Text"</span></span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"H2"</span></span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 1"</span></span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A3"</span></span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 2"</span></span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B3"</span></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 3"</span></span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C3"</span></span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 4"</span></span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D3"</span></span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Title"</span></span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E3"</span></span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Total"</span></span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"F3"</span></span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">6</span>)) {</span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"20% - Accent"</span>, i)</span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"4"</span>)</span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"40% - Accent"</span>, i)</span>
-<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"5"</span>)</span>
-<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"60% - Accent"</span>, i)</span>
-<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"6"</span>)</span>
-<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Accent"</span>, i)</span>
-<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"7"</span>)</span>
-<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Comma"</span></span>
-<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A8"</span></span>
-<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Comma [0]"</span></span>
-<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B8"</span></span>
-<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Currency"</span></span>
-<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C8"</span></span>
-<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Currency [0]"</span></span>
-<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D8"</span></span>
-<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Per cent"</span></span>
-<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E8"</span></span>
-<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
-<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
-<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Normal"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A1"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Bad"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B1"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Good"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C1"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Neutral"</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D1"</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Calculation"</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A2"</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Check Cell"</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B2"</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Explanatory Text"</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C2"</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Input"</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D2"</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Linked Cell"</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E2"</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Note"</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"F2"</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Output"</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"G2"</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Warning Text"</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"H2"</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 1"</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A3"</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 2"</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B3"</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 3"</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C3"</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Heading 4"</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D3"</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Title"</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E3"</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Total"</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"F3"</span></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">6</span>)) {</span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"20% - Accent"</span>, i)</span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"4"</span>)</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"40% - Accent"</span>, i)</span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"5"</span>)</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"60% - Accent"</span>, i)</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"6"</span>)</span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Accent"</span>, i)</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>  dims <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">int2col</span>(i), <span class="st">"7"</span>)</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>  wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Comma"</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"A8"</span></span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Comma [0]"</span></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"B8"</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Currency"</span></span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"C8"</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Currency [0]"</span></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"D8"</span></span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Per cent"</span></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">&lt;-</span> <span class="st">"E8"</span></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_named_style</span>(<span class="at">dims =</span> dims, <span class="at">name =</span> name)</span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">dims =</span> dims, <span class="at">x =</span> name)</span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1189,7 +1229,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/conditional-formatting.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

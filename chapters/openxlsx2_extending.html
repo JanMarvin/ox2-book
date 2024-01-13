@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The openxlsx2 book - 10&nbsp; Extending openxlsx2</title>
+<title>The openxlsx2 book - 12&nbsp; Extending openxlsx2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,8 +83,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/openxlsx2_clone_and_copy.html" rel="next">
-<link href="../chapters/openxlsx2_form_control.html" rel="prev">
+<link href="../references.html" rel="next">
+<link href="../chapters/openxlsx2_upgrade_from_openxlsx.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,7 +128,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_extending.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending `openxlsx2`</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2_extending.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending `openxlsx2`</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -180,13 +180,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">styling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,7 +198,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">openxlsx2 formulas manual</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,20 +215,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -247,8 +247,8 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#msoc---encrypting-decrypting-workbooks" id="toc-msoc---encrypting-decrypting-workbooks" class="nav-link active" data-scroll-target="#msoc---encrypting-decrypting-workbooks"><span class="header-section-number">10.1</span> <code>msoc</code> - Encrypting / Decrypting workbooks</a></li>
-  <li><a href="#flexlsx---exporting-flextable-to-workbooks" id="toc-flexlsx---exporting-flextable-to-workbooks" class="nav-link" data-scroll-target="#flexlsx---exporting-flextable-to-workbooks"><span class="header-section-number">10.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</a></li>
+  <li><a href="#msoc---encrypting-decrypting-workbooks" id="toc-msoc---encrypting-decrypting-workbooks" class="nav-link active" data-scroll-target="#msoc---encrypting-decrypting-workbooks"><span class="header-section-number">12.1</span> <code>msoc</code> - Encrypting / Decrypting workbooks</a></li>
+  <li><a href="#flexlsx---exporting-flextable-to-workbooks" id="toc-flexlsx---exporting-flextable-to-workbooks" class="nav-link" data-scroll-target="#flexlsx---exporting-flextable-to-workbooks"><span class="header-section-number">12.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</a></li>
   </ul>
 </nav>
     </div>
@@ -257,7 +257,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></h1>
 </div>
 
 
@@ -275,8 +275,8 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="msoc---encrypting-decrypting-workbooks" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="msoc---encrypting-decrypting-workbooks"><span class="header-section-number">10.1</span> <code>msoc</code> - Encrypting / Decrypting workbooks</h2>
+<section id="msoc---encrypting-decrypting-workbooks" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="msoc---encrypting-decrypting-workbooks"><span class="header-section-number">12.1</span> <code>msoc</code> - Encrypting / Decrypting workbooks</h2>
 <p>You might want to look at <code>msoc</code> <span class="citation" data-cites="msoc">(<a href="../references.html#ref-msoc" role="doc-biblioref">Garbuszus 2023</a>)</span> for openxml file level encryption/decryption.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(msoc)</span>
@@ -288,15 +288,15 @@ div.csl-indent {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can encrypt it</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">encrypt</span>(xlsx, xlsx, <span class="at">pass =</span> <span class="st">"msoc"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/RtmpatVQJQ/temp_xlsx_1ed078b85e61.xlsx"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/Rtmpzxj8gN/temp_xlsx_1c4d5963024d.xlsx"</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># the file is encrypted, we can not read it</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(wb <span class="ot">&lt;-</span> <span class="fu">wb_load</span>(xlsx))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpatVQJQ/temp_xlsx_1ed078b85e61.xlsx</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error : Unable to open and load file:  /tmp/Rtmpzxj8gN/temp_xlsx_1c4d5963024d.xlsx</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># we have to decrypt it first</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">decrypt</span>(xlsx, xlsx, <span class="at">pass =</span> <span class="st">"msoc"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/RtmpatVQJQ/temp_xlsx_1ed078b85e61.xlsx"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/tmp/Rtmpzxj8gN/temp_xlsx_1c4d5963024d.xlsx"</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can load it again</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_load</span>(xlsx)<span class="sc">$</span><span class="fu">to_df</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
@@ -309,8 +309,8 @@ div.csl-indent {
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="flexlsx---exporting-flextable-to-workbooks" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="flexlsx---exporting-flextable-to-workbooks"><span class="header-section-number">10.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</h2>
+<section id="flexlsx---exporting-flextable-to-workbooks" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="flexlsx---exporting-flextable-to-workbooks"><span class="header-section-number">12.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</h2>
 <p>Using <code>flexlsx</code> <span class="citation" data-cites="flexlsx">(<a href="../references.html#ref-flexlsx" role="doc-biblioref">Heidler 2023</a>)</span> you can extend <code>openxlsx2</code> to write <code>flextable</code><span class="citation" data-cites="flextable">(<a href="../references.html#ref-flextable" role="doc-biblioref">Gohel and Skintzos 2023</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flexlsx)</span>
@@ -330,13 +330,13 @@ div.csl-indent {
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-msoc" class="csl-entry" role="listitem">
-Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office Open Xml Files</em>.
+Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office Open Xml Files</em>. <a href="https://janmarvin.github.io/msoc/">https://janmarvin.github.io/msoc/</a>.
 </div>
 <div id="ref-flextable" class="csl-entry" role="listitem">
-Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>.
+Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.
 </div>
 <div id="ref-flexlsx" class="csl-entry" role="listitem">
-Heidler, Tobias. 2023. <em>Flexlsx: Exporting Flextables to Excel</em>.
+Heidler, Tobias. 2023. <em>Flexlsx: Exporting Flextables to Excel</em>. <a href="https://github.com/pteridin/flexlsx">https://github.com/pteridin/flexlsx</a>.
 </div>
 </div>
 </section>
@@ -577,13 +577,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/openxlsx2_form_control.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Form control</span></span>
+      <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/openxlsx2_clone_and_copy.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
