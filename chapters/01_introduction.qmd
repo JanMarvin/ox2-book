@@ -10,7 +10,9 @@ In Excel 2007 a new open standard called OOXML(short for office open xml)[^01_in
 
 [^01_introduction-2]: See https://wikipedia.org/wiki/Office_Open_XML.
 
-The predecessor to `openxlsx2` [@openxlsx2] called `openxlsx` (originally founded by Andrew Walker) was inspired by the `rJava` based `xlsx` package, but dropped the `rJava` dependency, and the support for the old `xls` files and wrote a custom XML parser in `Rcpp` [@Rcpp]. Later Phillip Schauberger picked up the abandoned `openxlsx` package and continues to maintain it. Finally `openxlsx2` was forked from `openxlsx` to include (1) the `pugixml` [@pugixml] library to address shortcomings of the `openxlsx` XML parser and (2) to switch to the `R6` [@R6] package to introduce modern programming flows. Since then `openxlsx2` has evolved a lot, includes many new features and is approaching a stable API release `1.0`. This manual is supposed to bundle and extend the existing vignettes and to document the changes.
+The predecessor to `openxlsx2` [@openxlsx2] called `openxlsx` (originally founded by Andrew Walker) was inspired by the `rJava` based `xlsx` package, but dropped the `rJava` dependency, and the support for the old `xls` files and wrote a custom XML parser in `Rcpp` [@Rcpp]. Later Phillip Schauberger picked up the abandoned `openxlsx` package and continues to maintain it. Finally `openxlsx2` was forked from `openxlsx` to include (1) the `pugixml` [@pugixml] library to address shortcomings of the `openxlsx` XML parser and (2) to switch from `methods` to the `R6` [@R6] package to introduce modern programming flows. Since then `openxlsx2` has evolved a lot, includes many new features and is in a semi-stable API state since release `1.0`.[^01_introduction-3] This manual is supposed to bundle and extend the existing vignettes and to document the changes.
+
+[^01_introduction-3]: With 'semi-stable' we promise not to break the API unless we come across a bug that forces us to. All breaking changes are mentioned in the [changelog](https://janmarvin.github.io/openxlsx2/news/index.html).
 
 ## Installation
 
@@ -88,7 +90,7 @@ If you feel like you should be included on this list, please let us know. If you
 
 ## License
 
-The `openxlsx2` package is licensed under the MIT license and is based on [`openxlsx`](https://github.com/ycphs/openxlsx) (by Alexander Walker and Philipp Schauberger; COPYRIGHT 2014-2022) and [`pugixml`](https://github.com/zeux/pugixml) (by Arseny Kapoulkine; COPYRIGHT 2006-2022). Both released under the MIT license.
+The `openxlsx2` package is licensed under the MIT license and is based on [`openxlsx`](https://github.com/ycphs/openxlsx) (by Alexander Walker and Philipp Schauberger; COPYRIGHT 2014-2022) and [`pugixml`](https://github.com/zeux/pugixml) (by Arseny Kapoulkine; COPYRIGHT 2006-2023). Both released under the MIT license.
 
 ## A note on speed and memory usage
 

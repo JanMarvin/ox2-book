@@ -1,4 +1,4 @@
-# styling
+# Styling of worksheets
 
 ```{r setup, include = FALSE}
 library(openxlsx2)
@@ -144,11 +144,11 @@ wb$worksheets[[1]]$sheetPr <- xml_node_create(
 # wb_open(wb)
 ```
 
-# Working with number formats
+## Working with number formats
+
+### numfmts
 
 Per default `openxlsx2` will pick up number formats for selected R classes.
-
-## numfmts
 
 ```{r}
 ## Create Workbook object and add worksheets
@@ -160,7 +160,7 @@ df <- data.frame(
   "Date" = Sys.Date() - 0:19,
   "T" = TRUE, "F" = FALSE,
   "Time" = Sys.time() - 0:19 * 60 * 60,
-  "Cash" = paste("$", 1:20), "Cash2" = 31:50,
+  "Cash" = 1:20, "Cash2" = 31:50,
   "hLink" = "https://CRAN.R-project.org/",
   "Percentage" = seq(0, 1, length.out = 20),
   "TinyNumbers" = runif(20) / 1E9, stringsAsFactors = FALSE
@@ -175,6 +175,11 @@ class(df$TinyNumbers) <- c(class(df$TinyNumbers), "scientific")
 
 wb$add_data("S1", x = df, start_row = 4, row_names = FALSE)
 wb$add_data_table("S2", x = df, start_row = 4, row_names = FALSE)
+```
+
+
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/worksheet_builtin_styles.png")
 ```
 
 ## numfmts2
@@ -193,7 +198,7 @@ df <- data.frame(
   "Date" = Sys.Date() - 0:19,
   "T" = TRUE, "F" = FALSE,
   "Time" = Sys.time() - 0:19 * 60 * 60,
-  "Cash" = paste("$", 1:20), "Cash2" = 31:50,
+  "Cash" = 1:20, "Cash2" = 31:50,
   "hLink" = "https://CRAN.R-project.org/",
   "Percentage" = seq(0, 1, length.out = 20),
   "TinyNumbers" = runif(20) / 1E9, stringsAsFactors = FALSE,
@@ -210,27 +215,44 @@ class(df$TinyNumbers) <- c(class(df$TinyNumbers), "scientific")
 wb$add_data("test", df)
 ```
 
-```{r include=FALSE}
-# cleanup
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/worksheet_builtin_styles.png")
+```
+
+```{r}
+# disable styles via options
+options("openxlsx2.dateFormat" = NULL)
+options("openxlsx2.datetimeFormat" = NULL)
 options("openxlsx2.numFmt" = NULL)
 ```
 
-# Modifying the column widths
+## Modifying the column and row widths
 
-## wb_set_col_widths
+### wb_set_col_widths
 
 ```{r}
 wb <- wb_workbook() %>%
   wb_add_worksheet() %>%
   wb_add_data(x = mtcars, row_names = TRUE)
 
-cols <- 1:12
-wb <- wb %>% wb_set_col_widths(cols = cols, widths = "auto")
+cols_1 <- 1:6
+cols_2 <- "G:L"
+wb <- wb %>% 
+  wb_set_col_widths(cols = cols_1, widths = "auto") %>% 
+  wb_set_col_widths(cols = cols_2, widths = 10)
 ```
 
-# Adding borders
+### wb_set_row_heigths
 
-## add borders
+````{r}
+wb <- wb %>% 
+  wb_set_row_heights(rows = 1:10, heights = 10)
+````
+
+
+## Adding borders
+
+### add borders
 
 ```{r}
 wb <- wb_workbook()
@@ -243,16 +265,23 @@ wb$add_border(
 )
 # only horizontal grid
 wb$add_worksheet("S2", grid_lines = FALSE)$add_data(x = mtcars)
-wb$add_border(dims = "A2:K33", inner_hgrid = "thin", inner_hcolor = wb_color(hex = "FF808080"))
+wb$add_border(dims = wb_dims(x = mtcars, select = "data"), inner_hgrid = "thin", inner_hcolor = wb_color(hex = "FF808080"))
 # only vertical grid
 wb$add_worksheet("S3", grid_lines = FALSE)$add_data(x = mtcars)
-wb$add_border(dims = "A2:K33", inner_vgrid = "thin", inner_vcolor = wb_color(hex = "FF808080"))
+wb$add_border(dims =  wb_dims(x = mtcars, select = "data"), inner_vgrid = "thin", inner_vcolor = wb_color(hex = "FF808080"))
 # no inner grid
 wb$add_worksheet("S4", grid_lines = FALSE)$add_data(x = mtcars)
-wb$add_border("S4", dims = "A2:K33")
+wb$add_border("S4", dims = wb_dims(x = mtcars, select = "data"))
 ```
 
-## styled table
+```{r echo=FALSE, warning=FALSE, out.width="100%"}
+knitr::include_graphics("../img/ws_border_1.png")
+knitr::include_graphics("../img/ws_border_2.png")
+knitr::include_graphics("../img/ws_border_3.png")
+knitr::include_graphics("../img/ws_border_4.png")
+```
+
+### styled table
 
 Below we show you two ways how to create styled tables with `openxlsx2` one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table.
 
@@ -260,34 +289,37 @@ Below we show you two ways how to create styled tables with `openxlsx2` one usin
 knitr::include_graphics("../img/styled_table.png")
 ```
 
-### the quick way: using high level functions
+#### the quick way: using high level functions
 
 ```{r}
 # add some dummy data to the worksheet
 mat <- matrix(1:4, ncol = 2, nrow = 2)
 colnames(mat) <- make.names(seq_len(ncol(mat)))
 
+dims_head <- wb_dims(x = mat, from_col = 2, from_row = 2, select = "col_names")
+dims_data <- wb_dims(x = mat, from_col = 2, from_row = 2, select = "data")
+
 wb <- wb_workbook() %>%
   wb_add_worksheet("test") %>%
   wb_add_data(x = mat, col_names = TRUE, start_col = 2, start_row = 2) %>%
   # center first row
-  wb_add_cell_style(dims = "B2:C2", horizontal = "center") %>%
+  wb_add_cell_style(dims = dims_head, horizontal = "center") %>%
   # add border for first row
   wb_add_border(
-    dims = "B2:C2",
+    dims = dims_head,
     bottom_color = wb_color(theme = 1), bottom_border = "thin",
     top_color = wb_color(theme = 1), top_border = "double",
     left_border = NULL, right_border = NULL
   ) %>%
   # add border for last row
   wb_add_border(
-    dims = "B4:C4",
+    dims = dims_data,
     bottom_color = wb_color(theme = 1), bottom_border = "double",
     top_border = NULL, left_border = NULL, right_border = NULL
   )
 ```
 
-### the long way: creating everything from the bone
+#### the long way: creating everything from the bone
 
 ```{r}
 # add some dummy data to the worksheet
@@ -332,7 +364,7 @@ cell <- "B4:C4"
 wb <- wb %>% wb_set_cell_style(dims = cell, style = wb$styles_mgr$get_xf_id("bottom_styles"))
 ```
 
-# Use workbook colors and modify them
+## Use workbook colors and modify them
 
 The loop below will apply the tint attribute to the fill color
 
@@ -358,7 +390,7 @@ for (i in 0:9) {
 }
 ```
 
-# Copy cell styles
+## Copy cell styles
 
 It is possible to copy the styles of several cells at once. In the following example, the styles of some cells from a formatted workbook are applied to a previously empty cell range. Be careful though, `wb_get_cell_style()` returns only some styles, so you have to make sure that the copy-from and copy-to dimensions match in a meaningful way.
 
@@ -372,7 +404,7 @@ wb <- wb_load(system.file("extdata", "oxlsx2_sheet.xlsx", package = "openxlsx2")
 knitr::include_graphics("../img/sy_copycellstyle.png")
 ```
 
-# Style strings
+## Style strings
 
 Using `fmt_txt()` is possible to style strings independently of the cell containing the string.
 
@@ -406,7 +438,7 @@ wb <- wb_workbook()$add_worksheet()$add_data(x = df, na.strings = na_red)
 knitr::include_graphics("../img/sy_redna.png")
 ```
 
-# Create custom table styles
+## Create custom table styles
 
 With `create_tablestyle()` it is possible to create your own table styles. This function uses `create_dxfs_style()` (just like your spreadsheet software does). Therefore, it is not quite as user-friendly. The following example shows how the function creates a red table style. The various dxfs styles must be created and assigned to the workbook (similar styles are used in conditional formatting). In `create_tablestyle()` these styles are assigned to the table style elements. Once the table style is created, it must also be assigned to the workbook. After that you can use it in the workbook like any other table style.
 
@@ -517,7 +549,7 @@ wb <- wb %>%
 knitr::include_graphics("../img/sy_redtable.png")
 ```
 
-# Named styles
+## Named styles
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()

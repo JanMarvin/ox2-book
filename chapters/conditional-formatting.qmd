@@ -1,4 +1,6 @@
-# Conditional Formatting
+---
+title: "Conditional Formatting, Databars, and Sparklines"
+---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -6,21 +8,16 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 set.seed(123)
-```
-
-```{r setup}
 library(openxlsx2)
 ```
 
 ```{r}
 wb <- wb_workbook()
-negStyle <- create_dxfs_style(font_color = wb_color(hex = "FF9C0006"), bg_fill = wb_color(hex = "FFFFC7CE"))
-posStyle <- create_dxfs_style(font_color = wb_color(hex = "FF006100"), bg_fill = wb_color(hex = "FFC6EFCE"))
-wb$styles_mgr$add(negStyle, "negStyle")
-wb$styles_mgr$add(posStyle, "posStyle")
+wb$add_dxfs_style(name = "negStyle", font_color = wb_color(hex = "FF9C0006"), bg_fill = wb_color(hex = "FFFFC7CE"))
+wb$add_dxfs_style(name = "posStyle", font_color = wb_color(hex = "FF006100"), bg_fill = wb_color(hex = "FFC6EFCE"))
 ```
 
-## Rule applies to all each cell in range
+### Rule applies to all each cell in range
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_cells.png")
@@ -44,7 +41,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Highlight row dependent on first cell in row
+### Highlight row dependent on first cell in row
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_moving_row.png")
@@ -68,7 +65,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Highlight column dependent on first cell in column
+### Highlight column dependent on first cell in column
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_moving_col.png")
@@ -92,7 +89,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Highlight entire range cols X rows dependent only on cell A1
+### Highlight entire range cols X rows dependent only on cell A1
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_dependent_on.png")
@@ -116,7 +113,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Highlight cells in column 1 based on value in column 2
+### Highlight cells in column 1 based on value in column 2
 
 ```{r}
 wb$add_data("Dependent on", data.frame(x = 1:10, y = runif(10)), startRow = 15)
@@ -134,7 +131,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Highlight duplicates using default style
+### Highlight duplicates using default style
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_duplicates.png")
@@ -150,7 +147,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Cells containing text
+### Cells containing text
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_contains_text.png")
@@ -169,7 +166,7 @@ wb$add_conditional_formatting(
 wb$add_worksheet("notcontainsText")
 ```
 
-## Cells not containing text
+### Cells not containing text
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_contains_no_text.png")
@@ -186,7 +183,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Cells begins with text
+### Cells begins with text
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_begins_with.png")
@@ -204,7 +201,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Cells ends with text
+### Cells ends with text
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_ends_with.png")
@@ -222,7 +219,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## Colorscale colors cells based on cell value
+### Colorscale colors cells based on cell value
 
 ```{r echo=FALSE, warning=FALSE, out.width="100%", fig.cap="Yep, that is a color scale image."}
 knitr::include_graphics("../img/cf_color_scale.png")
@@ -231,7 +228,7 @@ knitr::include_graphics("../img/cf_color_scale.png")
 ```{r}
 df <- read_xlsx("https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx", sheet = 5)
 wb$add_worksheet("colorScale", zoom = 30)
-wb$add_data("colorScale", x = df, col_names = FALSE) ## write data.frame
+wb$add_data("colorScale", x = df, col_names = FALSE) ### write data.frame
 ```
 
 Rule is a vector or colors of length 2 or 3 (any hex color or any of `colors()`). If rule is `NULL`, min and max of cells is used. Rule must be the same length as style or L.
@@ -248,7 +245,7 @@ wb$set_col_widths("colorScale", cols = seq_along(df), widths = 1.07)
 wb$set_row_heights("colorScale", rows = seq_len(nrow(df)), heights = 7.5)
 ```
 
-## Between
+### Between
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_between.png")
@@ -268,7 +265,7 @@ wb$add_conditional_formatting(
 wb$add_worksheet("topN")
 ```
 
-## Top N
+### Top N
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_top_n.png")
@@ -303,7 +300,7 @@ wb$add_conditional_formatting(
 wb$add_worksheet("bottomN")
 ```
 
-## Bottom N
+### Bottom N
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_bottom_n.png")
@@ -338,7 +335,7 @@ wb$add_conditional_formatting(
 wb$add_worksheet("logical operators")
 ```
 
-## Logical Operators
+### Logical Operators
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_logical_operators.png")
@@ -355,7 +352,7 @@ wb$add_conditional_formatting(
 )
 ```
 
-## (Not) Contains Blanks
+### (Not) Contains Blanks
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_blanks.png")
@@ -369,7 +366,7 @@ wb$add_conditional_formatting(dims = "A1:A4", type = "containsBlanks")
 wb$add_conditional_formatting(dims = "B1:B4", type = "notContainsBlanks")
 ```
 
-## (Not) Contains Errors
+### (Not) Contains Errors
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_errors.png")
@@ -383,7 +380,7 @@ wb$add_conditional_formatting(dims = "A1:A3", type = "containsErrors")
 wb$add_conditional_formatting(dims = "A1:A3", type = "notContainsErrors")
 ```
 
-## Iconset
+### Iconset
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_iconset.png")
@@ -403,7 +400,7 @@ wb$add_conditional_formatting(
   )
 ```
 
-## Unique Values
+### Unique Values
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/cf_unique.png")
@@ -415,8 +412,7 @@ wb$add_data(x = c(1:4, 1:2), colNames = FALSE)
 wb$add_conditional_formatting(dims = "A1:A6", type = "uniqueValues")
 ```
 
-
-# Databars
+## Databars
 
 ```{r echo=FALSE, warning=FALSE, out.width="100%"}
 knitr::include_graphics("../img/cf_databar.png")
@@ -424,14 +420,14 @@ knitr::include_graphics("../img/cf_databar.png")
 
 ```{r}
 wb$add_worksheet("databar")
-## Databars
+### Databars
 wb$add_data("databar", -5:5, start_col = 1)
 wb <- wb_add_conditional_formatting(
   wb,
   "databar",
   dims = "A1:A11",
   type = "dataBar"
-) ## Default colors
+) ### Default colors
 
 wb$add_data("databar", -5:5, start_col = 3)
 wb <- wb_add_conditional_formatting(
@@ -443,7 +439,7 @@ wb <- wb_add_conditional_formatting(
     showValue = FALSE,
     gradient = FALSE
   )
-) ## Default colors
+) ### Default colors
 
 wb$add_data("databar", -5:5, start_col = 5)
 wb <- wb_add_conditional_formatting(
@@ -492,8 +488,7 @@ wb <- wb_add_conditional_formatting(
 )
 ```
 
-
-# Sparklines
+## Sparklines
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sparklines.png")

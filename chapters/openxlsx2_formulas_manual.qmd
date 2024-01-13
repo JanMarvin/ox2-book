@@ -1,4 +1,4 @@
-# openxlsx2 formulas manual
+# Spreadsheet formulas
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -55,7 +55,7 @@ If `openxlsx2` writes formulas, as shown in the examples below, the fields will 
 
 The only way to avoid surprises is to be aware of this all the time and similar, checking for similar things all the time.
 
-# Simple formulas
+## Simple formulas
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
@@ -65,7 +65,7 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
-# Array formulas
+## Array formulas
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
@@ -74,7 +74,7 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
-# Array formulas creating multiple fields
+## Array formulas creating multiple fields
 
 In the example below we want to use `MMULT()` which creates a matrix multiplication. This requires us to write an array formula and to specify the region where the output will be written to.
 
@@ -100,13 +100,13 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
-# Cell error handling
+## Cell error handling
 
 ```{r}
 # wb_add_ignore_error()
 ```
 
-# cells metadata (cm) formulas
+## cells metadata (cm) formulas
 
 Similar to array formulas, these cell metadata (cm) formulas hide to the user that they are array formulas. Using these is implemented in `openxlsx2` \> 0.6.1:
 
@@ -117,11 +117,10 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
-# `dataTable` formulas[^openxlsx2_formulas_manual-1]
+## `dataTable` formulas[^openxlsx2_formulas_manual-1]
 
 [^openxlsx2_formulas_manual-1]: this example was originally provided by \@zykezero for `openxlsx`.
 
-#### `dataTable` formula differences
 
 |     | A           | B    | C              |
 |-----|-------------|------|----------------|
@@ -215,12 +214,12 @@ And if we open the workbook to view the table we created we can see that the for
 
 We can also see that it has replaced `[#This Row]` with `@`.
 
-|     | A           | B    | C              | D                         | E                             | F                                    | G                                             |
+|     | A           | B    | C              | D                               | E                                   | F                                          | G                                             |
 |---------|---------|---------|---------|---------|---------|---------|---------|
-| 1   | sales_price | COGS | sales_quantity | gross_profit              | total_COGS                    | total_sales                          | total_gross_profit                            |
-| 2   | 20          | 5    | 1              | =[\@sales_price] - [\@COGS] | =[\@COGS] \* [\@sales_quantity] | =[\@sales_price] \* [\@sales_quantity] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
-| 3   | 30          | 11   | 2              | =[\@sales_price] - [\@COGS] | =[\@COGS] \* [\@sales_quantity] | =[\@sales_price] \* [\@sales_quantity] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
-| 4   | 40          | 13   | 3              | =[\@sales_price] - [\@COGS] | =[\@COGS] \* [\@sales_quantity] | =[\@sales_price] \* [\@sales_quantity] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 1   | sales_price | COGS | sales_quantity | gross_profit                    | total_COGS                          | total_sales                                | total_gross_profit                            |
+| 2   | 20          | 5    | 1              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 3   | 30          | 11   | 2              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 4   | 40          | 13   | 3              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
 
 For completion, the formula as we wrote it appears as;
 

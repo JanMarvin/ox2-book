@@ -25,6 +25,7 @@ Suggests:
     msoc,
     pivottabler,
     quarto,
+    ragg,
     rmarkdown,
     rvg,
     testthat (>= 3.0.0),

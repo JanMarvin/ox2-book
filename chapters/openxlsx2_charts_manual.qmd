@@ -37,6 +37,18 @@ wb$add_worksheet("add_image")$add_image(file = myplot)
 knitr::include_graphics("../img/chrt_img.png")
 ```
 
+It is possible to use `ragg` to create the png files to add to the worksheet:
+
+```{r}
+library(ragg)
+ragg_file <- tempfile(fileext = ".png")
+agg_png(ragg_file, width = 1000, height = 500, res = 144)
+plot(x = mtcars$mpg, y = mtcars$disp)
+invisible(dev.off())
+
+wb$add_worksheet("add_image2")$add_image(file = ragg_file)
+```
+
 ## Adding `{ggplot2}` plots to a workbook
 
 You can include `{ggplot2}` plots similar to how you would include them with `openxlsx`. Call the plot first and afterwards use `wb_add_plot()`.
@@ -88,13 +100,13 @@ knitr::include_graphics("../img/chrt_rvg.png")
 
 ## Adding `{mschart}` plots
 
-If you want native open xml charts, have a look at `{mschart}`. Create one of the chart files and pass it to the workbook with `wb_add_mschart()`. 
+If you want native open xml charts, have a look at `{mschart}`. Create one of the chart files and pass it to the workbook with `wb_add_mschart()`.
 
 There are two options possible.
 
-1. Either the default `{mschart}` output identical to the one in `{officer}`. Passing a data object and let `{mschart}` prepare the data. In this case `wb_add_mschart()` will add a new data region.
+1.  Either the default `{mschart}` output identical to the one in `{officer}`. Passing a data object and let `{mschart}` prepare the data. In this case `wb_add_mschart()` will add a new data region.
 
-2. Passing a `wb_data()` object to `{mschart}`. This object contains references to the data on the worksheet and allows using data "as is".
+2.  Passing a `wb_data()` object to `{mschart}`. This object contains references to the data on the worksheet and allows using data "as is".
 
 ### Add chart and data
 
