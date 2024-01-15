@@ -12,8 +12,6 @@ knitr::opts_chunk$set(
 The following manual will present various ways to add plots and charts to `openxlsx2` worksheets and even chartsheets. This assumes that you have basic knowledge how to handle `openxlsx2` and are familiar with either the default `R` `graphics` functions like `plot()` or `barplot()` and `grDevices`, or with the packages [`{ggplot2}`](https://ggplot2-book.org/), `{rvg}` or [`{mschart}`](https://ardata-fr.github.io/officeverse/charts-with-mschart.html). There are plenty of other manuals that cover using these packages better than we could ever tell you to.
 
 ```{r package}
-library(openxlsx2) # openxlsx2 >= 0.4 for mschart and rvg support
-
 ## create a workbook
 wb <- wb_workbook()
 ```
@@ -25,8 +23,8 @@ You can include any image in PNG or JPEG format. Simply open a device and save t
 ```{r plot}
 myplot <- tempfile(fileext = ".jpg")
 jpeg(myplot)
-print(plot(AirPassengers))
-dev.off()
+plot(AirPassengers)
+invisible(dev.off())
 
 # Add basic plots to the workbook
 wb$add_worksheet("add_image")$add_image(file = myplot)
@@ -37,7 +35,7 @@ wb$add_worksheet("add_image")$add_image(file = myplot)
 knitr::include_graphics("../img/chrt_img.png")
 ```
 
-It is possible to use `ragg` to create the png files to add to the worksheet:
+It is possible to use `{ragg}` to create the png files to add to the worksheet:
 
 ```{r}
 library(ragg)
@@ -57,9 +55,9 @@ You can include `{ggplot2}` plots similar to how you would include them with `op
 #| output: false
 library(ggplot2)
 
-print(ggplot(mtcars, aes(x = mpg, fill = as.factor(gear))) +
+ggplot(mtcars, aes(x = mpg, fill = as.factor(gear))) +
   ggtitle("Distribution of Gas Mileage") +
-  geom_density(alpha = 0.5))
+  geom_density(alpha = 0.5)
 
 # Add ggplot to the workbook
 wb$add_worksheet("add_plot")$
@@ -81,11 +79,11 @@ library(rvg)
 ## create rvg example
 tmp <- tempfile(fileext = ".xml")
 dml_xlsx(file =  tmp, fonts = list(sans = "Bradley Hand"))
-print(ggplot(data = iris,
+ggplot(data = iris,
        mapping = aes(x = Sepal.Length, y = Petal.Width)) +
   geom_point() + labs(title = "With font Bradley Hand") +
-  theme_minimal(base_family = "sans", base_size = 18))
-dev.off()
+  theme_minimal(base_family = "sans", base_size = 18)
+invisible(dev.off())
 
 # Add rvg to the workbook
 wb$add_worksheet("add_drawing")$
@@ -122,13 +120,6 @@ mylc <- ms_linechart(
 )
 
 wb$add_worksheet("add_mschart")$add_mschart(dims = "A10:G25", graph = mylc)
-
-
-## create chart referencing worksheet cells as input
-# write data starting at B2
-wb$add_worksheet("add_mschart - wb_data")$
-  add_data(x = mtcars, dims = "B2")$
-  add_data(x = data.frame(name = rownames(mtcars)), dims = "A2")
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -141,6 +132,12 @@ knitr::include_graphics("../img/chrt_mschart.png")
 These are native spreadsheet charts that are dynamic in terms of the data visible on the sheet. It is therefore possible to hide columns or rows of the data, e.g. with groups, so that the chart shows more data when a group is expanded.
 
 ```{r mshart4}
+## create chart referencing worksheet cells as input
+# write data starting at B2
+wb$add_worksheet("add_mschart - wb_data")$
+  add_data(x = mtcars, dims = "B2")$
+  add_data(x = data.frame(name = rownames(mtcars)), dims = "A2")
+
 # create wb_data object this will tell this mschart
 # from this PR to create a file corresponding to openxlsx2
 dat <- wb_data(wb, dims = "A2:G10")

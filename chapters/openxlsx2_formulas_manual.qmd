@@ -6,9 +6,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 set.seed(123)
-```
-
-```{r setup}
 library(openxlsx2)
 ```
 
@@ -57,21 +54,23 @@ The only way to avoid surprises is to be aware of this all the time and similar,
 
 ## Simple formulas
 
+Generally speaking it is possible to use all valid formulas allowed in spreadsheet software. This can be functions, arithmetic operators or a mix of both. It's possible to create functions for all by spreadsheet software supported functions, including custom vml ones (though this requires a workbook that was loaded with the required macros).
+
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
   add_data(x = head(cars))$
   add_formula(x = "SUM(A2, B2)", dims = "D2")$
   add_formula(x = "A2 + B2", dims = "D3")
-# wb$open()
 ```
 
 ## Array formulas
+
+Array formulas in openxml spreadsheets allow performing multiple calculations on a data vector or 'array' instead of a single cell. An array is similar to a vector in R. Unlike regular formulas that operate on a single value, array formulas can process multiple values simultaneously. An important distinction is that that you need array formulas, whenever the formula evaluates an array, even if the output creates only a single cell. So something like this `SUM(ABS(A2:A11))` would require an array formula, because the `SUM()` function is called on a function that returns an array `ABS(A2:A11)`. If the previous formula in written as basic formula, spreadsheet software is likely to mess it up and tries to insert `@` characters in the formula.
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
   add_data(x = head(cars))$
   add_formula(x = "A2:A7 * B2:B7", dims = "C2:C7", array = TRUE)
-# wb$open()
 ```
 
 ## Array formulas creating multiple fields
@@ -100,6 +99,22 @@ wb <- wb_workbook()$add_worksheet()$
 # wb$open()
 ```
 
+## Modern spreadsheet functions
+
+Spreadsheet functions are constantly evolving and extended. Several formulas introduced in the MS465 Excel versions require `_xlfn.` as prefix for the function name. Such formulas will only be evaluated with compatible spreadsheet software. In case of doubt, see [Excel functions (alphabetical)](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188) for a list and a version indicator.
+
+```{r}
+wb <- wb_workbook()$add_worksheet()$
+  add_data(x = cars)$
+  add_data(dims = "D1", x = "Unique Values of Speed")$
+  add_formula(
+    dims = wb_dims(x = unique(cars$speed), from_col = "D", from_row = 2),
+    x = paste0("_xlfn.UNIQUE(", wb_dims(x = cars, cols = "speed"), ")"),
+    array = TRUE
+  )
+```
+
+
 ## Cell error handling
 
 ```{r}
@@ -120,7 +135,6 @@ wb <- wb_workbook()$add_worksheet()$
 ## `dataTable` formulas[^openxlsx2_formulas_manual-1]
 
 [^openxlsx2_formulas_manual-1]: this example was originally provided by \@zykezero for `openxlsx`.
-
 
 |     | A           | B    | C              |
 |-----|-------------|------|----------------|
