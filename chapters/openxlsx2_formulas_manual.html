@@ -231,9 +231,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#simple-formulas" id="toc-simple-formulas" class="nav-link active" data-scroll-target="#simple-formulas"><span class="header-section-number">7.1</span> Simple formulas</a></li>
   <li><a href="#array-formulas" id="toc-array-formulas" class="nav-link" data-scroll-target="#array-formulas"><span class="header-section-number">7.2</span> Array formulas</a></li>
   <li><a href="#array-formulas-creating-multiple-fields" id="toc-array-formulas-creating-multiple-fields" class="nav-link" data-scroll-target="#array-formulas-creating-multiple-fields"><span class="header-section-number">7.3</span> Array formulas creating multiple fields</a></li>
-  <li><a href="#cell-error-handling" id="toc-cell-error-handling" class="nav-link" data-scroll-target="#cell-error-handling"><span class="header-section-number">7.4</span> Cell error handling</a></li>
-  <li><a href="#cells-metadata-cm-formulas" id="toc-cells-metadata-cm-formulas" class="nav-link" data-scroll-target="#cells-metadata-cm-formulas"><span class="header-section-number">7.5</span> cells metadata (cm) formulas</a></li>
-  <li><a href="#datatable-formulasopenxlsx2_formulas_manual-1" id="toc-datatable-formulasopenxlsx2_formulas_manual-1" class="nav-link" data-scroll-target="#datatable-formulasopenxlsx2_formulas_manual-1"><span class="header-section-number">7.6</span> <code>dataTable</code> formulas</a></li>
+  <li><a href="#modern-spreadsheet-functions" id="toc-modern-spreadsheet-functions" class="nav-link" data-scroll-target="#modern-spreadsheet-functions"><span class="header-section-number">7.4</span> Modern spreadsheet functions</a></li>
+  <li><a href="#cell-error-handling" id="toc-cell-error-handling" class="nav-link" data-scroll-target="#cell-error-handling"><span class="header-section-number">7.5</span> Cell error handling</a></li>
+  <li><a href="#cells-metadata-cm-formulas" id="toc-cells-metadata-cm-formulas" class="nav-link" data-scroll-target="#cells-metadata-cm-formulas"><span class="header-section-number">7.6</span> cells metadata (cm) formulas</a></li>
+  <li><a href="#datatable-formulasopenxlsx2_formulas_manual-1" id="toc-datatable-formulasopenxlsx2_formulas_manual-1" class="nav-link" data-scroll-target="#datatable-formulasopenxlsx2_formulas_manual-1"><span class="header-section-number">7.7</span> <code>dataTable</code> formulas</a></li>
   </ul>
 </nav>
     </div>
@@ -257,31 +258,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Below you find various examples how to create formulas with <code>openxlsx2</code>. Though, before we start with the examples, let us begin with a word of warning. Please be aware, while it is possible to create all these formulas, they are not evaluated unless they are opened in spreadsheet software. Even worse, if there are cells containing the result of some formula, it can not be trusted unless the formula is evaluated in spreadsheet software.</p>
 <p>This can be shown in a simple example: We have a spreadsheet with a formula <code>A1 + B1</code>. This formula was evaluated with spreadsheet software as <code>A1 + B1 = 2</code>. Therefore if we read the cell, we see the value 2. Lets recreate this output in <code>openxlsx2</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create artificial xlsx file</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">t</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="at">col_names =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">dims =</span> <span class="st">"C1"</span>, <span class="at">x =</span> <span class="st">"A1 + B1"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Users should never modify cc as shown here</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>worksheets[[<span class="dv">1</span>]]<span class="sc">$</span>sheet_data<span class="sc">$</span>cc<span class="sc">$</span>v[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect a value of 2</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create artificial xlsx file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">t</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="at">col_names =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">dims =</span> <span class="st">"C1"</span>, <span class="at">x =</span> <span class="st">"A1 + B1"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Users should never modify cc as shown here</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span>worksheets[[<span class="dv">1</span>]]<span class="sc">$</span>sheet_data<span class="sc">$</span>cc<span class="sc">$</span>v[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect a value of 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, lets assume we modify the data in cell <code>A1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect 3</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> <span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect 3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B C</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What happened? Even though we see cells <code>A1</code> and <code>B1</code> show a value of <code>2</code> and <code>1</code> our formula in <code>C1</code> was not updated. It still shows a value of <code>2</code>. This is because <code>openxlsx2</code> does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:</p>
 <pre><code>&lt;c r="C1"&gt;
@@ -290,64 +288,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 &lt;/c&gt;</code></pre>
 <p>And when we read from this cell, we always return the value of <code>v</code>. In this case it is obvious, but still wrong and it is a good idea to check if underlying fields contain formulas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">show_formula =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B       C</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 A1 + B1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wb_to_df</span>(wb, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">show_formula =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   A B       C</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 1 A1 + B1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If <code>openxlsx2</code> writes formulas, as shown in the examples below, the fields will be entirely blank. These fields will only be evaluated and filled, once the output file is opened in spreadsheet software.</p>
 <p>The only way to avoid surprises is to be aware of this all the time and similar, checking for similar things all the time.</p>
 <section id="simple-formulas" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="simple-formulas"><span class="header-section-number">7.1</span> Simple formulas</h2>
+<p>Generally speaking it is possible to use all valid formulas allowed in spreadsheet software. This can be functions, arithmetic operators or a mix of both. It’s possible to create functions for all by spreadsheet software supported functions, including custom vml ones (though this requires a workbook that was loaded with the required macros).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"SUM(A2, B2)"</span>, <span class="at">dims =</span> <span class="st">"D2"</span>)<span class="sc">$</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2 + B2"</span>, <span class="at">dims =</span> <span class="st">"D3"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"SUM(A2, B2)"</span>, <span class="at">dims =</span> <span class="st">"D2"</span>)<span class="sc">$</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2 + B2"</span>, <span class="at">dims =</span> <span class="st">"D3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="array-formulas" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="array-formulas"><span class="header-section-number">7.2</span> Array formulas</h2>
+<p>Array formulas in openxml spreadsheets allow performing multiple calculations on a data vector or ‘array’ instead of a single cell. An array is similar to a vector in R. Unlike regular formulas that operate on a single value, array formulas can process multiple values simultaneously. An important distinction is that that you need array formulas, whenever the formula evaluates an array, even if the output creates only a single cell. So something like this <code>SUM(ABS(A2:A11))</code> would require an array formula, because the <code>SUM()</code> function is called on a function that returns an array <code>ABS(A2:A11)</code>. If the previous formula in written as basic formula, spreadsheet software is likely to mess it up and tries to insert <code>@</code> characters in the formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2:A7 * B2:B7"</span>, <span class="at">dims =</span> <span class="st">"C2:C7"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"A2:A7 * B2:B7"</span>, <span class="at">dims =</span> <span class="st">"C2:C7"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="array-formulas-creating-multiple-fields" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="array-formulas-creating-multiple-fields"><span class="header-section-number">7.3</span> Array formulas creating multiple fields</h2>
 <p>In the example below we want to use <code>MMULT()</code> which creates a matrix multiplication. This requires us to write an array formula and to specify the region where the output will be written to.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m1, <span class="at">startCol =</span> <span class="dv">1</span>)<span class="sc">$</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m2, <span class="at">startCol =</span> <span class="dv">4</span>)<span class="sc">$</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"MMULT(A2:B4, D2:F3)"</span>, <span class="at">dims =</span> <span class="st">"H2:J4"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m1, <span class="at">startCol =</span> <span class="dv">1</span>)<span class="sc">$</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> m2, <span class="at">startCol =</span> <span class="dv">4</span>)<span class="sc">$</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"MMULT(A2:B4, D2:F3)"</span>, <span class="at">dims =</span> <span class="st">"H2:J4"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Similar a the coefficients of a linear regression</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect to find this in D1:E1</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(<span class="fu">head</span>(cars)))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)        dist </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5.2692308   0.1153846</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"LINEST(A2:A7, B2:B7, TRUE)"</span>, <span class="at">dims =</span> <span class="st">"D2:E2"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we expect to find this in D1:E1</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(<span class="fu">head</span>(cars)))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)        dist </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5.2692308   0.1153846</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> <span class="fu">head</span>(cars))<span class="sc">$</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(<span class="at">x =</span> <span class="st">"LINEST(A2:A7, B2:B7, TRUE)"</span>, <span class="at">dims =</span> <span class="st">"D2:E2"</span>, <span class="at">array =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cell-error-handling" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="cell-error-handling"><span class="header-section-number">7.4</span> Cell error handling</h2>
+<section id="modern-spreadsheet-functions" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="modern-spreadsheet-functions"><span class="header-section-number">7.4</span> Modern spreadsheet functions</h2>
+<p>Spreadsheet functions are constantly evolving and extended. Several formulas introduced in the MS465 Excel versions require <code>_xlfn.</code> as prefix for the function name. Such formulas will only be evaluated with compatible spreadsheet software. In case of doubt, see <a href="https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188">Excel functions (alphabetical)</a> for a list and a version indicator.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> cars)<span class="sc">$</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"D1"</span>, <span class="at">x =</span> <span class="st">"Unique Values of Speed"</span>)<span class="sc">$</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_formula</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> <span class="fu">unique</span>(cars<span class="sc">$</span>speed), <span class="at">from_col =</span> <span class="st">"D"</span>, <span class="at">from_row =</span> <span class="dv">2</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">paste0</span>(<span class="st">"_xlfn.UNIQUE("</span>, <span class="fu">wb_dims</span>(<span class="at">x =</span> cars, <span class="at">cols =</span> <span class="st">"speed"</span>), <span class="st">")"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">array =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cell-error-handling" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="cell-error-handling"><span class="header-section-number">7.5</span> Cell error handling</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wb_add_ignore_error()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cells-metadata-cm-formulas" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="cells-metadata-cm-formulas"><span class="header-section-number">7.5</span> cells metadata (cm) formulas</h2>
+<section id="cells-metadata-cm-formulas" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="cells-metadata-cm-formulas"><span class="header-section-number">7.6</span> cells metadata (cm) formulas</h2>
 <p>Similar to array formulas, these cell metadata (cm) formulas hide to the user that they are array formulas. Using these is implemented in <code>openxlsx2</code> &gt; 0.6.1:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
@@ -358,8 +370,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="datatable-formulasopenxlsx2_formulas_manual-1" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="datatable-formulasopenxlsx2_formulas_manual-1"><span class="header-section-number">7.6</span> <code>dataTable</code> formulas<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
+<section id="datatable-formulasopenxlsx2_formulas_manual-1" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="datatable-formulasopenxlsx2_formulas_manual-1"><span class="header-section-number">7.7</span> <code>dataTable</code> formulas<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
 <table class="table">
 <thead>
 <tr class="header">

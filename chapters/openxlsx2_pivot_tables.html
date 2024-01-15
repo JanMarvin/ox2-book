@@ -285,41 +285,38 @@ div.csl-indent {
 <p>Pivot tables are a feature of spreadsheet software dating back to Lotus Improv. They allow creating interactive tables to aggregate data that still allows the user to modify the table, by changing the aggregation function or variables. Pivot tables are frequently used in reports to create something like a dashboard.</p>
 <p>Even though they are a long requested feature, it took a while until support was added to <code>openxlsx2</code>. Since release 0.5 users are able to use <code>wb_add_pivot_table()</code> and since then support was further improved and now it is also possible to add slicers to pivot tables. Slicers further increase the dashboard character of pivot tables, as they provide a button interface to filter the pivot table.</p>
 <p>The state of pivot tables is now that they work quite well, though they bring a few features users should be aware of. Most importantly, our function only provides the spreadsheet with an instruction set how to create the pivot table, while the actual sheet where the table is supposed to appear remains empty until it is evaluated by the spreadsheet software. This is similar to our approach with formulas.</p>
-<p>Please, though, be a little careful if you start experimenting with pivot table params as there are actual cases, where the instruction set results into spreadsheet software crashes. Make copies and try to prevent some headaches afterwards.</p>
+<p>Please, though, be a little careful if you start experimenting with pivot table params as there are actual cases, where the instruction set results into spreadsheet software crashes. Make copies and try to prevent some headaches afterwards. Also it is a good idea to check the expected outcome of a pivot table. We will make use of the <code>{pivottabler}</code> package for this in this chapter, but there are obviously other ways in base R, or the many data wrangling packages like <code>{data.table}</code>, <code>{dplyr}</code> or <code>{polars}</code>.</p>
 <section id="adding-pivot-tables" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="adding-pivot-tables"><span class="header-section-number">8.1</span> Adding pivot tables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> esoph)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> esoph)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>))</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># for visual comparison</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pivottabler)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(esoph)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"tobgp"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"agegp"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"ncontrols"</span>, <span class="at">summariseExpression=</span><span class="st">"sum(ncontrols)"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">evaluatePivot</span>()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>pt</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        0-9g/day  10-19  20-29  30+  Total  </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25-34        70     18     11   16    115  </span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35-44       107     42     24   17    190  </span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45-54        90     44     25    8    167  </span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 55-64        92     42     26    6    166  </span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 65-74        68     26     10    2    106  </span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75+          20      6      3    2     31  </span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Total       447    178     99   51    775</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data_table</span>(<span class="at">dims =</span> <span class="st">"A14"</span>, <span class="at">x =</span> pt<span class="sc">$</span><span class="fu">asDataFrame</span>(), <span class="at">row_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># for visual comparison</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> pivottabler<span class="sc">::</span>PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(esoph)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"tobgp"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"agegp"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"ncontrols"</span>, <span class="at">summariseExpression=</span><span class="st">"sum(ncontrols)"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">evaluatePivot</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>pt</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        0-9g/day  10-19  20-29  30+  Total  </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25-34        70     18     11   16    115  </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35-44       107     42     24   17    190  </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45-54        90     44     25    8    167  </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 55-64        92     42     26    6    166  </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 65-74        68     26     10    2    106  </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75+          20      6      3    2     31  </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Total       447    178     99   51    775</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data_table</span>(<span class="at">dims =</span> <span class="st">"A14"</span>, <span class="at">x =</span> pt<span class="sc">$</span><span class="fu">asDataFrame</span>(), <span class="at">row_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -351,50 +348,48 @@ div.csl-indent {
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="sorting"><span class="header-section-number">8.1.2</span> Sorting</h3>
 <p>Using <code>sort_item</code> it is possible to order the pivot table. <code>sort_item</code> can take either integers or characters, the latter is beneficial in cases as below, where the variable you want to sort is a factor. Though, be aware that pivot table uses a different approach to distinct unique elements and that <code>Berlin</code> and <code>BERLIN</code> are identical to it. You can check for distinct cases with <code>openxlsx2:::distinct()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tbl_prueba_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_1 =</span> <span class="fu">as.Date</span>(<span class="fu">rep</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-02-01"</span>, <span class="st">"2023-03-01"</span>, <span class="st">"2023-04-01"</span>, <span class="st">"2023-05-01"</span>, <span class="st">"2023-06-01"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-07-01"</span>, <span class="st">"2023-08-01"</span>, <span class="st">"2023-09-01"</span>, <span class="st">"2023-10-01"</span>, <span class="st">"2023-11-01"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-12-01"</span>, <span class="st">"2024-01-01"</span>, <span class="st">"2024-02-01"</span>, <span class="st">"2024-03-01"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> 2L</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  )),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_2 =</span> <span class="fu">rep</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">each =</span> 2L),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2024</span>), <span class="fu">c</span>(22L, 6L)),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">ordered</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">each =</span> 2L</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> tbl_prueba_2)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tbl_prueba_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_1 =</span> <span class="fu">as.Date</span>(<span class="fu">rep</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-02-01"</span>, <span class="st">"2023-03-01"</span>, <span class="st">"2023-04-01"</span>, <span class="st">"2023-05-01"</span>, <span class="st">"2023-06-01"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-07-01"</span>, <span class="st">"2023-08-01"</span>, <span class="st">"2023-09-01"</span>, <span class="st">"2023-10-01"</span>, <span class="st">"2023-11-01"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-12-01"</span>, <span class="st">"2024-01-01"</span>, <span class="st">"2024-02-01"</span>, <span class="st">"2024-03-01"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> 2L</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_2 =</span> <span class="fu">rep</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">each =</span> 2L),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2024</span>), <span class="fu">c</span>(22L, 6L)),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">ordered</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">each =</span> 2L</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> tbl_prueba_2)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb_1)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb_1)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> wb_1 <span class="sc">|&gt;</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> df,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>),</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="st">"var_2"</span>,</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">"sum"</span>,</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">sort_item =</span> <span class="fu">list</span>(<span class="at">month =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(tbl_prueba_2<span class="sc">$</span>month)))</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb_1<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> wb_1 <span class="sc">|&gt;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> df,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>),</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="st">"var_2"</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">"sum"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">sort_item =</span> <span class="fu">list</span>(<span class="at">month =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(tbl_prueba_2<span class="sc">$</span>month)))</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb_1<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="aggregation-functions" class="level3" data-number="8.1.3">
@@ -465,24 +460,21 @@ div.csl-indent {
 </div>
 <p>With <code>params</code> it is possible to tweak many pivot table arguments such as <code>params = list(col_header_caption = "test caption")</code>. This way it is also possible to apply built in pivot table styles. The default is <code>PivotStyleLight16</code> (for more built in styles see <code>G.1 Built-in Table Styles</code> of <span class="citation" data-cites="ECMA16pt1">ECMA-376-1 (<a href="../references.html#ref-ECMA16pt1" role="doc-biblioref">2016</a>)</span>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx2)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"table"</span>)<span class="sc">$</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"data"</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleMedium23"</span>))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleLight19"</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleDark11"</span>))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium28"</span>))</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium13"</span>))</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleDark20"</span>))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"table"</span>)<span class="sc">$</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"data"</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleMedium23"</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleLight19"</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleDark11"</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium28"</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium13"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleDark20"</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -495,16 +487,14 @@ div.csl-indent {
 <p>It is possible to use dims without end row. This way the entire column is used as input. This obviously is slower than using a fixed range, because the <code>wb_data()</code> object will contain each possible row. This is</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original pivot table as reference</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pivottabler)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(bhmtrains) </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"TrainCategory"</span>) </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"TOC"</span>, </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineBefore=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>)), </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineTotal=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>))) </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"PowerType"</span>, <span class="at">addTotal=</span><span class="cn">FALSE</span>) </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"TotalTrains"</span>, <span class="at">summariseExpression=</span><span class="st">"n()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> pivottabler<span class="sc">::</span>PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(pivottabler<span class="sc">::</span>bhmtrains) </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"TrainCategory"</span>) </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"TOC"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineBefore=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>)), </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineTotal=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>))) </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"PowerType"</span>, <span class="at">addTotal=</span><span class="cn">FALSE</span>) </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"TotalTrains"</span>, <span class="at">summariseExpression=</span><span class="st">"n()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -513,7 +503,7 @@ div.csl-indent {
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use A:P</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> bhmtrains, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> pivottabler<span class="sc">::</span>bhmtrains, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A:P"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use TrainCategory on column and data</span></span>
@@ -661,7 +651,7 @@ div.csl-indent {
 <section id="final-remarks" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="final-remarks"><span class="header-section-number">8.4</span> Final remarks</h2>
 <p>As of now it is not possible to add charts to pivot tables. This would require pivot table evaluation to construct the <code>wb_data()</code> object to use for and access to the area where the pivot table is stored on the sheet.</p>
-<p>It is always a good idea to check that the constructed pivot table and the expected pivot table match. Either construct the pivot table manually or as shown here via <code>pivottabler</code> or maybe with either <code>data.table</code> or <code>dplyr</code>. It is a little tricky for <code>openxlsx2</code> to check if the pivot table works, when we have no real way to validate that it does.</p>
+<p>It is always a good idea to check that the constructed pivot table and the expected pivot table match. Either construct the pivot table manually or as shown here via <code>{pivottabler}</code> or maybe with either <code>{data.table}</code> or <code>{dplyr}</code>. It is a little tricky for <code>openxlsx2</code> to check if the pivot table works, when we have no real way to validate that it does.</p>
 <p>There are still missing features such as <code>timelines</code> and it is currently not possible to calculate fields in pivot tables. Please note that this is also not something we are currently developing.</p>
 
 
