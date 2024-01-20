@@ -101,7 +101,7 @@ wb <- wb_workbook()$add_worksheet()$
 
 ## Modern spreadsheet functions
 
-Spreadsheet functions are constantly evolving and extended. Several formulas introduced in the MS465 Excel versions require `_xlfn.` as prefix for the function name. Such formulas will only be evaluated with compatible spreadsheet software. In case of doubt, see [Excel functions (alphabetical)](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188) for a list and a version indicator.
+Spreadsheet functions are constantly evolving and similarly extended. Several formulas introduced in the MS365 Excel versions require `_xlfn.` as prefix for the function name. Such formulas will only be evaluated with compatible spreadsheet software. In case of doubt, see [Excel functions (alphabetical)](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188) for a list of all functions and an indicator for the software version in which they were introduced.
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()$
@@ -113,7 +113,6 @@ wb <- wb_workbook()$add_worksheet()$
     array = TRUE
   )
 ```
-
 
 ## Cell error handling
 

@@ -1,0 +1,87 @@
+# Data Validation
+
+```{r setup, include = FALSE}
+library(openxlsx2)
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+df <- data.frame(
+  "d" = as.Date("2016-01-01") + -5:5,
+  "t" = as.POSIXct("2016-01-01") + -5:5 * 10000
+)
+
+wb <- wb_workbook()$
+  add_worksheet("Sheet 1")$
+  add_data_table(x = iris)$
+  # whole numbers are fine
+  add_data_validation(dims = "A2:C151", type = "whole",
+                      operator = "between", value = c(1, 9)
+  )$
+  # text width 7-9 is fine
+  add_data_validation(dims = "E2:E151", type = "textLength",
+                      operator = "between", value = c(7, 9)
+  )$
+  ## Date and Time cell validation
+  add_worksheet("Sheet 2")$
+  add_data_table(x = df)$
+  # date >= 2016-01-01 is fine
+  add_data_validation(dims = "A2:A12", type = "date",
+                      operator = "greaterThanOrEqual", value = as.Date("2016-01-01")
+  )$
+  # a few timestamps are fine
+  add_data_validation(dims = "B2:B12", type = "time",
+                      operator = "between", value = df$t[c(4, 8)]
+  )$
+  ## validate list: validate inputs on one sheet with another
+  add_worksheet("Sheet 3")$
+  add_data_table(x = iris[1:30, ])$
+  add_worksheet("Sheet 4")$
+  add_data(x = sample(iris$Sepal.Length, 10))$
+  add_data_validation("Sheet 3", dims = "A2:A31", type = "list",
+                      value = "'Sheet 4'!$A$1:$A$10")
+```
+
+
+```{r}
+
+  s1 <- create_sparklines("Sheet 1", "A3:K3", "L3")
+  s2 <- create_sparklines("Sheet 1", "A4:K4", "L4")
+
+  wb <- wb_workbook()$
+    add_worksheet()$add_data(x = iris[1:30, ])$
+    add_worksheet()$add_data(sheet = 2, x = sample(iris$Sepal.Length, 10))$
+    add_data_validation(sheet = 1, dims = "A2:A11", type = "list", value = '"O1,O2"')$
+    add_sparklines(sheet = 1, sparklines = s1)$
+    add_data_validation(sheet = 1, dims = "A12:A21", type = "list", value = '"O2,O3"')$
+    add_sparklines(sheet = 1, sparklines = s2)
+```
+
+```{r}
+  formula_old <- '=HYPERLINK("#Tab_1!" &amp; CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
+  formula_new <- '=HYPERLINK("#Tab_1!" & CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
+
+  wb <- wb_workbook()$
+    add_worksheet("Tab_1", zoom = 80, gridLines = FALSE)$
+    add_data(x = rbind(2016:2019), dims = "C1:F1", colNames = FALSE)$
+    add_data(x = 2017, dims = "A1", colNames = FALSE)$
+    add_data_validation(dims = "A1", type = "list", value = '"2016,2017,2018,2019"')$
+    add_formula(dims = "B1", x = formula_old)$
+    add_formula(dims = "B2", x = formula_new)
+```
+
+```{r}
+
+  wb <- wb_workbook()$
+    add_worksheet("Tab_1", zoom = 80, gridLines = FALSE)$
+    add_data(dims = "C1:F1", x = rbind(2016:2019), colNames = FALSE)$
+    add_data(x = 2017, startCol = 1, startRow = 1, colNames = FALSE)$
+    add_data_validation(dims = "A1", type = "list", value = '"2016,2017,2018,2019"')$
+    add_formula(dims = "B1", x = '=HYPERLINK("#Tab_1!" & CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")')$
+    add_formula(dims = "B2", x = '=IF(2017 = VALUE(A1), HYPERLINK("github.com","github.com"), A1)')
+```
+
