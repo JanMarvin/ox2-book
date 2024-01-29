@@ -6,8 +6,6 @@ Authors@R: openxlsx2-authors
 Description: Creates the openxlsx2 book
 License: MIT + file LICENSE
 URL: https://github.com/JanMarvin/ox2-book
-Imports:
-    openxlsx2
 Suggests:
     flexlsx,
     flextable,
