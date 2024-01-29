@@ -4,7 +4,13 @@ project:
 
 book:
   title: "The `openxlsx2` book"
+  reader-mode: true
   author: "Jan Marvin Garbuszus (JanMarvin) and `openxlsx2` authors"
+  repo-url: https://github.com/JanMarvin/ox2-book
+  issue-url: https://github.com/JanMarvin/openxlsx2/issues
+  site-url: https://janmarvin.github.io/ox2-book/
+  repo-branch: main
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - chapters/01_introduction.qmd
@@ -27,6 +33,7 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    code-link: true
   pdf:
     documentclass: scrreprt
 
