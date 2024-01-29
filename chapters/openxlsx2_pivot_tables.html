@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>The openxlsx2 book - 8&nbsp; Pivot tables</title>
 <style>
 code{white-space: pre-wrap;}
@@ -76,7 +73,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -94,8 +90,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -122,16 +117,11 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -142,13 +132,9 @@ div.csl-indent {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The <code>openxlsx2</code> book</a> 
         <div class="sidebar-tools-main">
@@ -168,7 +154,7 @@ div.csl-indent {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -259,36 +245,34 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#adding-pivot-tables" id="toc-adding-pivot-tables" class="nav-link active" data-scroll-target="#adding-pivot-tables"><span class="header-section-number">8.1</span> Adding pivot tables</a>
+<li>
+<a href="#adding-pivot-tables" id="toc-adding-pivot-tables" class="nav-link active" data-scroll-target="#adding-pivot-tables"><span class="header-section-number">8.1</span> Adding pivot tables</a>
   <ul class="collapse">
-  <li><a href="#filter-row-column-and-data" id="toc-filter-row-column-and-data" class="nav-link" data-scroll-target="#filter-row-column-and-data"><span class="header-section-number">8.1.1</span> Filter, row, column, and data</a></li>
+<li><a href="#filter-row-column-and-data" id="toc-filter-row-column-and-data" class="nav-link" data-scroll-target="#filter-row-column-and-data"><span class="header-section-number">8.1.1</span> Filter, row, column, and data</a></li>
   <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting"><span class="header-section-number">8.1.2</span> Sorting</a></li>
   <li><a href="#aggregation-functions" id="toc-aggregation-functions" class="nav-link" data-scroll-target="#aggregation-functions"><span class="header-section-number">8.1.3</span> Aggregation functions</a></li>
   <li><a href="#styling-pivot-tables" id="toc-styling-pivot-tables" class="nav-link" data-scroll-target="#styling-pivot-tables"><span class="header-section-number">8.1.4</span> Styling pivot tables</a></li>
   <li><a href="#pivot-table-dims" id="toc-pivot-table-dims" class="nav-link" data-scroll-target="#pivot-table-dims"><span class="header-section-number">8.1.5</span> Pivot table <code>dims</code></a></li>
   <li><a href="#using-number-formats" id="toc-using-number-formats" class="nav-link" data-scroll-target="#using-number-formats"><span class="header-section-number">8.1.6</span> Using number formats</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#adding-slicers-to-pivot-tables" id="toc-adding-slicers-to-pivot-tables" class="nav-link" data-scroll-target="#adding-slicers-to-pivot-tables"><span class="header-section-number">8.2</span> Adding slicers to pivot tables</a></li>
   <li><a href="#choosing-variable-filters" id="toc-choosing-variable-filters" class="nav-link" data-scroll-target="#choosing-variable-filters"><span class="header-section-number">8.3</span> Choosing variable filters</a></li>
   <li><a href="#final-remarks" id="toc-final-remarks" class="nav-link" data-scroll-target="#final-remarks"><span class="header-section-number">8.4</span> Final remarks</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_pivot_tables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_pivot_tables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pivot tables</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pivot tables</span>
+</h1>
 </div>
 
 
@@ -302,411 +286,392 @@ div.csl-indent {
   
 
 
-</header>
-
-
-<p>Pivot tables are a feature of spreadsheet software dating back to Lotus Improv. They allow creating interactive tables to aggregate data that still allows the user to modify the table, by changing the aggregation function or variables. Pivot tables are frequently used in reports to create something like a dashboard.</p>
+</header><p>Pivot tables are a feature of spreadsheet software dating back to Lotus Improv. They allow creating interactive tables to aggregate data that still allows the user to modify the table, by changing the aggregation function or variables. Pivot tables are frequently used in reports to create something like a dashboard.</p>
 <p>Even though they are a long requested feature, it took a while until support was added to <code>openxlsx2</code>. Since release 0.5 users are able to use <code>wb_add_pivot_table()</code> and since then support was further improved and now it is also possible to add slicers to pivot tables. Slicers further increase the dashboard character of pivot tables, as they provide a button interface to filter the pivot table.</p>
 <p>The state of pivot tables is now that they work quite well, though they bring a few features users should be aware of. Most importantly, our function only provides the spreadsheet with an instruction set how to create the pivot table, while the actual sheet where the table is supposed to appear remains empty until it is evaluated by the spreadsheet software. This is similar to our approach with formulas.</p>
-<p>Please, though, be a little careful if you start experimenting with pivot table params as there are actual cases, where the instruction set results into spreadsheet software crashes. Make copies and try to prevent some headaches afterwards. Also it is a good idea to check the expected outcome of a pivot table. We will make use of the <code>{pivottabler}</code> package for this in this chapter, but there are obviously other ways in base R, or the many data wrangling packages like <code>{data.table}</code>, <code>{dplyr}</code> or <code>{polars}</code>.</p>
-<section id="adding-pivot-tables" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="adding-pivot-tables"><span class="header-section-number">8.1</span> Adding pivot tables</h2>
+<p>Please, though, be a little careful if you start experimenting with pivot table params as there are actual cases, where the instruction set results into spreadsheet software crashes. Make copies and try to prevent some headaches afterwards. Also it is a good idea to check the expected outcome of a pivot table. We will make use of the <a href="http://www.pivottabler.org.uk/">pivottabler</a> package for this in this chapter, but there are obviously other ways in base R, or the many data wrangling packages like <a href="https://r-datatable.com">data.table</a>, <a href="https://dplyr.tidyverse.org">dplyr</a> or <code>{polars}</code>.</p>
+<section id="adding-pivot-tables" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="adding-pivot-tables">
+<span class="header-section-number">8.1</span> Adding pivot tables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> esoph)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># for visual comparison</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> pivottabler<span class="sc">::</span>PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(esoph)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"tobgp"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"agegp"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"ncontrols"</span>, <span class="at">summariseExpression=</span><span class="st">"sum(ncontrols)"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">evaluatePivot</span>()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>pt</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        0-9g/day  10-19  20-29  30+  Total  </span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25-34        70     18     11   16    115  </span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35-44       107     42     24   17    190  </span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45-54        90     44     25    8    167  </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 55-64        92     42     26    6    166  </span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 65-74        68     26     10    2    106  </span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 75+          20      6      3    2     31  </span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Total       447    178     99   51    775</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_data_table</span>(<span class="at">dims =</span> <span class="st">"A14"</span>, <span class="at">x =</span> pt<span class="sc">$</span><span class="fu">asDataFrame</span>(), <span class="at">row_names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">esoph</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, rows <span class="op">=</span> <span class="st">"agegp"</span>, cols <span class="op">=</span> <span class="st">"tobgp"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ncontrols"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># for visual comparison</span></span>
+<span><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu">pivottabler</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pivottabler/man/PivotTable.html">PivotTable</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addData</span><span class="op">(</span><span class="va">esoph</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addColumnDataGroups</span><span class="op">(</span><span class="st">"tobgp"</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addRowDataGroups</span><span class="op">(</span><span class="st">"agegp"</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">defineCalculation</span><span class="op">(</span>calculationName<span class="op">=</span><span class="st">"ncontrols"</span>, summariseExpression<span class="op">=</span><span class="st">"sum(ncontrols)"</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">evaluatePivot</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pt</span></span>
+<span><span class="co">#&gt;        0-9g/day  10-19  20-29  30+  Total  </span></span>
+<span><span class="co">#&gt; 25-34        70     18     11   16    115  </span></span>
+<span><span class="co">#&gt; 35-44       107     42     24   17    190  </span></span>
+<span><span class="co">#&gt; 45-54        90     44     25    8    167  </span></span>
+<span><span class="co">#&gt; 55-64        92     42     26    6    166  </span></span>
+<span><span class="co">#&gt; 65-74        68     26     10    2    106  </span></span>
+<span><span class="co">#&gt; 75+          20      6      3    2     31  </span></span>
+<span><span class="co">#&gt; Total       447    178     99   51    775</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data_table</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A14"</span>, x <span class="op">=</span> <span class="va">pt</span><span class="op">$</span><span class="fu">asDataFrame</span><span class="op">(</span><span class="op">)</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_esoph.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_esoph.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Unlike <code>pivottabler</code> the pivot tables in <code>openxlsx2</code> are not evaluated. Therefore there is nothing in the sheet region <code>A3:F11</code> and if you write something here, spreadsheet software will complain.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="filter-row-column-and-data" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="filter-row-column-and-data"><span class="header-section-number">8.1.1</span> Filter, row, column, and data</h3>
+<section id="filter-row-column-and-data" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="filter-row-column-and-data">
+<span class="header-section-number">8.1.1</span> Filter, row, column, and data</h3>
 <p>Similar to pivot tables in Excel, it is possible to assign variables to the table dimensions filter, row, column, and data. It is not required to have all dimensions filled. You can assign each variable only once per dimension, but can combine multiple variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> esoph)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A13"</span>, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>, <span class="st">"ncases"</span>))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A18"</span>, <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"ncontrols"</span>, <span class="st">"ncases"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">esoph</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, rows <span class="op">=</span> <span class="st">"agegp"</span>, cols <span class="op">=</span> <span class="st">"tobgp"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ncontrols"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A13"</span>, rows <span class="op">=</span> <span class="st">"agegp"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ncontrols"</span>, <span class="st">"ncases"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A18"</span>, rows <span class="op">=</span> <span class="st">"agegp"</span>, cols <span class="op">=</span> <span class="st">"tobgp"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ncontrols"</span>, <span class="st">"ncases"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_three_types.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_three_types.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="sorting" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="sorting"><span class="header-section-number">8.1.2</span> Sorting</h3>
+</section><section id="sorting" class="level3" data-number="8.1.2"><h3 data-number="8.1.2" class="anchored" data-anchor-id="sorting">
+<span class="header-section-number">8.1.2</span> Sorting</h3>
 <p>Using <code>sort_item</code> it is possible to order the pivot table. <code>sort_item</code> can take either integers or characters, the latter is beneficial in cases as below, where the variable you want to sort is a factor. Though, be aware that pivot table uses a different approach to distinct unique elements and that <code>Berlin</code> and <code>BERLIN</code> are identical to it. You can check for distinct cases with <code>openxlsx2:::distinct()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tbl_prueba_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_1 =</span> <span class="fu">as.Date</span>(<span class="fu">rep</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-02-01"</span>, <span class="st">"2023-03-01"</span>, <span class="st">"2023-04-01"</span>, <span class="st">"2023-05-01"</span>, <span class="st">"2023-06-01"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-07-01"</span>, <span class="st">"2023-08-01"</span>, <span class="st">"2023-09-01"</span>, <span class="st">"2023-10-01"</span>, <span class="st">"2023-11-01"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2023-12-01"</span>, <span class="st">"2024-01-01"</span>, <span class="st">"2024-02-01"</span>, <span class="st">"2024-03-01"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> <span class="dv">2</span>L</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_2 =</span> <span class="fu">rep</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">each =</span> <span class="dv">2</span>L),</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2024</span>), <span class="fu">c</span>(<span class="dv">22</span>L, <span class="dv">6</span>L)),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">ordered</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">each =</span> <span class="dv">2</span>L</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> tbl_prueba_2)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb_1)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>wb_1 <span class="ot">&lt;-</span> wb_1 <span class="sc">|&gt;</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> df,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>),</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="st">"var_2"</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">"sum"</span>,</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">sort_item =</span> <span class="fu">list</span>(<span class="at">month =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(tbl_prueba_2<span class="sc">$</span>month)))</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb_1<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tbl_prueba_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  var_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"2023-02-01"</span>, <span class="st">"2023-03-01"</span>, <span class="st">"2023-04-01"</span>, <span class="st">"2023-05-01"</span>, <span class="st">"2023-06-01"</span>,</span>
+<span>      <span class="st">"2023-07-01"</span>, <span class="st">"2023-08-01"</span>, <span class="st">"2023-09-01"</span>, <span class="st">"2023-10-01"</span>, <span class="st">"2023-11-01"</span>,</span>
+<span>      <span class="st">"2023-12-01"</span>, <span class="st">"2024-01-01"</span>, <span class="st">"2024-02-01"</span>, <span class="st">"2024-03-01"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    each <span class="op">=</span> <span class="fl">2L</span></span>
+<span>  <span class="op">)</span><span class="op">)</span>,</span>
+<span>  var_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">15</span>, each <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span>,</span>
+<span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2023</span>, <span class="fl">2024</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22L</span>, <span class="fl">6L</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">ordered</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>        <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>,</span>
+<span>        <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      each <span class="op">=</span> <span class="fl">2L</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">wb_1</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">tbl_prueba_2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb_1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb_1</span> <span class="op">&lt;-</span> <span class="va">wb_1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">df</span>,</span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"month"</span><span class="op">)</span>,</span>
+<span>    data <span class="op">=</span> <span class="st">"var_2"</span>,</span>
+<span>    fun <span class="op">=</span> <span class="st">"sum"</span>,</span>
+<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      sort_item <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">tbl_prueba_2</span><span class="op">$</span><span class="va">month</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> </span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb_1</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="aggregation-functions" class="level3" data-number="8.1.3">
-<h3 data-number="8.1.3" class="anchored" data-anchor-id="aggregation-functions"><span class="header-section-number">8.1.3</span> Aggregation functions</h3>
+</section><section id="aggregation-functions" class="level3" data-number="8.1.3"><h3 data-number="8.1.3" class="anchored" data-anchor-id="aggregation-functions">
+<span class="header-section-number">8.1.3</span> Aggregation functions</h3>
 <p>The default aggregation function is <code>SUM</code>, but others are possible as well: <code>AVERAGE, COUNT, COUNTA, MAX, MIN, PRODUCT, STDEV, STDEVP, SUM, VAR, VARP</code>. This is limited to functions available in the openxml specification. Each data variable can use a different function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A10"</span>, <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="at">fun =</span> <span class="st">"count"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A20"</span>, <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="at">fun =</span> <span class="st">"average"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">dims =</span> <span class="st">"A30"</span>, <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="at">fun =</span> <span class="fu">c</span>(<span class="st">"sum"</span>, <span class="st">"average"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A1"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A10"</span>, sheet <span class="op">=</span> <span class="fl">2</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A20"</span>, sheet <span class="op">=</span> <span class="fl">2</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"average"</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A30"</span>, sheet <span class="op">=</span> <span class="fl">2</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span>, fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="st">"average"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_four_types.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_four_types.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="styling-pivot-tables" class="level3" data-number="8.1.4">
-<h3 data-number="8.1.4" class="anchored" data-anchor-id="styling-pivot-tables"><span class="header-section-number">8.1.4</span> Styling pivot tables</h3>
+</section><section id="styling-pivot-tables" class="level3" data-number="8.1.4"><h3 data-number="8.1.4" class="anchored" data-anchor-id="styling-pivot-tables">
+<span class="header-section-number">8.1.4</span> Styling pivot tables</h3>
 <p>There is no real support for individual pivot table styles. Aside from the default style, it is possible to disable the style and to apply auto format styles (for various styles see annex <code>G.3 - Built-in PivotTable AutoFormats</code> of <span class="citation" data-cites="ECMA16pt1">ECMA-376-1 (<a href="../references.html#ref-ECMA16pt1" role="doc-biblioref">2016</a>)</span>). In the example below style id <code>4099</code> is applied, ids range from <code>4096</code> to <code>4117</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"table"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"data"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span> </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot table without style</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">sheet =</span> <span class="st">"table"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"am"</span>), <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">"average"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">params =</span> <span class="fu">list</span>(<span class="at">no_style =</span> <span class="cn">TRUE</span>, <span class="at">numfmt =</span> <span class="fu">c</span>(<span class="at">formatCode =</span> <span class="st">"##0.0"</span>))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Applied a few params and use auto_format_id</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"G3"</span>, <span class="at">sheet =</span> <span class="st">"table"</span>, </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"am"</span>), <span class="at">cols =</span> <span class="st">"vs"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">"average"</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_alignment_formats    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_number_formats       =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_border_formats       =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_font_formats         =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_pattern_formats      =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">apply_width_height_formats =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">auto_format_id             =</span> <span class="dv">4099</span>,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">numfmt =</span> <span class="fu">c</span>(<span class="at">formatCode =</span> <span class="st">"##0.0"</span>)</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> </span>
+<span>  </span>
+<span>  <span class="co"># pivot table without style</span></span>
+<span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, sheet <span class="op">=</span> <span class="st">"table"</span>,</span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
+<span>    fun <span class="op">=</span> <span class="st">"average"</span>,</span>
+<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>no_style <span class="op">=</span> <span class="cn">TRUE</span>, numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  </span>
+<span>  <span class="co"># Applied a few params and use auto_format_id</span></span>
+<span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"G3"</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, </span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span>, cols <span class="op">=</span> <span class="st">"vs"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
+<span>    fun <span class="op">=</span> <span class="st">"average"</span>,</span>
+<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      apply_alignment_formats    <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      apply_number_formats       <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      apply_border_formats       <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      apply_font_formats         <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      apply_pattern_formats      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      apply_width_height_formats <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      auto_format_id             <span class="op">=</span> <span class="fl">4099</span>,</span>
+<span>      numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_styles.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_styles.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>With <code>params</code> it is possible to tweak many pivot table arguments such as <code>params = list(col_header_caption = "test caption")</code>. This way it is also possible to apply built in pivot table styles. The default is <code>PivotStyleLight16</code> (for more built in styles see <code>G.1 Built-in Table Styles</code> of <span class="citation" data-cites="ECMA16pt1">ECMA-376-1 (<a href="../references.html#ref-ECMA16pt1" role="doc-biblioref">2016</a>)</span>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"table"</span>)<span class="sc">$</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_worksheet</span>(<span class="st">"data"</span>)<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleMedium23"</span>))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleLight19"</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"A19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"TableStyleDark11"</span>))</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G1"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium28"</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G10"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleMedium13"</span>))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(df, <span class="at">sheet =</span> <span class="st">"table"</span>, <span class="at">dims =</span> <span class="st">"G19"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>, <span class="at">params =</span> <span class="fu">list</span>(<span class="at">table_style =</span> <span class="st">"PivotStyleDark20"</span>))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"A1"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"TableStyleMedium23"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"A10"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"TableStyleLight19"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"A19"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"TableStyleDark11"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"G1"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"PivotStyleMedium28"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"G10"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"PivotStyleMedium13"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span><span class="va">df</span>, sheet <span class="op">=</span> <span class="st">"table"</span>, dims <span class="op">=</span> <span class="st">"G19"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>table_style <span class="op">=</span> <span class="st">"PivotStyleDark20"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_param_style.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_param_style.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="pivot-table-dims" class="level3" data-number="8.1.5">
-<h3 data-number="8.1.5" class="anchored" data-anchor-id="pivot-table-dims"><span class="header-section-number">8.1.5</span> Pivot table <code>dims</code></h3>
+</section><section id="pivot-table-dims" class="level3" data-number="8.1.5"><h3 data-number="8.1.5" class="anchored" data-anchor-id="pivot-table-dims">
+<span class="header-section-number">8.1.5</span> Pivot table <code>dims</code>
+</h3>
 <p>It is possible to use dims without end row. This way the entire column is used as input. This obviously is slower than using a fixed range, because the <code>wb_data()</code> object will contain each possible row. This is</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original pivot table as reference</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> pivottabler<span class="sc">::</span>PivotTable<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addData</span>(pivottabler<span class="sc">::</span>bhmtrains) </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addColumnDataGroups</span>(<span class="st">"TrainCategory"</span>) </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"TOC"</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineBefore=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>)), </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">outlineTotal=</span><span class="fu">list</span>(<span class="at">isEmpty=</span><span class="cn">FALSE</span>, <span class="at">groupStyleDeclarations=</span><span class="fu">list</span>(<span class="at">color=</span><span class="st">"blue"</span>))) </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">addRowDataGroups</span>(<span class="st">"PowerType"</span>, <span class="at">addTotal=</span><span class="cn">FALSE</span>) </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>pt<span class="sc">$</span><span class="fu">defineCalculation</span>(<span class="at">calculationName=</span><span class="st">"TotalTrains"</span>, <span class="at">summariseExpression=</span><span class="st">"n()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># original pivot table as reference</span></span>
+<span><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu">pivottabler</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pivottabler/man/PivotTable.html">PivotTable</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addData</span><span class="op">(</span><span class="fu">pivottabler</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pivottabler/man/bhmtrains.html">bhmtrains</a></span><span class="op">)</span> </span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addColumnDataGroups</span><span class="op">(</span><span class="st">"TrainCategory"</span><span class="op">)</span> </span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addRowDataGroups</span><span class="op">(</span><span class="st">"TOC"</span>, </span>
+<span>                    outlineBefore<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>isEmpty<span class="op">=</span><span class="cn">FALSE</span>, groupStyleDeclarations<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                    outlineTotal<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>isEmpty<span class="op">=</span><span class="cn">FALSE</span>, groupStyleDeclarations<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">addRowDataGroups</span><span class="op">(</span><span class="st">"PowerType"</span>, addTotal<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="va">pt</span><span class="op">$</span><span class="fu">defineCalculation</span><span class="op">(</span>calculationName<span class="op">=</span><span class="st">"TotalTrains"</span>, summariseExpression<span class="op">=</span><span class="st">"n()"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pv_pivottabler.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pv_pivottabler.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use A:P</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span><span class="fu">add_data</span>(<span class="at">x =</span> pivottabler<span class="sc">::</span>bhmtrains, <span class="at">na.strings =</span> <span class="cn">NULL</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A:P"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use TrainCategory on column and data</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  df, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="fu">c</span>(<span class="st">"TOC"</span>, <span class="st">"PowerType"</span>),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="st">"TrainCategory"</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="st">"TrainCategory"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> <span class="st">"count"</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># use A:P</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">pivottabler</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pivottabler/man/bhmtrains.html">bhmtrains</a></span>, na.strings <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="st">"A:P"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># use TrainCategory on column and data</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>, </span>
+<span>  rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TOC"</span>, <span class="st">"PowerType"</span><span class="op">)</span>,</span>
+<span>  cols <span class="op">=</span> <span class="st">"TrainCategory"</span>,</span>
+<span>  data <span class="op">=</span> <span class="st">"TrainCategory"</span>,</span>
+<span>  fun <span class="op">=</span> <span class="st">"count"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pv_openxlsx2.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pv_openxlsx2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="using-number-formats" class="level3" data-number="8.1.6">
-<h3 data-number="8.1.6" class="anchored" data-anchor-id="using-number-formats"><span class="header-section-number">8.1.6</span> Using number formats</h3>
+</section><section id="using-number-formats" class="level3" data-number="8.1.6"><h3 data-number="8.1.6" class="anchored" data-anchor-id="using-number-formats">
+<span class="header-section-number">8.1.6</span> Using number formats</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Pivot table example 1</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars, <span class="at">inline_strings =</span> F)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_numfmt</span>(<span class="at">dims =</span> <span class="fu">wb_dims</span>(<span class="at">x =</span> mtcars, <span class="at">cols =</span> <span class="st">"disp"</span>), <span class="at">numfmt =</span> <span class="st">"$ #,###"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># basic pivot table with filter, rows, cols and data</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">add_pivot_table</span>(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  df,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">c</span>(<span class="st">"disp"</span>, <span class="st">"hp"</span>),</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> <span class="fu">c</span>(<span class="st">"sum"</span>, <span class="st">"count"</span>),</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">params =</span> <span class="fu">list</span>(</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">numfmt =</span> <span class="fu">c</span>(<span class="at">formatCode =</span> <span class="st">"$ ###"</span>, <span class="at">formatCode =</span> <span class="st">"#"</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Pivot table example 1</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, inline_strings <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_numfmt</span><span class="op">(</span>dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, cols <span class="op">=</span> <span class="st">"disp"</span><span class="op">)</span>, numfmt <span class="op">=</span> <span class="st">"$ #,###"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># basic pivot table with filter, rows, cols and data</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>,</span>
+<span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span>,</span>
+<span>  fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="st">"count"</span><span class="op">)</span>,</span>
+<span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"$ ###"</span>, formatCode <span class="op">=</span> <span class="st">"#"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="adding-slicers-to-pivot-tables" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="adding-slicers-to-pivot-tables"><span class="header-section-number">8.2</span> Adding slicers to pivot tables</h2>
+</section></section><section id="adding-slicers-to-pivot-tables" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="adding-slicers-to-pivot-tables">
+<span class="header-section-number">8.2</span> Adding slicers to pivot tables</h2>
 <p>Since <code>openxlsx2</code> release 1.1 it is possible to add slicers to pivot tables created with <code>wb_add_pivot_tables()</code>. For this to work you have to provide a name for a pivot table name you are going to add and make sure that the slicer variable is actually ‘activated’ in the pivot table. Adding slicers to loaded pivot tables is not possible and the creation of slicers needs to go hand in hand with a pivot table.</p>
 <p>It is possible to apply slicer styles with <code>params = list(style = "SlicerStyleLight2")</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span> <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B7:D9"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">edit_as =</span> <span class="st">"twoCell"</span>, <span class="at">style =</span> <span class="st">"SlicerStyleLight2"</span>))</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span></span>
+<span>  <span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, slicer <span class="op">=</span> <span class="st">"vs"</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
+<span>    pivot_table <span class="op">=</span> <span class="st">"mtcars"</span></span>
+<span>  <span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_slicer</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"B7:D9"</span>, slicer <span class="op">=</span> <span class="st">"vs"</span>, pivot_table <span class="op">=</span> <span class="st">"mtcars"</span>,</span>
+<span>             params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>edit_as <span class="op">=</span> <span class="st">"twoCell"</span>, style <span class="op">=</span> <span class="st">"SlicerStyleLight2"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is possible to tweak the number of columns in a slicer using <code>columnCount</code> and to add a <code>caption</code> and change the sorting order to <code>descending</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Sheet 1</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> mtcars)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>varname <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"vs"</span>, <span class="st">"drat"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Sheet 2</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first pivot</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"cyl"</span>, <span class="at">cols =</span> <span class="st">"gear"</span>, <span class="at">data =</span> <span class="st">"disp"</span>,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars"</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>)<span class="sc">$</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B18:D24"</span>, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> <span class="st">"drat"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars"</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">columnCount =</span> <span class="dv">5</span>))<span class="sc">$</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># second pivot</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"G3"</span>, <span class="at">sheet =</span> <span class="fu">current_sheet</span>(), <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"gear"</span>, <span class="at">cols =</span> <span class="st">"carb"</span>, <span class="at">data =</span> <span class="st">"mpg"</span>,</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars2"</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"G12:I16"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars2"</span>,</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">params =</span> <span class="fu">list</span>(<span class="at">sortOrder =</span> <span class="st">"descending"</span>, <span class="at">caption =</span> <span class="st">"Wow!"</span>))</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="do">### Sheet 3</span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_pivot_table</span>(</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">slicer =</span> varname, <span class="at">rows =</span> <span class="st">"gear"</span>, <span class="at">cols =</span> <span class="st">"carb"</span>, <span class="at">data =</span> <span class="st">"mpg"</span>,</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">pivot_table =</span> <span class="st">"mtcars3"</span></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">$</span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_slicer</span>(<span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"A12:D16"</span>, <span class="at">slicer =</span> <span class="st">"vs"</span>, <span class="at">pivot_table =</span> <span class="st">"mtcars3"</span>)</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co">### Sheet 1</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">varname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"vs"</span>, <span class="st">"drat"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Sheet 2</span></span>
+<span><span class="va">wb</span><span class="op">$</span></span>
+<span>  <span class="co"># first pivot</span></span>
+<span>  <span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, slicer <span class="op">=</span> <span class="va">varname</span>, rows <span class="op">=</span> <span class="st">"cyl"</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
+<span>    pivot_table <span class="op">=</span> <span class="st">"mtcars"</span></span>
+<span>  <span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_slicer</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, sheet <span class="op">=</span> <span class="fu">current_sheet</span><span class="op">(</span><span class="op">)</span>, slicer <span class="op">=</span> <span class="st">"vs"</span>, pivot_table <span class="op">=</span> <span class="st">"mtcars"</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_slicer</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"B18:D24"</span>, sheet <span class="op">=</span> <span class="fu">current_sheet</span><span class="op">(</span><span class="op">)</span>, slicer <span class="op">=</span> <span class="st">"drat"</span>, pivot_table <span class="op">=</span> <span class="st">"mtcars"</span>,</span>
+<span>             params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>columnCount <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="co"># second pivot</span></span>
+<span>  <span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"G3"</span>, sheet <span class="op">=</span> <span class="fu">current_sheet</span><span class="op">(</span><span class="op">)</span>, slicer <span class="op">=</span> <span class="va">varname</span>, rows <span class="op">=</span> <span class="st">"gear"</span>, cols <span class="op">=</span> <span class="st">"carb"</span>, data <span class="op">=</span> <span class="st">"mpg"</span>,</span>
+<span>    pivot_table <span class="op">=</span> <span class="st">"mtcars2"</span></span>
+<span>  <span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_slicer</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"G12:I16"</span>, slicer <span class="op">=</span> <span class="st">"vs"</span>, pivot_table <span class="op">=</span> <span class="st">"mtcars2"</span>,</span>
+<span>             params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sortOrder <span class="op">=</span> <span class="st">"descending"</span>, caption <span class="op">=</span> <span class="st">"Wow!"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Sheet 3</span></span>
+<span><span class="va">wb</span><span class="op">$</span></span>
+<span>  <span class="fu">add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, slicer <span class="op">=</span> <span class="va">varname</span>, rows <span class="op">=</span> <span class="st">"gear"</span>, cols <span class="op">=</span> <span class="st">"carb"</span>, data <span class="op">=</span> <span class="st">"mpg"</span>,</span>
+<span>    pivot_table <span class="op">=</span> <span class="st">"mtcars3"</span></span>
+<span>  <span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_slicer</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A12:D16"</span>, slicer <span class="op">=</span> <span class="st">"vs"</span>, pivot_table <span class="op">=</span> <span class="st">"mtcars3"</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="choosing-variable-filters" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="choosing-variable-filters"><span class="header-section-number">8.3</span> Choosing variable filters</h2>
+</section><section id="choosing-variable-filters" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="choosing-variable-filters">
+<span class="header-section-number">8.3</span> Choosing variable filters</h2>
 <p>Using the <code>choose</code> param argument it is possible to select subsets of the data. The code looks like this: <code>choose = c(agegp = 'x &gt; "25-34"')</code>. The variable name as seen in the <code>wb_data()</code> object, <code>x</code> is mandatory and some expression that R understands. This can be something like <code>%in%</code>, <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, or <code>!=</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"table"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_worksheet</span>(<span class="st">"data"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_data</span>(<span class="at">x =</span> datasets<span class="sc">::</span>esoph)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add a pivot table and a slicer and preselect</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># a few cases and style it a bit</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> wb <span class="sc">%&gt;%</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_pivot_table</span>(</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    df, <span class="at">dims =</span> <span class="st">"A3"</span>, <span class="at">sheet =</span> <span class="st">"table"</span>,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">rows =</span> <span class="st">"agegp"</span>, <span class="at">cols =</span> <span class="st">"tobgp"</span>, <span class="at">data =</span> <span class="st">"ncases"</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">slicer =</span> <span class="st">"alcgp"</span>, <span class="at">pivot_table =</span> <span class="st">"pt1"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">param =</span> <span class="fu">list</span>(</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_data_as =</span> <span class="fu">c</span>(<span class="st">"percentOfRow"</span>),</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">numfmt =</span> <span class="fu">c</span>(<span class="at">formatCode =</span> <span class="st">"0.0%"</span>),</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">compact =</span> <span class="cn">FALSE</span>, <span class="at">outline =</span> <span class="cn">FALSE</span>, <span class="at">compact_data =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">row_grand_totals =</span> <span class="cn">FALSE</span>, <span class="at">col_grand_totals =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">choose =</span> <span class="fu">c</span>(<span class="at">agegp =</span> <span class="st">'x &gt; "25-34"'</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wb_add_slicer</span>(</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> df, <span class="at">dims =</span> <span class="st">"B14:D18"</span>, </span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">slicer =</span> <span class="st">"alcgp"</span>, <span class="at">pivot_table =</span> <span class="st">"pt1"</span>, </span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">param =</span> <span class="fu">list</span>(</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">columnCount =</span> <span class="dv">2</span>,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">choose =</span> <span class="fu">c</span>(<span class="at">alcgp =</span> <span class="st">'x %in% c("40-79", "80-119")'</span>)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/esoph.html">esoph</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add a pivot table and a slicer and preselect</span></span>
+<span><span class="co"># a few cases and style it a bit</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
+<span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, sheet <span class="op">=</span> <span class="st">"table"</span>,</span>
+<span>    rows <span class="op">=</span> <span class="st">"agegp"</span>, cols <span class="op">=</span> <span class="st">"tobgp"</span>, data <span class="op">=</span> <span class="st">"ncases"</span>,</span>
+<span>    slicer <span class="op">=</span> <span class="st">"alcgp"</span>, pivot_table <span class="op">=</span> <span class="st">"pt1"</span>,</span>
+<span>    param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      show_data_as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"percentOfRow"</span><span class="op">)</span>,</span>
+<span>      numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"0.0%"</span><span class="op">)</span>,</span>
+<span>      compact <span class="op">=</span> <span class="cn">FALSE</span>, outline <span class="op">=</span> <span class="cn">FALSE</span>, compact_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      row_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>, col_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>agegp <span class="op">=</span> <span class="st">'x &gt; "25-34"'</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">wb_add_slicer</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"B14:D18"</span>, </span>
+<span>    slicer <span class="op">=</span> <span class="st">"alcgp"</span>, pivot_table <span class="op">=</span> <span class="st">"pt1"</span>, </span>
+<span>    param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      columnCount <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>alcgp <span class="op">=</span> <span class="st">'x %in% c("40-79", "80-119")'</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/pt_pivot_slicers.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/pt_pivot_slicers.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="final-remarks" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="final-remarks"><span class="header-section-number">8.4</span> Final remarks</h2>
+</section><section id="final-remarks" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="final-remarks">
+<span class="header-section-number">8.4</span> Final remarks</h2>
 <p>As of now it is not possible to add charts to pivot tables. This would require pivot table evaluation to construct the <code>wb_data()</code> object to use for and access to the area where the pivot table is stored on the sheet.</p>
-<p>It is always a good idea to check that the constructed pivot table and the expected pivot table match. Either construct the pivot table manually or as shown here via <code>{pivottabler}</code> or maybe with either <code>{data.table}</code> or <code>{dplyr}</code>. It is a little tricky for <code>openxlsx2</code> to check if the pivot table works, when we have no real way to validate that it does.</p>
+<p>It is always a good idea to check that the constructed pivot table and the expected pivot table match. Either construct the pivot table manually or as shown here via <a href="http://www.pivottabler.org.uk/">pivottabler</a> or maybe with either <a href="https://r-datatable.com">data.table</a> or <a href="https://dplyr.tidyverse.org">dplyr</a>. It is a little tricky for <code>openxlsx2</code> to check if the pivot table works, when we have no real way to validate that it does.</p>
 <p>There are still missing features such as <code>timelines</code> and it is currently not possible to calculate fields in pivot tables. Please note that this is also not something we are currently developing.</p>
 
 
@@ -715,16 +680,10 @@ div.csl-indent {
 ECMA-376-1. 2016. <em>Office Open XML File Formats — Fundamentals and Markup Language Reference</em>.
 </div>
 </div>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>It should be possible to integrate results similar to <code>pivottabler</code> into <code>wb_add_pivot_table()</code> so that you should be able to have evaluated pivot tables straight ahead. Pull requests are welcome.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1110,10 +1069,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../chapters/openxlsx2_formulas_manual.html" class="pagination-link  aria-label=" &lt;span="" formulas&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../chapters/openxlsx2_formulas_manual.html" class="pagination-link  aria-label=" formulas="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span>
       </a>          
   </div>
@@ -1124,7 +1081,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>The openxlsx2 book - 10&nbsp; Form control</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -74,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,16 +97,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -122,13 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The <code>openxlsx2</code> book</a> 
         <div class="sidebar-tools-main">
@@ -148,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -239,19 +225,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Form control</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Form control</span>
+</h1>
 </div>
 
 
@@ -265,56 +249,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Checkbox</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B2"</span>)<span class="sc">$</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B3"</span>, <span class="at">text =</span> <span class="st">"A text"</span>)<span class="sc">$</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A4"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B4"</span>, <span class="at">link =</span> <span class="st">"A4"</span>)<span class="sc">$</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A5"</span>, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B5"</span>, <span class="at">range =</span> <span class="st">"'Sheet 1'!A5"</span>, <span class="at">link =</span> <span class="st">"B5"</span>)<span class="sc">$</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Radio</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B2"</span>, <span class="at">type =</span> <span class="st">"Radio"</span>)<span class="sc">$</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B3"</span>, <span class="at">type =</span> <span class="st">"Radio"</span>, <span class="at">text =</span> <span class="st">"A text"</span>)<span class="sc">$</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A4"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B4"</span>, <span class="at">type =</span> <span class="st">"Radio"</span>, <span class="at">link =</span> <span class="st">"A4"</span>)<span class="sc">$</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A5"</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B5"</span>, <span class="at">type =</span> <span class="st">"Radio"</span>)<span class="sc">$</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Drop</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B2"</span>, <span class="at">type =</span> <span class="st">"Drop"</span>)<span class="sc">$</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B3"</span>, <span class="at">type =</span> <span class="st">"Drop"</span>, <span class="at">text =</span> <span class="st">"A text"</span>)<span class="sc">$</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A4"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B4"</span>, <span class="at">type =</span> <span class="st">"Drop"</span>, <span class="at">link =</span> <span class="st">"A1"</span>, <span class="at">range =</span> <span class="st">"D4:D15"</span>)<span class="sc">$</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"A5"</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">colNames =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_form_control</span>(<span class="at">dims =</span> <span class="st">"B5"</span>, <span class="at">type =</span> <span class="st">"Drop"</span>, <span class="at">link =</span> <span class="st">"'Sheet 3'!D1:D26"</span>, <span class="at">range =</span> <span class="st">"A1"</span>)<span class="sc">$</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_data</span>(<span class="at">dims =</span> <span class="st">"D1"</span>, <span class="at">x =</span> letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</header><div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="co"># Checkbox</span></span>
+<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, link <span class="op">=</span> <span class="st">"A4"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="cn">TRUE</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, range <span class="op">=</span> <span class="st">"'Sheet 1'!A5"</span>, link <span class="op">=</span> <span class="st">"B5"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="co"># Radio</span></span>
+<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, link <span class="op">=</span> <span class="st">"A4"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="co"># Drop</span></span>
+<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Drop"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"A1"</span>, range <span class="op">=</span> <span class="st">"D4:D15"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"'Sheet 3'!D1:D26"</span>, range <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"D1"</span>, x <span class="op">=</span> <span class="va">letters</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/fc_01.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/fc_01.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/fc_02.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/fc_02.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/fc_03.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/fc_03.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -322,8 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -709,10 +686,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../chapters/openxlsx2_data_validation.html" class="pagination-link  aria-label=" &lt;span="" validation&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../chapters/openxlsx2_data_validation.html" class="pagination-link  aria-label=" validation="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Validation</span></span>
       </a>          
   </div>
@@ -723,7 +698,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

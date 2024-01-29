@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>The openxlsx2 book - 11&nbsp; Cloning and copying</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -74,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,16 +97,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -122,13 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The <code>openxlsx2</code> book</a> 
         <div class="sidebar-tools-main">
@@ -148,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -239,26 +225,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#copying-cells" id="toc-copying-cells" class="nav-link active" data-scroll-target="#copying-cells"><span class="header-section-number">11.1</span> Copying cells</a></li>
+<li><a href="#copying-cells" id="toc-copying-cells" class="nav-link active" data-scroll-target="#copying-cells"><span class="header-section-number">11.1</span> Copying cells</a></li>
   <li><a href="#cloning-worksheets" id="toc-cloning-worksheets" class="nav-link" data-scroll-target="#cloning-worksheets"><span class="header-section-number">11.2</span> Cloning worksheets</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_clone_and_copy.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_clone_and_copy.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span>
+</h1>
 </div>
 
 
@@ -272,62 +254,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>When using <code>openxlsx2</code> there are multiple ways to modify the workbook including various ways to copy and clone sheets, cells and styles.</p>
-<section id="copying-cells" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="copying-cells"><span class="header-section-number">11.1</span> Copying cells</h2>
+</header><p>When using <code>openxlsx2</code> there are multiple ways to modify the workbook including various ways to copy and clone sheets, cells and styles.</p>
+<section id="copying-cells" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="copying-cells">
+<span class="header-section-number">11.1</span> Copying cells</h2>
 <p>It is possible to copy cells into different regions of the worksheet using <code>wb_copy_cells()</code>. There are three ways to copy cells: (1) as is, including styles, (2) as value replacing all formulas and (3) as reference to the cell origin. This can be seen in the following image, the transposed cell contains a formula pointing to the original cell.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mm <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">2</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">wb_workbook</span>()<span class="sc">$</span><span class="fu">add_worksheet</span>()<span class="sc">$</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_data</span>(<span class="at">x =</span> mm, <span class="at">col_names =</span> <span class="cn">FALSE</span>)<span class="sc">$</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_fill</span>(<span class="at">dims =</span> <span class="st">"A1:C1"</span>, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">5</span>))<span class="sc">$</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_fill</span>(<span class="at">dims =</span> <span class="st">"A2:C2"</span>, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">3</span>))<span class="sc">$</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_fill</span>(<span class="at">dims =</span> <span class="st">"A3:C3"</span>, <span class="at">color =</span> <span class="fu">wb_color</span>(<span class="at">theme =</span> <span class="dv">4</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(wb, <span class="at">dims =</span> <span class="st">"A1:C3"</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"E1"</span>, <span class="at">data =</span> dat)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"E5"</span>, <span class="at">data =</span> dat, <span class="at">as_value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"E9"</span>, <span class="at">data =</span> dat, <span class="at">as_ref   =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"I1"</span>, <span class="at">data =</span> dat, <span class="at">transpose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"I5"</span>, <span class="at">data =</span> dat, <span class="at">transpose =</span> <span class="cn">TRUE</span>, <span class="at">as_value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">copy_cells</span>(<span class="at">dims =</span> <span class="st">"I9"</span>, <span class="at">data =</span> dat, <span class="at">transpose =</span> <span class="cn">TRUE</span>, <span class="at">as_ref   =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) wb<span class="sc">$</span><span class="fu">open</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mm</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:C1"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A2:C2"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A3:C3"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="st">"A1:C3"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"E1"</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"E5"</span>, data <span class="op">=</span> <span class="va">dat</span>, as_value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"E9"</span>, data <span class="op">=</span> <span class="va">dat</span>, as_ref   <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"I1"</span>, data <span class="op">=</span> <span class="va">dat</span>, transpose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"I5"</span>, data <span class="op">=</span> <span class="va">dat</span>, transpose <span class="op">=</span> <span class="cn">TRUE</span>, as_value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">copy_cells</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"I9"</span>, data <span class="op">=</span> <span class="va">dat</span>, transpose <span class="op">=</span> <span class="cn">TRUE</span>, as_ref   <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="../img/copy_cells.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/copy_cells.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="cloning-worksheets" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="cloning-worksheets"><span class="header-section-number">11.2</span> Cloning worksheets</h2>
+</section><section id="cloning-worksheets" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="cloning-worksheets">
+<span class="header-section-number">11.2</span> Cloning worksheets</h2>
 <p>Sometimes it is not enough to copy a cell range, sometimes you need to copy entire worksheets. This can be done using <code>wb_clone_worksheet()</code>. You can clone a worksheet in a workbook, but also across workbooks, though the first option is simpler and might provide more features. Cloning worksheets around that contain (pivot) tables and slicers for instance might be impossible and some other features of the workbook might also not be present. In addition it is not guaranteed that a clone will look identical to the original worksheet if relative theme colors are used. As always, be careful if you use this feature and test that it works, before you start cloning production worksheets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fl <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"oxlsx2_sheet.xlsx"</span>, <span class="at">package =</span> <span class="st">"openxlsx2"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wb_from <span class="ot">&lt;-</span> <span class="fu">wb_load</span>(fl)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clone worksheet from SUM to NOT_SUM</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>wb_from<span class="sc">$</span><span class="fu">clone_worksheet</span>(<span class="at">old =</span> <span class="st">"SUM"</span>, <span class="at">new =</span> <span class="st">"NOT_SUM"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># clone worksheet across workbooks including styles and shared strings</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>wb<span class="sc">$</span><span class="fu">clone_worksheet</span>(<span class="at">old =</span> <span class="st">"SUM"</span>, <span class="at">new =</span> <span class="st">"SUM"</span>, <span class="at">from =</span> wb_from)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"oxlsx2_sheet.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
+<span><span class="va">wb_from</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># clone worksheet from SUM to NOT_SUM</span></span>
+<span><span class="va">wb_from</span><span class="op">$</span><span class="fu">clone_worksheet</span><span class="op">(</span>old <span class="op">=</span> <span class="st">"SUM"</span>, new <span class="op">=</span> <span class="st">"NOT_SUM"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># clone worksheet across workbooks including styles and shared strings</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">clone_worksheet</span><span class="op">(</span>old <span class="op">=</span> <span class="st">"SUM"</span>, new <span class="op">=</span> <span class="st">"SUM"</span>, from <span class="op">=</span> <span class="va">wb_from</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -713,10 +687,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../chapters/openxlsx2_form_control.html" class="pagination-link  aria-label=" &lt;span="" control&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../chapters/openxlsx2_form_control.html" class="pagination-link  aria-label=" control="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Form control</span></span>
       </a>          
   </div>
@@ -727,7 +699,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
