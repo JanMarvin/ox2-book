@@ -1,4 +1,3 @@
-Type: Package
 Package: The openxlsx2 book
 Title: Read, Write and Edit 'xlsx' Files
 Version: 999.9.9
@@ -6,6 +5,7 @@ Language: en-US
 Authors@R: openxlsx2-authors
 Description: Creates the openxlsx2 book
 License: MIT + file LICENSE
+URL: https://github.com/JanMarvin/ox2-book
 Imports:
     R6,
     Rcpp,
