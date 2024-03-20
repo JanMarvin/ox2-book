@@ -69,7 +69,7 @@ wb$add_worksheet("add_plot")$
 knitr::include_graphics("../img/chrt_ggplot2.png")
 ```
 
-## Adding plots via `{rvg}`
+## Adding plots via `{rvg}` or `{devEMF}`
 
 If you want vector graphics that can be modified in spreadsheet software the `dml_xlsx()` device comes in handy. You can pass the output via `wb_add_drawing()`.
 
@@ -95,6 +95,23 @@ wb$add_worksheet("add_drawing")$
 #| fig-cap: "An rvg chart is a vector graphic that can be modified in spreadsheet software (this screenshot differs from the code above as the second chart below has been removed)"
 knitr::include_graphics("../img/chrt_rvg.png")
 ```
+
+```{r}
+library(devEMF)
+
+tmp_emf <- tempfile(fileext = ".emf")
+devEMF::emf(file = tmp_emf)
+ggplot(data = iris,
+       mapping = aes(x = Sepal.Length, y = Petal.Width)) +
+  geom_point()
+dev.off()
+
+# Add rvg to the workbook
+wb$add_worksheet("add_emf")$
+  add_drawing(dims = "A1:D4", xml = tmp)$
+  add_image(dims = "E1:H4", file = tmp_emf)
+```
+
 
 ## Adding `{mschart}` plots
 

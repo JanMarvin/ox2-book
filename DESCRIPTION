@@ -17,22 +17,23 @@ Imports:
 LinkingTo:
     Rcpp
 Suggests:
+    devEMF,
     downlit,
     flexlsx,
     flextable,
     ggplot2,
+    hms,
     knitr,
-    mschart (>= 0.4),
+    labelled,
+    mschart,
     msoc,
     pivottabler,
     quarto,
     ragg,
     rmarkdown,
     rvg,
-    testthat (>= 3.0.0),
-    waldo,
-    labelled,
-    hms
+    testthat,
+    waldo
 VignetteBuilder:
     knitr
 Encoding: UTF-8
