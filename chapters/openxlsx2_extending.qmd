@@ -8,8 +8,6 @@ knitr::opts_chunk$set(
 set.seed(123)
 ```
 
-
-
 ```{r setup}
 library(openxlsx2)
 ```
@@ -39,7 +37,6 @@ decrypt(xlsx, xlsx, pass = "msoc")
 wb_load(xlsx)$to_df() %>% head()
 ```
 
-
 ## `flexlsx` - Exporting `flextable` to workbooks
 
 Using `flexlsx` [@flexlsx] you can extend `openxlsx2` to write `flextable`[@flextable].
@@ -58,4 +55,3 @@ wb <- flexlsx::wb_add_flextable(wb, "mtcars", ft, dims = "C2")
 
 if (interactive()) wb$open()
 ```
-

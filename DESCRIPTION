@@ -39,4 +39,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Remotes:
     JanMarvin/msoc,
-    pteridin/flexlsx
+    pteridin/flexlsx#21
