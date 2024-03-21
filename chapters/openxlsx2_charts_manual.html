@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.551">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>The openxlsx2 book - 6&nbsp; Charts</title>
 <style>
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#adding-a-chart-as-an-image-to-a-workbook" id="toc-adding-a-chart-as-an-image-to-a-workbook" class="nav-link active" data-scroll-target="#adding-a-chart-as-an-image-to-a-workbook"><span class="header-section-number">6.1</span> Adding a chart as an image to a workbook</a></li>
   <li><a href="#adding-ggplot2-plots-to-a-workbook" id="toc-adding-ggplot2-plots-to-a-workbook" class="nav-link" data-scroll-target="#adding-ggplot2-plots-to-a-workbook"><span class="header-section-number">6.2</span> Adding <code>{ggplot2}</code> plots to a workbook</a></li>
-  <li><a href="#adding-plots-via-rvg" id="toc-adding-plots-via-rvg" class="nav-link" data-scroll-target="#adding-plots-via-rvg"><span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code></a></li>
+  <li><a href="#adding-plots-via-rvg-or-devemf" id="toc-adding-plots-via-rvg-or-devemf" class="nav-link" data-scroll-target="#adding-plots-via-rvg-or-devemf"><span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code> or <code>{devEMF}</code></a></li>
   <li>
 <a href="#adding-mschart-plots" id="toc-adding-mschart-plots" class="nav-link" data-scroll-target="#adding-mschart-plots"><span class="header-section-number">6.4</span> Adding <code>{mschart}</code> plots</a>
   <ul class="collapse">
@@ -320,8 +320,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="adding-plots-via-rvg" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="adding-plots-via-rvg">
-<span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code>
+</section><section id="adding-plots-via-rvg-or-devemf" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="adding-plots-via-rvg-or-devemf">
+<span class="header-section-number">6.3</span> Adding plots via <code>{rvg}</code> or <code>{devEMF}</code>
 </h2>
 <p>If you want vector graphics that can be modified in spreadsheet software the <code><a href="https://davidgohel.github.io/rvg/reference/dml_xlsx.html">dml_xlsx()</a></code> device comes in handy. You can pass the output via <code>wb_add_drawing()</code>.</p>
 <div class="cell">
@@ -349,6 +349,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/plfjohnson/devEMF">devEMF</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tmp_emf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".emf"</span><span class="op">)</span></span>
+<span><span class="fu">devEMF</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devEMF/man/emf.html">emf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp_emf</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">iris</span>,</span>
+<span>       mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sepal.Length</span>, y <span class="op">=</span> <span class="va">Petal.Width</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): devEMF: your</span></span>
+<span><span class="co">#&gt; system substituted font family 'Nimbus Sans' when you requested 'Helvetica'</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): devEMF: your</span></span>
+<span><span class="co">#&gt; system substituted font family 'Nimbus Sans' when you requested 'Helvetica'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; png </span></span>
+<span><span class="co">#&gt;   2</span></span>
+<span></span>
+<span><span class="co"># Add rvg to the workbook</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"add_emf"</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_drawing</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:D4"</span>, xml <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_image</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"E1:H4"</span>, file <span class="op">=</span> <span class="va">tmp_emf</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="adding-mschart-plots" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="adding-mschart-plots">
 <span class="header-section-number">6.4</span> Adding <code>{mschart}</code> plots</h2>
 <p>If you want native open xml charts, have a look at <a href="https://ardata-fr.github.io/officeverse/">mschart</a>. Create one of the chart files and pass it to the workbook with <code>wb_add_mschart()</code>.</p>
@@ -360,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="add-chart-and-data" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="add-chart-and-data">
 <span class="header-section-number">6.4.1</span> Add chart and data</h3>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">mschart</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">mschart</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## create chart from mschart object (this creates new input data)</span></span>
 <span><span class="va">mylc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ardata-fr.github.io/mschart/reference/ms_linechart.html">ms_linechart</a></span><span class="op">(</span></span>
@@ -385,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </h3>
 <p>These are native spreadsheet charts that are dynamic in terms of the data visible on the sheet. It is therefore possible to hide columns or rows of the data, e.g.&nbsp;with groups, so that the chart shows more data when a group is expanded.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## create chart referencing worksheet cells as input</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## create chart referencing worksheet cells as input</span></span>
 <span><span class="co"># write data starting at B2</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"add_mschart - wb_data"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span><span class="op">$</span></span>
@@ -440,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">6.4.3</span> Add and fill a chartsheet</h3>
 <p>Finally it is possible to add <code>mschart</code> charts on a so called chartsheet. These are special sheets that contain only a chart object, referencing data from another sheet.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">wb_add_chartsheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -534,6 +556,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/janmarvin\.github\.io\/ox2-book\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -568,7 +608,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -842,12 +886,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../chapters/conditional-formatting.html" class="pagination-link  aria-label=" formatting="" databars="" and="" sparklines="">
+      <a href="../chapters/conditional-formatting.html" class="pagination-link" aria-label="Conditional Formatting, Databars, and Sparklines">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/openxlsx2_formulas_manual.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Spreadsheet formulas</span>">
+      <a href="../chapters/openxlsx2_formulas_manual.html" class="pagination-link" aria-label="Spreadsheet formulas">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
