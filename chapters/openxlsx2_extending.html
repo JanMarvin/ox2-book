@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.554">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>The openxlsx2 book - 13&nbsp; Extending openxlsx2</title>
 <style>
@@ -290,15 +290,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpPFbBWG/temp_xlsx_214734886fd5.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpPFbBWG/temp_xlsx_214734886fd5.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpPFbBWG/temp_xlsx_214734886fd5.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -312,7 +312,7 @@ div.csl-indent {
 </div>
 </section><section id="flexlsx---exporting-flextable-to-workbooks" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="flexlsx---exporting-flextable-to-workbooks">
 <span class="header-section-number">13.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</h2>
-<p>Using <code>flexlsx</code> <span class="citation" data-cites="flexlsx">(<a href="../references.html#ref-flexlsx" role="doc-biblioref">Heidler 2023</a>)</span> you can extend <code>openxlsx2</code> to write <code>flextable</code><span class="citation" data-cites="flextable">(<a href="../references.html#ref-flextable" role="doc-biblioref">Gohel and Skintzos 2023</a>)</span>.</p>
+<p>Using <code>flexlsx</code> <span class="citation" data-cites="flexlsx">(<a href="../references.html#ref-flexlsx" role="doc-biblioref">Heidler 2024</a>)</span> you can extend <code>openxlsx2</code> to write <code>flextable</code><span class="citation" data-cites="flextable">(<a href="../references.html#ref-flextable" role="doc-biblioref">Gohel and Skintzos 2023</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pteridin/flexlsx">flexlsx</a></span><span class="op">)</span></span>
 <span></span>
@@ -337,7 +337,7 @@ Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office Open Xml Fi
 Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.
 </div>
 <div id="ref-flexlsx" class="csl-entry" role="listitem">
-Heidler, Tobias. 2023. <em>Flexlsx: Exporting Flextables to Excel</em>. <a href="https://github.com/pteridin/flexlsx">https://github.com/pteridin/flexlsx</a>.
+Heidler, Tobias. 2024. <em>Flexlsx: Exporting ’Flextable’ to ’Xlsx’ Files</em>. <a href="https://github.com/pteridin/flexlsx">https://github.com/pteridin/flexlsx</a>.
 </div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
