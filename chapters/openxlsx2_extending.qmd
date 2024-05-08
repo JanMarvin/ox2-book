@@ -39,19 +39,26 @@ wb_load(xlsx)$to_df() %>% head()
 
 ## `flexlsx` - Exporting `flextable` to workbooks
 
-Using `flexlsx` [@flexlsx] you can extend `openxlsx2` to write `flextable`[@flextable].
+Using `flexlsx` [@flexlsx] you can extend `openxlsx2` to write `flextable` objects [@flextable] to spreadsheets. Various styling options are supported. A detailed description how to create flextables is given in the flextable book (a link is in the bibliography).
 
 ```{r}
+#| output: false
 library(flexlsx)
 
-wb <- wb_workbook()$add_worksheet("mtcars")
+wb <- wb_workbook()$add_worksheet("mtcars", grid_lines = FALSE)
 
 # Create a flextable and an openxlsx2 workbook
-ft <- flextable::as_flextable(table(mtcars[,1:2]))
+ft <- flextable::as_flextable(table(mtcars[2:5 , 1:2]))
+ft
 
 # add the flextable ft to the workbook, sheet "mtcars"
 # offset the table to cell 'C2'
 wb <- flexlsx::wb_add_flextable(wb, "mtcars", ft, dims = "C2")
 
 if (interactive()) wb$open()
+```
+
+```{r echo=FALSE, warning=FALSE}
+#| fig-cap: "The flextable written as xlsx file and as image"
+knitr::include_graphics("../img/ex_flextable.png")
 ```
