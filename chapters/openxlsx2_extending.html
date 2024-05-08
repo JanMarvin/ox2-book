@@ -290,15 +290,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpLrQfeq/temp_xlsx_1e3140d5ec99.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpLrQfeq/temp_xlsx_1e3140d5ec99.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpCBZPZo/temp_xlsx_216fa4c35af.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpLrQfeq/temp_xlsx_1e3140d5ec99.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -312,20 +312,29 @@ div.csl-indent {
 </div>
 </section><section id="flexlsx---exporting-flextable-to-workbooks" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="flexlsx---exporting-flextable-to-workbooks">
 <span class="header-section-number">13.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</h2>
-<p>Using <code>flexlsx</code> <span class="citation" data-cites="flexlsx">(<a href="../references.html#ref-flexlsx" role="doc-biblioref">Heidler 2024</a>)</span> you can extend <code>openxlsx2</code> to write <code>flextable</code><span class="citation" data-cites="flextable">(<a href="../references.html#ref-flextable" role="doc-biblioref">Gohel and Skintzos 2023</a>)</span>.</p>
+<p>Using <code>flexlsx</code> <span class="citation" data-cites="flexlsx">(<a href="../references.html#ref-flexlsx" role="doc-biblioref">Heidler 2024</a>)</span> you can extend <code>openxlsx2</code> to write <code>flextable</code> objects <span class="citation" data-cites="flextable">(<a href="../references.html#ref-flextable" role="doc-biblioref">Gohel and Skintzos 2023</a>)</span> to spreadsheets. Various styling options are supported. A detailed description how to create flextables is given in the flextable book (a link is in the bibliography).</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pteridin/flexlsx">flexlsx</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"mtcars"</span>, grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create a flextable and an openxlsx2 workbook</span></span>
-<span><span class="va">ft</span> <span class="op">&lt;-</span> <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/as_flextable.html">as_flextable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ft</span> <span class="op">&lt;-</span> <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/as_flextable.html">as_flextable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span> , <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ft</span></span>
 <span></span>
 <span><span class="co"># add the flextable ft to the workbook, sheet "mtcars"</span></span>
 <span><span class="co"># offset the table to cell 'C2'</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">flexlsx</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/flexlsx/man/wb_add_flextable.html">wb_add_flextable</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"mtcars"</span>, <span class="va">ft</span>, dims <span class="op">=</span> <span class="st">"C2"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../img/ex_flextable.png" class="img-fluid figure-img"></p>
+<figcaption>The flextable written as xlsx file and as image</figcaption></figure>
+</div>
+</div>
 </div>
 
 
