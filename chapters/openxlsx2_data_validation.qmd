@@ -9,12 +9,22 @@ knitr::opts_chunk$set(
 )
 ```
 
+Contrary to R objects like vectors or data frames, spreadsheets can contain various types of data in any type of order. A string followed by a date and a formula is not uncommon in spreadsheets. Thankfully even spreadsheets provide a tool to validate some input. This is called data validation. A tool that enhances data integrity and accuracy. By setting specific criteria and constraints for data entry, users can ensure that the data entered into cells meets predefined standards and rules. These rules apply to cells that expect data entry as well as cells that already contain data. Using data validation can help to prevent errors, maintain consistency, and streamline data even in a flexible environment such as a spreadsheet. Key aspects of data validation include creating drop-down lists for easy selection, applying date and number constraints to ensure appropriate data ranges, and using custom formulas to enforce complex validation rules. Understanding and implementing data validation can protect the user from otherwise hard to spot mistakes.
+
+We begin with a small dataset that we want to test with data validation.
+
 ```{r}
 df <- data.frame(
   "d" = as.Date("2016-01-01") + -5:5,
   "t" = as.POSIXct("2016-01-01") + -5:5 * 10000
 )
+```
 
+## Checking numeric ranges and text lengths
+
+In the next two code snippets we are going to check for a specific `type` of data, if a condition defined by `operator` is met for a selection or range of `values`. We construct a workbook that will be filled with four sheets of data tables and data validation for the workbook.
+
+```{r}
 wb <- wb_workbook()$
   add_worksheet("Sheet 1")$
   add_data_table(x = iris)$
@@ -25,8 +35,21 @@ wb <- wb_workbook()$
   # text width 7-9 is fine
   add_data_validation(dims = "E2:E151", type = "textLength",
                       operator = "between", value = c(7, 9)
-  )$
-  ## Date and Time cell validation
+  )
+```
+
+In the screenshot below, the green flag in the top left corner indicates a warning thrown by the data validation rule implemented.
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/dv_sheet1.png")
+```
+
+## Date and Time cell validation
+
+In the code below we use a new data operator `greaterThanOrEqual`, all operators can be found in the documentation for `wb_add_data_validation()`. Here we add checks for a specific date and a range of timestamps that are allowed.
+
+```{r}
+wb$
   add_worksheet("Sheet 2")$
   add_data_table(x = df)$
   # date >= 2016-01-01 is fine
@@ -36,8 +59,22 @@ wb <- wb_workbook()$
   # a few timestamps are fine
   add_data_validation(dims = "B2:B12", type = "time",
                       operator = "between", value = df$t[c(4, 8)]
-  )$
-  ## validate list: validate inputs on one sheet with another
+  )
+
+```
+
+There are many warnings in here too.
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/dv_sheet2.png")
+```
+
+## validate list: validate inputs on one sheet with another
+
+In the code below we create a sample list from the `iris` dataset on `Sheet 4` and reference this a list options for column `A` on `Sheet 3`. Our references do not have to be from the same dataset, it can be anything else. This helps, if you do not want to store the values in the `wb_add_data_validation()` step and or want to be able to quickly adjust the possible values.
+
+```{r}
+wb$
   add_worksheet("Sheet 3")$
   add_data_table(x = iris[1:30, ])$
   add_worksheet("Sheet 4")$
@@ -46,21 +83,28 @@ wb <- wb_workbook()$
                       value = "'Sheet 4'!$A$1:$A$10")
 ```
 
+Below is the drop down list and the input used to populate it.
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/dv_sheet3.png")
+knitr::include_graphics("../img/dv_sheet4.png")
+```
+
+## validate list: validate inputs with values
+
+In the code below we create drop down lists for values directly passed to `wb_add_data_validation()`. In the upper cell range options `"O1"` and `"O2"` are available, in the lower cell range `"O2"` and `"O3"`. Using values directly is helpful if there are only a few values and it is not required to provide a list of values on a spreadsheet. 
 
 ```{r}
-
-  s1 <- create_sparklines("Sheet 1", "A3:K3", "L3")
-  s2 <- create_sparklines("Sheet 1", "A4:K4", "L4")
-
   wb <- wb_workbook()$
     add_worksheet()$add_data(x = iris[1:30, ])$
     add_worksheet()$add_data(sheet = 2, x = sample(iris$Sepal.Length, 10))$
     add_data_validation(sheet = 1, dims = "A2:A11", type = "list", value = '"O1,O2"')$
-    add_sparklines(sheet = 1, sparklines = s1)$
-    add_data_validation(sheet = 1, dims = "A12:A21", type = "list", value = '"O2,O3"')$
-    add_sparklines(sheet = 1, sparklines = s2)
+    add_data_validation(sheet = 1, dims = "A12:A21", type = "list", value = '"O2,O3"')
 ```
 
+## Examples combining data validation and formulas
+
+### Example 1: hyperlink to selected value
 ```{r}
   formula_old <- '=HYPERLINK("#Tab_1!" &amp; CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
   formula_new <- '=HYPERLINK("#Tab_1!" & CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
@@ -74,8 +118,8 @@ wb <- wb_workbook()$
     add_formula(dims = "B2", x = formula_new)
 ```
 
+### Example 2: create hyperlink to github
 ```{r}
-
   wb <- wb_workbook()$
     add_worksheet("Tab_1", zoom = 80, gridLines = FALSE)$
     add_data(dims = "C1:F1", x = rbind(2016:2019), colNames = FALSE)$
@@ -84,4 +128,3 @@ wb <- wb_workbook()$
     add_formula(dims = "B1", x = '=HYPERLINK("#Tab_1!" & CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")')$
     add_formula(dims = "B2", x = '=IF(2017 = VALUE(A1), HYPERLINK("github.com","github.com"), A1)')
 ```
-
