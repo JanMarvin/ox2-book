@@ -215,7 +215,7 @@ wb$add_data("test", df)
 ```
 
 ```{r echo=FALSE, warning=FALSE, out.width="100%"}
-knitr::include_graphics("../img/worksheet_builtin_styles.png")
+knitr::include_graphics("../img/worksheet_builtin_styles2.png")
 ```
 
 ```{r}
