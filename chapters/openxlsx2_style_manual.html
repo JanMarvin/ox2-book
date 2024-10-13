@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_basic_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from openxlsx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from <code>openxlsx</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -518,14 +518,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">cols_1</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
 <span><span class="va">cols_2</span> <span class="op">&lt;-</span> <span class="st">"G:L"</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_1</span>, widths <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_1</span>, widths <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_2</span>, widths <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="wb_set_row_heigths" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="wb_set_row_heigths">
 <span class="header-section-number">4.3.2</span> wb_set_row_heigths</h3>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">wb_set_row_heights</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, heights <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="adding-borders" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="adding-borders">
@@ -709,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">4.7</span> Style strings</h2>
 <p>Using <code>fmt_txt()</code> is possible to style strings independently of the cell containing the string.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">txt</span> <span class="op">&lt;-</span> </span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">txt</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"Embracing the full potential of "</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"openxlsx2"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">" with "</span><span class="op">)</span> <span class="op">+</span></span>
@@ -951,27 +951,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  </span>
+<span></span>
 <span>  <span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"20% - Accent"</span>, <span class="va">i</span><span class="op">)</span></span>
 <span>  <span class="va">dims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="st">"4"</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_named_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, name <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
-<span>  </span>
+<span></span>
 <span>  <span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"40% - Accent"</span>, <span class="va">i</span><span class="op">)</span></span>
 <span>  <span class="va">dims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="st">"5"</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_named_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, name <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
-<span>  </span>
+<span></span>
 <span>  <span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"60% - Accent"</span>, <span class="va">i</span><span class="op">)</span></span>
 <span>  <span class="va">dims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="st">"6"</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_named_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, name <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
-<span>  </span>
+<span></span>
 <span>  <span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Accent"</span>, <span class="va">i</span><span class="op">)</span></span>
 <span>  <span class="va">dims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="st">"7"</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_named_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, name <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
 <span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
-<span>  </span>
+<span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"Comma"</span></span>
