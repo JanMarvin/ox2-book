@@ -1,4 +1,6 @@
-# Spreadsheet formulas
+---
+title: "Spreadsheet formulas"
+---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -35,7 +37,7 @@ wb_to_df(wb, col_names = FALSE)
 
 What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:
 
-```         
+```
 <c r="C1">
   <f>A1 + B1</f>
   <v>2</v>
@@ -114,10 +116,32 @@ wb <- wb_workbook()$add_worksheet()$
   )
 ```
 
-## Cell error handling
+## Shared formulas
+
+A neat feature in spreadsheet software is that you can drag cells around to fill cells with content of other cells. Whenever you are dragging a cell containing a formula, this formula will be extended onto other cell regions. This is called a shared formula. In `openxlsx2` you can use shared formulas starting with release `1.9`.
 
 ```{r}
-# wb_add_ignore_error()
+df <- data.frame(
+  x = 1:5,
+  y = 1:5 * 2
+)
+
+wb <-  wb_workbook()$add_worksheet()$add_data(x = df)$
+  add_formula(x = "=A2/B2", dims = "C2:C6",shared = TRUE)$
+  add_formula(x = "=A$2/B$2", dims   = "D2:D6", shared = TRUE)
+
+wb_to_df(wb, show_formula = TRUE)
+```
+
+## Cell error handling
+
+Spreadsheet users will be familiar with various errors thrown once formulas are used. These are not always useful in spreadsheet software and can be removed using `wb_add_ignore_error()`. This function allows to fine tune the errors that are returned per cell.
+
+```{r}
+wb <- wb_workbook()$add_worksheet()$
+  add_data(dims = "B1", x = t(c(1, 2, 3)), colNames = FALSE)$
+  add_formula(dims = "A1", x = "SUM(B1:C1)")$
+  add_ignore_error(dims = "A1", formulaRange = TRUE)
 ```
 
 ## cells metadata (cm) formulas
@@ -175,7 +199,7 @@ However, if we were to pass this as the text for the formula to be written it wo
 
 In open xml the `dataTable` formula looks like this:
 
-```         
+```
 <calculatedColumnFormula>
   daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
 </calculatedColumnFormula>
@@ -218,27 +242,27 @@ wb$
 
 And if we open the workbook to view the table we created we can see that the formula has worked.
 
-|     | A           | B    | C              | D            | E          | F           | G                  |
+|   | A | B | C | D | E | F | G |
 |---------|---------|---------|---------|---------|---------|---------|---------|
-| 1   | sales_price | COGS | sales_quantity | gross_profit | total_COGS | total_sales | total_gross_profit |
-| 2   | 20          | 5    | 1              | 15           | 5          | 20          | 15                 |
-| 3   | 30          | 11   | 2              | 19           | 22         | 60          | 38                 |
-| 4   | 40          | 13   | 3              | 27           | 39         | 120         | 81                 |
+| 1 | sales_price | COGS | sales_quantity | gross_profit | total_COGS | total_sales | total_gross_profit |
+| 2 | 20 | 5 | 1 | 15 | 5 | 20 | 15 |
+| 3 | 30 | 11 | 2 | 19 | 22 | 60 | 38 |
+| 4 | 40 | 13 | 3 | 27 | 39 | 120 | 81 |
 
 We can also see that it has replaced `[#This Row]` with `@`.
 
-|     | A           | B    | C              | D                               | E                                   | F                                          | G                                             |
+|   | A | B | C | D | E | F | G |
 |---------|---------|---------|---------|---------|---------|---------|---------|
-| 1   | sales_price | COGS | sales_quantity | gross_profit                    | total_COGS                          | total_sales                                | total_gross_profit                            |
-| 2   | 20          | 5    | 1              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
-| 3   | 30          | 11   | 2              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
-| 4   | 40          | 13   | 3              | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 1 | sales_price | COGS | sales_quantity | gross_profit | total_COGS | total_sales | total_gross_profit |
+| 2 | 20 | 5 | 1 | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 3 | 30 | 11 | 2 | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
+| 4 | 40 | 13 | 3 | =\[\@sales_price\] - \[\@COGS\] | =\[\@COGS\] \* \[\@sales_quantity\] | =\[\@sales_price\] \* \[\@sales_quantity\] | =\[\@\[total_sales\]\] - \[\@\[total_COGS\]\] |
 
 For completion, the formula as we wrote it appears as;
 
-| D                                                                                       | E                                                                                           | F                                                                                                  | G                                                                                             |
+| D | E | F | G |
 |------------------|------------------|-------------------|------------------|
-| gross_profit                                                                            | total_COGS                                                                                  | total_sales                                                                                        | total_gross_profit                                                                            |
+| gross_profit | total_COGS | total_sales | total_gross_profit |
 | =gross_profit\[\[#This Row\],\[sales_price\]\] - gross_profit\[\[#This Row\],\[COGS\]\] | =gross_profit\[\[#This Row\],\[COGS\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[sales_price\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[total_sales\]\] - gross_profit\[\[#This Row\],\[total_COGS\]\] |
 | =gross_profit\[\[#This Row\],\[sales_price\]\] - gross_profit\[\[#This Row\],\[COGS\]\] | =gross_profit\[\[#This Row\],\[COGS\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[sales_price\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[total_sales\]\] - gross_profit\[\[#This Row\],\[total_COGS\]\] |
 | =gross_profit\[\[#This Row\],\[sales_price\]\] - gross_profit\[\[#This Row\],\[COGS\]\] | =gross_profit\[\[#This Row\],\[COGS\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[sales_price\]\] \* gross_profit\[\[#This Row\],\[sales_quantity\]\] | =gross_profit\[\[#This Row\],\[total_sales\]\] - gross_profit\[\[#This Row\],\[total_COGS\]\] |

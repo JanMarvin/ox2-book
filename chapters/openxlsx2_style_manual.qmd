@@ -1,4 +1,6 @@
-# Styling of worksheets
+---
+title: "Styling of worksheets"
+---
 
 ```{r setup, include = FALSE}
 library(openxlsx2)
@@ -236,15 +238,15 @@ wb <- wb_workbook() %>%
 
 cols_1 <- 1:6
 cols_2 <- "G:L"
-wb <- wb %>% 
-  wb_set_col_widths(cols = cols_1, widths = "auto") %>% 
+wb <- wb %>%
+  wb_set_col_widths(cols = cols_1, widths = "auto") %>%
   wb_set_col_widths(cols = cols_2, widths = 10)
 ```
 
 ### wb_set_row_heigths
 
 ```{r}
-wb <- wb %>% 
+wb <- wb %>%
   wb_set_row_heights(rows = 1:10, heights = 10)
 ```
 
@@ -407,7 +409,7 @@ knitr::include_graphics("../img/sy_copycellstyle.png")
 Using `fmt_txt()` is possible to style strings independently of the cell containing the string.
 
 ```{r}
-txt <- 
+txt <-
   fmt_txt("Embracing the full potential of ") +
   fmt_txt("openxlsx2", bold = TRUE, size = 16) +
   fmt_txt(" with ") +
@@ -642,27 +644,27 @@ wb$add_named_style(dims = dims, name = name)
 wb$add_data(dims = dims, x = name)
 
 for (i in seq_len(6)) {
-  
+
   name <- paste0("20% - Accent", i)
   dims <- paste0(int2col(i), "4")
   wb$add_named_style(dims = dims, name = name)
   wb$add_data(dims = dims, x = name)
-  
+
   name <- paste0("40% - Accent", i)
   dims <- paste0(int2col(i), "5")
   wb$add_named_style(dims = dims, name = name)
   wb$add_data(dims = dims, x = name)
-  
+
   name <- paste0("60% - Accent", i)
   dims <- paste0(int2col(i), "6")
   wb$add_named_style(dims = dims, name = name)
   wb$add_data(dims = dims, x = name)
-  
+
   name <- paste0("Accent", i)
   dims <- paste0(int2col(i), "7")
   wb$add_named_style(dims = dims, name = name)
   wb$add_data(dims = dims, x = name)
-  
+
 }
 
 name <- "Comma"

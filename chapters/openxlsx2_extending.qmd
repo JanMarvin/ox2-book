@@ -1,4 +1,7 @@
-# Extending `openxlsx2`
+---
+title: "Extending `openxlsx2`"
+---
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(

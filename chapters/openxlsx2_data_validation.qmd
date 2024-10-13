@@ -1,4 +1,6 @@
-# Data Validation
+---
+title: "Data Validation"
+---
 
 ```{r setup, include = FALSE}
 library(openxlsx2)
@@ -92,7 +94,7 @@ knitr::include_graphics("../img/dv_sheet4.png")
 
 ## validate list: validate inputs with values
 
-In the code below we create drop down lists for values directly passed to `wb_add_data_validation()`. In the upper cell range options `"O1"` and `"O2"` are available, in the lower cell range `"O2"` and `"O3"`. Using values directly is helpful if there are only a few values and it is not required to provide a list of values on a spreadsheet. 
+In the code below we create drop down lists for values directly passed to `wb_add_data_validation()`. In the upper cell range options `"O1"` and `"O2"` are available, in the lower cell range `"O2"` and `"O3"`. Using values directly is helpful if there are only a few values and it is not required to provide a list of values on a spreadsheet.
 
 ```{r}
   wb <- wb_workbook()$

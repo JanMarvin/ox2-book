@@ -1,4 +1,6 @@
-# basics
+---
+title: "Basics"
+---
 
 ```{r setup, include = FALSE}
 library(openxlsx2)

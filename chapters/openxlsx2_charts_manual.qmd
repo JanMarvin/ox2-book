@@ -1,4 +1,6 @@
-# Charts
+---
+title: "Charts"
+---
 
 ```{r setup, include = FALSE}
 library(openxlsx2)
@@ -112,10 +114,9 @@ wb$add_worksheet("add_emf")$
   add_image(dims = "E1:H4", file = tmp_emf)
 ```
 
-
 ## Adding `{mschart}` plots
 
-If you want native open xml charts, have a look at `{mschart}`. Create one of the chart files and pass it to the workbook with `wb_add_mschart()`.
+If you want native openxml charts, have a look at `{mschart}`. Create one of the chart files and pass it to the workbook with `wb_add_mschart()`.
 
 There are two options possible.
 

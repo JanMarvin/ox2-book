@@ -1,4 +1,6 @@
-# Upgrade from openxlsx
+---
+title: "Upgrade from `openxlsx`"
+---
 
 ```{r setup, include = FALSE}
 library(openxlsx2)
