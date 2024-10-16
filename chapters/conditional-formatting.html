@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>5&nbsp; Conditional Formatting, Databars, and Sparklines – The `openxlsx2` book</title>
+<title>6&nbsp; Conditional Formatting, Databars, and Sparklines – The `openxlsx2` book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/conditional-formatting.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/conditional-formatting.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -157,68 +157,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/openxlsx2_reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading to data frames</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_number_and_string.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Of strings and numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Of strings and numbers</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_style_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/conditional-formatting.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_charts_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Charts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Charts</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_formulas_manual.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Spreadsheet formulas</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_pivot_tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Pivot tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Pivot tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_data_validation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Validation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_form_control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Form control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Form control</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_clone_and_copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Cloning and copying</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_upgrade_from_openxlsx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Upgrade from <code>openxlsx</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Upgrade from <code>openxlsx</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2_extending.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Extending <code>openxlsx2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -236,37 +242,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#conditional-formatting" id="toc-conditional-formatting" class="nav-link active" data-scroll-target="#conditional-formatting"><span class="header-section-number">5.1</span> Conditional Formatting</a>
+<a href="#conditional-formatting" id="toc-conditional-formatting" class="nav-link active" data-scroll-target="#conditional-formatting"><span class="header-section-number">6.1</span> Conditional Formatting</a>
   <ul class="collapse">
-<li><a href="#rule-applies-to-all-each-cell-in-range" id="toc-rule-applies-to-all-each-cell-in-range" class="nav-link" data-scroll-target="#rule-applies-to-all-each-cell-in-range"><span class="header-section-number">5.1.1</span> Rule applies to all each cell in range</a></li>
-  <li><a href="#highlight-row-dependent-on-first-cell-in-row" id="toc-highlight-row-dependent-on-first-cell-in-row" class="nav-link" data-scroll-target="#highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">5.1.2</span> Highlight row dependent on first cell in row</a></li>
-  <li><a href="#highlight-column-dependent-on-first-cell-in-column" id="toc-highlight-column-dependent-on-first-cell-in-column" class="nav-link" data-scroll-target="#highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">5.1.3</span> Highlight column dependent on first cell in column</a></li>
-  <li><a href="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" id="toc-highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="nav-link" data-scroll-target="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">5.1.4</span> Highlight entire range cols X rows dependent only on cell A1</a></li>
-  <li><a href="#highlight-cells-in-column-1-based-on-value-in-column-2" id="toc-highlight-cells-in-column-1-based-on-value-in-column-2" class="nav-link" data-scroll-target="#highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">5.1.5</span> Highlight cells in column 1 based on value in column 2</a></li>
-  <li><a href="#highlight-duplicates-using-default-style" id="toc-highlight-duplicates-using-default-style" class="nav-link" data-scroll-target="#highlight-duplicates-using-default-style"><span class="header-section-number">5.1.6</span> Highlight duplicates using default style</a></li>
-  <li><a href="#cells-containing-text" id="toc-cells-containing-text" class="nav-link" data-scroll-target="#cells-containing-text"><span class="header-section-number">5.1.7</span> Cells containing text</a></li>
-  <li><a href="#cells-not-containing-text" id="toc-cells-not-containing-text" class="nav-link" data-scroll-target="#cells-not-containing-text"><span class="header-section-number">5.1.8</span> Cells not containing text</a></li>
-  <li><a href="#cells-begins-with-text" id="toc-cells-begins-with-text" class="nav-link" data-scroll-target="#cells-begins-with-text"><span class="header-section-number">5.1.9</span> Cells begins with text</a></li>
-  <li><a href="#cells-ends-with-text" id="toc-cells-ends-with-text" class="nav-link" data-scroll-target="#cells-ends-with-text"><span class="header-section-number">5.1.10</span> Cells ends with text</a></li>
-  <li><a href="#colorscale-colors-cells-based-on-cell-value" id="toc-colorscale-colors-cells-based-on-cell-value" class="nav-link" data-scroll-target="#colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">5.1.11</span> Colorscale colors cells based on cell value</a></li>
-  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">5.1.12</span> Between</a></li>
-  <li><a href="#top-n" id="toc-top-n" class="nav-link" data-scroll-target="#top-n"><span class="header-section-number">5.1.13</span> Top N</a></li>
-  <li><a href="#bottom-n" id="toc-bottom-n" class="nav-link" data-scroll-target="#bottom-n"><span class="header-section-number">5.1.14</span> Bottom N</a></li>
-  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">5.1.15</span> Logical Operators</a></li>
-  <li><a href="#not-contains-blanks" id="toc-not-contains-blanks" class="nav-link" data-scroll-target="#not-contains-blanks"><span class="header-section-number">5.1.16</span> (Not) Contains Blanks</a></li>
-  <li><a href="#not-contains-errors" id="toc-not-contains-errors" class="nav-link" data-scroll-target="#not-contains-errors"><span class="header-section-number">5.1.17</span> (Not) Contains Errors</a></li>
-  <li><a href="#iconset" id="toc-iconset" class="nav-link" data-scroll-target="#iconset"><span class="header-section-number">5.1.18</span> Iconset</a></li>
-  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">5.1.19</span> Unique Values</a></li>
+<li><a href="#rule-applies-to-all-each-cell-in-range" id="toc-rule-applies-to-all-each-cell-in-range" class="nav-link" data-scroll-target="#rule-applies-to-all-each-cell-in-range"><span class="header-section-number">6.1.1</span> Rule applies to all each cell in range</a></li>
+  <li><a href="#highlight-row-dependent-on-first-cell-in-row" id="toc-highlight-row-dependent-on-first-cell-in-row" class="nav-link" data-scroll-target="#highlight-row-dependent-on-first-cell-in-row"><span class="header-section-number">6.1.2</span> Highlight row dependent on first cell in row</a></li>
+  <li><a href="#highlight-column-dependent-on-first-cell-in-column" id="toc-highlight-column-dependent-on-first-cell-in-column" class="nav-link" data-scroll-target="#highlight-column-dependent-on-first-cell-in-column"><span class="header-section-number">6.1.3</span> Highlight column dependent on first cell in column</a></li>
+  <li><a href="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" id="toc-highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="nav-link" data-scroll-target="#highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1"><span class="header-section-number">6.1.4</span> Highlight entire range cols X rows dependent only on cell A1</a></li>
+  <li><a href="#highlight-cells-in-column-1-based-on-value-in-column-2" id="toc-highlight-cells-in-column-1-based-on-value-in-column-2" class="nav-link" data-scroll-target="#highlight-cells-in-column-1-based-on-value-in-column-2"><span class="header-section-number">6.1.5</span> Highlight cells in column 1 based on value in column 2</a></li>
+  <li><a href="#highlight-duplicates-using-default-style" id="toc-highlight-duplicates-using-default-style" class="nav-link" data-scroll-target="#highlight-duplicates-using-default-style"><span class="header-section-number">6.1.6</span> Highlight duplicates using default style</a></li>
+  <li><a href="#cells-containing-text" id="toc-cells-containing-text" class="nav-link" data-scroll-target="#cells-containing-text"><span class="header-section-number">6.1.7</span> Cells containing text</a></li>
+  <li><a href="#cells-not-containing-text" id="toc-cells-not-containing-text" class="nav-link" data-scroll-target="#cells-not-containing-text"><span class="header-section-number">6.1.8</span> Cells not containing text</a></li>
+  <li><a href="#cells-begins-with-text" id="toc-cells-begins-with-text" class="nav-link" data-scroll-target="#cells-begins-with-text"><span class="header-section-number">6.1.9</span> Cells begins with text</a></li>
+  <li><a href="#cells-ends-with-text" id="toc-cells-ends-with-text" class="nav-link" data-scroll-target="#cells-ends-with-text"><span class="header-section-number">6.1.10</span> Cells ends with text</a></li>
+  <li><a href="#colorscale-colors-cells-based-on-cell-value" id="toc-colorscale-colors-cells-based-on-cell-value" class="nav-link" data-scroll-target="#colorscale-colors-cells-based-on-cell-value"><span class="header-section-number">6.1.11</span> Colorscale colors cells based on cell value</a></li>
+  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between"><span class="header-section-number">6.1.12</span> Between</a></li>
+  <li><a href="#top-n" id="toc-top-n" class="nav-link" data-scroll-target="#top-n"><span class="header-section-number">6.1.13</span> Top N</a></li>
+  <li><a href="#bottom-n" id="toc-bottom-n" class="nav-link" data-scroll-target="#bottom-n"><span class="header-section-number">6.1.14</span> Bottom N</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">6.1.15</span> Logical Operators</a></li>
+  <li><a href="#not-contains-blanks" id="toc-not-contains-blanks" class="nav-link" data-scroll-target="#not-contains-blanks"><span class="header-section-number">6.1.16</span> (Not) Contains Blanks</a></li>
+  <li><a href="#not-contains-errors" id="toc-not-contains-errors" class="nav-link" data-scroll-target="#not-contains-errors"><span class="header-section-number">6.1.17</span> (Not) Contains Errors</a></li>
+  <li><a href="#iconset" id="toc-iconset" class="nav-link" data-scroll-target="#iconset"><span class="header-section-number">6.1.18</span> Iconset</a></li>
+  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values"><span class="header-section-number">6.1.19</span> Unique Values</a></li>
   </ul>
 </li>
-  <li><a href="#databars" id="toc-databars" class="nav-link" data-scroll-target="#databars"><span class="header-section-number">5.2</span> Databars</a></li>
-  <li><a href="#sparklines" id="toc-sparklines" class="nav-link" data-scroll-target="#sparklines"><span class="header-section-number">5.3</span> Sparklines</a></li>
+  <li><a href="#databars" id="toc-databars" class="nav-link" data-scroll-target="#databars"><span class="header-section-number">6.2</span> Databars</a></li>
+  <li><a href="#sparklines" id="toc-sparklines" class="nav-link" data-scroll-target="#sparklines"><span class="header-section-number">6.3</span> Sparklines</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/conditional-formatting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span>
+<span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conditional Formatting, Databars, and Sparklines</span>
 </h1>
 </div>
 
@@ -285,8 +291,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>1. Conditional Formatting:</strong> Conditional formatting enables users to apply a cell style overlay based on predefined rules. This can highlight patterns, trends, and anomalies within the data. The rules make it possible to provide a visual highlighting without having to style every cell individually.</p>
 <p><strong>2. Databars:</strong> Databars are a specific type of conditional formatting that adds horizontal bars within cells to represent the values they contain. Similar to a <code>barplot</code> just spreading as an overlay across multiple rows. The length of the bar corresponds to the magnitude of the data, allowing for a quick and intuitive comparison between different values.</p>
 <p><strong>3. Sparklines:</strong> Sparklines are compact, miniature charts embedded within a single cell, offering a condensed visual representation of trends or variations in a dataset. These tiny graphs, such as line charts, bar charts, or win/loss charts, provide a quick overview of the data’s trajectory without the need for a separate chart. Sparklines are especially valuable when it is required to maintain a compact layout while still conveying the overall patterns in the data.</p>
-<section id="conditional-formatting" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="conditional-formatting">
-<span class="header-section-number">5.1</span> Conditional Formatting</h2>
+<section id="conditional-formatting" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="conditional-formatting">
+<span class="header-section-number">6.1</span> Conditional Formatting</h2>
 <p>Conditional formatting is helpful to visually emphasize trends, outliers, or other important aspects of the data it is applied to. In <code>openxlsx2</code> conditional formatting is applied as follows:</p>
 <ol type="1">
 <li><p>Select dimension range: First select, the range of cells to which the conditional formatting is applied to.</p></li>
@@ -299,8 +305,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_dxfs_style</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"negStyle"</span>, font_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FF9C0006"</span><span class="op">)</span>, bg_fill <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FFFFC7CE"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_dxfs_style</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"posStyle"</span>, font_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FF006100"</span><span class="op">)</span>, bg_fill <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FFC6EFCE"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="rule-applies-to-all-each-cell-in-range" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="rule-applies-to-all-each-cell-in-range">
-<span class="header-section-number">5.1.1</span> Rule applies to all each cell in range</h3>
+<section id="rule-applies-to-all-each-cell-in-range" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="rule-applies-to-all-each-cell-in-range">
+<span class="header-section-number">6.1.1</span> Rule applies to all each cell in range</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -326,8 +332,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  style <span class="op">=</span> <span class="st">"posStyle"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="highlight-row-dependent-on-first-cell-in-row" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="highlight-row-dependent-on-first-cell-in-row">
-<span class="header-section-number">5.1.2</span> Highlight row dependent on first cell in row</h3>
+</section><section id="highlight-row-dependent-on-first-cell-in-row" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="highlight-row-dependent-on-first-cell-in-row">
+<span class="header-section-number">6.1.2</span> Highlight row dependent on first cell in row</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -353,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  style <span class="op">=</span> <span class="st">"posStyle"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="highlight-column-dependent-on-first-cell-in-column" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="highlight-column-dependent-on-first-cell-in-column">
-<span class="header-section-number">5.1.3</span> Highlight column dependent on first cell in column</h3>
+</section><section id="highlight-column-dependent-on-first-cell-in-column" class="level3" data-number="6.1.3"><h3 data-number="6.1.3" class="anchored" data-anchor-id="highlight-column-dependent-on-first-cell-in-column">
+<span class="header-section-number">6.1.3</span> Highlight column dependent on first cell in column</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -380,8 +386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  style <span class="op">=</span> <span class="st">"posStyle"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="level3" data-number="5.1.4"><h3 data-number="5.1.4" class="anchored" data-anchor-id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1">
-<span class="header-section-number">5.1.4</span> Highlight entire range cols X rows dependent only on cell A1</h3>
+</section><section id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1" class="level3" data-number="6.1.4"><h3 data-number="6.1.4" class="anchored" data-anchor-id="highlight-entire-range-cols-x-rows-dependent-only-on-cell-a1">
+<span class="header-section-number">6.1.4</span> Highlight entire range cols X rows dependent only on cell A1</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -407,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  style <span class="op">=</span> <span class="st">"posStyle"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="highlight-cells-in-column-1-based-on-value-in-column-2" class="level3" data-number="5.1.5"><h3 data-number="5.1.5" class="anchored" data-anchor-id="highlight-cells-in-column-1-based-on-value-in-column-2">
-<span class="header-section-number">5.1.5</span> Highlight cells in column 1 based on value in column 2</h3>
+</section><section id="highlight-cells-in-column-1-based-on-value-in-column-2" class="level3" data-number="6.1.5"><h3 data-number="6.1.5" class="anchored" data-anchor-id="highlight-cells-in-column-1-based-on-value-in-column-2">
+<span class="header-section-number">6.1.5</span> Highlight cells in column 1 based on value in column 2</h3>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span><span class="st">"Dependent on"</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>, startRow <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span></span>
@@ -424,8 +430,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  style <span class="op">=</span> <span class="st">"posStyle"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="highlight-duplicates-using-default-style" class="level3" data-number="5.1.6"><h3 data-number="5.1.6" class="anchored" data-anchor-id="highlight-duplicates-using-default-style">
-<span class="header-section-number">5.1.6</span> Highlight duplicates using default style</h3>
+</section><section id="highlight-duplicates-using-default-style" class="level3" data-number="6.1.6"><h3 data-number="6.1.6" class="anchored" data-anchor-id="highlight-duplicates-using-default-style">
+<span class="header-section-number">6.1.6</span> Highlight duplicates using default style</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -443,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  type <span class="op">=</span> <span class="st">"duplicatedValues"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="cells-containing-text" class="level3" data-number="5.1.7"><h3 data-number="5.1.7" class="anchored" data-anchor-id="cells-containing-text">
-<span class="header-section-number">5.1.7</span> Cells containing text</h3>
+</section><section id="cells-containing-text" class="level3" data-number="6.1.7"><h3 data-number="6.1.7" class="anchored" data-anchor-id="cells-containing-text">
+<span class="header-section-number">6.1.7</span> Cells containing text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -465,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"notcontainsText"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="cells-not-containing-text" class="level3" data-number="5.1.8"><h3 data-number="5.1.8" class="anchored" data-anchor-id="cells-not-containing-text">
-<span class="header-section-number">5.1.8</span> Cells not containing text</h3>
+</section><section id="cells-not-containing-text" class="level3" data-number="6.1.8"><h3 data-number="6.1.8" class="anchored" data-anchor-id="cells-not-containing-text">
+<span class="header-section-number">6.1.8</span> Cells not containing text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -485,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  rule <span class="op">=</span> <span class="st">"A"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="cells-begins-with-text" class="level3" data-number="5.1.9"><h3 data-number="5.1.9" class="anchored" data-anchor-id="cells-begins-with-text">
-<span class="header-section-number">5.1.9</span> Cells begins with text</h3>
+</section><section id="cells-begins-with-text" class="level3" data-number="6.1.9"><h3 data-number="6.1.9" class="anchored" data-anchor-id="cells-begins-with-text">
+<span class="header-section-number">6.1.9</span> Cells begins with text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -506,8 +512,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  rule <span class="op">=</span> <span class="st">"A"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="cells-ends-with-text" class="level3" data-number="5.1.10"><h3 data-number="5.1.10" class="anchored" data-anchor-id="cells-ends-with-text">
-<span class="header-section-number">5.1.10</span> Cells ends with text</h3>
+</section><section id="cells-ends-with-text" class="level3" data-number="6.1.10"><h3 data-number="6.1.10" class="anchored" data-anchor-id="cells-ends-with-text">
+<span class="header-section-number">6.1.10</span> Cells ends with text</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -527,8 +533,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  rule <span class="op">=</span> <span class="st">"A"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="colorscale-colors-cells-based-on-cell-value" class="level3" data-number="5.1.11"><h3 data-number="5.1.11" class="anchored" data-anchor-id="colorscale-colors-cells-based-on-cell-value">
-<span class="header-section-number">5.1.11</span> Colorscale colors cells based on cell value</h3>
+</section><section id="colorscale-colors-cells-based-on-cell-value" class="level3" data-number="6.1.11"><h3 data-number="6.1.11" class="anchored" data-anchor-id="colorscale-colors-cells-based-on-cell-value">
+<span class="header-section-number">6.1.11</span> Colorscale colors cells based on cell value</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -554,8 +560,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">set_col_widths</span><span class="op">(</span><span class="st">"colorScale"</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, widths <span class="op">=</span> <span class="fl">1.07</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">set_row_heights</span><span class="op">(</span><span class="st">"colorScale"</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, heights <span class="op">=</span> <span class="fl">7.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="between" class="level3" data-number="5.1.12"><h3 data-number="5.1.12" class="anchored" data-anchor-id="between">
-<span class="header-section-number">5.1.12</span> Between</h3>
+</section><section id="between" class="level3" data-number="6.1.12"><h3 data-number="6.1.12" class="anchored" data-anchor-id="between">
+<span class="header-section-number">6.1.12</span> Between</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -576,8 +582,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"topN"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="top-n" class="level3" data-number="5.1.13"><h3 data-number="5.1.13" class="anchored" data-anchor-id="top-n">
-<span class="header-section-number">5.1.13</span> Top N</h3>
+</section><section id="top-n" class="level3" data-number="6.1.13"><h3 data-number="6.1.13" class="anchored" data-anchor-id="top-n">
+<span class="header-section-number">6.1.13</span> Top N</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -610,8 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"bottomN"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="bottom-n" class="level3" data-number="5.1.14"><h3 data-number="5.1.14" class="anchored" data-anchor-id="bottom-n">
-<span class="header-section-number">5.1.14</span> Bottom N</h3>
+</section><section id="bottom-n" class="level3" data-number="6.1.14"><h3 data-number="6.1.14" class="anchored" data-anchor-id="bottom-n">
+<span class="header-section-number">6.1.14</span> Bottom N</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -644,8 +650,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"logical operators"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="logical-operators" class="level3" data-number="5.1.15"><h3 data-number="5.1.15" class="anchored" data-anchor-id="logical-operators">
-<span class="header-section-number">5.1.15</span> Logical Operators</h3>
+</section><section id="logical-operators" class="level3" data-number="6.1.15"><h3 data-number="6.1.15" class="anchored" data-anchor-id="logical-operators">
+<span class="header-section-number">6.1.15</span> Logical Operators</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -663,8 +669,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  rule <span class="op">=</span> <span class="st">"OR($A1=1,$A1=3,$A1=5,$A1=7)"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="not-contains-blanks" class="level3" data-number="5.1.16"><h3 data-number="5.1.16" class="anchored" data-anchor-id="not-contains-blanks">
-<span class="header-section-number">5.1.16</span> (Not) Contains Blanks</h3>
+</section><section id="not-contains-blanks" class="level3" data-number="6.1.16"><h3 data-number="6.1.16" class="anchored" data-anchor-id="not-contains-blanks">
+<span class="header-section-number">6.1.16</span> (Not) Contains Blanks</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -680,8 +686,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A4"</span>, type <span class="op">=</span> <span class="st">"containsBlanks"</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B1:B4"</span>, type <span class="op">=</span> <span class="st">"notContainsBlanks"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="not-contains-errors" class="level3" data-number="5.1.17"><h3 data-number="5.1.17" class="anchored" data-anchor-id="not-contains-errors">
-<span class="header-section-number">5.1.17</span> (Not) Contains Errors</h3>
+</section><section id="not-contains-errors" class="level3" data-number="6.1.17"><h3 data-number="6.1.17" class="anchored" data-anchor-id="not-contains-errors">
+<span class="header-section-number">6.1.17</span> (Not) Contains Errors</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -697,8 +703,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A3"</span>, type <span class="op">=</span> <span class="st">"containsErrors"</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A3"</span>, type <span class="op">=</span> <span class="st">"notContainsErrors"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="iconset" class="level3" data-number="5.1.18"><h3 data-number="5.1.18" class="anchored" data-anchor-id="iconset">
-<span class="header-section-number">5.1.18</span> Iconset</h3>
+</section><section id="iconset" class="level3" data-number="6.1.18"><h3 data-number="6.1.18" class="anchored" data-anchor-id="iconset">
+<span class="header-section-number">6.1.18</span> Iconset</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -720,8 +726,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    reverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="unique-values" class="level3" data-number="5.1.19"><h3 data-number="5.1.19" class="anchored" data-anchor-id="unique-values">
-<span class="header-section-number">5.1.19</span> Unique Values</h3>
+</section><section id="unique-values" class="level3" data-number="6.1.19"><h3 data-number="6.1.19" class="anchored" data-anchor-id="unique-values">
+<span class="header-section-number">6.1.19</span> Unique Values</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -735,8 +741,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A6"</span>, type <span class="op">=</span> <span class="st">"uniqueValues"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="databars" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="databars">
-<span class="header-section-number">5.2</span> Databars</h2>
+</section></section><section id="databars" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="databars">
+<span class="header-section-number">6.2</span> Databars</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -814,8 +820,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>showValue <span class="op">=</span> <span class="cn">TRUE</span>, gradient <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="sparklines" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="sparklines">
-<span class="header-section-number">5.3</span> Sparklines</h2>
+</section><section id="sparklines" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sparklines">
+<span class="header-section-number">6.3</span> Sparklines</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -1398,12 +1404,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../chapters/openxlsx2_style_manual.html" class="pagination-link" aria-label="Styling of worksheets">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Styling of worksheets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/openxlsx2_charts_manual.html" class="pagination-link" aria-label="Charts">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Charts</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Charts</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
