@@ -11,6 +11,8 @@ install.packages(
 
 This is a work in progress book describing the features of [`openxlsx2`](https://github.com/JanMarvin/openxlsx2/) [@openxlsx2]. Having written a book before, I never imagined to do this again and therefore I shall not do it. But still I consider it a nice addition to have something more flexible as our `vignettes`.
 
+The `openxlsx2` book is a comprehensive guide to using the R package openxlsx2 for working with xlsx files. It covers core functionalities such as reading, writing, and editing office open xml (OOXML) spreadsheet files, alongside advanced features like styling worksheets, handling conditional formatting, creating charts, managing pivot tables, and adding data validation. The book also discusses extending the package's functionality and upgrading from the original openxlsx package. It was created in the hopes that it's a useful resource for R users needing spreadsheet file manipulation.
+
 This manual was compiled using:
 
 ```{r}
