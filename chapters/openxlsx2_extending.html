@@ -299,15 +299,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpCQaCWe/temp_xlsx_1d56791611e7.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpExz9TB/temp_xlsx_20546f89964b.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpCQaCWe/temp_xlsx_1d56791611e7.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpExz9TB/temp_xlsx_20546f89964b.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpCQaCWe/temp_xlsx_1d56791611e7.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpExz9TB/temp_xlsx_20546f89964b.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>

@@ -274,6 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#style-strings" id="toc-style-strings" class="nav-link" data-scroll-target="#style-strings"><span class="header-section-number">5.7</span> Style strings</a></li>
   <li><a href="#create-custom-table-styles" id="toc-create-custom-table-styles" class="nav-link" data-scroll-target="#create-custom-table-styles"><span class="header-section-number">5.8</span> Create custom table styles</a></li>
   <li><a href="#named-styles" id="toc-named-styles" class="nav-link" data-scroll-target="#named-styles"><span class="header-section-number">5.9</span> Named styles</a></li>
+  <li><a href="#styled-columns-rows" id="toc-styled-columns-rows" class="nav-link" data-scroll-target="#styled-columns-rows"><span class="header-section-number">5.10</span> Styled columns / rows</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_style_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1014,6 +1015,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+</div>
+</section><section id="styled-columns-rows" class="level2" data-number="5.10"><h2 data-number="5.10" class="anchored" data-anchor-id="styled-columns-rows">
+<span class="header-section-number">5.10</span> Styled columns / rows</h2>
+<p>In addition to individually styled cells, spreadsheets can also have styled columns and rows. Though, these column and row styles are overridden by cell styles. Therefore, if a row is filled with yellow, initialized cells in this row are not impacted by the yellow color. Therefore it is required to individually style these cells too.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make the entire thing yellow (pick the style from an exisisting cell)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"cols"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_fill</span><span class="op">(</span>color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"yellow"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style_across</span><span class="op">(</span>cols <span class="op">=</span> <span class="st">"A:XFD"</span>, style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create an orange cell style</span></span>
+<span><span class="va">f1</span> <span class="op">&lt;-</span> <span class="fu">create_fill</span><span class="op">(</span>patternType <span class="op">=</span> <span class="st">"solid"</span>, fgColor <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_style</span><span class="op">(</span><span class="va">f1</span>, <span class="st">"f1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu">create_cell_style</span><span class="op">(</span>fill_id <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_fill_id</span><span class="op">(</span><span class="st">"f1"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_style</span><span class="op">(</span><span class="va">s1</span>, <span class="st">"s1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># fill all rows with this orange cell style</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"rows"</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style_across</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">1048576</span><span class="op">)</span>, style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_xf_id</span><span class="op">(</span><span class="st">"s1"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># show what happens</span></span>
+<span><span class="va">mm</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mm</span>, from_dims <span class="op">=</span> <span class="st">"B2"</span>, x <span class="op">=</span> <span class="va">mm</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"cols"</span>, dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">mm</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"rows"</span>, dims <span class="op">=</span> <span class="va">dims</span>, x <span class="op">=</span> <span class="va">mm</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/sy_across.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Styling columns and rows is quicker and memory efficient. In the first example all columns are modified, but the entire modification can be boiled down to a single XML string.</p>
+<p>A neat example of this is the following: a user wanted to lock certain cells on a worksheet. To acchieve this, we have to apply an unlocked style to the entire worksheet. Afterwards we cann select a few cells that we want to lock.</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create an unlocked cell style</span></span>
+<span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu">create_cell_style</span><span class="op">(</span>locked <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_style</span><span class="op">(</span><span class="va">s1</span>, <span class="st">"s1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># apply this to the entire worksheet</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style_across</span><span class="op">(</span>cols <span class="op">=</span> <span class="st">"A:XFD"</span>, style <span class="op">=</span> <span class="st">"s1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># locked a few cells</span></span>
+<span><span class="va">dims_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="fu">wb_dims</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span>  <span class="fu">wb_dims</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">8</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>,</span>
+<span>  <span class="fu">wb_dims</span><span class="op">(</span><span class="fl">100</span><span class="op">:</span><span class="fl">105</span>, <span class="fl">300</span><span class="op">:</span><span class="fl">408</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># lock a few ranges and highlight these in red</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">dims</span> <span class="kw">in</span> <span class="va">dims_list</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="st">"locking: "</span>, <span class="va">dims</span><span class="op">)</span></span>
+<span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">wb</span><span class="op">$</span><span class="fu">add_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims</span>, locked <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; locking: C1:J3</span></span>
+<span><span class="co">#&gt; locking: H5:L10</span></span>
+<span><span class="co">#&gt; locking: KN100:OR105</span></span>
+<span></span>
+<span><span class="co"># protect the worksheet and the workbook</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">protect_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">protect</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
