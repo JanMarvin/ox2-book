@@ -698,3 +698,72 @@ wb$add_data(dims = dims, x = name)
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sy_namedstyle.png")
 ```
+
+
+## Styled columns / rows
+
+In addition to individually styled cells, spreadsheets can also have styled columns and rows. Though, these column and row styles are overridden by cell styles. Therefore, if a row is filled with yellow, initialized cells in this row are not impacted by the yellow color. Therefore it is required to individually style these cells too.
+
+```{r}
+wb <- wb_workbook()
+
+# make the entire thing yellow (pick the style from an exisisting cell)
+wb$add_worksheet("cols")$add_fill(color = wb_color("yellow"))
+wb$set_cell_style_across(cols = "A:XFD", style = wb$get_cell_style(dims = "A1"))
+
+# create an orange cell style
+f1 <- create_fill(patternType = "solid", fgColor = wb_color("orange"))
+wb$add_style(f1, "f1")
+
+s1 <- create_cell_style(fill_id = wb$styles_mgr$get_fill_id("f1"))
+wb$add_style(s1, "s1")
+
+# fill all rows with this orange cell style
+wb$add_worksheet("rows")
+wb$set_cell_style_across(rows = seq_len(1048576), style = wb$styles_mgr$get_xf_id("s1"))
+
+# show what happens
+mm   <- matrix(1:4, 2, 2)
+dims <- wb_dims(x = mm, from_dims = "B2", x = mm, col_names = FALSE)
+
+wb$add_data(sheet = "cols", dims = dims, x = mm, col_names = FALSE)
+wb$add_data(sheet = "rows", dims = dims, x = mm, col_names = FALSE)
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sy_across.png")
+```
+
+Styling columns and rows is quicker and memory efficient. In the first example all columns are modified, but the entire modification can be boiled down to a single XML string.
+
+A neat example of this is the following: a user wanted to lock certain cells on a worksheet. To acchieve this, we have to apply an unlocked style to the entire worksheet. Afterwards we cann select a few cells that we want to lock.
+
+```{r}
+wb <- wb_workbook()$add_worksheet()
+
+# create an unlocked cell style
+s1 <- create_cell_style(locked = FALSE)
+wb$add_style(s1, "s1")
+
+# apply this to the entire worksheet
+wb$set_cell_style_across(cols = "A:XFD", style = "s1")
+
+# locked a few cells
+dims_list <- c(
+  wb_dims(1:3, 3:10),
+  wb_dims(5:10, 8:12),
+  wb_dims(100:105, 300:408)
+)
+
+# lock a few ranges and highlight these in red
+for (dims in dims_list) {
+  message("locking: ", dims)
+  wb$add_fill(dims = dims, color = wb_color("red"))
+  wb$add_cell_style(dims = dims, locked = TRUE)
+}
+
+# protect the worksheet and the workbook
+wb$protect_worksheet()
+wb$protect()
+```
+
