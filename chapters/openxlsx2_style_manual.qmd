@@ -699,7 +699,6 @@ wb$add_data(dims = dims, x = name)
 knitr::include_graphics("../img/sy_namedstyle.png")
 ```
 
-
 ## Styled columns / rows
 
 In addition to individually styled cells, spreadsheets can also have styled columns and rows. Though, these column and row styles are overridden by cell styles. Therefore, if a row is filled with yellow, initialized cells in this row are not impacted by the yellow color. Therefore it is required to individually style these cells too.
@@ -736,7 +735,7 @@ knitr::include_graphics("../img/sy_across.png")
 
 Styling columns and rows is quicker and memory efficient. In the first example all columns are modified, but the entire modification can be boiled down to a single XML string.
 
-A neat example of this is the following: a user wanted to lock certain cells on a worksheet. To acchieve this, we have to apply an unlocked style to the entire worksheet. Afterwards we cann select a few cells that we want to lock.
+A neat example of this is the following: a user wanted to lock certain cells on a worksheet. To achieve this, we have to apply an unlocked style to the entire worksheet. Afterwards we can select a few cells that we want to lock.
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()
@@ -766,4 +765,3 @@ for (dims in dims_list) {
 wb$protect_worksheet()
 wb$protect()
 ```
-
