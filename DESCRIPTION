@@ -27,6 +27,8 @@ Suggests:
     labelled,
     mschart,
     msoc,
+    openxlsx2Extras,
+    ovbars,
     pivottabler,
     quarto,
     ragg,
@@ -38,4 +40,6 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Remotes:
-    JanMarvin/msoc
+    JanMarvin/msoc,
+    elipousson/openxlsx2Extras,
+    JanMarvin/ovbars

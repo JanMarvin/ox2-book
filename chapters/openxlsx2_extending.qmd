@@ -2,7 +2,6 @@
 title: "Extending `openxlsx2`"
 ---
 
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -65,3 +64,36 @@ if (interactive()) wb$open()
 #| fig-cap: "The flextable written as xlsx file and as image"
 knitr::include_graphics("../img/ex_flextable.png")
 ```
+
+
+## `openxlsx2Extras` - Extending `openxlsx2`
+
+Early in development, `openxlsx2Extras` [@openxlsx2Extras] allows extending various functions for user convenience or for features, that are more focused on working along `openxlsx2` and therefore are not necessary a requirement for the package itself.
+
+One example (more can be found on the project github and pkgdown pages) is the following.
+
+```{r}
+library(openxlsx2)
+library(openxlsx2Extras)
+
+wb_new_workbook(
+  title = "Workbook created with wb_new_workbook",
+  sheet_names = c("First sheet", "Second sheet"),
+  tab_color = c(wb_color("orange"), wb_color("yellow"))
+)
+```
+
+
+## `ovbars` - Reading the `vbaProject.bin`
+
+Another niche package is `ovbars` [@ovbars]. This package allows reading the binary blob that contains macros in `xlsm` and potentially `xlsb` files. The package allows extracting the VBA code.
+
+```{r}
+fl <- "https://github.com/JanMarvin/openxlsx-data/raw/refs/heads/main/gh_issue_416.xlsm"
+wb <- openxlsx2::wb_load(fl)
+vba <- wb$vbaProject
+
+code <- ovbars::ovbar_out(name = vba)
+message(code["Sheet1"])
+```
+
