@@ -261,6 +261,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importing-as-workbook" id="toc-importing-as-workbook" class="nav-link" data-scroll-target="#importing-as-workbook"><span class="header-section-number">3.1.15</span> Importing as workbook</a></li>
   </ul>
 </li>
+  <li>
+<a href="#example-reading-real-world-data" id="toc-example-reading-real-world-data" class="nav-link" data-scroll-target="#example-reading-real-world-data"><span class="header-section-number">3.2</span> Example: Reading real world data</a>
+  <ul class="collapse">
+<li><a href="#reading-the-data-table" id="toc-reading-the-data-table" class="nav-link" data-scroll-target="#reading-the-data-table"><span class="header-section-number">3.2.1</span> Reading the data table</a></li>
+  <li><a href="#cleaning-the-indents" id="toc-cleaning-the-indents" class="nav-link" data-scroll-target="#cleaning-the-indents"><span class="header-section-number">3.2.2</span> Cleaning the indents</a></li>
+  <li><a href="#read-selected-dims" id="toc-read-selected-dims" class="nav-link" data-scroll-target="#read-selected-dims"><span class="header-section-number">3.2.3</span> Read selected dims</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_reading.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -538,6 +546,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The additional options <code>wb_load()</code> provides are for internal use: <code>sheet</code> loads only a selected sheet from the workbook and <code>data_only</code> reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.</p>
 <p>Once a workbook is imported, we provide several functions to interact with and modify it (the <code>wb_to_df()</code> function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).</p>
+</section></section><section id="example-reading-real-world-data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="example-reading-real-world-data">
+<span class="header-section-number">3.2</span> Example: Reading real world data</h2>
+<p>In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how <code>openxlsx2</code> can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.</p>
+<p>The file we use is part of the publications from the US Census. “Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022.” At the time available at: https://www.census.gov/data/tables/2022/demo/acs-2022.html. The table is rather large with multiple groups in columns and rows.</p>
+<section id="reading-the-data-table" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="reading-the-data-table">
+<span class="header-section-number">3.2.1</span> Reading the data table</h3>
+<p>In a first step we import the entire workbook</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="st">"https://www2.census.gov/programs-surveys/demo/tables/industry-occupation/2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once the workbook is loaded, we read the entire worksheet and try to get an understanding how it looks like. For this we fill merged cells and remote the column name. After that we can inspect it with <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># View(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using this we realize that the table has a few description rows ahead and a few footnotes below. Numeric data starts in row <code>8</code> and ends in <code>605</code>. The table spans columns <code>A</code> to <code>BG</code>. Therefore our dimensions will look like this <code>A7:BG605</code>. We start one row earlier than the data we want to read, because we expect a column name. In addition there are a few missing values that we want to remove.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A7:BG605"</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="cleaning-the-indents" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="cleaning-the-indents">
+<span class="header-section-number">3.2.2</span> Cleaning the indents</h3>
+<p>Not for every feature there is a custom function, but a lot of things can be done with <code>openxlsx2</code>. The rows are grouped by occupation. This occupation is not visisble in the data frame above. But since the information is available in the data, we can access it.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## adaption of https://github.com/JanMarvin/openxlsx2/discussions/710</span></span>
+<span><span class="va">description_dims</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">description_dims</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">want</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">description_dims</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get the styles for the range</span></span>
+<span><span class="va">styles</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="va">styles</span><span class="op">$</span><span class="va">cellXfs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">want</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">styles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">styles</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">alignment</span> <span class="op">&lt;-</span> <span class="fu">xml_node</span><span class="op">(</span><span class="va">x</span>, <span class="st">"xf"</span>, <span class="st">"alignment"</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">alignment</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="va">alignment</span><span class="op">)</span></span>
+<span>  <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="st">"&lt;alignment indent=\"0\"/&gt;"</span><span class="op">)</span></span>
+<span><span class="op">}</span>, FUN.VALUE <span class="op">=</span> <span class="cn">NA_character_</span>, USE.NAMES <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">styles</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">want</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># now get the indentation alignment from the style</span></span>
+<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">rbindlist</span><span class="op">(</span><span class="fu">xml_attr</span><span class="op">(</span><span class="va">styles</span>, <span class="st">"alignment"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># indent the text</span></span>
+<span><span class="va">itext</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">indents</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">indents</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">itmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"__"</span>, <span class="va">indents</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, <span class="va">text</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span>    <span class="va">itext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">itext</span>, <span class="va">itmp</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">itext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">itext</span>, <span class="va">text</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># return it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">itext</span>, <span class="fl">10</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Total</span></span>
+<span><span class="co">#&gt; Management, Business, Science, and Arts Occupations:</span></span>
+<span><span class="co">#&gt; __Management, Business, and Financial Occupations:</span></span>
+<span><span class="co">#&gt; ____Management Occupations:</span></span>
+<span><span class="co">#&gt; ______Chief executives</span></span>
+<span><span class="co">#&gt; ______General and operations managers</span></span>
+<span><span class="co">#&gt; ______Legislators</span></span>
+<span><span class="co">#&gt; ______Advertising and promotions managers</span></span>
+<span><span class="co">#&gt; ______Marketing managers</span></span>
+<span><span class="co">#&gt; ______Sales managers</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">itext</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">indents</span>   <span class="op">&lt;-</span> <span class="va">indents</span></span>
+<span></span>
+<span><span class="co"># quite a long list and I am not sure every item has the correct indentation</span></span>
+<span><span class="co"># in the spreadsheet</span></span>
+<span><span class="va">df_ind1</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">indents</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Estimate"</span>, <span class="st">"MOE2"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_ind1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                                                     Estimate</span></span>
+<span><span class="co">#&gt; __Management, Business, and Financial Occupations:                  22620000</span></span>
+<span><span class="co">#&gt; __Computer, Engineering, and Science Occupations:                    9304000</span></span>
+<span><span class="co">#&gt; __Education, Legal, Community Service, Arts, and Media Occupations: 11030000</span></span>
+<span><span class="co">#&gt; __Chiropractors                                                        43980</span></span>
+<span><span class="co">#&gt; __Dentists                                                             96470</span></span>
+<span><span class="co">#&gt; __Dietitians and nutritionists                                         70760</span></span>
+<span><span class="co">#&gt;                                                                      MOE2</span></span>
+<span><span class="co">#&gt; __Management, Business, and Financial Occupations:                  92250</span></span>
+<span><span class="co">#&gt; __Computer, Engineering, and Science Occupations:                   74300</span></span>
+<span><span class="co">#&gt; __Education, Legal, Community Service, Arts, and Media Occupations: 63890</span></span>
+<span><span class="co">#&gt; __Chiropractors                                                      4205</span></span>
+<span><span class="co">#&gt; __Dentists                                                           5520</span></span>
+<span><span class="co">#&gt; __Dietitians and nutritionists                                       5135</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="read-selected-dims" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="read-selected-dims">
+<span class="header-section-number">3.2.3</span> Read selected dims</h3>
+<p>Lets say you have opened the file in a spreadsheet software and identified a few cells that you want to read. You don’t want to read every cell, only a few occupations, and total estimates for man and woman. Basically you have decided, that you want to import the cells with yellow highlighting in the following screenshot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/read_dims_1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since your output contains non consecutive cells, which are basically a square, you can pass them as a single <code>dims</code> string. In the <code>dims</code> string we treat header and column differently. We can check with <code>dims_to_dataframe("A6:B6,D6,H6,A12:B17,D12:D17,H12:H17", fill = TRUE, empty_rm = TRUE)</code> if our <code>dims</code> object works. Since we see no blanks, every cell is matched.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wb_to_df</span><span class="op">(</span></span>
+<span>  <span class="va">wb</span>, </span>
+<span>  dims <span class="op">=</span> <span class="st">"A6:B6,D6,H6,A12:B17,D12:D17,H12:H17"</span>,</span>
+<span>  fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;                  Occupational Category   Total   Men   Women</span></span>
+<span><span class="co">#&gt; 12                    Chief executives 1289000 915800 373400</span></span>
+<span><span class="co">#&gt; 13     General and operations managers 1104000 727700 376300</span></span>
+<span><span class="co">#&gt; 14                         Legislators   11090   6505   4585</span></span>
+<span><span class="co">#&gt; 15 Advertising and promotions managers   46220  20360  25860</span></span>
+<span><span class="co">#&gt; 16                  Marketing managers  512500 200600 311900</span></span>
+<span><span class="co">#&gt; 17                      Sales managers  510400 352900 157500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And another table, this time without a separate header row.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/read_dims_2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To read the orange cells, the following command can be used:</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wb_to_df</span><span class="op">(</span></span>
+<span>  <span class="va">wb</span>,</span>
+<span>  dims <span class="op">=</span> <span class="st">"A7:A8,L7:M8,P7:Q8"</span>,</span>
+<span>  fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Occupational Category Estimate   MOE2 Estimate   MOE2</span></span>
+<span><span class="co">#&gt; 8                 Total 58140000 156600 34950000 103100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Given enough knowledge about certain data files, it is often possible to identify cells, similar to <code>VLOOKUP()</code> in spreadsheets. In our case, we could maybe make use of e.g.&nbsp;<code>which(df$A == "Total")</code> or <code>int2col(which(df[6, ] == "Men"))</code>. But such cases require a bit more hand tailored solutions. From experience the most important thing is to remain doubtful about the data imported. There are many things that can go wrong, like picking the wrong column, or the wrong spreadsheet. Don’t be shy to check your work against spreadsheet software. Again and again.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
