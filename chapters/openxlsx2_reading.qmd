@@ -174,3 +174,117 @@ wb <- wb_load(file = xlsxFile)
 The additional options `wb_load()` provides are for internal use: `sheet` loads only a selected sheet from the workbook and `data_only` reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.
 
 Once a workbook is imported, we provide several functions to interact with and modify it (the `wb_to_df()` function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).
+
+
+## Example: Reading real world data
+
+In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how `openxlsx2` can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.
+
+The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: https://www.census.gov/data/tables/2022/demo/acs-2022.html. The table is rather large with multiple groups in columns and rows.
+
+### Reading the data table
+
+In a first step we import the entire workbook
+
+```{r}
+fl <- "https://www2.census.gov/programs-surveys/demo/tables/industry-occupation/2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"
+
+wb <- wb_load(fl)
+```
+
+Once the workbook is loaded, we read the entire worksheet and try to get an understanding how it looks like. For this we fill merged cells and remote the column name. After that we can inspect it with `View()`.
+
+```{r}
+df <- wb_to_df(wb, fill_merged_cells = TRUE, col_names = FALSE, skip_empty_cols = TRUE)
+# View(df)
+```
+
+Using this we realize that the table has a few description rows ahead and a few footnotes below. Numeric data starts in row `8` and ends in `605`. The table spans columns `A` to `BG`. Therefore our dimensions will look like this `A7:BG605`. We start one row earlier than the data we want to read, because we expect a column name. In addition there are a few missing values that we want to remove.
+
+```{r}
+dims <- "A7:BG605"
+df <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE)
+```
+
+### Cleaning the indents
+
+Not for every feature there is a custom function, but a lot of things can be done with `openxlsx2`. The rows are grouped by occupation. This occupation is not visisble in the data frame above. But since the information is available in the data, we can access it.
+
+```{r}
+## adaption of https://github.com/JanMarvin/openxlsx2/discussions/710
+description_dims <- wb_dims(rows = as.integer(rownames(df)), cols = 1)
+text <- wb_to_df(wb, dims = description_dims, col_names = FALSE)[[1]]
+want <- wb$get_cell_style(dims = description_dims)
+
+# Get the styles for the range
+styles <- wb$styles_mgr$styles$cellXfs[as.integer(want) + 1]
+styles <- vapply(styles, FUN = function(x) {
+  alignment <- xml_node(x, "xf", "alignment")
+  if (length(alignment)) return (alignment)
+  else return ("<alignment indent=\"0\"/>")
+}, FUN.VALUE = NA_character_, USE.NAMES = FALSE)
+stopifnot(length(styles) == length(want))
+
+# now get the indentation alignment from the style
+indents <- openxlsx2:::rbindlist(xml_attr(styles, "alignment"))$indent %>% 
+  as.integer()
+
+# indent the text
+itext <- NULL
+for (i in seq_along(indents)) {
+  if (!is.na(indents[i])) {
+    itmp <- paste0(c(rep("__", indents[i]), text[i]), collapse = "")
+    itext <- c(itext, itmp)
+  } else {
+    itext <- c(itext, text[i])
+  }
+}
+
+# return it
+message(paste(head(itext, 10), collapse = "\n"))
+
+rownames(df) <- itext
+df$indents   <- indents
+
+# quite a long list and I am not sure every item has the correct indentation
+# in the spreadsheet
+df_ind1 <- df[df$indents == 1, c("Estimate", "MOE2")]
+head(df_ind1)
+```
+
+### Read selected dims
+
+Lets say you have opened the file in a spreadsheet software and identified a few cells that you want to read. You don't want to read every cell, only a few occupations, and total estimates for man and woman. Basically you have decided, that you want to import the cells with yellow highlighting in the following screenshot.
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/read_dims_1.png")
+```
+
+Since your output contains non consecutive cells, which are basically a square, you can pass them as a single `dims` string. In the `dims` string we treat header and column differently. We can check with `dims_to_dataframe("A6:B6,D6,H6,A12:B17,D12:D17,H12:H17", fill = TRUE, empty_rm = TRUE)` if our `dims` object works. Since we see no blanks, every cell is matched.
+
+```{r}
+wb_to_df(
+  wb, 
+  dims = "A6:B6,D6,H6,A12:B17,D12:D17,H12:H17",
+  fill_merged_cells = TRUE
+)
+```
+
+And another table, this time without a separate header row.
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/read_dims_2.png")
+```
+
+To read the orange cells, the following command can be used:
+
+```{r}
+wb_to_df(
+  wb,
+  dims = "A7:A8,L7:M8,P7:Q8",
+  fill_merged_cells = TRUE
+)
+```
+
+Given enough knowledge about certain data files, it is often possible to identify cells, similar to `VLOOKUP()` in spreadsheets. In our case, we could maybe make use of e.g. `which(df$A == "Total")` or `int2col(which(df[6, ] == "Men"))`. But such cases require a bit more hand tailored solutions.
+From experience the most important thing is to remain doubtful about the data imported. There are many things that can go wrong, like picking the wrong column, or the wrong spreadsheet. Don't be shy to check your work against spreadsheet software. Again and again.
