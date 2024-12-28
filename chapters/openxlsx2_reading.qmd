@@ -175,7 +175,6 @@ The additional options `wb_load()` provides are for internal use: `sheet` loads 
 
 Once a workbook is imported, we provide several functions to interact with and modify it (the `wb_to_df()` function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).
 
-
 ## Example: Reading real world data
 
 In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how `openxlsx2` can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.
@@ -218,15 +217,10 @@ want <- wb$get_cell_style(dims = description_dims)
 
 # Get the styles for the range
 styles <- wb$styles_mgr$styles$cellXfs[as.integer(want) + 1]
-styles <- vapply(styles, FUN = function(x) {
-  alignment <- xml_node(x, "xf", "alignment")
-  if (length(alignment)) return (alignment)
-  else return ("<alignment indent=\"0\"/>")
-}, FUN.VALUE = NA_character_, USE.NAMES = FALSE)
-stopifnot(length(styles) == length(want))
 
 # now get the indentation alignment from the style
-indents <- openxlsx2:::rbindlist(xml_attr(styles, "alignment"))$indent %>% 
+indents <- openxlsx2:::read_xf(read_xml(styles))$indent %>% 
+  ifelse(. == "", "0", .) %>% 
   as.integer()
 
 # indent the text
@@ -286,5 +280,84 @@ wb_to_df(
 )
 ```
 
-Given enough knowledge about certain data files, it is often possible to identify cells, similar to `VLOOKUP()` in spreadsheets. In our case, we could maybe make use of e.g. `which(df$A == "Total")` or `int2col(which(df[6, ] == "Men"))`. But such cases require a bit more hand tailored solutions.
-From experience the most important thing is to remain doubtful about the data imported. There are many things that can go wrong, like picking the wrong column, or the wrong spreadsheet. Don't be shy to check your work against spreadsheet software. Again and again.
+### Read data header and body in parts
+
+Using only the last row right above the data, can result in many duplicated column names. It is not always possible to avoid this, but sometimes it is possible to create a unique name combining the multiple header rows. In the code below, we read two `df` objects, the `df_head` and the `df_body`. Once the data is imported, it is straightforward to modify the `df_head` object to create a unique column name.
+
+```{r}
+# read body
+dims <- "A8:BG605"
+df_body <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE, col_names = FALSE)
+
+# read header
+dims <- "A5:BG7"
+df_head <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE, col_names = FALSE)
+
+# create single header string. remove all spaces, unique values. collapse on dot
+nams <- vapply(names(df_head), function(x) {
+  paste0(gsub("[ \t\r\n]", "_", unique(trimws(df_head[[x]]))), collapse = ".")
+  }, NA_character_)
+
+# check that names in body and head match
+stopifnot(all(names(df_body) %in% names(nams)))
+
+# assign names and create output object, avoid duplicates
+df <- setNames(df_body, make.names(nams, unique = TRUE))
+
+# a few names of the workbook
+head(names(df), 10)
+
+# a glimpse of the new object
+head(df[seq_len(5)])
+```
+
+Given enough knowledge about certain data files, it is often possible to identify cells, similar to `VLOOKUP()` in spreadsheets. In our case, we could maybe make use of e.g. `which(df$A == "Total")` or `int2col(which(df[6, ] == "Men"))`. But such cases require a bit more hand tailored solutions. From experience the most important thing is to remain doubtful about the data imported. There are many things that can go wrong, like picking the wrong column, or the wrong spreadsheet. Don't be shy to check your work against spreadsheet software. Again and again.
+
+### Bonus: clean up this xlsx table
+
+Obviously something is wrong in the xlsx file. We have already worked with the data, so lets see if we can clean it up.
+
+```{r}
+# fix some broken indentation in the file - this is only to please my OCD
+sel <- seq.int(
+  which(text == "Healthcare Practitioners and Technical Occupations:"),
+  which(text == "Other healthcare practitioners and technical occupations")
+)
+indents[sel] <- indents[sel] + 1L
+
+sel <- seq.int(
+  which(text == "Healthcare Practitioners and Technical Occupations:") + 1L,
+  which(text == "Other production workers")
+)
+indents[sel] <- indents[sel] + 1L
+
+create_groups <- function(sequence) {
+  
+  # Create a data frame
+  df <- data.frame(Index = 1:length(sequence), Value = sequence)
+  
+  # Calculate Supergroup, Group, and Subgroup identifiers
+  df$Supergroup <- cumsum(df$Value == 0)
+  df$Group      <- cumsum(df$Value == 1)
+  df$Subgroup   <- cumsum(df$Value == 2)
+
+  # Fill NA values for non-group entries
+  df$Supergroup <- ifelse(df$Value == 0, df$Supergroup, NA)
+  df$Group      <- ifelse(df$Value == 1, df$Group, NA)
+  df$Subroup    <- ifelse(df$Value == 2, df$Group, NA)
+  
+  as.data.frame(tidyr::fill(df, Supergroup, Group, Subgroup, .direction = "down"))
+}
+
+df$Index <- seq_len(nrow(df))
+df$Value <- indents
+
+# each duplicated MOE2 is a percent value
+df <- merge(x = df, y = create_groups(indents), by = c("Index", "Value"), sort = FALSE)
+
+tab <- df[df$Value == 3, c("Occupational_Category", "Total.Estimate", "Total.MOE2", "Supergroup", "Group", "Subgroup")]
+rownames(tab) <- NULL
+
+aggregate(Total.Estimate ~ Supergroup, data = tab, sum)
+aggregate(Total.Estimate ~ Group, data = tab, sum)
+```

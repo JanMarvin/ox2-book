@@ -35,6 +35,7 @@ Suggests:
     rmarkdown,
     rvg,
     testthat,
+    tidyr,
     waldo
 VignetteBuilder:
     knitr
