@@ -267,6 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#reading-the-data-table" id="toc-reading-the-data-table" class="nav-link" data-scroll-target="#reading-the-data-table"><span class="header-section-number">3.2.1</span> Reading the data table</a></li>
   <li><a href="#cleaning-the-indents" id="toc-cleaning-the-indents" class="nav-link" data-scroll-target="#cleaning-the-indents"><span class="header-section-number">3.2.2</span> Cleaning the indents</a></li>
   <li><a href="#read-selected-dims" id="toc-read-selected-dims" class="nav-link" data-scroll-target="#read-selected-dims"><span class="header-section-number">3.2.3</span> Read selected dims</a></li>
+  <li><a href="#read-data-header-and-body-in-parts" id="toc-read-data-header-and-body-in-parts" class="nav-link" data-scroll-target="#read-data-header-and-body-in-parts"><span class="header-section-number">3.2.4</span> Read data header and body in parts</a></li>
+  <li><a href="#bonus-clean-up-this-xlsx-table" id="toc-bonus-clean-up-this-xlsx-table" class="nav-link" data-scroll-target="#bonus-clean-up-this-xlsx-table"><span class="header-section-number">3.2.5</span> Bonus: clean up this xlsx table</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_reading.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -579,15 +581,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># Get the styles for the range</span></span>
 <span><span class="va">styles</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="va">styles</span><span class="op">$</span><span class="va">cellXfs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">want</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span></span>
-<span><span class="va">styles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">styles</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">alignment</span> <span class="op">&lt;-</span> <span class="fu">xml_node</span><span class="op">(</span><span class="va">x</span>, <span class="st">"xf"</span>, <span class="st">"alignment"</span><span class="op">)</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">alignment</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="va">alignment</span><span class="op">)</span></span>
-<span>  <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="st">"&lt;alignment indent=\"0\"/&gt;"</span><span class="op">)</span></span>
-<span><span class="op">}</span>, FUN.VALUE <span class="op">=</span> <span class="cn">NA_character_</span>, USE.NAMES <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">styles</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">want</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># now get the indentation alignment from the style</span></span>
-<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">rbindlist</span><span class="op">(</span><span class="fu">xml_attr</span><span class="op">(</span><span class="va">styles</span>, <span class="st">"alignment"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">read_xf</span><span class="op">(</span><span class="fu">read_xml</span><span class="op">(</span><span class="va">styles</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">.</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"0"</span>, <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># indent the text</span></span>
@@ -681,7 +678,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;   Occupational Category Estimate   MOE2 Estimate   MOE2</span></span>
 <span><span class="co">#&gt; 8                 Total 58140000 156600 34950000 103100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section><section id="read-data-header-and-body-in-parts" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="read-data-header-and-body-in-parts">
+<span class="header-section-number">3.2.4</span> Read data header and body in parts</h3>
+<p>Using only the last row right above the data, can result in many duplicated column names. It is not always possible to avoid this, but sometimes it is possible to create a unique name combining the multiple header rows. In the code below, we read two <code>df</code> objects, the <code>df_head</code> and the <code>df_body</code>. Once the data is imported, it is straightforward to modify the <code>df_head</code> object to create a unique column name.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read body</span></span>
+<span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A8:BG605"</span></span>
+<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># read header</span></span>
+<span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A5:BG7"</span></span>
+<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create single header string. remove all spaces, unique values. collapse on dot</span></span>
+<span><span class="va">nams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_head</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"[ \t\r\n]"</span>, <span class="st">"_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/trimws.html">trimws</a></span><span class="op">(</span><span class="va">df_head</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, <span class="cn">NA_character_</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># check that names in body and head match</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_body</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">nams</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># assign names and create output object, avoid duplicates</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">df_body</span>, <span class="fu"><a href="https://rdrr.io/r/base/make.names.html">make.names</a></span><span class="op">(</span><span class="va">nams</span>, unique <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># a few names of the workbook</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "Occupational_Category"        "Total.Estimate"              </span></span>
+<span><span class="co">#&gt;  [3] "Total.MOE2"                   "Total.Men.Estimate"          </span></span>
+<span><span class="co">#&gt;  [5] "Total.Men.MOE2"               "Total.Men.Percent_of_Total"  </span></span>
+<span><span class="co">#&gt;  [7] "Total.Men.MOE2.1"             "Total.Women.Estimate"        </span></span>
+<span><span class="co">#&gt;  [9] "Total.Women.MOE2"             "Total.Women.Percent_of_Total"</span></span>
+<span></span>
+<span><span class="co"># a glimpse of the new object</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                   Occupational_Category Total.Estimate</span></span>
+<span><span class="co">#&gt; 8                                                 Total      102800000</span></span>
+<span><span class="co">#&gt; 9  Management, Business, Science, and Arts Occupations:       49810000</span></span>
+<span><span class="co">#&gt; 10     Management, Business, and Financial Occupations:       22620000</span></span>
+<span><span class="co">#&gt; 11                              Management Occupations:       15080000</span></span>
+<span><span class="co">#&gt; 12                                     Chief executives        1289000</span></span>
+<span><span class="co">#&gt; 13                      General and operations managers        1104000</span></span>
+<span><span class="co">#&gt;    Total.MOE2 Total.Men.Estimate Total.Men.MOE2</span></span>
+<span><span class="co">#&gt; 8      138800           57980000          90250</span></span>
+<span><span class="co">#&gt; 9      160000           25080000         106700</span></span>
+<span><span class="co">#&gt; 10      92250           12310000          63260</span></span>
+<span><span class="co">#&gt; 11      73430            8828000          54810</span></span>
+<span><span class="co">#&gt; 12      21490             915800          20110</span></span>
+<span><span class="co">#&gt; 13      18650             727700          14240</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Given enough knowledge about certain data files, it is often possible to identify cells, similar to <code>VLOOKUP()</code> in spreadsheets. In our case, we could maybe make use of e.g.&nbsp;<code>which(df$A == "Total")</code> or <code>int2col(which(df[6, ] == "Men"))</code>. But such cases require a bit more hand tailored solutions. From experience the most important thing is to remain doubtful about the data imported. There are many things that can go wrong, like picking the wrong column, or the wrong spreadsheet. Don’t be shy to check your work against spreadsheet software. Again and again.</p>
+</section><section id="bonus-clean-up-this-xlsx-table" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="bonus-clean-up-this-xlsx-table">
+<span class="header-section-number">3.2.5</span> Bonus: clean up this xlsx table</h3>
+<p>Obviously something is wrong in the xlsx file. We have already worked with the data, so lets see if we can clean it up.</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># fix some broken indentation in the file - this is only to please my OCD</span></span>
+<span><span class="va">sel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq.int</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">text</span> <span class="op">==</span> <span class="st">"Healthcare Practitioners and Technical Occupations:"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">text</span> <span class="op">==</span> <span class="st">"Other healthcare practitioners and technical occupations"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1L</span></span>
+<span></span>
+<span><span class="va">sel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq.int</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">text</span> <span class="op">==</span> <span class="st">"Healthcare Practitioners and Technical Occupations:"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1L</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">text</span> <span class="op">==</span> <span class="st">"Other production workers"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1L</span></span>
+<span></span>
+<span><span class="va">create_groups</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co"># Create a data frame</span></span>
+<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Index <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span>, Value <span class="op">=</span> <span class="va">sequence</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Calculate Supergroup, Group, and Subgroup identifiers</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Group</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Subgroup</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Fill NA values for non-group entries</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">0</span>, <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Group</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">df</span><span class="op">$</span><span class="va">Group</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span>  <span class="va">df</span><span class="op">$</span><span class="va">Subroup</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">2</span>, <span class="va">df</span><span class="op">$</span><span class="va">Group</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">Supergroup</span>, <span class="va">Group</span>, <span class="va">Subgroup</span>, .direction <span class="op">=</span> <span class="st">"down"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">Index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">&lt;-</span> <span class="va">indents</span></span>
+<span></span>
+<span><span class="co"># each duplicated MOE2 is a percent value</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, y <span class="op">=</span> <span class="fu">create_groups</span><span class="op">(</span><span class="va">indents</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Index"</span>, <span class="st">"Value"</span><span class="op">)</span>, sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Occupational_Category"</span>, <span class="st">"Total.Estimate"</span>, <span class="st">"Total.MOE2"</span>, <span class="st">"Supergroup"</span>, <span class="st">"Group"</span>, <span class="st">"Subgroup"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Total.Estimate</span> <span class="op">~</span> <span class="va">Supergroup</span>, data <span class="op">=</span> <span class="va">tab</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Supergroup Total.Estimate</span></span>
+<span><span class="co">#&gt; 1          2      102819245</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Total.Estimate</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">tab</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group Total.Estimate</span></span>
+<span><span class="co">#&gt; 1     1       22622315</span></span>
+<span><span class="co">#&gt; 2     2        9304335</span></span>
+<span><span class="co">#&gt; 3     3       11029725</span></span>
+<span><span class="co">#&gt; 4     4        6853765</span></span>
+<span><span class="co">#&gt; 5     5       11841230</span></span>
+<span><span class="co">#&gt; 6     6       18861045</span></span>
+<span><span class="co">#&gt; 7     7        9240130</span></span>
+<span><span class="co">#&gt; 8     8        6044450</span></span>
+<span><span class="co">#&gt; 9     9        7022250</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
