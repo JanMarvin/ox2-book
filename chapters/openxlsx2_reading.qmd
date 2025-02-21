@@ -179,7 +179,10 @@ Once a workbook is imported, we provide several functions to interact with and m
 
 In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how `openxlsx2` can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.
 
-The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: https://www.census.gov/data/tables/2022/demo/acs-2022.html. The table is rather large with multiple groups in columns and rows.
+The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: <https://www.census.gov/data/tables/2022/demo/acs-2022.html>. The table is rather large with multiple groups in columns and rows.
+[^1]. 
+
+[^1]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx>.
 
 ### Reading the data table
 
