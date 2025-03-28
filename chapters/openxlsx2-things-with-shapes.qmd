@@ -1,0 +1,106 @@
+---
+  title: "Working with Shapes in openxlsx2"
+---
+
+## Adding Comments
+
+Comments in Excel are useful for annotating cells with additional information. Using **openxlsx2**, we can create comments and we can even create, reply to, and close threads programmatically. These are a feature introduced in MS365 and is called "comment", while comments are called "note". We use to comment and thread, but each their own.
+
+### Creating a Comment
+
+```{r}
+library(openxlsx2)
+
+wb <- wb_workbook()$
+  add_worksheet()
+
+# Add a comment to cell A1
+wb$add_comment(
+  dims = "B2",
+  comment = "This is a sample comment."
+)
+```
+
+It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^1][^1: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.] For this we are going to remove this previous comment.
+
+```{r}
+# eh what was it again?
+wb$get_comment(dims = "B2")
+
+# okay, sample comment. can be removed
+wb$remove_comment(dims = "B2")
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sh_comment1.png")
+```
+
+### Comments with background images
+
+```{r}
+tmp <- tempfile(fileext = ".png")
+png(file = tmp, bg = "transparent")
+plot(1:10)
+rect(1, 5, 3, 7, col = "white")
+dev.off()
+
+c1 <- wb_comment(text = "this is a comment", author = "", visible = TRUE)
+wb$add_comment(dims = "B12", comment = c1, file = tmp)
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sh_comment2.png")
+```
+
+## Working with Threads
+
+In its foundation a comment is just some text in a quadratic shape. Usually it contains some auther information, but this is entirely optional, it could also be just some fictional text or the authors name can be removed entirely. It is also quite complex to reply to a comment. For this, threads were invented. A thread is something similar to a chat or mail chain. It is created chronologically and it has a person attached to it. It is possible to answer to a thread and to close it. As in, the question was solved, but it is left for everyone to see.
+
+In spreadsheet software that does not support threads, a comment is shown with the information content of the thread and a hint that the comment should not be altered.
+
+### Persons, create one or become one
+
+To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with `wb_get_person()`. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.
+
+```{r}
+wb <- wb_workbook()$add_worksheet()
+# Add a person to the workbook.
+wb$add_person(name = "somebody")
+wb$add_person(name = "you")
+```
+
+Now we want to create a thread as `"you"`. The id `pid` itself is rather uninteresting, it is a guid, similar to many others used in `openxlsx2`.
+
+```{r}
+pid <- wb$get_person(name = "you")$id
+```
+
+
+### Creating a Thread
+
+And that's it. Now we can create a thread as you.
+```{r}
+wb$add_thread(dims = "A1", comment = "wow it works!", person_id = pid)
+wb$add_thread(dims = "A2", comment = "indeed", person_id = pid, resolve = TRUE)
+wb$add_thread(dims = "A1", comment = "so cool", person_id = pid, reply = TRUE)
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sh_thread1.png")
+knitr::include_graphics("../img/sh_thread2.png")
+```
+
+## Working with Shape Objects
+
+Besides comments and notes, **openxlsx2** allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.
+
+### Adding a Rectangle Shape
+
+``` r
+  rect <- create_shape(
+    shape = "rect", text_align = "center",
+    fill_colour = wb_color("yellow")
+  )
+```
