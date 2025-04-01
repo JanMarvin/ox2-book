@@ -702,41 +702,51 @@
   {
     "objectID": "chapters/openxlsx2-things-with-shapes.html",
     "href": "chapters/openxlsx2-things-with-shapes.html",
-    "title": "\n13  Working with Shapes in openxlsx2\n",
+    "title": "\n13  Comments and Working with Shapes in openxlsx2\n",
     "section": "",
-    "text": "13.1 Adding Comments\nComments in Excel are useful for annotating cells with additional information. Using openxlsx2, we can create comments and we can even create, reply to, and close threads programmatically. These are a feature introduced in MS365 and is called “comment”, while comments are called “note”. We use to comment and thread, but each their own.",
+    "text": "13.1 Adding Comments\nComments in Excel are useful for annotating cells with additional information. Using openxlsx2, we can create comments and we can even create, reply to, and close threads programmatically. Threads are a feature introduced in MS365 and replace the “comment”, while legacy comments are now called “note”. We use comment and thread (their names in the XML code), but each their own.",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Working with Shapes in openxlsx2</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Comments and Working with Shapes in openxlsx2</span>"
     ]
   },
   {
     "objectID": "chapters/openxlsx2-things-with-shapes.html#adding-comments",
     "href": "chapters/openxlsx2-things-with-shapes.html#adding-comments",
-    "title": "\n13  Working with Shapes in openxlsx2\n",
+    "title": "\n13  Comments and Working with Shapes in openxlsx2\n",
     "section": "",
-    "text": "13.1.1 Creating a Comment\n\nlibrary(openxlsx2)\n\nwb &lt;- wb_workbook()$\n  add_worksheet()\n\n# Add a comment to cell A1\nwb$add_comment(\n  dims = \"B2\",\n  comment = \"This is a sample comment.\"\n)\n\nIt is possible to style the comment, the manual page provides a few examples of this. openxlsx2 provides additional niche features such as background images for comments.[^1][^1: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.] For this we are going to remove this previous comment.\n\n# eh what was it again?\nwb$get_comment(dims = \"B2\")\n\n  ref author                              comment cmmt_id\n1  B2 runner runner: \\n This is a sample comment.       1\n\n# okay, sample comment. can be removed\nwb$remove_comment(dims = \"B2\")\n\n\n\n\n\n\n\n\n\n\n13.1.2 Comments with background images\n\ntmp &lt;- tempfile(fileext = \".png\")\npng(file = tmp, bg = \"transparent\")\nplot(1:10)\nrect(1, 5, 3, 7, col = \"white\")\ndev.off()\n\npng \n  2 \n\nc1 &lt;- wb_comment(text = \"this is a comment\", author = \"\", visible = TRUE)\nwb$add_comment(dims = \"B12\", comment = c1, file = tmp)",
+    "text": "13.1.1 Creating a Comment\n\nwb &lt;- wb_workbook()$\n  add_worksheet()\n\n# Add a comment to cell A1\nwb$add_comment(\n  dims = \"B2\",\n  comment = \"This is a sample comment.\"\n)\n\nIt is possible to style the comment, the manual page provides a few examples of this. openxlsx2 provides additional niche features such as background images for comments.1 For this we are going to remove this previous comment.\n\n# eh what was it again?\nwb$get_comment(dims = \"B2\")\n#&gt;   ref author                              comment cmmt_id\n#&gt; 1  B2 runner runner: \\n This is a sample comment.       1\n\n# okay, sample comment. can be removed\nwb$remove_comment(dims = \"B2\")\n\n\n\n\n\n\n\n\n\n\n13.1.2 Comments with background images\n\ntmp &lt;- tempfile(fileext = \".png\")\npng(file = tmp, bg = \"transparent\")\nplot(1:10)\nrect(1, 5, 3, 7, col = \"white\")\ndev.off()\n#&gt; png \n#&gt;   2\n\nc1 &lt;- wb_comment(text = \"this is a comment\", author = \"\", visible = TRUE)\nwb$add_comment(dims = \"B12\", comment = c1, file = tmp)",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Working with Shapes in openxlsx2</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Comments and Working with Shapes in openxlsx2</span>"
     ]
   },
   {
     "objectID": "chapters/openxlsx2-things-with-shapes.html#working-with-threads",
     "href": "chapters/openxlsx2-things-with-shapes.html#working-with-threads",
-    "title": "\n13  Working with Shapes in openxlsx2\n",
+    "title": "\n13  Comments and Working with Shapes in openxlsx2\n",
     "section": "\n13.2 Working with Threads",
     "text": "13.2 Working with Threads\nIn its foundation a comment is just some text in a quadratic shape. Usually it contains some auther information, but this is entirely optional, it could also be just some fictional text or the authors name can be removed entirely. It is also quite complex to reply to a comment. For this, threads were invented. A thread is something similar to a chat or mail chain. It is created chronologically and it has a person attached to it. It is possible to answer to a thread and to close it. As in, the question was solved, but it is left for everyone to see.\nIn spreadsheet software that does not support threads, a comment is shown with the information content of the thread and a hint that the comment should not be altered.\n\n13.2.1 Persons, create one or become one\nTo create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with wb_get_person(). While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.\n\nwb &lt;- wb_workbook()$add_worksheet()\n# Add a person to the workbook.\nwb$add_person(name = \"somebody\")\nwb$add_person(name = \"you\")\n\nNow we want to create a thread as \"you\". The id pid itself is rather uninteresting, it is a guid, similar to many others used in openxlsx2.\n\npid &lt;- wb$get_person(name = \"you\")$id\n\n\n13.2.2 Creating a Thread\nAnd that’s it. Now we can create a thread as you.\n\nwb$add_thread(dims = \"A1\", comment = \"wow it works!\", person_id = pid)\nwb$add_thread(dims = \"A2\", comment = \"indeed\", person_id = pid, resolve = TRUE)\nwb$add_thread(dims = \"A1\", comment = \"so cool\", person_id = pid, reply = TRUE)",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Working with Shapes in openxlsx2</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Comments and Working with Shapes in openxlsx2</span>"
     ]
   },
   {
     "objectID": "chapters/openxlsx2-things-with-shapes.html#working-with-shape-objects",
     "href": "chapters/openxlsx2-things-with-shapes.html#working-with-shape-objects",
-    "title": "\n13  Working with Shapes in openxlsx2\n",
+    "title": "\n13  Comments and Working with Shapes in openxlsx2\n",
     "section": "\n13.3 Working with Shape Objects",
-    "text": "13.3 Working with Shape Objects\nBesides comments and notes, openxlsx2 allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.\n\n13.3.1 Adding a Rectangle Shape\n  rect &lt;- create_shape(\n    shape = \"rect\", text_align = \"center\",\n    fill_colour = wb_color(\"yellow\")\n  )",
+    "text": "13.3 Working with Shape Objects\nBesides comments and notes, openxlsx2 allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.\n\n13.3.1 Adding a Rectangle Shape\nIf you are wondering why the section about comment and threads is in the same section as shapes, after all comments are something like a rectangular shape with a text.\n\nrect &lt;- create_shape(\n  shape = \"rect\", text_align = \"center\",\n  text = fmt_txt(\"I want to become a comment!\", font = \"Tahoma\", size = \"10\",\n                 color = wb_color(\"black\"), family = 2),\n  fill_colour = wb_color(hex = \"ffffe1\"),\n  line_color = wb_color(\"black\"),\n  line_transparency = 50\n)\n\nwb &lt;- wb_workbook()$add_worksheet()$\n   add_drawing(dims = \"B2:C5\", xml = rect)\n\n\n\n\n\n\n\n\n\nAs seen it is possible to assign fmt_txt() strings to shape objects. And given some trial and error it is even possible to create complex images with create_shape() objects.\n\n## heart\ntxt &lt;- fmt_txt(\"openxlsx2 is the \\n\", bold = TRUE, size = 15) +\n  fmt_txt(\"best\", underline = TRUE, bold = TRUE, size = 15) +\n  fmt_txt(\"\\n!\", bold = TRUE, size = 15)\n\nheart &lt;- create_shape(\n  shape = \"heart\", text = txt, text_align = \"center\",\n  fill_colour = wb_color(\"pink\"), text_colour = wb_color(\"red\"))\n\n## ribbon\ntxt &lt;- fmt_txt(\"\\nthe \") +\n  fmt_txt(\"very\", underline = TRUE, font = \"Courier\", color = wb_color(\"gold\")) +\n  fmt_txt(\" best\")\n\nribbon &lt;- create_shape(shape = \"ribbon\", text = txt, text_align = \"center\")\n\nwb &lt;- wb_workbook()$add_worksheet(grid_lines = FALSE)$\n  add_drawing(dims = \"B2:E11\", xml = heart)$\n  add_drawing(dims = \"B12:E14\", xml = ribbon)$\n  add_worksheet()$add_drawing(dims = \"B2:E5\", xml = create_shape(\"rect\", text = txt, fill_color = wb_color(theme = 5), fill_transparency =  50))",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Working with Shapes in openxlsx2</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Comments and Working with Shapes in openxlsx2</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/openxlsx2-things-with-shapes.html#footnotes",
+    "href": "chapters/openxlsx2-things-with-shapes.html#footnotes",
+    "title": "\n13  Comments and Working with Shapes in openxlsx2\n",
+    "section": "",
+    "text": "Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Comments and Working with Shapes in openxlsx2</span>"
     ]
   },
   {
@@ -784,7 +794,7 @@
     "href": "chapters/openxlsx2_extending.html",
     "title": "\n15  Extending openxlsx2\n",
     "section": "",
-    "text": "15.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/Rtmpvclhp2/temp_xlsx_29001c4d0967.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Error : Unable to open and load file:  /tmp/Rtmpvclhp2/temp_xlsx_29001c4d0967.xlsx\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/Rtmpvclhp2/temp_xlsx_29001c4d0967.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() %&gt;% head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1",
+    "text": "15.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpcXg3Jy/temp_xlsx_233f78e44fa2.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Error : Unable to open and load file:  /tmp/RtmpcXg3Jy/temp_xlsx_233f78e44fa2.xlsx\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpcXg3Jy/temp_xlsx_233f78e44fa2.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() %&gt;% head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Extending `openxlsx2`</span>"
     ]

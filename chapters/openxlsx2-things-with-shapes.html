@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>13&nbsp; Working with Shapes in openxlsx2 – The `openxlsx2` book</title>
+<title>13&nbsp; Comments and Working with Shapes in openxlsx2 – The `openxlsx2` book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2-things-with-shapes.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with Shapes in openxlsx2</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/openxlsx2-things-with-shapes.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comments and Working with Shapes in openxlsx2</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/openxlsx2-things-with-shapes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with Shapes in openxlsx2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comments and Working with Shapes in openxlsx2</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with Shapes in openxlsx2</span>
+<span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comments and Working with Shapes in openxlsx2</span>
 </h1>
 </div>
 
@@ -289,13 +289,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><section id="adding-comments" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="adding-comments">
 <span class="header-section-number">13.1</span> Adding Comments</h2>
-<p>Comments in Excel are useful for annotating cells with additional information. Using <strong>openxlsx2</strong>, we can create comments and we can even create, reply to, and close threads programmatically. These are a feature introduced in MS365 and is called “comment”, while comments are called “note”. We use to comment and thread, but each their own.</p>
+<p>Comments in Excel are useful for annotating cells with additional information. Using <code>openxlsx2</code>, we can create comments and we can even create, reply to, and close threads programmatically. Threads are a feature introduced in MS365 and replace the “comment”, while legacy comments are now called “note”. We use comment and thread (their names in the XML code), but each their own.</p>
 <section id="creating-a-comment" class="level3" data-number="13.1.1"><h3 data-number="13.1.1" class="anchored" data-anchor-id="creating-a-comment">
 <span class="header-section-number">13.1.1</span> Creating a Comment</h3>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Add a comment to cell A1</span></span>
@@ -304,15 +302,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  comment <span class="op">=</span> <span class="st">"This is a sample comment."</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>It is possible to style the comment, the manual page provides a few examples of this. <code>openxlsx2</code> provides additional niche features such as background images for comments.[^1][^1: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.] For this we are going to remove this previous comment.</p>
+<p>It is possible to style the comment, the manual page provides a few examples of this. <code>openxlsx2</code> provides additional niche features such as background images for comments.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> For this we are going to remove this previous comment.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># eh what was it again?</span></span>
-<span><span class="va">wb</span><span class="op">$</span><span class="fu">get_comment</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  ref author                              comment cmmt_id
-1  B2 runner runner: \n This is a sample comment.       1</code></pre>
-</div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># okay, sample comment. can be removed</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">get_comment</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   ref author                              comment cmmt_id</span></span>
+<span><span class="co">#&gt; 1  B2 runner runner: \n This is a sample comment.       1</span></span>
+<span></span>
+<span><span class="co"># okay, sample comment. can be removed</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">remove_comment</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -326,16 +323,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="comments-with-background-images" class="level3" data-number="13.1.2"><h3 data-number="13.1.2" class="anchored" data-anchor-id="comments-with-background-images">
 <span class="header-section-number">13.1.2</span> Comments with background images</h3>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp</span>, bg <span class="op">=</span> <span class="st">"transparent"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html">rect</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">7</span>, col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>png 
-  2 </code></pre>
-</div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_comment.html">wb_comment</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"this is a comment"</span>, author <span class="op">=</span> <span class="st">""</span>, visible <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; png </span></span>
+<span><span class="co">#&gt;   2</span></span>
+<span></span>
+<span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu">wb_comment</span><span class="op">(</span>text <span class="op">=</span> <span class="st">"this is a comment"</span>, author <span class="op">=</span> <span class="st">""</span>, visible <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_comment</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B12"</span>, comment <span class="op">=</span> <span class="va">c1</span>, file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -352,22 +348,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In spreadsheet software that does not support threads, a comment is shown with the information content of the thread and a hint that the comment should not be altered.</p>
 <section id="persons-create-one-or-become-one" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="persons-create-one-or-become-one">
 <span class="header-section-number">13.2.1</span> Persons, create one or become one</h3>
-<p>To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with <code><a href="https://janmarvin.github.io/openxlsx2/reference/person-wb.html">wb_get_person()</a></code>. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.</p>
+<p>To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with <code>wb_get_person()</code>. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># Add a person to the workbook.</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_person</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"somebody"</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_person</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"you"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we want to create a thread as <code>"you"</code>. The id <code>pid</code> itself is rather uninteresting, it is a guid, similar to many others used in <code>openxlsx2</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pid</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_person</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"you"</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pid</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_person</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"you"</span><span class="op">)</span><span class="op">$</span><span class="va">id</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="creating-a-thread" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="creating-a-thread">
 <span class="header-section-number">13.2.2</span> Creating a Thread</h3>
 <p>And that’s it. Now we can create a thread as you.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, comment <span class="op">=</span> <span class="st">"wow it works!"</span>, person_id <span class="op">=</span> <span class="va">pid</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, comment <span class="op">=</span> <span class="st">"wow it works!"</span>, person_id <span class="op">=</span> <span class="va">pid</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A2"</span>, comment <span class="op">=</span> <span class="st">"indeed"</span>, person_id <span class="op">=</span> <span class="va">pid</span>, resolve <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, comment <span class="op">=</span> <span class="st">"so cool"</span>, person_id <span class="op">=</span> <span class="va">pid</span>, reply <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -387,16 +383,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="working-with-shape-objects" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="working-with-shape-objects">
 <span class="header-section-number">13.3</span> Working with Shape Objects</h2>
-<p>Besides comments and notes, <strong>openxlsx2</strong> allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.</p>
+<p>Besides comments and notes, <code>openxlsx2</code> allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.</p>
 <section id="adding-a-rectangle-shape" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="adding-a-rectangle-shape">
 <span class="header-section-number">13.3.1</span> Adding a Rectangle Shape</h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">rect</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/create_shape.html">create_shape</a></span><span class="op">(</span></span>
-<span>    shape <span class="op">=</span> <span class="st">"rect"</span>, text_align <span class="op">=</span> <span class="st">"center"</span>,</span>
-<span>    fill_colour <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span><span class="st">"yellow"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you are wondering why the section about comment and threads is in the same section as shapes, after all comments are something like a rectangular shape with a text.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rect</span> <span class="op">&lt;-</span> <span class="fu">create_shape</span><span class="op">(</span></span>
+<span>  shape <span class="op">=</span> <span class="st">"rect"</span>, text_align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  text <span class="op">=</span> <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"I want to become a comment!"</span>, font <span class="op">=</span> <span class="st">"Tahoma"</span>, size <span class="op">=</span> <span class="st">"10"</span>,</span>
+<span>                 color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"black"</span><span class="op">)</span>, family <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  fill_colour <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"ffffe1"</span><span class="op">)</span>,</span>
+<span>  line_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"black"</span><span class="op">)</span>,</span>
+<span>  line_transparency <span class="op">=</span> <span class="fl">50</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>   <span class="fu">add_drawing</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2:C5"</span>, xml <span class="op">=</span> <span class="va">rect</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/sh_shape.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As seen it is possible to assign <code>fmt_txt()</code> strings to shape objects. And given some trial and error it is even possible to create complex images with <code>create_shape()</code> objects.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## heart</span></span>
+<span><span class="va">txt</span> <span class="op">&lt;-</span> <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"openxlsx2 is the \n"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"best"</span>, underline <span class="op">=</span> <span class="cn">TRUE</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"\n!"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">heart</span> <span class="op">&lt;-</span> <span class="fu">create_shape</span><span class="op">(</span></span>
+<span>  shape <span class="op">=</span> <span class="st">"heart"</span>, text <span class="op">=</span> <span class="va">txt</span>, text_align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  fill_colour <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"pink"</span><span class="op">)</span>, text_colour <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## ribbon</span></span>
+<span><span class="va">txt</span> <span class="op">&lt;-</span> <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"\nthe "</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">"very"</span>, underline <span class="op">=</span> <span class="cn">TRUE</span>, font <span class="op">=</span> <span class="st">"Courier"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span><span class="st">"gold"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">fmt_txt</span><span class="op">(</span><span class="st">" best"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ribbon</span> <span class="op">&lt;-</span> <span class="fu">create_shape</span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"ribbon"</span>, text <span class="op">=</span> <span class="va">txt</span>, text_align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span>grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_drawing</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2:E11"</span>, xml <span class="op">=</span> <span class="va">heart</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_drawing</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B12:E14"</span>, xml <span class="op">=</span> <span class="va">ribbon</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_drawing</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2:E5"</span>, xml <span class="op">=</span> <span class="fu">create_shape</span><span class="op">(</span><span class="st">"rect"</span>, text <span class="op">=</span> <span class="va">txt</span>, fill_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, fill_transparency <span class="op">=</span>  <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/sh_heart.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
