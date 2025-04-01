@@ -15,6 +15,7 @@ This book contains
 -   Data validation: how to add this to the spreadsheet
 -   Form control: basic example how to add bullet points and check boxes
 -   Cloning and copying: how to copy cells or spreadsheets
+-   Working with comments, threads and shapes in general
 -   Upgrade from openxlsx: how to upgrade from the predecessor
 -   Extending openxlsx2: packages that extend what is possible with openxlsx2
 
@@ -25,7 +26,6 @@ To be added
     -   Pivot tables: add an example covering pivot table formulas
     -   Custom formulas
 -   Nice to have
-    -   Locking workbooks, cells etc.
     -   Freezing
     -   Various options
     -   Hidden gems from discussions

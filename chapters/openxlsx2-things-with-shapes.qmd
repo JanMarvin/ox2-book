@@ -1,16 +1,23 @@
 ---
-  title: "Working with Shapes in openxlsx2"
+  title: "Comments and Working with Shapes in openxlsx2"
 ---
 
 ## Adding Comments
 
-Comments in Excel are useful for annotating cells with additional information. Using **openxlsx2**, we can create comments and we can even create, reply to, and close threads programmatically. These are a feature introduced in MS365 and is called "comment", while comments are called "note". We use to comment and thread, but each their own.
+Comments in Excel are useful for annotating cells with additional information. Using `openxlsx2`, we can create comments and we can even create, reply to, and close threads programmatically. Threads are a feature introduced in MS365 and replace the "comment", while legacy comments are now called "note". We use comment and thread (their names in the XML code), but each their own.
 
 ### Creating a Comment
 
-```{r}
+```{r setup, include = FALSE}
 library(openxlsx2)
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
+```{r}
 wb <- wb_workbook()$
   add_worksheet()
 
@@ -21,7 +28,9 @@ wb$add_comment(
 )
 ```
 
-It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^1][^1: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.] For this we are going to remove this previous comment.
+It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^1] For this we are going to remove this previous comment.
+
+[^1]: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.
 
 ```{r}
 # eh what was it again?
@@ -47,7 +56,6 @@ dev.off()
 c1 <- wb_comment(text = "this is a comment", author = "", visible = TRUE)
 wb$add_comment(dims = "B12", comment = c1, file = tmp)
 ```
-
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sh_comment2.png")
@@ -76,16 +84,15 @@ Now we want to create a thread as `"you"`. The id `pid` itself is rather uninter
 pid <- wb$get_person(name = "you")$id
 ```
 
-
 ### Creating a Thread
 
 And that's it. Now we can create a thread as you.
+
 ```{r}
 wb$add_thread(dims = "A1", comment = "wow it works!", person_id = pid)
 wb$add_thread(dims = "A2", comment = "indeed", person_id = pid, resolve = TRUE)
 wb$add_thread(dims = "A1", comment = "so cool", person_id = pid, reply = TRUE)
 ```
-
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sh_thread1.png")
@@ -94,13 +101,56 @@ knitr::include_graphics("../img/sh_thread2.png")
 
 ## Working with Shape Objects
 
-Besides comments and notes, **openxlsx2** allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.
+Besides comments and notes, `openxlsx2` allows for the addition of shapes, such as rectangles, circles, and other graphical elements, to a worksheet.
 
 ### Adding a Rectangle Shape
 
-``` r
-  rect <- create_shape(
-    shape = "rect", text_align = "center",
-    fill_colour = wb_color("yellow")
-  )
+If you are wondering why the section about comment and threads is in the same section as shapes, after all comments are something like a rectangular shape with a text.
+
+```{r}
+rect <- create_shape(
+  shape = "rect", text_align = "center",
+  text = fmt_txt("I want to become a comment!", font = "Tahoma", size = "10",
+                 color = wb_color("black"), family = 2),
+  fill_colour = wb_color(hex = "ffffe1"),
+  line_color = wb_color("black"),
+  line_transparency = 50
+)
+
+wb <- wb_workbook()$add_worksheet()$
+   add_drawing(dims = "B2:C5", xml = rect)
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sh_shape.png")
+```
+
+As seen it is possible to assign `fmt_txt()` strings to shape objects. And given some trial and error it is even possible to create complex images with `create_shape()` objects.
+
+```{r}
+## heart
+txt <- fmt_txt("openxlsx2 is the \n", bold = TRUE, size = 15) +
+  fmt_txt("best", underline = TRUE, bold = TRUE, size = 15) +
+  fmt_txt("\n!", bold = TRUE, size = 15)
+
+heart <- create_shape(
+  shape = "heart", text = txt, text_align = "center",
+  fill_colour = wb_color("pink"), text_colour = wb_color("red"))
+
+## ribbon
+txt <- fmt_txt("\nthe ") +
+  fmt_txt("very", underline = TRUE, font = "Courier", color = wb_color("gold")) +
+  fmt_txt(" best")
+
+ribbon <- create_shape(shape = "ribbon", text = txt, text_align = "center")
+
+wb <- wb_workbook()$add_worksheet(grid_lines = FALSE)$
+  add_drawing(dims = "B2:E11", xml = heart)$
+  add_drawing(dims = "B12:E14", xml = ribbon)$
+  add_worksheet()$add_drawing(dims = "B2:E5", xml = create_shape("rect", text = txt, fill_color = wb_color(theme = 5), fill_transparency =  50))
+```
+
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sh_heart.png")
 ```
