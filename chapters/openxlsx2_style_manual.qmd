@@ -765,3 +765,27 @@ for (dims in dims_list) {
 wb$protect_worksheet()
 wb$protect()
 ```
+
+## Styling with `dims`
+
+It is possible to style multiple cells at once using `dims`. This is way faster than looping over rows, columns or both as would be required in the example below.
+
+```{r}
+set.seed(123)
+mm <- matrix(sample(0:1, 2500, TRUE), 50 , 50)
+
+zeros <- as.data.frame(which(mm == 0, arr.ind = TRUE))
+ones  <- as.data.frame(which(mm == 1, arr.ind = TRUE))
+
+dims_z <- paste0(mapply(rowcol_to_dims, zeros$row, zeros$col), collapse = ",")
+dims_o <- paste0(mapply(rowcol_to_dims, ones$row, ones$col), collapse = ",")
+
+wb <- wb_workbook()$add_worksheet()$
+  add_data(x = mm, col_names = FALSE)$
+  add_fill(dims = dims_z, color = wb_color("lightgray"))$
+  add_fill(dims = dims_o, color = wb_color("darkgray"))
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/sy_dims.png")
+```
