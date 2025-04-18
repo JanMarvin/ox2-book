@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>3&nbsp; Reading to data frames – The `openxlsx2` book</title>
 <style>
@@ -67,8 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -311,17 +311,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># import workbook</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2 NA  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
-<span><span class="co">#&gt; 3   TRUE    1 NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
-<span><span class="co">#&gt; 4   TRUE   NA NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
-<span><span class="co">#&gt; 5   TRUE    2 NA  1.34     c 2023-02-01         &lt;NA&gt; #VALUE! 23:01:02</span></span>
-<span><span class="co">#&gt; 6  FALSE    2 NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;       2 17:24:53</span></span>
-<span><span class="co">#&gt; 7  FALSE    3 NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  FALSE    1 NA   1.7     f 2023-03-02         &lt;NA&gt;     2.7 08:45:58</span></span>
-<span><span class="co">#&gt; 9     NA   NA NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10 FALSE    2 NA    23     h 2023-12-24         &lt;NA&gt;      25     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 FALSE    3 NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12    NA    1 NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
+<span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
+<span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
+<span><span class="co">#&gt; 5   TRUE    2   NA  1.34     c 2023-02-01         &lt;NA&gt; #VALUE! 23:01:02</span></span>
+<span><span class="co">#&gt; 6  FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;       2 17:24:53</span></span>
+<span><span class="co">#&gt; 7  FALSE    3   NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8  FALSE    1   NA   1.7     f 2023-03-02         &lt;NA&gt;     2.7 08:45:58</span></span>
+<span><span class="co">#&gt; 9     NA   NA   NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10 FALSE    2   NA    23     h 2023-12-24         &lt;NA&gt;      25     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output is created as a data frame and contains data types date, logical, numeric and character. The function to import the file to R, <code>wb_to_df()</code> provides similar options as the <code>openxlsx</code> functions <code>read.xlsx()</code> and <code>readWorkbook()</code> and a few new functions we will go through the options. As you might have noticed, we return the column of the xlsx file as the row name of the data frame returned. Per default the first sheet in the workbook is imported. If you want to switch this, either provide the <code>sheet</code> parameter with the correct index or provide the sheet name.</p>
 </section><section id="col_names---first-row-as-column-name" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="col_names---first-row-as-column-name">
@@ -349,17 +349,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># do not try to identify dates in the data</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, detect_dates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2 NA  Var3  Var4  Var5         Var6    Var7       Var8</span></span>
-<span><span class="co">#&gt; 3   TRUE    1 NA     1     a 45075 3209324 This #DIV/0! 0.06059028</span></span>
-<span><span class="co">#&gt; 4   TRUE   NA NA #NUM!     b 45069         &lt;NA&gt;       0 0.58538194</span></span>
-<span><span class="co">#&gt; 5   TRUE    2 NA  1.34     c 44958         &lt;NA&gt; #VALUE! 0.95905093</span></span>
-<span><span class="co">#&gt; 6  FALSE    2 NA  &lt;NA&gt; #NUM!    NA         &lt;NA&gt;       2 0.72561343</span></span>
-<span><span class="co">#&gt; 7  FALSE    3 NA  1.56     e    NA         &lt;NA&gt;    &lt;NA&gt;         NA</span></span>
-<span><span class="co">#&gt; 8  FALSE    1 NA   1.7     f 44987         &lt;NA&gt;     2.7 0.36525463</span></span>
-<span><span class="co">#&gt; 9     NA   NA NA  &lt;NA&gt;  &lt;NA&gt;    NA         &lt;NA&gt;    &lt;NA&gt;         NA</span></span>
-<span><span class="co">#&gt; 10 FALSE    2 NA    23     h 45284         &lt;NA&gt;      25         NA</span></span>
-<span><span class="co">#&gt; 11 FALSE    3 NA  67.3     i 45285         &lt;NA&gt;       3         NA</span></span>
-<span><span class="co">#&gt; 12    NA    1 NA   123  &lt;NA&gt; 45138         &lt;NA&gt;     122         NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4  Var5         Var6    Var7       Var8</span></span>
+<span><span class="co">#&gt; 3   TRUE    1   NA     1     a 45075 3209324 This #DIV/0! 0.06059028</span></span>
+<span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 45069         &lt;NA&gt;       0 0.58538194</span></span>
+<span><span class="co">#&gt; 5   TRUE    2   NA  1.34     c 44958         &lt;NA&gt; #VALUE! 0.95905093</span></span>
+<span><span class="co">#&gt; 6  FALSE    2   NA  &lt;NA&gt; #NUM!    NA         &lt;NA&gt;       2 0.72561343</span></span>
+<span><span class="co">#&gt; 7  FALSE    3   NA  1.56     e    NA         &lt;NA&gt;    &lt;NA&gt;         NA</span></span>
+<span><span class="co">#&gt; 8  FALSE    1   NA   1.7     f 44987         &lt;NA&gt;     2.7 0.36525463</span></span>
+<span><span class="co">#&gt; 9     NA   NA   NA  &lt;NA&gt;  &lt;NA&gt;    NA         &lt;NA&gt;    &lt;NA&gt;         NA</span></span>
+<span><span class="co">#&gt; 10 FALSE    2   NA    23     h 45284         &lt;NA&gt;      25         NA</span></span>
+<span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 45285         &lt;NA&gt;       3         NA</span></span>
+<span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 45138         &lt;NA&gt;     122         NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="show_formula---show-formulas-instead-of-results" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="show_formula---show-formulas-instead-of-results">
 <span class="header-section-number">3.1.4</span> <code>show_formula</code> - show formulas instead of results</h3>
@@ -367,17 +367,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># return the underlying Excel formula instead of their values</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2 NA  Var3  Var4       Var5         Var6            Var7     Var8</span></span>
-<span><span class="co">#&gt; 3   TRUE    1 NA     1     a 2023-05-29 3209324 This            E3/0 01:27:15</span></span>
-<span><span class="co">#&gt; 4   TRUE   NA NA #NUM!     b 2023-05-23         &lt;NA&gt;              C4 14:02:57</span></span>
-<span><span class="co">#&gt; 5   TRUE    2 NA  1.34     c 2023-02-01         &lt;NA&gt;         #VALUE! 23:01:02</span></span>
-<span><span class="co">#&gt; 6  FALSE    2 NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;           C6+E6 17:24:53</span></span>
-<span><span class="co">#&gt; 7  FALSE    3 NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  FALSE    1 NA   1.7     f 2023-03-02         &lt;NA&gt;           C8+E8 08:45:58</span></span>
-<span><span class="co">#&gt; 9     NA   NA NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10 FALSE    2 NA    23     h 2023-12-24         &lt;NA&gt;    SUM(C10,E10)     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 FALSE    3 NA  67.3     i 2023-12-25         &lt;NA&gt; PRODUCT(C11,E3)     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12    NA    1 NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;         E12-C12     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6            Var7     Var8</span></span>
+<span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This            E3/0 01:27:15</span></span>
+<span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;              C4 14:02:57</span></span>
+<span><span class="co">#&gt; 5   TRUE    2   NA  1.34     c 2023-02-01         &lt;NA&gt;         #VALUE! 23:01:02</span></span>
+<span><span class="co">#&gt; 6  FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;           C6+E6 17:24:53</span></span>
+<span><span class="co">#&gt; 7  FALSE    3   NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8  FALSE    1   NA   1.7     f 2023-03-02         &lt;NA&gt;           C8+E8 08:45:58</span></span>
+<span><span class="co">#&gt; 9     NA   NA   NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10 FALSE    2   NA    23     h 2023-12-24         &lt;NA&gt;    SUM(C10,E10)     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 2023-12-25         &lt;NA&gt; PRODUCT(C11,E3)     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;         E12-C12     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="dims---read-specific-dimension" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="dims---read-specific-dimension">
 <span class="header-section-number">3.1.5</span> <code>dims</code> - read specific dimension</h3>
@@ -407,17 +407,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected cols</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A:B"</span>, <span class="st">"G"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    NA  Var1       Var5</span></span>
-<span><span class="co">#&gt; 3  NA  TRUE 2023-05-29</span></span>
-<span><span class="co">#&gt; 4  NA  TRUE 2023-05-23</span></span>
-<span><span class="co">#&gt; 5  NA  TRUE 2023-02-01</span></span>
-<span><span class="co">#&gt; 6  NA FALSE       &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7  NA FALSE       &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  NA FALSE 2023-03-02</span></span>
-<span><span class="co">#&gt; 9  NA    NA       &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10 NA FALSE 2023-12-24</span></span>
-<span><span class="co">#&gt; 11 NA FALSE 2023-12-25</span></span>
-<span><span class="co">#&gt; 12 NA    NA 2023-07-31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    &lt;NA&gt;  Var1       Var5</span></span>
+<span><span class="co">#&gt; 3    NA  TRUE 2023-05-29</span></span>
+<span><span class="co">#&gt; 4    NA  TRUE 2023-05-23</span></span>
+<span><span class="co">#&gt; 5    NA  TRUE 2023-02-01</span></span>
+<span><span class="co">#&gt; 6    NA FALSE       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7    NA FALSE       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8    NA FALSE 2023-03-02</span></span>
+<span><span class="co">#&gt; 9    NA    NA       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10   NA FALSE 2023-12-24</span></span>
+<span><span class="co">#&gt; 11   NA FALSE 2023-12-25</span></span>
+<span><span class="co">#&gt; 12   NA    NA 2023-07-31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="rows---read-selected-rows" class="level3" data-number="3.1.7"><h3 data-number="3.1.7" class="anchored" data-anchor-id="rows---read-selected-rows">
 <span class="header-section-number">3.1.7</span> <code>rows</code> - read selected rows</h3>
@@ -425,9 +425,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected rows</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    Var1 Var2 NA  Var3  Var4       Var5 Var6 Var7     Var8</span></span>
-<span><span class="co">#&gt; 4  TRUE   NA NA #NUM!     b 2023-05-23   NA    0 14:02:57</span></span>
-<span><span class="co">#&gt; 6 FALSE    2 NA  &lt;NA&gt; #NUM!       &lt;NA&gt;   NA    2 17:24:53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5 Var6 Var7     Var8</span></span>
+<span><span class="co">#&gt; 4  TRUE   NA   NA #NUM!     b 2023-05-23   NA    0 14:02:57</span></span>
+<span><span class="co">#&gt; 6 FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;   NA    2 17:24:53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="convert---convert-input-to-guessed-type" class="level3" data-number="3.1.8"><h3 data-number="3.1.8" class="anchored" data-anchor-id="convert---convert-input-to-guessed-type">
 <span class="header-section-number">3.1.8</span> <code>convert</code> - convert input to guessed type</h3>
@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert characters to numerics and date (logical too?)</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, convert <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2   NA  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1 &lt;NA&gt;     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE &lt;NA&gt; &lt;NA&gt; #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
 <span><span class="co">#&gt; 5   TRUE    2 &lt;NA&gt;  1.34     c 2023-02-01         &lt;NA&gt; #VALUE! 23:01:02</span></span>
@@ -453,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># erase empty rows from dataset</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, sheet <span class="op">=</span> <span class="fl">1</span>, skip_empty_rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2 NA Var3  Var4       Var5 Var6 Var7     Var8</span></span>
-<span><span class="co">#&gt; 6  FALSE    2 NA &lt;NA&gt; #NUM!       &lt;NA&gt; &lt;NA&gt;    2 17:24:53</span></span>
-<span><span class="co">#&gt; 7  FALSE    3 NA 1.56     e       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  FALSE    1 NA  1.7     f 2023-03-02 &lt;NA&gt;  2.7 08:45:58</span></span>
-<span><span class="co">#&gt; 10 FALSE    2 NA   23     h 2023-12-24 &lt;NA&gt;   25     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 FALSE    3 NA 67.3     i 2023-12-25 &lt;NA&gt;    3     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12    NA    1 NA  123  &lt;NA&gt; 2023-07-31 &lt;NA&gt;  122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt; Var3  Var4       Var5 Var6 Var7     Var8</span></span>
+<span><span class="co">#&gt; 6  FALSE    2   NA &lt;NA&gt; #NUM!       &lt;NA&gt; &lt;NA&gt;    2 17:24:53</span></span>
+<span><span class="co">#&gt; 7  FALSE    3   NA 1.56     e       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8  FALSE    1   NA  1.7     f 2023-03-02 &lt;NA&gt;  2.7 08:45:58</span></span>
+<span><span class="co">#&gt; 10 FALSE    2   NA   23     h 2023-12-24 &lt;NA&gt;   25     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11 FALSE    3   NA 67.3     i 2023-12-25 &lt;NA&gt;    3     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12    NA    1   NA  123  &lt;NA&gt; 2023-07-31 &lt;NA&gt;  122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="skip_empty_cols---remove-empty-columns" class="level3" data-number="3.1.10"><h3 data-number="3.1.10" class="anchored" data-anchor-id="skip_empty_cols---remove-empty-columns">
 <span class="header-section-number">3.1.10</span> <code>skip_empty_cols</code> - remove empty columns</h3>
@@ -530,17 +530,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># na strings</span></span>
 <span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Var1 Var2 NA  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
-<span><span class="co">#&gt; 3   TRUE    1 NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
-<span><span class="co">#&gt; 4   TRUE   NA NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
-<span><span class="co">#&gt; 5   TRUE    2 NA  1.34     c 2023-02-01         &lt;NA&gt; #VALUE! 23:01:02</span></span>
-<span><span class="co">#&gt; 6  FALSE    2 NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;       2 17:24:53</span></span>
-<span><span class="co">#&gt; 7  FALSE    3 NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  FALSE    1 NA   1.7     f 2023-03-02         &lt;NA&gt;     2.7 08:45:58</span></span>
-<span><span class="co">#&gt; 9     NA   NA NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10 FALSE    2 NA    23     h 2023-12-24         &lt;NA&gt;      25     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 FALSE    3 NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12    NA    1 NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
+<span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
+<span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
+<span><span class="co">#&gt; 5   TRUE    2   NA  1.34     c 2023-02-01         &lt;NA&gt; #VALUE! 23:01:02</span></span>
+<span><span class="co">#&gt; 6  FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;         &lt;NA&gt;       2 17:24:53</span></span>
+<span><span class="co">#&gt; 7  FALSE    3   NA  1.56     e       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8  FALSE    1   NA   1.7     f 2023-03-02         &lt;NA&gt;     2.7 08:45:58</span></span>
+<span><span class="co">#&gt; 9     NA   NA   NA  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10 FALSE    2   NA    23     h 2023-12-24         &lt;NA&gt;      25     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="importing-as-workbook" class="level3" data-number="3.1.15"><h3 data-number="3.1.15" class="anchored" data-anchor-id="importing-as-workbook">
 <span class="header-section-number">3.1.15</span> Importing as workbook</h3>
