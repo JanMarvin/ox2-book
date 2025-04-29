@@ -34,7 +34,8 @@ bibliography: references.bib
 
 format:
   html:
-    theme: 
+    respect-user-color-scheme: true
+    theme:
       light: cosmo
       dark: solar
     code-link: true
