@@ -456,7 +456,7 @@ wb$add_data("databar", -5:5, start_col = 3)
 wb <- wb_add_conditional_formatting(
   wb,
   "databar",
-  dims = "A1:A10",
+  dims = "C1:C11",
   type = "dataBar",
   params = list(
     showValue = FALSE,
