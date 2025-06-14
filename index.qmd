@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-```{r setup_r, echo=FALSE, cache=TRUE, message=FALSE}
+```{r setup_r, results='hide', echo=FALSE, cache=TRUE, message=FALSE}
 # setup book r environment
 install.packages(
   'openxlsx2',

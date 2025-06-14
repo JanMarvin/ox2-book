@@ -1,0 +1,138 @@
+/*-- scss:defaults --*/
+
+// Base Bootstrap Dark Theme Variables
+$body-color: #dee2e6;
+$body-bg: #212529;
+$emphasis-color: #fff;
+$secondary-color: rgba(222, 226, 230, 0.75);
+$secondary-bg: #373a3c;
+$tertiary-color: rgba(222, 226, 230, 0.5);
+$tertiary-bg: #2c3033;
+
+// Text emphasis colors
+$primary-text-emphasis: #7db3ee;
+$secondary-text-emphasis: #87898a;
+$success-text-emphasis: #8cd374;
+$info-text-emphasis: #c298d6;
+$warning-text-emphasis: #ffac74;
+$danger-text-emphasis: #ff6688;
+$light-text-emphasis: #f8f9fa;
+$dark-text-emphasis: #dee2e6;
+
+// Background subtle colors
+$primary-bg-subtle: #081a2d;
+$secondary-bg-subtle: #0b0c0c;
+$success-bg-subtle: #0d2405;
+$info-bg-subtle: #1f1125;
+$warning-bg-subtle: #331705;
+$danger-bg-subtle: #33000b;
+$light-bg-subtle: #373a3c;
+$dark-bg-subtle: #1c1d1e;
+
+// Border subtle colors
+$primary-border-subtle: #174d88;
+$secondary-border-subtle: #212324;
+$success-border-subtle: #266d0e;
+$info-border-subtle: #5c3270;
+$warning-border-subtle: #99460e;
+$danger-border-subtle: #990022;
+$light-border-subtle: #495057;
+$dark-border-subtle: #373a3c;
+
+// General component colors
+$heading-color: inherit; // Often best to inherit in dark mode
+$link-color: #7db3ee;
+$link-hover-color: #97c2f1;
+$code-color: #f18bba; // For inline code
+$highlight-color: #dee2e6;
+$highlight-bg: #662f0a;
+$border-color: #495057;
+$border-color-translucent: rgba(255, 255, 255, 0.15);
+
+// Form validation colors
+$form-valid-color: #8cd374;
+$form-valid-border-color: #8cd374;
+$form-invalid-color: #ff6688;
+$form-invalid-border-color: #ff6688;
+
+// --- Cosmo-specific adjustments for dark mode ---
+// Override some of the above default dark variables to get more of a "cosmo" feel in dark.
+// Cosmo traditionally has bluer hues, so we might lean into that.
+
+// Navbar (cosmo specific)
+// Using slightly different shades to differentiate from plain dark background
+$navbar-bg: lighten($body-bg, 5%); // A bit lighter than body background
+$navbar-dark-color: $body-color; // Match body text color
+$navbar-dark-hover-color: $link-hover-color; // Use a distinct hover for links
+$navbar-dark-active-color: $link-color;
+
+// Card backgrounds (cosmo specific)
+$card-bg: lighten($body-bg, 3%); // Slightly lighter than body background for subtle contrast
+$card-cap-bg: lighten($body-bg, 7%); // Card header
+$card-color: $body-color;
+
+// Code blocks (often need specific dark mode styling for readability)
+// These often benefit from being distinctly darker or having a different hue
+$code-block-bg-alpha: -0.9; // Makes code blocks darker, relative to base
+$code-background: darken($body-bg, 5%); // Even darker background for blocks
+$code-color: #7d12ba;
+
+// Tables
+$table-color: $body-color;
+$table-striped-bg: lighten($body-bg, 2%);
+$table-active-bg: lighten($body-bg, 5%);
+$table-hover-bg: lighten($body-bg, 5%);
+
+// Callouts (adjust these for visibility and harmony in dark mode)
+// Using the provided text emphasis colors for better integration
+$callout-color-note: $info-text-emphasis;
+$callout-bg-note: $primary-bg-subtle;
+$callout-border-note: $primary-border-subtle;
+
+$callout-color-warning: $warning-text-emphasis;
+$callout-bg-warning: $warning-bg-subtle;
+$callout-border-warning: $warning-border-subtle;
+
+$callout-color-tip: $success-text-emphasis;
+$callout-bg-tip: $success-bg-subtle;
+$callout-border-tip: $success-border-subtle;
+
+
+/*-- scss:rules --*/
+// Any additional CSS rules not covered by variables
+body {
+  color: $body-color; // Ensure base text color is set
+}
+
+.quarto-title-block .quarto-title-meta-contents {
+  color: rgba($body-color, 0.7); // Adjust metadata color for better contrast
+}
+
+// --- Style for Code Chunk Output ---
+// Target the .cell-output class for verbatim text output
+.cell-output {
+  color: #f8f8f8;
+  background-color: lighten($body-bg, 5%);
+  // padding: 1em; // Add some padding for better visual separation
+  // border-radius: 5px;
+  // overflow-x: auto;
+}
+
+// If output is within a 'pre' tag (which it usually is)
+.cell-output pre {
+  color: inherit;
+  background-color: transparent;
+}
+
+// You might also want to style error messages differently if they appear in output
+.cell-output .error {
+  color: #dc3545;
+}
+
+.cell-output .warning {
+  color: #ffc107;
+}
+
+.sidebar-title code {
+  color: #000000;
+}

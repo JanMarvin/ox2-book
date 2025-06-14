@@ -37,7 +37,7 @@ format:
     respect-user-color-scheme: true
     theme:
       light: cosmo
-      dark: solar
+      dark: [cosmo, theme-dark.scss]
     code-link: true
   pdf:
     documentclass: scrreprt
