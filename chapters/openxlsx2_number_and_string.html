@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4f6307dec904af8db1b6fccfd64a77e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-f8cb7fe94b71c4ea6759b609738bfe9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f19aaedb8d2e2767e944cadf838d33d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f8cb7fe94b71c4ea6759b609738bfe9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -423,10 +423,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#default-numeric-data-frame" id="toc-default-numeric-data-frame" class="nav-link active" data-scroll-target="#default-numeric-data-frame"><span class="header-section-number">4.1</span> Default numeric data frame</a></li>
-  <li><a href="#data-frame-with-multiple-row-header" id="toc-data-frame-with-multiple-row-header" class="nav-link" data-scroll-target="#data-frame-with-multiple-row-header"><span class="header-section-number">4.2</span> Data frame with multiple row header</a></li>
-  <li><a href="#how-to-write-multiple-header-rows" id="toc-how-to-write-multiple-header-rows" class="nav-link" data-scroll-target="#how-to-write-multiple-header-rows"><span class="header-section-number">4.3</span> How to write multiple header rows?</a></li>
-  <li><a href="#labelled-data" id="toc-labelled-data" class="nav-link" data-scroll-target="#labelled-data"><span class="header-section-number">4.4</span> Labelled data</a></li>
-  <li><a href="#hour---minute---second" id="toc-hour---minute---second" class="nav-link" data-scroll-target="#hour---minute---second"><span class="header-section-number">4.5</span> Hour - Minute - Second</a></li>
+  <li><a href="#writing-missing-values" id="toc-writing-missing-values" class="nav-link" data-scroll-target="#writing-missing-values"><span class="header-section-number">4.2</span> Writing missing values</a></li>
+  <li><a href="#writing-vectors" id="toc-writing-vectors" class="nav-link" data-scroll-target="#writing-vectors"><span class="header-section-number">4.3</span> Writing vectors</a></li>
+  <li><a href="#data-frame-with-multiple-row-header" id="toc-data-frame-with-multiple-row-header" class="nav-link" data-scroll-target="#data-frame-with-multiple-row-header"><span class="header-section-number">4.4</span> Data frame with multiple row header</a></li>
+  <li><a href="#how-to-write-multiple-header-rows" id="toc-how-to-write-multiple-header-rows" class="nav-link" data-scroll-target="#how-to-write-multiple-header-rows"><span class="header-section-number">4.5</span> How to write multiple header rows?</a></li>
+  <li><a href="#labelled-data" id="toc-labelled-data" class="nav-link" data-scroll-target="#labelled-data"><span class="header-section-number">4.6</span> Labelled data</a></li>
+  <li><a href="#hour---minute---second" id="toc-hour---minute---second" class="nav-link" data-scroll-target="#hour---minute---second"><span class="header-section-number">4.7</span> Hour - Minute - Second</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_number_and_string.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -469,11 +471,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"dat"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="data-frame-with-multiple-row-header" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="data-frame-with-multiple-row-header">
-<span class="header-section-number">4.2</span> Data frame with multiple row header</h2>
+</section><section id="writing-missing-values" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="writing-missing-values">
+<span class="header-section-number">4.2</span> Writing missing values</h2>
+<p>Writing missing values to a spreadsheet (<code>NA</code>, <code>NA_character_</code>, <code>NA_integer_</code>, and <code>NA_real_</code>) results in the missing value to appear as the <code>#N/A</code> expression in spreadsheet software. Still there are multiple ways to create missing values, below are the three common solutions. If the default is unwanted <code>na.strings = NULL</code>, creates a blank cell and <code>na.strings = "N/A"</code> creates a character string <code>"N/A"</code>. There is a subtle difference between <code>na.strings = NULL</code> and <code>na.strings = ""</code>. The latter creates a string <code>""</code> whereas the former leaves the cell mostly untouched, aka there is no cell type attached to it. Unless some form of styling is attached to such a cell, it will be omitted when saving the file as <code>xlsx</code>. This reduces the file size of these sparse matrices significantly, because only cells that contain some kind of information will be written to the output.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># example matrix</span></span>
+<span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="va">dims_1</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mm</span><span class="op">)</span></span>
+<span><span class="va">dims_2</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mm</span>, from_dims <span class="op">=</span> <span class="va">dims_1</span>, right <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">dims_3</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mm</span>, from_dims <span class="op">=</span> <span class="va">dims_2</span>, right <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"missings"</span><span class="op">)</span></span>
+<span><span class="co"># the default writes the expression #NA</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_1</span>, x <span class="op">=</span> <span class="va">mm</span><span class="op">)</span><span class="op">$</span><span class="fu">add_border</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_1</span><span class="op">)</span></span>
+<span><span class="co"># writes nothing, keeps the cell blank</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_2</span>, x <span class="op">=</span> <span class="va">mm</span>, na.strings <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">$</span><span class="fu">add_border</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_2</span><span class="op">)</span></span>
+<span><span class="co"># writes the string N/A</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_3</span>, x <span class="op">=</span> <span class="va">mm</span>, na.strings <span class="op">=</span> <span class="st">"N/A"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_border</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/na_strings.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="writing-vectors" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="writing-vectors">
+<span class="header-section-number">4.3</span> Writing vectors</h2>
+<p>When writing vectors, the default direction is vertically. But this can be changed. It is possible to write vectors horizontally, if this is indicated via <code>dims</code>. In addition it is possible to <code>enforce</code> non-consecutive dimensions.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"vectors"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># vertical</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># horizontal</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, dims <span class="op">=</span> <span class="st">"C2:F2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># mixed</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, dims <span class="op">=</span> <span class="st">"C5,D4,E5,F4"</span>, enforce <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="data-frame-with-multiple-row-header" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="data-frame-with-multiple-row-header">
+<span class="header-section-number">4.4</span> Data frame with multiple row header</h2>
 <p>Now we alter the data frame with a second row adding the column label. Since <code>R</code> does not know mixed column types the entire data frame is converted to characters.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add subtitle to the data</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add subtitle to the data</span></span>
 <span><span class="va">dat_w_subtitle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Speed (mph)"</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">7</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,</span>
 <span>  dis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stopping distance (ft)"</span>, <span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">4</span>, <span class="fl">22</span>, <span class="fl">16</span>, <span class="fl">10</span><span class="op">)</span></span>
@@ -491,26 +536,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now the data is written as strings. Therefore the numbers are not written as <code>4</code>, but as <code>"4"</code>. In the openxml format characters are treated differently as numbers and are stored as inline strings (<code>openxlsx2</code> default) or as shared string. The file loads fine, but now all cells are right alligned and the previous numeric cells are all showing the number stored as text error. Spreadsheet software will treat these cells independently of the data type, so it does not matter other that the error is thrown and that number formats are not applied.</p>
 <p>Since conversions to character are sometimes not wanted, we provide a way to detect these numbers stored as text and will convert them when the data is written into the workbook.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># write character string, but write string numbers as numerics</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># write character string, but write string numbers as numerics</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"openxlsx2.string_nums"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"string_nums"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat_w_subtitle</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"openxlsx2.string_nums"</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This way the data is written as numerics, but still right aligned. This is due to the cell style, otherwise it looks entirely identical to previous attemt. Since this conversion is not generally wanted this option needs to be enabled explicitly. Gernally <code>openxlsx2</code> assumes that the users are mature and want what they request.</p>
-</section><section id="how-to-write-multiple-header-rows" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="how-to-write-multiple-header-rows">
-<span class="header-section-number">4.3</span> How to write multiple header rows?</h2>
+<p>This way the data is written as numerics, but still right aligned. This is due to the cell style, otherwise it looks entirely identical to previous attempt. Since this conversion is not generally wanted this option needs to be enabled explicitly. Generally <code>openxlsx2</code> assumes that the users are mature and want what they request.</p>
+</section><section id="how-to-write-multiple-header-rows" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="how-to-write-multiple-header-rows">
+<span class="header-section-number">4.5</span> How to write multiple header rows?</h2>
 <p>The better approach to avoid the entire conversion is to write the column headers and the column data separately. The recommended approach to this would be something like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"characters and numbers"</span><span class="op">)</span><span class="op">$</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"characters and numbers"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat_w_subtitle</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>, from_row <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
 <span>           x <span class="op">=</span> <span class="va">dat</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="labelled-data" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="labelled-data">
-<span class="header-section-number">4.4</span> Labelled data</h2>
+</section><section id="labelled-data" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="labelled-data">
+<span class="header-section-number">4.6</span> Labelled data</h2>
 <p>In addition to pure <code>numbers</code> and <code>characters</code> it is also possible to write <code>labelled</code> vectors such as factors or columns modified with the <code>labelled</code> package.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Factors</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Factors</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Man"</span>, <span class="st">"Male"</span>, <span class="st">"Man"</span>, <span class="st">"Lady"</span>, <span class="st">"Female"</span><span class="op">)</span></span>
 <span><span class="va">xf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">x</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Man"</span> , <span class="st">"Lady"</span>,   <span class="st">"Female"</span><span class="op">)</span>,</span>
 <span>             labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span></span>
@@ -525,11 +570,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"labelled"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">v</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="hour---minute---second" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="hour---minute---second">
-<span class="header-section-number">4.5</span> Hour - Minute - Second</h2>
+</section><section id="hour---minute---second" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="hour---minute---second">
+<span class="header-section-number">4.7</span> Hour - Minute - Second</h2>
 <p>If the <code>hms</code> package is loaded <code>openxlsx2</code> makes use of this as well. Otherwise the data would be returned as</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"hms"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">hms</span><span class="fu">::</span><span class="fu"><a href="https://hms.tidyverse.org/reference/hms.html">hms</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100000</span>, <span class="fl">5</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="st">"hms"</span><span class="op">)</span></span>
