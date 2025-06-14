@@ -199,7 +199,7 @@ However, if we were to pass this as the text for the formula to be written it wo
 
 In open xml the `dataTable` formula looks like this:
 
-```
+```         
 <calculatedColumnFormula>
   daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
 </calculatedColumnFormula>

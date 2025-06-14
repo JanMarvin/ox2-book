@@ -76,6 +76,7 @@ $card-color: $body-color;
 $code-block-bg-alpha: -0.9; // Makes code blocks darker, relative to base
 $code-background: darken($body-bg, 5%); // Even darker background for blocks
 $code-color: #7d12ba;
+$code-bg: $dark-text-emphasis;
 
 // Tables
 $table-color: $body-color;
@@ -109,30 +110,20 @@ body {
 }
 
 // --- Style for Code Chunk Output ---
-// Target the .cell-output class for verbatim text output
 .cell-output {
   color: #f8f8f8;
   background-color: lighten($body-bg, 5%);
-  // padding: 1em; // Add some padding for better visual separation
-  // border-radius: 5px;
-  // overflow-x: auto;
 }
 
-// If output is within a 'pre' tag (which it usually is)
 .cell-output pre {
-  color: inherit;
+  color: #f8f8f8;
   background-color: transparent;
-}
-
-// You might also want to style error messages differently if they appear in output
-.cell-output .error {
-  color: #dc3545;
-}
-
-.cell-output .warning {
-  color: #ffc107;
 }
 
 .sidebar-title code {
   color: #000000;
+}
+
+pre code {
+  color: #f8f8f8;
 }
