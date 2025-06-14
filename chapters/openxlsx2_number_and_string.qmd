@@ -35,6 +35,49 @@ str(dat)
 wb$add_worksheet("dat")$add_data(x = dat)
 ```
 
+## Writing missing values
+
+Writing missing values to a spreadsheet (`NA`, `NA_character_`, `NA_integer_`, and `NA_real_`) results in the missing value to appear as the `#N/A` expression in spreadsheet software. Still there are multiple ways to create missing values, below are the three common solutions. If the default is unwanted `na.strings = NULL`, creates a blank cell and `na.strings = "N/A"` creates a character string `"N/A"`.
+There is a subtle difference between `na.strings = NULL` and `na.strings = ""`. The latter creates a string `""` whereas the former leaves the cell mostly untouched, aka there is no cell type attached to it. Unless some form of styling is attached to such a cell, it will be omitted when saving the file as `xlsx`. This reduces the file size of these sparse matrices significantly, because only cells that contain some kind of information will be written to the output.
+
+```{r}
+# example matrix
+mm <- matrix(seq_len(9), 3, 3)
+diag(mm) <- NA
+
+dims_1 <- wb_dims(x = mm)
+dims_2 <- wb_dims(x = mm, from_dims = dims_1, right = 2)
+dims_3 <- wb_dims(x = mm, from_dims = dims_2, right = 2)
+
+wb$add_worksheet("missings")
+# the default writes the expression #NA
+wb$add_data(dims = dims_1, x = mm)$add_border(dims = dims_1)
+# writes nothing, keeps the cell blank
+wb$add_data(dims = dims_2, x = mm, na.strings = NULL)$add_border(dims = dims_2)
+# writes the string N/A
+wb$add_data(dims = dims_3, x = mm, na.strings = "N/A")$add_border(dims = dims_3)
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/na_strings.png")
+```
+
+## Writing vectors
+
+When writing vectors, the default direction is vertically. But this can be changed. It is possible to write vectors horizontally, if this is indicated via `dims`. In addition it is possible to `enforce` non-consecutive dimensions.
+
+```{r}
+wb$add_worksheet("vectors")
+
+# vertical
+wb$add_data(x = 1:4)
+
+# horizontal
+wb$add_data(x = 1:4, dims = "C2:F2")
+
+# mixed
+wb$add_data(x = 1:4, dims = "C5,D4,E5,F4", enforce = TRUE)
+```
 
 ## Data frame with multiple row header
 
@@ -65,7 +108,7 @@ wb$add_worksheet("string_nums")$add_data(x = dat_w_subtitle)
 options("openxlsx2.string_nums" = NULL)
 ```
 
-This way the data is written as numerics, but still right aligned. This is due to the cell style, otherwise it looks entirely identical to previous attemt. Since this conversion is not generally wanted this option needs to be enabled explicitly. Gernally `openxlsx2` assumes that the users are mature and want what they request.
+This way the data is written as numerics, but still right aligned. This is due to the cell style, otherwise it looks entirely identical to previous attempt. Since this conversion is not generally wanted this option needs to be enabled explicitly. Generally `openxlsx2` assumes that the users are mature and want what they request.
 
 ## How to write multiple header rows?
 
@@ -106,7 +149,7 @@ unloadNamespace("haven")
 
 ## Hour - Minute - Second
 
-If the `hms` package is loaded `openxlsx2` makes use of this as well. Otherwise the data would be returned as 
+If the `hms` package is loaded `openxlsx2` makes use of this as well. Otherwise the data would be returned as
 
 ```{r}
 set.seed(123)
@@ -120,5 +163,3 @@ unloadNamespace("hms")
 df <- wb_to_df(wb, sheet = "hms")
 str(df)
 ```
-
-
