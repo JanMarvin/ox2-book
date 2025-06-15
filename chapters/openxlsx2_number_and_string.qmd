@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Contrary to `R`, spreadsheets do not require identicial data types. While in `R` a column always consists of a unique type (the base types supported by `openxlsx2` are `character`, `integer`, `numeric`, `Date`, and `POSIXct`/`POSIXlt`), spreadsheets might consist of arbitary mixes of data types. E.g. it is not uncommon, to have tables consisting of multiple rows. In addition some spreadsheet software has issues identifiying certain date types and a well known issue of spreadsheets is the number stored as text error. Below we will describe ways to write data with `openxlsx2` and how to handle the most common types characters and numerics. Though in addition `openxlsx2` also supports dates, date formats and makes use of the `hms` date class.
+Contrary to `R`, spreadsheets do not require identical data types. While in `R` a column always consists of a unique type (the base types supported by `openxlsx2` are `character`, `integer`, `numeric`, `Date`, and `POSIXct`/`POSIXlt`), spreadsheets might consist of arbitrary mixes of data types. E.g. it is not uncommon, to have tables consisting of multiple rows. In addition some spreadsheet software has issues identifying certain date types and a well known issue of spreadsheets is the number stored as text error. Below we will describe ways to write data with `openxlsx2` and how to handle the most common types characters and numerics. Though in addition `openxlsx2` also supports dates, date formats and makes use of the `hms` date class.
 
 ```{r}
 wb <- wb_workbook()
@@ -97,7 +97,7 @@ str(dat_w_subtitle)
 wb$add_worksheet("dat_w_subtitle")$add_data(x = dat_w_subtitle)
 ```
 
-Now the data is written as strings. Therefore the numbers are not written as `4`, but as `"4"`. In the openxml format characters are treated differently as numbers and are stored as inline strings (`openxlsx2` default) or as shared string. The file loads fine, but now all cells are right alligned and the previous numeric cells are all showing the number stored as text error. Spreadsheet software will treat these cells independently of the data type, so it does not matter other that the error is thrown and that number formats are not applied.
+Now the data is written as strings. Therefore the numbers are not written as `4`, but as `"4"`. In the openxml format characters are treated differently as numbers and are stored as inline strings (`openxlsx2` default) or as shared string. The file loads fine, but now all cells are right aligned and the previous numeric cells are all showing the number stored as text error. Spreadsheet software will treat these cells independently of the data type, so it does not matter other that the error is thrown and that number formats are not applied.
 
 Since conversions to character are sometimes not wanted, we provide a way to detect these numbers stored as text and will convert them when the data is written into the workbook.
 
@@ -128,7 +128,7 @@ In addition to pure `numbers` and `characters` it is also possible to write `lab
 ```{r}
 # Factors
 x <- c("Man", "Male", "Man", "Lady", "Female")
-xf <- factor(x, levels = c("Male", "Man" , "Lady",   "Female"),
+xf <- factor(x, levels = c("Male", "Man", "Lady", "Female"),
              labels = c("Male", "Male", "Female", "Female"))
 
 wb$add_worksheet("factors")$add_data(x = data.frame(x, xf))

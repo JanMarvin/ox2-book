@@ -35,7 +35,7 @@ pt <- pivottabler::PivotTable$new()
 pt$addData(esoph)
 pt$addColumnDataGroups("tobgp")
 pt$addRowDataGroups("agegp")
-pt$defineCalculation(calculationName="ncontrols", summariseExpression="sum(ncontrols)")
+pt$defineCalculation(calculationName = "ncontrols", summariseExpression = "sum(ncontrols)")
 pt$evaluatePivot()
 pt
 
@@ -116,7 +116,7 @@ wb_1 <- wb_1 |>
     params = list(
       sort_item = list(month = rev(levels(tbl_prueba_2$month)))
     )
-  ) 
+  )
 
 if (interactive()) wb_1$open()
 ```
@@ -147,26 +147,26 @@ knitr::include_graphics("../img/pt_four_types.png")
 There is no real support for individual pivot table styles. Aside from the default style, it is possible to disable the style and to apply auto format styles (for various styles see annex `G.3 - Built-in PivotTable AutoFormats` of @ECMA16pt1). In the example below style id `4099` is applied, ids range from `4096` to `4117`.
 
 ```{r}
-wb <- wb_workbook() %>% 
-  wb_add_worksheet("table") %>% 
-  wb_add_worksheet("data") %>% 
+wb <- wb_workbook() %>%
+  wb_add_worksheet("table") %>%
+  wb_add_worksheet("data") %>%
   wb_add_data(x = mtcars)
 
 df <- wb_data(wb)
 
-wb <- wb %>% 
-  
+wb <- wb %>%
+
   # pivot table without style
   wb_add_pivot_table(
     df, dims = "A3", sheet = "table",
     rows = c("cyl", "am"), cols = "gear", data = "disp",
     fun = "average",
     params = list(no_style = TRUE, numfmt = c(formatCode = "##0.0"))
-  ) %>% 
-  
+  ) %>%
+
   # Applied a few params and use auto_format_id
   wb_add_pivot_table(
-    df, dims = "G3", sheet = "table", 
+    df, dims = "G3", sheet = "table",
     rows = c("cyl", "am"), cols = "vs", data = "disp",
     fun = "average",
     params = list(
@@ -219,13 +219,13 @@ It is possible to use dims without end row. This way the entire column is used a
 ```{r pivottabler}
 # original pivot table as reference
 pt <- pivottabler::PivotTable$new()
-pt$addData(pivottabler::bhmtrains) 
-pt$addColumnDataGroups("TrainCategory") 
-pt$addRowDataGroups("TOC", 
-                    outlineBefore=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue")), 
-                    outlineTotal=list(isEmpty=FALSE, groupStyleDeclarations=list(color="blue"))) 
-pt$addRowDataGroups("PowerType", addTotal=FALSE) 
-pt$defineCalculation(calculationName="TotalTrains", summariseExpression="n()")
+pt$addData(pivottabler::bhmtrains)
+pt$addColumnDataGroups("TrainCategory")
+pt$addRowDataGroups("TOC",
+                    outlineBefore = list(isEmpty = FALSE, groupStyleDeclarations = list(color = "blue")),
+                    outlineTotal = list(isEmpty = FALSE, groupStyleDeclarations = list(color = "blue")))
+pt$addRowDataGroups("PowerType", addTotal = FALSE)
+pt$defineCalculation(calculationName = "TotalTrains", summariseExpression = "n()")
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -239,7 +239,7 @@ df <- wb_data(wb, dims = "A:P")
 
 # use TrainCategory on column and data
 wb$add_pivot_table(
-  df, 
+  df,
   rows = c("TOC", "PowerType"),
   cols = "TrainCategory",
   data = "TrainCategory",
@@ -257,7 +257,7 @@ knitr::include_graphics("../img/pv_openxlsx2.png")
 
 ```{r}
 ## Pivot table example 1
-wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = F)
+wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = FALSE)
 
 wb$add_numfmt(dims = wb_dims(x = mtcars, cols = "disp"), numfmt = "$ #,###")
 
@@ -282,7 +282,8 @@ It is possible to apply slicer styles with `params = list(style = "SlicerStyleLi
 
 ```{r}
 wb <- wb_workbook() %>%
-  wb_add_worksheet() %>% wb_add_data(x = mtcars)
+  wb_add_worksheet() %>%
+  wb_add_data(x = mtcars)
 
 df <- wb_data(wb, sheet = 1)
 
@@ -334,7 +335,7 @@ wb$
     pivot_table = "mtcars3"
   )$
   add_slicer(x = df, dims = "A12:D16", slicer = "vs", pivot_table = "mtcars3")
-  
+
 if (interactive()) wb$open()
 ```
 
@@ -364,10 +365,10 @@ wb <- wb %>%
       row_grand_totals = FALSE, col_grand_totals = FALSE,
       choose = c(agegp = 'x > "25-34"')
     )
-  ) %>% 
+  ) %>%
   wb_add_slicer(
-    x = df, dims = "B14:D18", 
-    slicer = "alcgp", pivot_table = "pt1", 
+    x = df, dims = "B14:D18",
+    slicer = "alcgp", pivot_table = "pt1",
     param = list(
       columnCount = 2,
       choose = c(alcgp = 'x %in% c("40-79", "80-119")')

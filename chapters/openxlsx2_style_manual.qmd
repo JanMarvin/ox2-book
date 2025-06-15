@@ -772,7 +772,7 @@ It is possible to style multiple cells at once using `dims`. This is way faster 
 
 ```{r}
 set.seed(123)
-mm <- matrix(sample(0:1, 2500, TRUE), 50 , 50)
+mm <- matrix(sample(0:1, 2500, TRUE), 50, 50)
 
 zeros <- as.data.frame(which(mm == 0, arr.ind = TRUE))
 ones  <- as.data.frame(which(mm == 1, arr.ind = TRUE))

@@ -50,7 +50,7 @@ library(flexlsx)
 wb <- wb_workbook()$add_worksheet("mtcars", grid_lines = FALSE)
 
 # Create a flextable and an openxlsx2 workbook
-ft <- flextable::as_flextable(table(mtcars[2:5 , 1:2]))
+ft <- flextable::as_flextable(table(mtcars[2:5, 1:2]))
 ft
 
 # add the flextable ft to the workbook, sheet "mtcars"

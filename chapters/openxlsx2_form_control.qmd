@@ -68,7 +68,20 @@ library(openxlsx2)
 wb <- wb_workbook()$add_worksheet()
 
 # add feature property bag
-wb$featurePropertyBag <- "<FeaturePropertyBags xmlns=\"http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag\"><bag type=\"Checkbox\"/><bag type=\"XFControls\"><bagId k=\"CellControl\">0</bagId></bag><bag type=\"XFComplement\"><bagId k=\"XFControls\">1</bagId></bag><bag type=\"XFComplements\" extRef=\"XFComplementsMapperExtRef\"><a k=\"MappedFeaturePropertyBags\"><bagId>2</bagId></a></bag></FeaturePropertyBags>"
+wb$featurePropertyBag <- '<FeaturePropertyBags xmlns="http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag">
+ <bag type="Checkbox" />
+ <bag type="XFControls">
+  <bagId k="CellControl">0</bagId>
+ </bag>
+ <bag type="XFComplement">
+  <bagId k="XFControls">1</bagId>
+ </bag>
+ <bag type="XFComplements" extRef="XFComplementsMapperExtRef">
+  <a k="MappedFeaturePropertyBags">
+   <bagId>2</bagId>
+  </a>
+ </bag>
+</FeaturePropertyBags>'
 wb$append("workbook.xml.rels",
           '<Relationship Id="rId5" Type="http://schemas.microsoft.com/office/2022/11/relationships/FeaturePropertyBag" Target="featurePropertyBag/featurePropertyBag.xml"/>')
 wb$append("Content_Types",

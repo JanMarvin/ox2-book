@@ -222,8 +222,8 @@ want <- wb$get_cell_style(dims = description_dims)
 styles <- wb$styles_mgr$styles$cellXfs[as.integer(want) + 1]
 
 # now get the indentation alignment from the style
-indents <- openxlsx2:::read_xf(read_xml(styles))$indent %>% 
-  ifelse(. == "", "0", .) %>% 
+indents <- openxlsx2:::read_xf(read_xml(styles))$indent %>%
+  ifelse(. == "", "0", .) %>%
   as.integer()
 
 # indent the text
@@ -261,7 +261,7 @@ Since your output contains non consecutive cells, which are basically a square, 
 
 ```{r}
 wb_to_df(
-  wb, 
+  wb,
   dims = "A6:B6,D6,H6,A12:B17,D12:D17,H12:H17",
   fill_merged_cells = TRUE
 )
@@ -335,10 +335,10 @@ sel <- seq.int(
 indents[sel] <- indents[sel] + 1L
 
 create_groups <- function(sequence) {
-  
+
   # Create a data frame
-  df <- data.frame(Index = 1:length(sequence), Value = sequence)
-  
+  df <- data.frame(Index = seq_along(sequence), Value = sequence)
+
   # Calculate Supergroup, Group, and Subgroup identifiers
   df$Supergroup <- cumsum(df$Value == 0)
   df$Group      <- cumsum(df$Value == 1)
@@ -348,7 +348,7 @@ create_groups <- function(sequence) {
   df$Supergroup <- ifelse(df$Value == 0, df$Supergroup, NA)
   df$Group      <- ifelse(df$Value == 1, df$Group, NA)
   df$Subroup    <- ifelse(df$Value == 2, df$Group, NA)
-  
+
   as.data.frame(tidyr::fill(df, Supergroup, Group, Subgroup, .direction = "down"))
 }
 

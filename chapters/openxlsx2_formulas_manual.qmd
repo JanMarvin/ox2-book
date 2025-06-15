@@ -127,7 +127,7 @@ df <- data.frame(
 )
 
 wb <-  wb_workbook()$add_worksheet()$add_data(x = df)$
-  add_formula(x = "=A2/B2", dims = "C2:C6",shared = TRUE)$
+  add_formula(x = "=A2/B2", dims = "C2:C6", shared = TRUE)$
   add_formula(x = "=A$2/B$2", dims   = "D2:D6", shared = TRUE)
 
 wb_to_df(wb, show_formula = TRUE)

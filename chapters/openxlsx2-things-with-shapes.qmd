@@ -63,7 +63,7 @@ knitr::include_graphics("../img/sh_comment2.png")
 
 ## Working with Threads
 
-In its foundation a comment is just some text in a quadratic shape. Usually it contains some auther information, but this is entirely optional, it could also be just some fictional text or the authors name can be removed entirely. It is also quite complex to reply to a comment. For this, threads were invented. A thread is something similar to a chat or mail chain. It is created chronologically and it has a person attached to it. It is possible to answer to a thread and to close it. As in, the question was solved, but it is left for everyone to see.
+In its foundation a comment is just some text in a quadratic shape. Usually it contains some author information, but this is entirely optional, it could also be just some fictional text or the authors name can be removed entirely. It is also quite complex to reply to a comment. For this, threads were invented. A thread is something similar to a chat or mail chain. It is created chronologically and it has a person attached to it. It is possible to answer to a thread and to close it. As in, the question was solved, but it is left for everyone to see.
 
 In spreadsheet software that does not support threads, a comment is shown with the information content of the thread and a hint that the comment should not be altered.
 
@@ -149,7 +149,6 @@ wb <- wb_workbook()$add_worksheet(grid_lines = FALSE)$
   add_drawing(dims = "B12:E14", xml = ribbon)$
   add_worksheet()$add_drawing(dims = "B2:E5", xml = create_shape("rect", text = txt, fill_color = wb_color(theme = 5), fill_transparency =  50))
 ```
-
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/sh_heart.png")
