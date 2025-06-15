@@ -418,8 +418,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#what-are-form-controls" id="toc-what-are-form-controls" class="nav-link active" data-scroll-target="#what-are-form-controls"><span class="header-section-number">11.1</span> What Are Form Controls?</a></li>
+  <li>
+<a href="#pros-and-cons-of-using-form-controls" id="toc-pros-and-cons-of-using-form-controls" class="nav-link" data-scroll-target="#pros-and-cons-of-using-form-controls"><span class="header-section-number">11.2</span> Pros and Cons of Using Form Controls</a>
+  <ul class="collapse">
+<li><a href="#pros" id="toc-pros" class="nav-link" data-scroll-target="#pros"><span class="header-section-number">11.2.1</span> Pros:</a></li>
+  <li><a href="#cons" id="toc-cons" class="nav-link" data-scroll-target="#cons"><span class="header-section-number">11.2.2</span> Cons:</a></li>
+  </ul>
+</li>
+  <li><a href="#checkboxes" id="toc-checkboxes" class="nav-link" data-scroll-target="#checkboxes"><span class="header-section-number">11.3</span> Checkboxes</a></li>
+  <li><a href="#radio-buttons" id="toc-radio-buttons" class="nav-link" data-scroll-target="#radio-buttons"><span class="header-section-number">11.4</span> Radio Buttons</a></li>
+  <li><a href="#dropdown-lists" id="toc-dropdown-lists" class="nav-link" data-scroll-target="#dropdown-lists"><span class="header-section-number">11.5</span> Dropdown lists</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_form_control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -439,33 +453,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="co"># Checkbox</span></span>
+</header><p>This chapter delves into the <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_form_control.html">wb_add_form_control()</a></code> function, a versatile tool for embedding interactive elements directly into your workbook. It will show how to seamlessly integrate various form controls, including checkboxes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, radio buttons, and dropdowns, to enhance user interaction and data input within your spreadsheets.</p>
+<p>There are a few function’s parameter, available, to set or retrieve the form control value. This allows the creation of dynamic and user-friendly workbooks that go beyond static data display, enabling more engaging and efficient data management.</p>
+<section id="what-are-form-controls" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="what-are-form-controls">
+<span class="header-section-number">11.1</span> What Are Form Controls?</h2>
+<p>Form controls in a spreadsheet environment are interactive graphical objects that allow users to input data, make selections, or trigger actions within a worksheet. Unlike directly typing into cells, form controls provide a more structured and often more intuitive way for users to interact with a workbook. They are commonly used to create interactive dashboards, data entry forms, and simple applications within spreadsheet software.</p>
+<p>Common types of form controls include:</p>
+<ul>
+<li>Checkboxes: Used for binary choices (e.g., “Yes/No,” “True/False,” or to select multiple options from a list).</li>
+<li>Radio Buttons (Option Buttons): Used when the user must select only one option from a mutually exclusive set of choices.</li>
+<li>Dropdown Lists (Combo Boxes): Allow users to select an item from a predefined list, saving space on the worksheet and ensuring data consistency.</li>
+</ul>
+<p>There are other form controls that are not yet implemented in <code>openxlsx2</code>, mostly due to the lack of interest. The entire <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_form_control.html">wb_add_form_control()</a></code> function dates back to a user request.</p>
+</section><section id="pros-and-cons-of-using-form-controls" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="pros-and-cons-of-using-form-controls">
+<span class="header-section-number">11.2</span> Pros and Cons of Using Form Controls</h2>
+<section id="pros" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="pros">
+<span class="header-section-number">11.2.1</span> Pros:</h3>
+<ul>
+<li>Improved User Experience: Form controls make spreadsheets more intuitive and user-friendly, guiding users through data entry and selection processes. This can reduce errors and make complex workbooks more accessible.</li>
+<li>Data Validation and Consistency: By providing predefined options (e.g., dropdowns) or structured inputs (e.g., checkboxes), form controls help enforce data validation, ensuring that users enter data in a consistent and correct format.</li>
+<li>Reduced Manual Input Errors: By limiting choices or providing visual cues, form controls can minimize the likelihood of typos or incorrect entries that often occur with manual cell input.</li>
+</ul></section><section id="cons" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="cons">
+<span class="header-section-number">11.2.2</span> Cons:</h3>
+<ul>
+<li>Complexity in Setup: Implementing and linking form controls, especially with more advanced functionalities like dynamic lists or macro triggers, can be more complex and time-consuming than simple cell-based data entry.</li>
+<li>Accessibility Concerns: While generally improving usability, poorly implemented form controls might pose challenges for users with certain disabilities or those relying on screen readers, if not designed with accessibility in mind.</li>
+<li>Version Compatibility: The appearance and behavior of form controls can sometimes vary slightly across different versions of spreadsheet software, which might lead to minor display or functionality issues if shared across diverse user environments.</li>
+</ul></section></section><section id="checkboxes" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="checkboxes">
+<span class="header-section-number">11.3</span> Checkboxes</h2>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, link <span class="op">=</span> <span class="st">"A4"</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="cn">TRUE</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, range <span class="op">=</span> <span class="st">"'Sheet 1'!A5"</span>, link <span class="op">=</span> <span class="st">"B5"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="co"># Radio</span></span>
-<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, link <span class="op">=</span> <span class="st">"A4"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="co"># Drop</span></span>
-<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Drop"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"A1"</span>, range <span class="op">=</span> <span class="st">"D4:D15"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"'Sheet 3'!D1:D26"</span>, range <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"D1"</span>, x <span class="op">=</span> <span class="va">letters</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, range <span class="op">=</span> <span class="st">"'Sheet 1'!A5"</span>, link <span class="op">=</span> <span class="st">"B5"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -474,12 +498,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+</div>
+</section><section id="radio-buttons" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="radio-buttons">
+<span class="header-section-number">11.4</span> Radio Buttons</h2>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>    <span class="va">wb</span><span class="op">$</span></span>
+<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Radio"</span>, link <span class="op">=</span> <span class="st">"A4"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Radio"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="../img/fc_02.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
+</div>
+</section><section id="dropdown-lists" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="dropdown-lists">
+<span class="header-section-number">11.5</span> Dropdown lists</h2>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>    <span class="va">wb</span><span class="op">$</span></span>
+<span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, type <span class="op">=</span> <span class="st">"Drop"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B3"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, text <span class="op">=</span> <span class="st">"A text"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A4"</span>, x <span class="op">=</span> <span class="fl">0</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B4"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"A1"</span>, range <span class="op">=</span> <span class="st">"D4:D15"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A5"</span>, x <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_form_control</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B5"</span>, type <span class="op">=</span> <span class="st">"Drop"</span>, link <span class="op">=</span> <span class="st">"'Sheet 3'!D1:D26"</span>,</span>
+<span>                     range <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span><span class="op">$</span></span>
+<span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"D1"</span>, x <span class="op">=</span> <span class="va">letters</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="../img/fc_03.png" class="img-fluid figure-img"></p>
@@ -489,8 +543,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1">
+<p>In 2024 a new checkbox was added in Excel. This makes use of the feature property bag and works slightly different compared to the form control checkbox. Basically it is a logical value (0 or 1) that takes an overlay to display a checked or unchecked box. They have the benefit that they are rather lightweight and stick to the cell like any other embedded cell content, whereas the form control elements float over the spreadsheet. There is no API for this yet, but you can use the new checkboxes like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add feature property bag</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="va">featurePropertyBag</span> <span class="op">&lt;-</span> <span class="st">'&lt;FeaturePropertyBags xmlns=</span></span>
+<span><span class="st">"http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag"&gt;</span></span>
+<span><span class="st"> &lt;bag type="Checkbox" /&gt;</span></span>
+<span><span class="st"> &lt;bag type="XFControls"&gt;</span></span>
+<span><span class="st">  &lt;bagId k="CellControl"&gt;0&lt;/bagId&gt;</span></span>
+<span><span class="st"> &lt;/bag&gt;</span></span>
+<span><span class="st"> &lt;bag type="XFComplement"&gt;</span></span>
+<span><span class="st">  &lt;bagId k="XFControls"&gt;1&lt;/bagId&gt;</span></span>
+<span><span class="st"> &lt;/bag&gt;</span></span>
+<span><span class="st"> &lt;bag type="XFComplements" extRef="XFComplementsMapperExtRef"&gt;</span></span>
+<span><span class="st">  &lt;a k="MappedFeaturePropertyBags"&gt;</span></span>
+<span><span class="st">   &lt;bagId&gt;2&lt;/bagId&gt;</span></span>
+<span><span class="st">  &lt;/a&gt;</span></span>
+<span><span class="st"> &lt;/bag&gt;</span></span>
+<span><span class="st">&lt;/FeaturePropertyBags&gt;'</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">append</span><span class="op">(</span><span class="st">"workbook.xml.rels"</span>,</span>
+<span>  <span class="st">'&lt;Relationship Id="rId5" Type=</span></span>
+<span><span class="st">  "http://schemas.microsoft.com/office/2022/11/relationships/FeaturePropertyBag"</span></span>
+<span><span class="st">  Target="featurePropertyBag/featurePropertyBag.xml"/&gt;'</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">append</span><span class="op">(</span><span class="st">"Content_Types"</span>,</span>
+<span>      <span class="st">'&lt;Override PartName="/xl/featurePropertyBag/featurePropertyBag.xml"</span></span>
+<span><span class="st">      ContentType="application/vnd.ms-excel.featurepropertybag+xml"/&gt;'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add style</span></span>
+<span><span class="va">extLst</span> <span class="op">&lt;-</span> <span class="st">'&lt;extLst&gt;</span></span>
+<span><span class="st"> &lt;ext xmlns:xfpb=</span></span>
+<span><span class="st"> "http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag"</span></span>
+<span><span class="st"> uri="{C7286773-470A-42A8-94C5-96B5CB345126}"&gt;</span></span>
+<span><span class="st">  &lt;xfpb:xfComplement i="0" /&gt;</span></span>
+<span><span class="st"> &lt;/ext&gt;</span></span>
+<span><span class="st">&lt;/extLst&gt;'</span></span>
+<span><span class="va">sty</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/create_cell_style.html">create_cell_style</a></span><span class="op">(</span>ext_lst <span class="op">=</span> <span class="va">extLst</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">sty</span>, <span class="st">"checkbox_sty"</span><span class="op">)</span></span>
+<span><span class="va">xf_sty</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_xf_id</span><span class="op">(</span><span class="st">"checkbox_sty"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add data and assign style</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">5</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A2:A6"</span>, style <span class="op">=</span> <span class="va">xf_sty</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
+</li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -916,4 +1022,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_form_control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_form_control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

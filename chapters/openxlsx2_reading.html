@@ -480,12 +480,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.1.1</span> Basic import</h3>
 <p>We begin with the <code>openxlsx2_example.xlsx</code> file by telling R where to find this file on our system</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">xlsxFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The object contains a path to the xlsx file and we pass this file to our function to read the workbook into R</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># import workbook</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the previous example the first imported row was used as column name for the data frame. This is the default behavior, but not always wanted or expected. Therefore this behavior can be disabled by the user.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># do not convert first row to column names</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        B    C  D     E     F          G            H       I        J</span></span>
 <span><span class="co">#&gt; 2   Var1 Var2 NA  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1 NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
@@ -523,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The creators of the openxml standard are well known for mistakenly treating something as a date and <code>openxlsx2</code> has built in ways to identify a cell as a date and will try to convert the value for you, but unfortunately this is not always a trivial task and might fail. In such a case we provide an option to disable the date conversion entirely. In this case the underlying numerical value will be returned.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># do not try to identify dates in the data</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, detect_dates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, detect_dates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4  Var5         Var6    Var7       Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 45075 3209324 This #DIV/0! 0.06059028</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 45069         &lt;NA&gt;       0 0.58538194</span></span>
@@ -541,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes things might feel off. This can be because the openxml files are not updating formula results in the sheets unless they are opened in software that provides such functionality as certain tabular calculation software. Therefore the user might be interested in the underlying functions to see what is going on in the sheet. Using <code>show_formula</code> this is possible</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># return the underlying Excel formula instead of their values</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6            Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This            E3/0 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;              C4 14:02:57</span></span>
@@ -559,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes the entire worksheet contains to much data, in such case we provide functions to read only a selected dimension range. Such a range consists of either a specific cell like “A1” or a cell range in the notion used in the <code>openxml</code> standard</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read dimension without column names</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, dims <span class="op">=</span> <span class="st">"A2:C5"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="st">"A2:C5"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    A    B    C</span></span>
 <span><span class="co">#&gt; 2 NA Var1 Var2</span></span>
 <span><span class="co">#&gt; 3 NA TRUE    1</span></span>
@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Alternatively, if you don’t know the Excel sheet’s address, you can use <code>wb_dims()</code> to specify the dimension. See below or in<code>?wb_dims</code> for more details.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read dimension without column names with `wb_dims()`</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    A    B    C</span></span>
 <span><span class="co">#&gt; 2 NA Var1 Var2</span></span>
 <span><span class="co">#&gt; 3 NA TRUE    1</span></span>
@@ -581,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you do not want to read a specific cell, but a cell range you can use the column attribute. This attribute takes a numeric vector as argument</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected cols</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A:B"</span>, <span class="st">"G"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A:B"</span>, <span class="st">"G"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    &lt;NA&gt;  Var1       Var5</span></span>
 <span><span class="co">#&gt; 3    NA  TRUE 2023-05-29</span></span>
 <span><span class="co">#&gt; 4    NA  TRUE 2023-05-23</span></span>
@@ -599,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The same goes with rows. You can select them using numeric vectors</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected rows</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5 Var6 Var7     Var8</span></span>
 <span><span class="co">#&gt; 4  TRUE   NA   NA #NUM!     b 2023-05-23   NA    0 14:02:57</span></span>
 <span><span class="co">#&gt; 6 FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;   NA    2 17:24:53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -609,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In xml exists no difference between value types. All values are per default characters. To provide these as numerics, logicals or dates, <code>openxlsx2</code> and every other software dealing with xlsx files has to make assumptions about the cell type. This is especially tricky due to the notion of worksheets. Unlike in a data frame, a worksheet can have a wild mix of all types of data. Even though the conversion process from character to date or numeric is rather solid, sometimes the user might want to see the data without any conversion applied. This might be useful in cases where something unexpected happened or the import created warnings. In such a case you can look at the raw input data. If you want to disable date detection as well, please see the entry above.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert characters to numerics and date (logical too?)</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, convert <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, convert <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1 &lt;NA&gt;     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE &lt;NA&gt; &lt;NA&gt; #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -627,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Even though <code>openxlsx2</code> imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentional or empty because they are were formatted, but the cell value was removed afterwards. This was added mostly for backward comparability, but the default has been changed to <code>FALSE</code>. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># erase empty rows from dataset</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, sheet <span class="op">=</span> <span class="fl">1</span>, skip_empty_rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">1</span>, skip_empty_rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt; Var3  Var4       Var5 Var6 Var7     Var8</span></span>
 <span><span class="co">#&gt; 6  FALSE    2   NA &lt;NA&gt; #NUM!       &lt;NA&gt; &lt;NA&gt;    2 17:24:53</span></span>
 <span><span class="co">#&gt; 7  FALSE    3   NA 1.56     e       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;</span></span>
@@ -641,7 +641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The same for columns</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># erase empty columns from dataset</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -659,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes the data source might provide rownames as well. In such a case you can <code>openxlsx2</code> to treat the first column as rowname</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert first row to rownames</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, sheet <span class="op">=</span> <span class="fl">2</span>, dims <span class="op">=</span> <span class="st">"C6:G9"</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">2</span>, dims <span class="op">=</span> <span class="st">"C6:G9"</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                mpg cyl disp  hp</span></span>
 <span><span class="co">#&gt; Mazda RX4     21.0   6  160 110</span></span>
 <span><span class="co">#&gt; Mazda RX4 Wag 21.0   6  160 110</span></span>
@@ -670,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If the user know better than the software what type to expect in a worksheet, this can be provided via types. This parameter takes a named numeric. <code>0</code> is character, <code>1</code> is numeric and <code>2</code> is date</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># define type of the data.frame</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Var1"</span> <span class="op">=</span> <span class="fl">0</span>, <span class="st">"Var3"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Var1"</span> <span class="op">=</span> <span class="fl">0</span>, <span class="st">"Var3"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1   Var3</span></span>
 <span><span class="co">#&gt; 3   TRUE   1.00</span></span>
 <span><span class="co">#&gt; 4   TRUE    NaN</span></span>
@@ -688,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Often the creator of the worksheet has used a lot of creativity and the data does not begin in the first row, instead it begins somewhere else. To define the row where to begin reading, define it via the <code>start_row</code> parameter</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># start in row 5</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, start_row <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, start_row <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        B  C  D      E     F          G  H       I        J</span></span>
 <span><span class="co">#&gt; 5   TRUE  2 NA   1.34     c 2023-02-01 NA #VALUE! 23:01:02</span></span>
 <span><span class="co">#&gt; 6  FALSE  2 NA     NA #NUM!       &lt;NA&gt; NA       2 17:24:53</span></span>
@@ -704,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There is the “#N/A” string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via <code>na.strings</code></p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># na strings</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xlsxFile</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -723,9 +723,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Importing a file into a workbook looks like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the file we are going to load</span></span>
-<span><span class="va">xlsxFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
+<span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
 <span><span class="co"># loading the file into the workbook</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span>file <span class="op">=</span> <span class="va">xlsxFile</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span>file <span class="op">=</span> <span class="va">xl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The additional options <code>wb_load()</code> provides are for internal use: <code>sheet</code> loads only a selected sheet from the workbook and <code>data_only</code> reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.</p>
 <p>Once a workbook is imported, we provide several functions to interact with and modify it (the <code>wb_to_df()</code> function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).</p>
@@ -737,19 +737,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.2.1</span> Reading the data table</h3>
 <p>In a first step we import the entire workbook</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="st">"https://www2.census.gov/programs-surveys/demo/tables/industry-occupation/2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="st">"https://www2.census.gov/programs-surveys/demo/tables/industry-occupation"</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="st">"2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"</span></span>
+<span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once the workbook is loaded, we read the entire worksheet and try to get an understanding how it looks like. For this we fill merged cells and remote the column name. After that we can inspect it with <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>               skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># View(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using this we realize that the table has a few description rows ahead and a few footnotes below. Numeric data starts in row <code>8</code> and ends in <code>605</code>. The table spans columns <code>A</code> to <code>BG</code>. Therefore our dimensions will look like this <code>A7:BG605</code>. We start one row earlier than the data we want to read, because we expect a column name. In addition there are a few missing values that we want to remove.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A7:BG605"</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span>               fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="cleaning-the-indents" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="cleaning-the-indents">
 <span class="header-section-number">3.2.2</span> Cleaning the indents</h3>
@@ -764,8 +768,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">styles</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="va">styles</span><span class="op">$</span><span class="va">cellXfs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">want</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># now get the indentation alignment from the style</span></span>
-<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">read_xf</span><span class="op">(</span><span class="fu">read_xml</span><span class="op">(</span><span class="va">styles</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">.</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"0"</span>, <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">read_xf</span><span class="op">(</span><span class="fu">read_xml</span><span class="op">(</span><span class="va">styles</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">.</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"0"</span>, <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># indent the text</span></span>
@@ -828,7 +832,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Since your output contains non consecutive cells, which are basically a square, you can pass them as a single <code>dims</code> string. In the <code>dims</code> string we treat header and column differently. We can check with <code>dims_to_dataframe("A6:B6,D6,H6,A12:B17,D12:D17,H12:H17", fill = TRUE, empty_rm = TRUE)</code> if our <code>dims</code> object works. Since we see no blanks, every cell is matched.</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wb_to_df</span><span class="op">(</span></span>
-<span>  <span class="va">wb</span>, </span>
+<span>  <span class="va">wb</span>,</span>
 <span>  dims <span class="op">=</span> <span class="st">"A6:B6,D6,H6,A12:B17,D12:D17,H12:H17"</span>,</span>
 <span>  fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
@@ -865,11 +869,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read body</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A8:BG605"</span></span>
-<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read header</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A5:BG7"</span></span>
-<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create single header string. remove all spaces, unique values. collapse on dot</span></span>
 <span><span class="va">nams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_head</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -926,10 +932,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">indents</span><span class="op">[</span><span class="va">sel</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1L</span></span>
 <span></span>
 <span><span class="va">create_groups</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  </span>
+<span></span>
 <span>  <span class="co"># Create a data frame</span></span>
-<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Index <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span>, Value <span class="op">=</span> <span class="va">sequence</span><span class="op">)</span></span>
-<span>  </span>
+<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span>, Value <span class="op">=</span> <span class="va">sequence</span><span class="op">)</span></span>
+<span></span>
 <span>  <span class="co"># Calculate Supergroup, Group, and Subgroup identifiers</span></span>
 <span>  <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
 <span>  <span class="va">df</span><span class="op">$</span><span class="va">Group</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -939,17 +945,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">0</span>, <span class="va">df</span><span class="op">$</span><span class="va">Supergroup</span>, <span class="cn">NA</span><span class="op">)</span></span>
 <span>  <span class="va">df</span><span class="op">$</span><span class="va">Group</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">df</span><span class="op">$</span><span class="va">Group</span>, <span class="cn">NA</span><span class="op">)</span></span>
 <span>  <span class="va">df</span><span class="op">$</span><span class="va">Subroup</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">2</span>, <span class="va">df</span><span class="op">$</span><span class="va">Group</span>, <span class="cn">NA</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">Supergroup</span>, <span class="va">Group</span>, <span class="va">Subgroup</span>, .direction <span class="op">=</span> <span class="st">"down"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co">#nolint start</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span></span>
+<span>    <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html">fill</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">Supergroup</span>, <span class="va">Group</span>, <span class="va">Subgroup</span>, .direction <span class="op">=</span> <span class="st">"down"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="co">#nolint end</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">Index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">&lt;-</span> <span class="va">indents</span></span>
 <span></span>
 <span><span class="co"># each duplicated MOE2 is a percent value</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, y <span class="op">=</span> <span class="fu">create_groups</span><span class="op">(</span><span class="va">indents</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Index"</span>, <span class="st">"Value"</span><span class="op">)</span>, sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span>, y <span class="op">=</span> <span class="fu">create_groups</span><span class="op">(</span><span class="va">indents</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Index"</span>, <span class="st">"Value"</span><span class="op">)</span>,</span>
+<span>            sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Occupational_Category"</span>, <span class="st">"Total.Estimate"</span>, <span class="st">"Total.MOE2"</span>, <span class="st">"Supergroup"</span>, <span class="st">"Group"</span>, <span class="st">"Subgroup"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Occupational_Category"</span>, <span class="st">"Total.Estimate"</span>, <span class="st">"Total.MOE2"</span>,</span>
+<span>          <span class="st">"Supergroup"</span>, <span class="st">"Group"</span>, <span class="st">"Subgroup"</span><span class="op">)</span></span>
+<span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">Value</span> <span class="op">==</span> <span class="fl">3</span>, <span class="va">vars</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">Total.Estimate</span> <span class="op">~</span> <span class="va">Supergroup</span>, data <span class="op">=</span> <span class="va">tab</span>, <span class="va">sum</span><span class="op">)</span></span>
