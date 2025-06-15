@@ -11,25 +11,102 @@ knitr::opts_chunk$set(
 )
 ```
 
+This chapter delves into the `wb_add_form_control()` function, a versatile tool for embedding interactive elements directly into your workbook. It will show how to seamlessly integrate various form controls, including checkboxes, radio buttons, and dropdowns, to enhance user interaction and data input within your spreadsheets.
+
+There are a few function's parameter, available, to set or retrieve the form control value.
+This allows the creation of dynamic and user-friendly workbooks that go beyond static data display, enabling more engaging and efficient data management.
+
+## What Are Form Controls?
+
+Form controls in a spreadsheet environment are interactive graphical objects that allow users to input data, make selections, or trigger actions within a worksheet. Unlike directly typing into cells, form controls provide a more structured and often more intuitive way for users to interact with a workbook. They are commonly used to create interactive dashboards, data entry forms, and simple applications within spreadsheet software.
+
+Common types of form controls include:
+
+  * Checkboxes: Used for binary choices (e.g., "Yes/No," "True/False," or to select multiple options from a list).
+  * Radio Buttons (Option Buttons): Used when the user must select only one option from a mutually exclusive set of choices.
+  * Dropdown Lists (Combo Boxes): Allow users to select an item from a predefined list, saving space on the worksheet and ensuring data consistency.
+  
+There are other form controls that are not yet implemented in `openxlsx2`, mostly due to the lack of interest. The entire `wb_add_form_control()` function dates back to a user request.
+
+## Pros and Cons of Using Form Controls
+
+### Pros:
+
+  * Improved User Experience: Form controls make spreadsheets more intuitive and user-friendly, guiding users through data entry and selection processes. This can reduce errors and make complex workbooks more accessible.
+  * Data Validation and Consistency: By providing predefined options (e.g., dropdowns) or structured inputs (e.g., checkboxes), form controls help enforce data validation, ensuring that users enter data in a consistent and correct format.
+  * Reduced Manual Input Errors: By limiting choices or providing visual cues, form controls can minimize the likelihood of typos or incorrect entries that often occur with manual cell input.
+
+### Cons:
+
+  * Complexity in Setup: Implementing and linking form controls, especially with more advanced functionalities like dynamic lists or macro triggers, can be more complex and time-consuming than simple cell-based data entry.
+  * Accessibility Concerns: While generally improving usability, poorly implemented form controls might pose challenges for users with certain disabilities or those relying on screen readers, if not designed with accessibility in mind.
+  * Version Compatibility: The appearance and behavior of form controls can sometimes vary slightly across different versions of spreadsheet software, which might lead to minor display or functionality issues if shared across diverse user environments.
+
+## Checkboxes[^openxlsx2_form_control-1]
+
 ```{r}
   wb <- wb_workbook()$
-    # Checkbox
     add_worksheet()$
     add_form_control(dims = "B2")$
     add_form_control(dims = "B3", text = "A text")$
     add_data(dims = "A4", x = 0, colNames = FALSE)$
     add_form_control(dims = "B4", link = "A4")$
     add_data(dims = "A5", x = TRUE, colNames = FALSE)$
-    add_form_control(dims = "B5", range = "'Sheet 1'!A5", link = "B5")$
-    # Radio
+    add_form_control(dims = "B5", range = "'Sheet 1'!A5", link = "B5")
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/fc_01.png")
+```
+
+[^openxlsx2_form_control-1]: In 2024 a new checkbox was added in Excel. This makes use of the feature property bag and works slightly different compared to the form control checkbox. Basically it is a logical value (0 or 1) that takes an overlay to display a checked or unchecked box. They have the benefit that they are rather lightweight and stick to the cell like any other embedded cell content, whereas the form control elements float over the spreadsheet.
+There is no API for this yet, but you can use the new checkboxes like this:
+
+    ```{r, eval = FALSE}
+library(openxlsx2)
+
+wb <- wb_workbook()$add_worksheet()
+
+# add feature property bag
+wb$featurePropertyBag <- "<FeaturePropertyBags xmlns=\"http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag\"><bag type=\"Checkbox\"/><bag type=\"XFControls\"><bagId k=\"CellControl\">0</bagId></bag><bag type=\"XFComplement\"><bagId k=\"XFControls\">1</bagId></bag><bag type=\"XFComplements\" extRef=\"XFComplementsMapperExtRef\"><a k=\"MappedFeaturePropertyBags\"><bagId>2</bagId></a></bag></FeaturePropertyBags>"
+wb$append("workbook.xml.rels",
+          '<Relationship Id="rId5" Type="http://schemas.microsoft.com/office/2022/11/relationships/FeaturePropertyBag" Target="featurePropertyBag/featurePropertyBag.xml"/>')
+wb$append("Content_Types",
+          '<Override PartName="/xl/featurePropertyBag/featurePropertyBag.xml" ContentType="application/vnd.ms-excel.featurepropertybag+xml"/>')
+
+# add style
+extLst <- '<extLst><ext xmlns:xfpb="http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag" uri="{C7286773-470A-42A8-94C5-96B5CB345126}"><xfpb:xfComplement i="0"/></ext></extLst>'
+sty <- create_cell_style(ext_lst = extLst)
+wb$styles_mgr$add(sty, "checkbox_sty")
+
+# add data and assign style
+wb$add_data(x = matrix(sample(c(TRUE, FALSE), 5, TRUE), 5, 2))
+wb$set_cell_style(dims = "A2:A6", style = wb$styles_mgr$get_xf_id("checkbox_sty"))
+
+# wb$open()
+    ```
+
+## Radio Buttons
+
+```{r}
+    wb$
     add_worksheet()$
     add_form_control(dims = "B2", type = "Radio")$
     add_form_control(dims = "B3", type = "Radio", text = "A text")$
     add_data(dims = "A4", x = 0, colNames = FALSE)$
     add_form_control(dims = "B4", type = "Radio", link = "A4")$
     add_data(dims = "A5", x = 1, colNames = FALSE)$
-    add_form_control(dims = "B5", type = "Radio")$
-    # Drop
+    add_form_control(dims = "B5", type = "Radio")
+```
+
+```{r echo=FALSE, warning=FALSE}
+knitr::include_graphics("../img/fc_02.png")
+```
+
+## Dropdown lists
+
+```{r}
+    wb$
     add_worksheet()$
     add_form_control(dims = "B2", type = "Drop")$
     add_form_control(dims = "B3", type = "Drop", text = "A text")$
@@ -40,9 +117,7 @@ knitr::opts_chunk$set(
     add_data(dims = "D1", x = letters)
 ```
 
-
 ```{r echo=FALSE, warning=FALSE}
-knitr::include_graphics("../img/fc_01.png")
-knitr::include_graphics("../img/fc_02.png")
 knitr::include_graphics("../img/fc_03.png")
 ```
+
