@@ -36,8 +36,10 @@ We will use the following workbook and the two styles to differentiate in negati
 
 ```{r}
 wb <- wb_workbook()
-wb$add_dxfs_style(name = "negStyle", font_color = wb_color(hex = "FF9C0006"), bg_fill = wb_color(hex = "FFFFC7CE"))
-wb$add_dxfs_style(name = "posStyle", font_color = wb_color(hex = "FF006100"), bg_fill = wb_color(hex = "FFC6EFCE"))
+wb$add_dxfs_style(name = "negStyle", font_color = wb_color(hex = "FF9C0006"),
+                  bg_fill = wb_color(hex = "FFFFC7CE"))
+wb$add_dxfs_style(name = "posStyle", font_color = wb_color(hex = "FF006100"),
+                  bg_fill = wb_color(hex = "FFC6EFCE"))
 ```
 
 ### Rule applies to all each cell in range
@@ -249,7 +251,8 @@ knitr::include_graphics("../img/cf_color_scale.png")
 ```
 
 ```{r}
-df <- read_xlsx("https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx", sheet = 5)
+fl <- "https://github.com/JanMarvin/openxlsx-data/raw/main/readTest.xlsx"
+df <- read_xlsx(fl, sheet = 5)
 wb$add_worksheet("colorScale", zoom = 30)
 wb$add_data("colorScale", x = df, col_names = FALSE) ### write data.frame
 ```
@@ -383,8 +386,9 @@ knitr::include_graphics("../img/cf_blanks.png")
 
 ```{r}
 wb$add_worksheet("contains blanks")
-wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL)
-wb$add_data(x = c(NA, 1, 2, ''), colNames = FALSE, na.strings = NULL, start_col = 2)
+wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na.strings = NULL)
+wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na.strings = NULL,
+            start_col = 2)
 wb$add_conditional_formatting(dims = "A1:A4", type = "containsBlanks")
 wb$add_conditional_formatting(dims = "B1:B4", type = "notContainsBlanks")
 ```

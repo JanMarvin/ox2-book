@@ -65,7 +65,10 @@ wb
 The output looks a little cryptic, it simply tells the name of the worksheet: `wb_add_worksheet()` created a default worksheet name `"Sheet 1"`. In the code above you can see that we do not use `sheet` to tell `wb_add_data()` where it should write the data. This is because internally we use a waiver `current_sheet()` so that we do not have to write `sheet = "Sheet 1"` whenever we work on the same worksheet. Basically the current sheet is updated whenever a new worksheet is added to the workbook.
 
 ```{r}
-wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars)
+wb <- wb_workbook() %>%
+  wb_add_worksheet() %>%
+  wb_add_worksheet() %>%
+  wb_add_data(x = mtcars)
 ```
 
 This will create two sheets `"Sheet 1"` and `"Sheet 2"` and the data will be written to the second sheet.

@@ -28,9 +28,9 @@ wb$add_comment(
 )
 ```
 
-It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^1] For this we are going to remove this previous comment.
+It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^openxlsx2-things-with-shapes1] For this we are going to remove this previous comment.
 
-[^1]: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.
+[^openxlsx2-things-with-shapes1]: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.
 
 ```{r}
 # eh what was it again?
@@ -139,7 +139,8 @@ heart <- create_shape(
 
 ## ribbon
 txt <- fmt_txt("\nthe ") +
-  fmt_txt("very", underline = TRUE, font = "Courier", color = wb_color("gold")) +
+  fmt_txt("very", underline = TRUE, font = "Courier",
+          color = wb_color("gold")) +
   fmt_txt(" best")
 
 ribbon <- create_shape(shape = "ribbon", text = txt, text_align = "center")
@@ -147,7 +148,11 @@ ribbon <- create_shape(shape = "ribbon", text = txt, text_align = "center")
 wb <- wb_workbook()$add_worksheet(grid_lines = FALSE)$
   add_drawing(dims = "B2:E11", xml = heart)$
   add_drawing(dims = "B12:E14", xml = ribbon)$
-  add_worksheet()$add_drawing(dims = "B2:E5", xml = create_shape("rect", text = txt, fill_color = wb_color(theme = 5), fill_transparency =  50))
+  add_worksheet()$add_drawing(dims = "B2:E5",
+                              xml = create_shape(
+                                "rect", text = txt,
+                                fill_color = wb_color(theme = 5),
+                                fill_transparency =  50))
 ```
 
 ```{r echo=FALSE, warning=FALSE}

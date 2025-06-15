@@ -89,7 +89,8 @@ wb_new_workbook(
 Another niche package is `ovbars` [@ovbars]. This package allows reading the binary blob that contains macros in `xlsm` and potentially `xlsb` files. The package allows extracting the VBA code.
 
 ```{r}
-fl <- "https://github.com/JanMarvin/openxlsx-data/raw/refs/heads/main/gh_issue_416.xlsm"
+url <- "https://github.com/JanMarvin/openxlsx-data/raw/refs/heads/main"
+fl <- file.path(url, "gh_issue_416.xlsm")
 wb <- openxlsx2::wb_load(fl)
 vba <- wb$vbaProject
 

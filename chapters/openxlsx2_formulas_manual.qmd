@@ -179,9 +179,11 @@ company_sales <- data.frame(
 )
 
 ## write in the formula
-company_sales$total_sales  <- paste(paste0("A", 1:3 + 1L), paste0("C", 1:3 + 1L), sep = " * ")
+company_sales$total_sales  <- paste(paste0("A", 1:3 + 1L),
+                                    paste0("C", 1:3 + 1L), sep = " * ")
 ## add the formula class
-class(company_sales$total_sales) <- c(class(company_sales$total_sales), "formula")
+class(company_sales$total_sales) <- c(class(company_sales$total_sales),
+                                      "formula")
 
 ## write a workbook
 wb <- wb_workbook()$
@@ -208,8 +210,9 @@ In open xml the `dataTable` formula looks like this:
 Now we can see that open xml replaces `[@[sales_price]]` with `daily_sales[[#This Row],[sales_price]]` We must then use this syntax when writing formulas for `dataTable`
 
 ```{r}
-## Because we want the `dataTable` formula to propagate down the entire column of the data
-## we can assign the formula by itself to any column and allow that single string to be repeated for each row.
+## Because we want the `dataTable` formula to propagate down the entire column
+## of the data we can assign the formula by itself to any column and allow that
+## single string to be repeated for each row.
 
 ## creating example data
 example_data <-
@@ -220,14 +223,22 @@ example_data <-
   )
 
 ## base R method
-example_data$gross_profit       <- "daily_sales[[#This Row],[sales_price]] - daily_sales[[#This Row],[COGS]]"
-example_data$total_COGS        <- "daily_sales[[#This Row],[COGS]] * daily_sales[[#This Row],[sales_quantity]]"
-example_data$total_sales       <- "daily_sales[[#This Row],[sales_price]] * daily_sales[[#This Row],[sales_quantity]]"
-example_data$total_gross_profit <- "daily_sales[[#This Row],[total_sales]] - daily_sales[[#This Row],[total_COGS]]"
-class(example_data$gross_profit)       <- c(class(example_data$gross_profit),       "formula")
-class(example_data$total_COGS)        <- c(class(example_data$total_COGS),          "formula")
-class(example_data$total_sales)       <- c(class(example_data$total_sales),         "formula")
-class(example_data$total_gross_profit) <- c(class(example_data$total_gross_profit), "formula")
+example_data$gross_profit       <- "daily_sales[[#This Row],[sales_price]] -
+daily_sales[[#This Row],[COGS]]"
+example_data$total_COGS        <- "daily_sales[[#This Row],[COGS]] * 
+daily_sales[[#This Row],[sales_quantity]]"
+example_data$total_sales       <- "daily_sales[[#This Row],[sales_price]] *
+daily_sales[[#This Row],[sales_quantity]]"
+example_data$total_gross_profit <- "daily_sales[[#This Row],[total_sales]] -
+daily_sales[[#This Row],[total_COGS]]"
+class(example_data$gross_profit)       <- c(class(example_data$gross_profit),
+                                            "formula")
+class(example_data$total_COGS)        <- c(class(example_data$total_COGS),
+                                           "formula")
+class(example_data$total_sales)       <- c(class(example_data$total_sales),
+                                           "formula")
+class(example_data$total_gross_profit) <- c(
+  class(example_data$total_gross_profit), "formula")
 ```
 
 ```{r}
@@ -271,17 +282,20 @@ For completion, the formula as we wrote it appears as;
 #### sum dataTable examples
 wb$add_worksheet("sum_examples")
 
-### Note: dataTable formula do not need to be used inside of dataTables. dataTable formula are for referencing the data within the dataTable.
+### Note: dataTable formula do not need to be used inside of dataTables.
+### dataTable formula are for referencing the data within the dataTable.
 sum_examples <- data.frame(
   description = c("sum_sales_price", "sum_product_Price_Quantity"),
-  formula = c( "", "")
+  formula = c("", "")
 )
 
 wb$add_data(x = sum_examples)
 
 # add formulas
 wb$add_formula(x = "sum(daily_sales[[#Data],[sales_price]])", dims = "B2")
-wb$add_formula(x = "sum(daily_sales[[#Data],[sales_price]] * daily_sales[[#Data],[sales_quantity]])", dims = "B3", array = TRUE)
+wb$add_formula(x = "sum(daily_sales[[#Data],[sales_price]] *
+               daily_sales[[#Data],[sales_quantity]])", dims = "B3",
+               array = TRUE)
 
 #### dataTable referencing
 wb$add_worksheet("dt_references")

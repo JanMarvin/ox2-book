@@ -93,10 +93,14 @@ wb$add_worksheet("add_drawing")$
   add_drawing(xml = tmp, dims = NULL)
 ```
 
+
 ```{r echo=FALSE, warning=FALSE}
+#nolint start
 #| fig-cap: "An rvg chart is a vector graphic that can be modified in spreadsheet software (this screenshot differs from the code above as the second chart below has been removed)"
 knitr::include_graphics("../img/chrt_rvg.png")
+#nolint end
 ```
+
 
 ```{r}
 library(devEMF)

@@ -35,7 +35,8 @@ pt <- pivottabler::PivotTable$new()
 pt$addData(esoph)
 pt$addColumnDataGroups("tobgp")
 pt$addRowDataGroups("agegp")
-pt$defineCalculation(calculationName = "ncontrols", summariseExpression = "sum(ncontrols)")
+pt$defineCalculation(calculationName = "ncontrols",
+                     summariseExpression = "sum(ncontrols)")
 pt$evaluatePivot()
 pt
 
@@ -63,9 +64,12 @@ wb <- wb_workbook()$
 
 df <- wb_data(wb)
 
-wb$add_pivot_table(df, dims = "A3", rows = "agegp", cols = "tobgp", data = c("ncontrols"))
-wb$add_pivot_table(df, dims = "A13", rows = "agegp", data = c("ncontrols", "ncases"))
-wb$add_pivot_table(df, dims = "A18", rows = "agegp", cols = "tobgp", data = c("ncontrols", "ncases"))
+wb$add_pivot_table(df, dims = "A3", rows = "agegp", cols = "tobgp",
+                   data = c("ncontrols"))
+wb$add_pivot_table(df, dims = "A13", rows = "agegp",
+                   data = c("ncontrols", "ncases"))
+wb$add_pivot_table(df, dims = "A18", rows = "agegp", cols = "tobgp",
+                   data = c("ncontrols", "ncases"))
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -91,12 +95,13 @@ tbl_prueba_2 <- data.frame(
   month = ordered(
     rep(
       c(
-        "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-        "Jan", "Feb", "Mar"
+        "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+        "Dec", "Jan", "Feb", "Mar"
       ),
       each = 2L
     ),
-    levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+    levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+               "Oct", "Nov", "Dec")
   )
 )
 
@@ -132,10 +137,14 @@ wb <- wb_workbook()$
 
 df <- wb_data(wb)
 
-wb$add_pivot_table(df, dims = "A1", rows = "cyl", cols = "gear", data = c("disp", "hp"))
-wb$add_pivot_table(df, dims = "A10", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = "count")
-wb$add_pivot_table(df, dims = "A20", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = "average")
-wb$add_pivot_table(df, dims = "A30", sheet = 2, rows = "cyl", cols = "gear", data = c("disp", "hp"), fun = c("sum", "average"))
+wb$add_pivot_table(df, dims = "A1", rows = "cyl", cols = "gear",
+                   data = c("disp", "hp"))
+wb$add_pivot_table(df, dims = "A10", sheet = 2, rows = "cyl", cols = "gear",
+                   data = c("disp", "hp"), fun = "count")
+wb$add_pivot_table(df, dims = "A20", sheet = 2, rows = "cyl", cols = "gear",
+                   data = c("disp", "hp"), fun = "average")
+wb$add_pivot_table(df, dims = "A30", sheet = 2, rows = "cyl", cols = "gear",
+                   data = c("disp", "hp"), fun = c("sum", "average"))
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -197,13 +206,25 @@ wb <- wb_workbook()$
 
 df <- wb_data(wb)
 
-wb$add_pivot_table(df, sheet = "table", dims = "A1", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleMedium23"))
-wb$add_pivot_table(df, sheet = "table", dims = "A10", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleLight19"))
-wb$add_pivot_table(df, sheet = "table", dims = "A19", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "TableStyleDark11"))
+wb$add_pivot_table(df, sheet = "table", dims = "A1", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "TableStyleMedium23"))
+wb$add_pivot_table(df, sheet = "table", dims = "A10", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "TableStyleLight19"))
+wb$add_pivot_table(df, sheet = "table", dims = "A19", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "TableStyleDark11"))
 
-wb$add_pivot_table(df, sheet = "table", dims = "G1", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleMedium28"))
-wb$add_pivot_table(df, sheet = "table", dims = "G10", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleMedium13"))
-wb$add_pivot_table(df, sheet = "table", dims = "G19", rows = "cyl", cols = "gear", data = "disp", params = list(table_style = "PivotStyleDark20"))
+wb$add_pivot_table(df, sheet = "table", dims = "G1", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "PivotStyleMedium28"))
+wb$add_pivot_table(df, sheet = "table", dims = "G10", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "PivotStyleMedium13"))
+wb$add_pivot_table(df, sheet = "table", dims = "G19", rows = "cyl",
+                   cols = "gear", data = "disp", params = list(
+                     table_style = "PivotStyleDark20"))
 
 if (interactive()) wb$open()
 ```
@@ -222,10 +243,15 @@ pt <- pivottabler::PivotTable$new()
 pt$addData(pivottabler::bhmtrains)
 pt$addColumnDataGroups("TrainCategory")
 pt$addRowDataGroups("TOC",
-                    outlineBefore = list(isEmpty = FALSE, groupStyleDeclarations = list(color = "blue")),
-                    outlineTotal = list(isEmpty = FALSE, groupStyleDeclarations = list(color = "blue")))
+                    outlineBefore = list(isEmpty = FALSE,
+                                         groupStyleDeclarations = list(
+                                           color = "blue")),
+                    outlineTotal = list(isEmpty = FALSE,
+                                        groupStyleDeclarations = list(
+                                          color = "blue")))
 pt$addRowDataGroups("PowerType", addTotal = FALSE)
-pt$defineCalculation(calculationName = "TotalTrains", summariseExpression = "n()")
+pt$defineCalculation(calculationName = "TotalTrains",
+                     summariseExpression = "n()")
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -234,7 +260,8 @@ knitr::include_graphics("../img/pv_pivottabler.png")
 
 ```{r}
 # use A:P
-wb <- wb_workbook()$add_worksheet()$add_data(x = pivottabler::bhmtrains, na.strings = NULL)
+wb <- wb_workbook()$add_worksheet()$add_data(x = pivottabler::bhmtrains,
+                                             na.strings = NULL)
 df <- wb_data(wb, dims = "A:P")
 
 # use TrainCategory on column and data
@@ -257,7 +284,9 @@ knitr::include_graphics("../img/pv_openxlsx2.png")
 
 ```{r}
 ## Pivot table example 1
-wb <- wb_workbook() %>% wb_add_worksheet() %>% wb_add_data(x = mtcars, inline_strings = FALSE)
+wb <- wb_workbook() %>%
+  wb_add_worksheet() %>%
+  wb_add_data(x = mtcars, inline_strings = FALSE)
 
 wb$add_numfmt(dims = wb_dims(x = mtcars, cols = "disp"), numfmt = "$ #,###")
 
@@ -314,16 +343,17 @@ varname <- c("vs", "drat")
 wb$
   # first pivot
   add_pivot_table(
-    df, dims = "A3", slicer = varname, rows = "cyl", cols = "gear", data = "disp",
-    pivot_table = "mtcars"
+    df, dims = "A3", slicer = varname, rows = "cyl", cols = "gear",
+    data = "disp", pivot_table = "mtcars"
   )$
-  add_slicer(x = df, sheet = current_sheet(), slicer = "vs", pivot_table = "mtcars")$
-  add_slicer(x = df, dims = "B18:D24", sheet = current_sheet(), slicer = "drat", pivot_table = "mtcars",
-             params = list(columnCount = 5))$
+  add_slicer(x = df, sheet = current_sheet(), slicer = "vs",
+             pivot_table = "mtcars")$
+  add_slicer(x = df, dims = "B18:D24", sheet = current_sheet(), slicer = "drat",
+             pivot_table = "mtcars", params = list(columnCount = 5))$
   # second pivot
   add_pivot_table(
-    df, dims = "G3", sheet = current_sheet(), slicer = varname, rows = "gear", cols = "carb", data = "mpg",
-    pivot_table = "mtcars2"
+    df, dims = "G3", sheet = current_sheet(), slicer = varname, rows = "gear",
+    cols = "carb", data = "mpg", pivot_table = "mtcars2"
   )$
   add_slicer(x = df, dims = "G12:I16", slicer = "vs", pivot_table = "mtcars2",
              params = list(sortOrder = "descending", caption = "Wow!"))
@@ -331,8 +361,8 @@ wb$
 ### Sheet 3
 wb$
   add_pivot_table(
-    df, dims = "A3", slicer = varname, rows = "gear", cols = "carb", data = "mpg",
-    pivot_table = "mtcars3"
+    df, dims = "A3", slicer = varname, rows = "gear", cols = "carb",
+    data = "mpg", pivot_table = "mtcars3"
   )$
   add_slicer(x = df, dims = "A12:D16", slicer = "vs", pivot_table = "mtcars3")
 

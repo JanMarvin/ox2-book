@@ -22,14 +22,14 @@ For this example we will use example data provided by the package. You can locat
 We begin with the `openxlsx2_example.xlsx` file by telling R where to find this file on our system
 
 ```{r}
-xlsxFile <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
+xl <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
 ```
 
 The object contains a path to the xlsx file and we pass this file to our function to read the workbook into R
 
 ```{r}
 # import workbook
-wb_to_df(xlsxFile)
+wb_to_df(xl)
 ```
 
 The output is created as a data frame and contains data types date, logical, numeric and character. The function to import the file to R, `wb_to_df()` provides similar options as the `openxlsx` functions `read.xlsx()` and `readWorkbook()` and a few new functions we will go through the options. As you might have noticed, we return the column of the xlsx file as the row name of the data frame returned. Per default the first sheet in the workbook is imported. If you want to switch this, either provide the `sheet` parameter with the correct index or provide the sheet name.
@@ -40,7 +40,7 @@ In the previous example the first imported row was used as column name for the d
 
 ```{r}
 # do not convert first row to column names
-wb_to_df(xlsxFile, col_names = FALSE)
+wb_to_df(xl, col_names = FALSE)
 ```
 
 ### `detect_dates` - convert cells to R dates
@@ -49,7 +49,7 @@ The creators of the openxml standard are well known for mistakenly treating some
 
 ```{r}
 # do not try to identify dates in the data
-wb_to_df(xlsxFile, detect_dates = FALSE)
+wb_to_df(xl, detect_dates = FALSE)
 ```
 
 ### `show_formula` - show formulas instead of results
@@ -58,7 +58,7 @@ Sometimes things might feel off. This can be because the openxml files are not u
 
 ```{r}
 # return the underlying Excel formula instead of their values
-wb_to_df(xlsxFile, show_formula = TRUE)
+wb_to_df(xl, show_formula = TRUE)
 ```
 
 ### `dims` - read specific dimension
@@ -67,14 +67,14 @@ Sometimes the entire worksheet contains to much data, in such case we provide fu
 
 ```{r}
 # read dimension without column names
-wb_to_df(xlsxFile, dims = "A2:C5", col_names = FALSE)
+wb_to_df(xl, dims = "A2:C5", col_names = FALSE)
 ```
 
 Alternatively, if you don't know the Excel sheet's address, you can use `wb_dims()` to specify the dimension. See below or in`?wb_dims` for more details.
 
 ```{r}
 # read dimension without column names with `wb_dims()`
-wb_to_df(xlsxFile, dims = wb_dims(rows = 2:5, cols = 1:3), col_names = FALSE)
+wb_to_df(xl, dims = wb_dims(rows = 2:5, cols = 1:3), col_names = FALSE)
 ```
 
 ### `cols` - read selected columns
@@ -83,7 +83,7 @@ If you do not want to read a specific cell, but a cell range you can use the col
 
 ```{r}
 # read selected cols
-wb_to_df(xlsxFile, cols = c("A:B", "G"))
+wb_to_df(xl, cols = c("A:B", "G"))
 ```
 
 ### `rows` - read selected rows
@@ -92,7 +92,7 @@ The same goes with rows. You can select them using numeric vectors
 
 ```{r}
 # read selected rows
-wb_to_df(xlsxFile, rows = c(2, 4, 6))
+wb_to_df(xl, rows = c(2, 4, 6))
 ```
 
 ### `convert` - convert input to guessed type
@@ -101,7 +101,7 @@ In xml exists no difference between value types. All values are per default char
 
 ```{r}
 # convert characters to numerics and date (logical too?)
-wb_to_df(xlsxFile, convert = FALSE)
+wb_to_df(xl, convert = FALSE)
 ```
 
 ### `skip_empty_rows` - remove empty rows
@@ -110,7 +110,7 @@ Even though `openxlsx2` imports everything as requested, sometimes it might be h
 
 ```{r}
 # erase empty rows from dataset
-wb_to_df(xlsxFile, sheet = 1, skip_empty_rows = TRUE) |> tail()
+wb_to_df(xl, sheet = 1, skip_empty_rows = TRUE) |> tail()
 ```
 
 ### `skip_empty_cols` - remove empty columns
@@ -119,7 +119,7 @@ The same for columns
 
 ```{r}
 # erase empty columns from dataset
-wb_to_df(xlsxFile, skip_empty_cols = TRUE)
+wb_to_df(xl, skip_empty_cols = TRUE)
 ```
 
 ### `row_names` - keep rownames from input
@@ -128,7 +128,7 @@ Sometimes the data source might provide rownames as well. In such a case you can
 
 ```{r}
 # convert first row to rownames
-wb_to_df(xlsxFile, sheet = 2, dims = "C6:G9", row_names = TRUE)
+wb_to_df(xl, sheet = 2, dims = "C6:G9", row_names = TRUE)
 ```
 
 ### `types` - convert column to specific type
@@ -137,7 +137,7 @@ If the user know better than the software what type to expect in a worksheet, th
 
 ```{r}
 # define type of the data.frame
-wb_to_df(xlsxFile, cols = c(2, 5), types = c("Var1" = 0, "Var3" = 1))
+wb_to_df(xl, cols = c(2, 5), types = c("Var1" = 0, "Var3" = 1))
 ```
 
 ### `start_row` - where to begin
@@ -146,7 +146,7 @@ Often the creator of the worksheet has used a lot of creativity and the data doe
 
 ```{r}
 # start in row 5
-wb_to_df(xlsxFile, start_row = 5, col_names = FALSE)
+wb_to_df(xl, start_row = 5, col_names = FALSE)
 ```
 
 ### `na.strings` - define missing values
@@ -155,7 +155,7 @@ There is the "#N/A" string, but often the user will be faced with custom missing
 
 ```{r}
 # na strings
-wb_to_df(xlsxFile, na.strings = "")
+wb_to_df(xl, na.strings = "")
 ```
 
 ### Importing as workbook
@@ -166,9 +166,9 @@ Importing a file into a workbook looks like this:
 
 ```{r}
 # the file we are going to load
-xlsxFile <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
+xl <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
 # loading the file into the workbook
-wb <- wb_load(file = xlsxFile)
+wb <- wb_load(file = xl)
 ```
 
 The additional options `wb_load()` provides are for internal use: `sheet` loads only a selected sheet from the workbook and `data_only` reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.
@@ -180,16 +180,18 @@ Once a workbook is imported, we provide several functions to interact with and m
 In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how `openxlsx2` can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.
 
 The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: <https://www.census.gov/data/tables/2022/demo/acs-2022.html>. The table is rather large with multiple groups in columns and rows.
-[^1]. 
+[^openxlsx2-reading-1].
 
-[^1]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx>.
+[^openxlsx2-reading-1]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx>.
 
 ### Reading the data table
 
 In a first step we import the entire workbook
 
 ```{r}
-fl <- "https://www2.census.gov/programs-surveys/demo/tables/industry-occupation/2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"
+a <- "https://www2.census.gov/programs-surveys/demo/tables/industry-occupation"
+b <- "2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"
+fl <- file.path(a, b)
 
 wb <- wb_load(fl)
 ```
@@ -197,7 +199,8 @@ wb <- wb_load(fl)
 Once the workbook is loaded, we read the entire worksheet and try to get an understanding how it looks like. For this we fill merged cells and remote the column name. After that we can inspect it with `View()`.
 
 ```{r}
-df <- wb_to_df(wb, fill_merged_cells = TRUE, col_names = FALSE, skip_empty_cols = TRUE)
+df <- wb_to_df(wb, fill_merged_cells = TRUE, col_names = FALSE,
+               skip_empty_cols = TRUE)
 # View(df)
 ```
 
@@ -205,7 +208,8 @@ Using this we realize that the table has a few description rows ahead and a few 
 
 ```{r}
 dims <- "A7:BG605"
-df <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE)
+df <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+               fill_merged_cells = TRUE)
 ```
 
 ### Cleaning the indents
@@ -290,11 +294,13 @@ Using only the last row right above the data, can result in many duplicated colu
 ```{r}
 # read body
 dims <- "A8:BG605"
-df_body <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE, col_names = FALSE)
+df_body <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+                    fill_merged_cells = TRUE, col_names = FALSE)
 
 # read header
 dims <- "A5:BG7"
-df_head <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"), fill_merged_cells = TRUE, col_names = FALSE)
+df_head <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+                    fill_merged_cells = TRUE, col_names = FALSE)
 
 # create single header string. remove all spaces, unique values. collapse on dot
 nams <- vapply(names(df_head), function(x) {
@@ -349,16 +355,23 @@ create_groups <- function(sequence) {
   df$Group      <- ifelse(df$Value == 1, df$Group, NA)
   df$Subroup    <- ifelse(df$Value == 2, df$Group, NA)
 
-  as.data.frame(tidyr::fill(df, Supergroup, Group, Subgroup, .direction = "down"))
+  #nolint start
+  as.data.frame(
+    tidyr::fill(df, Supergroup, Group, Subgroup, .direction = "down")
+  )
+  #nolint end
 }
 
 df$Index <- seq_len(nrow(df))
 df$Value <- indents
 
 # each duplicated MOE2 is a percent value
-df <- merge(x = df, y = create_groups(indents), by = c("Index", "Value"), sort = FALSE)
+df <- merge(x = df, y = create_groups(indents), by = c("Index", "Value"),
+            sort = FALSE)
 
-tab <- df[df$Value == 3, c("Occupational_Category", "Total.Estimate", "Total.MOE2", "Supergroup", "Group", "Subgroup")]
+vars <- c("Occupational_Category", "Total.Estimate", "Total.MOE2",
+          "Supergroup", "Group", "Subgroup")
+tab <- df[df$Value == 3, vars]
 rownames(tab) <- NULL
 
 aggregate(Total.Estimate ~ Supergroup, data = tab, sum)
