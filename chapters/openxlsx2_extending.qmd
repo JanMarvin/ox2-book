@@ -36,7 +36,7 @@ try(wb <- wb_load(xlsx))
 decrypt(xlsx, xlsx, pass = "msoc")
 
 # now we can load it again
-wb_load(xlsx)$to_df() %>% head()
+wb_load(xlsx)$to_df() |> head()
 ```
 
 ## `flexlsx` - Exporting `flextable` to workbooks

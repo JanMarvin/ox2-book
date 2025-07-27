@@ -156,14 +156,14 @@ knitr::include_graphics("../img/pt_four_types.png")
 There is no real support for individual pivot table styles. Aside from the default style, it is possible to disable the style and to apply auto format styles (for various styles see annex `G.3 - Built-in PivotTable AutoFormats` of @ECMA16pt1). In the example below style id `4099` is applied, ids range from `4096` to `4117`.
 
 ```{r}
-wb <- wb_workbook() %>%
-  wb_add_worksheet("table") %>%
-  wb_add_worksheet("data") %>%
+wb <- wb_workbook() |>
+  wb_add_worksheet("table") |>
+  wb_add_worksheet("data") |>
   wb_add_data(x = mtcars)
 
 df <- wb_data(wb)
 
-wb <- wb %>%
+wb <- wb |>
 
   # pivot table without style
   wb_add_pivot_table(
@@ -171,7 +171,7 @@ wb <- wb %>%
     rows = c("cyl", "am"), cols = "gear", data = "disp",
     fun = "average",
     params = list(no_style = TRUE, numfmt = c(formatCode = "##0.0"))
-  ) %>%
+  ) |>
 
   # Applied a few params and use auto_format_id
   wb_add_pivot_table(
@@ -284,8 +284,8 @@ knitr::include_graphics("../img/pv_openxlsx2.png")
 
 ```{r}
 ## Pivot table example 1
-wb <- wb_workbook() %>%
-  wb_add_worksheet() %>%
+wb <- wb_workbook() |>
+  wb_add_worksheet() |>
   wb_add_data(x = mtcars, inline_strings = FALSE)
 
 wb$add_numfmt(dims = wb_dims(x = mtcars, cols = "disp"), numfmt = "$ #,###")
@@ -310,8 +310,8 @@ Since `openxlsx2` release 1.1 it is possible to add slicers to pivot tables crea
 It is possible to apply slicer styles with `params = list(style = "SlicerStyleLight2")`
 
 ```{r}
-wb <- wb_workbook() %>%
-  wb_add_worksheet() %>%
+wb <- wb_workbook() |>
+  wb_add_worksheet() |>
   wb_add_data(x = mtcars)
 
 df <- wb_data(wb, sheet = 1)
@@ -330,9 +330,9 @@ if (interactive()) wb$open()
 It is possible to tweak the number of columns in a slicer using `columnCount` and to add a `caption` and change the sorting order to `descending`.
 
 ```{r}
-wb <- wb_workbook() %>%
+wb <- wb_workbook() |>
   ### Sheet 1
-  wb_add_worksheet() %>%
+  wb_add_worksheet() |>
   wb_add_data(x = mtcars)
 
 df <- wb_data(wb, sheet = 1)
@@ -374,16 +374,16 @@ if (interactive()) wb$open()
 Using the `choose` param argument it is possible to select subsets of the data. The code looks like this: `choose = c(agegp = 'x > "25-34"')`. The variable name as seen in the `wb_data()` object, `x` is mandatory and some expression that R understands. This can be something like `%in%`, `==`, `<`, `>`, or `!=`.
 
 ```{r}
-wb <- wb_workbook() %>%
-  wb_add_worksheet("table") %>%
-  wb_add_worksheet("data") %>%
+wb <- wb_workbook() |>
+  wb_add_worksheet("table") |>
+  wb_add_worksheet("data") |>
   wb_add_data(x = datasets::esoph)
 
 df <- wb_data(wb)
 
 # add a pivot table and a slicer and preselect
 # a few cases and style it a bit
-wb <- wb %>%
+wb <- wb |>
   wb_add_pivot_table(
     df, dims = "A3", sheet = "table",
     rows = "agegp", cols = "tobgp", data = "ncases",
@@ -395,7 +395,7 @@ wb <- wb %>%
       row_grand_totals = FALSE, col_grand_totals = FALSE,
       choose = c(agegp = 'x > "25-34"')
     )
-  ) %>%
+  ) |>
   wb_add_slicer(
     x = df, dims = "B14:D18",
     slicer = "alcgp", pivot_table = "pt1",

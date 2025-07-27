@@ -523,8 +523,8 @@ knitr::include_graphics("../img/sparklines.png")
 
 ```{r}
 sl <- create_sparklines("Sheet 1", "A3:K3", "L3")
-wb <- wb_workbook() %>%
-   wb_add_worksheet() %>%
-   wb_add_data(x = mtcars) %>%
+wb <- wb_workbook() |>
+   wb_add_worksheet() |>
+   wb_add_data(x = mtcars) |>
    wb_add_sparklines(sparklines = sl)
 ```

@@ -225,9 +225,12 @@ want <- wb$get_cell_style(dims = description_dims)
 # Get the styles for the range
 styles <- wb$styles_mgr$styles$cellXfs[as.integer(want) + 1]
 
+# function to replace "" with "0"
+zeros   <- function(x) replace(x, x == "", "0")
+
 # now get the indentation alignment from the style
-indents <- openxlsx2:::read_xf(read_xml(styles))$indent %>%
-  ifelse(. == "", "0", .) %>%
+indents <- openxlsx2:::read_xf(read_xml(styles))$indent |>
+  zeros() |>
   as.integer()
 
 # indent the text
