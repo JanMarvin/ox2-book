@@ -453,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>The following manual will present various ways to add plots and charts to <code>openxlsx2</code> worksheets and even chartsheets. This assumes that you have basic knowledge how to handle <code>openxlsx2</code> and are familiar with either the default <code>R</code> <code>graphics</code> functions like <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> or <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code> and <code>grDevices</code>, or with the packages <a href="https://ggplot2-book.org/"><code>{ggplot2}</code></a>, <a href="https://ardata-fr.github.io/officeverse/">rvg</a> or <a href="https://ardata-fr.github.io/officeverse/charts-with-mschart.html"><code>{mschart}</code></a>. There are plenty of other manuals that cover using these packages better than we could ever tell you to.</p>
+</header><p>The following manual will present various ways to add plots and charts to <code>openxlsx2</code> worksheets and even chartsheets. This assumes that you have basic knowledge how to handle <code>openxlsx2</code> and are familiar with either the default <code>R</code> <code>graphics</code> functions like <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> or <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code> and <code>grDevices</code>, or with the packages <a href="https://ggplot2-book.org/"><code>{ggplot2}</code></a>, <a href="https://davidgohel.github.io/rvg/"><code>{rvg}</code></a>, or <a href="https://ardata-fr.github.io/officeverse/charts-with-mschart.html"><code>{mschart}</code></a>. There are plenty of other manuals that cover using these packages better than we could ever tell you to.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
 <span></span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>It is possible to use <a href="https://ragg.r-lib.org">ragg</a> to create the png files to add to the worksheet:</p>
+<p>It is possible to use <a href="https://ragg.r-lib.org/"><code>{ragg}</code></a> to create the png files to add to the worksheet:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ragg.r-lib.org">ragg</a></span><span class="op">)</span></span>
 <span><span class="va">ragg_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".png"</span><span class="op">)</span></span>
