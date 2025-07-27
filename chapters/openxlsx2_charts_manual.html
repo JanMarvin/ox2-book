@@ -633,10 +633,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># add the charts to the data</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F4:L20"</span>, graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F21:L37"</span>, graph <span class="op">=</span> <span class="va">bar_plot</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M4:S20"</span>, graph <span class="op">=</span> <span class="va">area_plot</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F4:L20"</span>, graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F21:L37"</span>, graph <span class="op">=</span> <span class="va">bar_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M4:S20"</span>, graph <span class="op">=</span> <span class="va">area_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M21:S37"</span>, graph <span class="op">=</span> <span class="va">line_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -652,8 +652,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Finally it is possible to add <code>mschart</code> charts on a so called chartsheet. These are special sheets that contain only a chart object, referencing data from another sheet.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_chartsheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_chartsheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">

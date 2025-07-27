@@ -1017,9 +1017,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="fu">create_sparklines</span><span class="op">(</span><span class="st">"Sheet 1"</span>, <span class="st">"A3:K3"</span>, <span class="st">"L3"</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>   <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>   <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>   <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>   <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu">wb_add_sparklines</span><span class="op">(</span>sparklines <span class="op">=</span> <span class="va">sl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

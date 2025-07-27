@@ -626,14 +626,14 @@ div.csl-indent {
 <span class="header-section-number">9.1.4</span> Styling pivot tables</h3>
 <p>There is no real support for individual pivot table styles. Aside from the default style, it is possible to disable the style and to apply auto format styles (for various styles see annex <code>G.3 - Built-in PivotTable AutoFormats</code> of <span class="citation" data-cites="ECMA16pt1">ECMA-376-1 (<a href="../references.html#ref-ECMA16pt1" role="doc-biblioref">2016</a>)</span>). In the example below style id <code>4099</code> is applied, ids range from <code>4096</code> to <code>4117</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>  <span class="co"># pivot table without style</span></span>
 <span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
@@ -641,7 +641,7 @@ div.csl-indent {
 <span>    rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
 <span>    fun <span class="op">=</span> <span class="st">"average"</span>,</span>
 <span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>no_style <span class="op">=</span> <span class="cn">TRUE</span>, numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>  <span class="co"># Applied a few params and use auto_format_id</span></span>
 <span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
@@ -765,8 +765,8 @@ div.csl-indent {
 <span class="header-section-number">9.1.6</span> Using number formats</h3>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Pivot table example 1</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, inline_strings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_numfmt</span><span class="op">(</span>dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, cols <span class="op">=</span> <span class="st">"disp"</span><span class="op">)</span>, numfmt <span class="op">=</span> <span class="st">"$ #,###"</span><span class="op">)</span></span>
@@ -788,8 +788,8 @@ div.csl-indent {
 <p>Since <code>openxlsx2</code> release 1.1 it is possible to add slicers to pivot tables created with <code>wb_add_pivot_tables()</code>. For this to work you have to provide a name for a pivot table name you are going to add and make sure that the slicer variable is actually ‘activated’ in the pivot table. Adding slicers to loaded pivot tables is not possible and the creation of slicers needs to go hand in hand with a pivot table.</p>
 <p>It is possible to apply slicer styles with <code>params = list(style = "SlicerStyleLight2")</code></p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -806,9 +806,9 @@ div.csl-indent {
 </div>
 <p>It is possible to tweak the number of columns in a slicer using <code>columnCount</code> and to add a <code>caption</code> and change the sorting order to <code>descending</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co">### Sheet 1</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -848,16 +848,16 @@ div.csl-indent {
 <span class="header-section-number">9.3</span> Choosing variable filters</h2>
 <p>Using the <code>choose</code> param argument it is possible to select subsets of the data. The code looks like this: <code>choose = c(agegp = 'x &gt; "25-34"')</code>. The variable name as seen in the <code>wb_data()</code> object, <code>x</code> is mandatory and some expression that R understands. This can be something like <code>%in%</code>, <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, or <code>!=</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/esoph.html">esoph</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># add a pivot table and a slicer and preselect</span></span>
 <span><span class="co"># a few cases and style it a bit</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_pivot_table</span><span class="op">(</span></span>
 <span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, sheet <span class="op">=</span> <span class="st">"table"</span>,</span>
 <span>    rows <span class="op">=</span> <span class="st">"agegp"</span>, cols <span class="op">=</span> <span class="st">"tobgp"</span>, data <span class="op">=</span> <span class="st">"ncases"</span>,</span>
@@ -869,7 +869,7 @@ div.csl-indent {
 <span>      row_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>, col_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>agegp <span class="op">=</span> <span class="st">'x &gt; "25-34"'</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_slicer</span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"B14:D18"</span>,</span>
 <span>    slicer <span class="op">=</span> <span class="st">"alcgp"</span>, pivot_table <span class="op">=</span> <span class="st">"pt1"</span>,</span>

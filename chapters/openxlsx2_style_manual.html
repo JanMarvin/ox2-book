@@ -500,19 +500,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">border_sty</span> <span class="op">&lt;-</span> <span class="st">"thin"</span></span>
 <span></span>
 <span><span class="co"># prepare workbook with data and formated first row</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_border</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:AB1"</span>,</span>
 <span>    top_color <span class="op">=</span> <span class="va">border_col</span>, top_border <span class="op">=</span> <span class="va">border_sty</span>,</span>
 <span>    bottom_color <span class="op">=</span> <span class="va">border_col</span>, bottom_border <span class="op">=</span> <span class="va">border_sty</span>,</span>
 <span>    left_color <span class="op">=</span> <span class="va">border_col</span>, left_border <span class="op">=</span> <span class="va">border_sty</span>,</span>
 <span>    right_color <span class="op">=</span> <span class="va">border_col</span>, right_border <span class="op">=</span> <span class="va">border_sty</span>,</span>
 <span>    inner_hcolor <span class="op">=</span> <span class="va">border_col</span>, inner_hgrid <span class="op">=</span> <span class="va">border_sty</span></span>
-<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:AB1"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FF334E6F"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:AB1"</span>, color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FF334E6F"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_font</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:AB1"</span>, name <span class="op">=</span> <span class="st">"Arial"</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>              color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FFFFFFFF"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>              color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"FFFFFFFF"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:AB1"</span>, horizontal <span class="op">=</span> <span class="st">"center"</span>, text_rotation <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create various number formats</span></span>
@@ -524,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># apply the styles</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%s2:%s29"</span>, <span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_numfmt</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>, numfmt <span class="op">=</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_add_numfmt</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>, numfmt <span class="op">=</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># wb$open()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -533,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">5.1.2</span> the long way: using bare metal functions</h3>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create workbook</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># add some dummy data to the worksheet</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># assign the new cell style to the header row of our data set</span></span>
 <span><span class="va">cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"A1:%s1"</span>, <span class="fu">int2col</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span></span>
 <span>  dims <span class="op">=</span> <span class="va">cell</span>,</span>
 <span>  style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_xf_id</span><span class="op">(</span><span class="st">"new_styles"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -601,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">new_styles</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">new_styles</span><span class="op">$</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span></span>
 <span>                                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"new_style"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%s2:%s29"</span>, <span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>, <span class="fu">int2col</span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>, style <span class="op">=</span> <span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>, style <span class="op">=</span> <span class="va">i</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># assign a custom tabColor</span></span>
@@ -705,20 +705,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="wb_set_col_widths" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="wb_set_col_widths">
 <span class="header-section-number">5.3.1</span> wb_set_col_widths</h3>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cols_1</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
 <span><span class="va">cols_2</span> <span class="op">&lt;-</span> <span class="st">"G:L"</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_1</span>, widths <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_1</span>, widths <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_2</span>, widths <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="wb_set_row_heigths" class="level3" data-number="5.3.2"><h3 data-number="5.3.2" class="anchored" data-anchor-id="wb_set_row_heigths">
 <span class="header-section-number">5.3.2</span> wb_set_row_heigths</h3>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_set_row_heights</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, heights <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="adding-borders" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="adding-borders">
@@ -793,18 +793,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">dims_head</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span>, from_col <span class="op">=</span> <span class="fl">2</span>, from_row <span class="op">=</span> <span class="fl">2</span>, select <span class="op">=</span> <span class="st">"col_names"</span><span class="op">)</span></span>
 <span><span class="va">dims_data</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span>, from_col <span class="op">=</span> <span class="fl">2</span>, from_row <span class="op">=</span> <span class="fl">2</span>, select <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span>, col_names <span class="op">=</span> <span class="cn">TRUE</span>, start_col <span class="op">=</span> <span class="fl">2</span>, start_row <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span>, col_names <span class="op">=</span> <span class="cn">TRUE</span>, start_col <span class="op">=</span> <span class="fl">2</span>, start_row <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># center first row</span></span>
-<span>  <span class="fu">wb_add_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_head</span>, horizontal <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">wb_add_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">dims_head</span>, horizontal <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># add border for first row</span></span>
 <span>  <span class="fu">wb_add_border</span><span class="op">(</span></span>
 <span>    dims <span class="op">=</span> <span class="va">dims_head</span>,</span>
 <span>    bottom_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, bottom_border <span class="op">=</span> <span class="st">"thin"</span>,</span>
 <span>    top_color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, top_border <span class="op">=</span> <span class="st">"double"</span>,</span>
 <span>    left_border <span class="op">=</span> <span class="cn">NULL</span>, right_border <span class="op">=</span> <span class="cn">NULL</span></span>
-<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># add border for last row</span></span>
 <span>  <span class="fu">wb_add_border</span><span class="op">(</span></span>
 <span>    dims <span class="op">=</span> <span class="va">dims_data</span>,</span>
@@ -819,8 +819,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/make.names.html">make.names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span>, start_col <span class="op">=</span> <span class="fl">2</span>, start_row <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create a border style and assign it to the workbook</span></span>
@@ -852,10 +852,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># assign the new cell style to the header row of our data set</span></span>
 <span><span class="va">cell</span> <span class="op">&lt;-</span> <span class="st">"B2:C2"</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>,</span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>,</span>
 <span>                               style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_xf_id</span><span class="op">(</span><span class="st">"top_styles"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cell</span> <span class="op">&lt;-</span> <span class="st">"B4:C4"</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>,</span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_set_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">cell</span>,</span>
 <span>                               style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="va">styles_mgr</span><span class="op">$</span><span class="fu">get_xf_id</span><span class="op">(</span><span class="st">"bottom_styles"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section></section><section id="use-workbook-colors-and-modify-them" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="use-workbook-colors-and-modify-them">
@@ -870,7 +870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"S1"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"S1"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tints</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.9</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
 <span></span>
@@ -879,10 +879,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu">int2col</span><span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tints</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">tnt</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="va">tnt</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">col</span>,</span>
+<span>      <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">col</span>,</span>
 <span>                               color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>      <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span> <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">col</span>,</span>
+<span>      <span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu">wb_add_fill</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">col</span>,</span>
 <span>                               color <span class="op">=</span> <span class="fu">wb_color</span><span class="op">(</span>theme <span class="op">=</span> <span class="va">i</span>, tint <span class="op">=</span> <span class="va">tnt</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
 <span>  <span class="op">}</span></span>
@@ -893,8 +893,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is possible to copy the styles of several cells at once. In the following example, the styles of some cells from a formatted workbook are applied to a previously empty cell range. Be careful though, <code>wb_get_cell_style()</code> returns only some styles, so you have to make sure that the copy-from and copy-to dimensions match in a meaningful way.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"oxlsx2_sheet.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">xl</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">wb_set_cell_style</span><span class="op">(</span><span class="fl">1</span>, <span class="st">"A30:G35"</span>, <span class="fu">wb_get_cell_style</span><span class="op">(</span><span class="va">.</span>, <span class="fl">1</span>, <span class="st">"A10:G15"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">xl</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style</span><span class="op">(</span><span class="fl">1</span>, <span class="st">"A30:G35"</span>, <span class="va">wb</span><span class="op">$</span><span class="fu">get_cell_style</span><span class="op">(</span><span class="fl">1</span>, <span class="st">"A10:G15"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># wb_open(wb)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -1014,7 +1014,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span>grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_style</span><span class="op">(</span><span class="va">dx0</span><span class="op">)</span></span>
@@ -1045,7 +1045,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_style</span><span class="op">(</span><span class="va">xml</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create a table and apply the custom style</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">wb_add_data_table</span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, table_style <span class="op">=</span> <span class="st">"red_table"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
