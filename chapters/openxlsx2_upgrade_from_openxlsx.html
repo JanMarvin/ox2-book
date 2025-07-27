@@ -466,7 +466,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">14.1.1</span> Read xlsx or xlsm files</h3>
 <p>The basic read function changed from <code>read.xlsx</code> to <code>read_xlsx</code>. Using a default xlsx file included in the package:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The old syntax looked like this:</p>
 <div class="cell">
@@ -489,13 +491,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As you can see, we return the spreadsheet return codes (e.g., <code>#NUM</code>) in openxlsx2. Another thing to see above, we return the cell row as rowname for the data frame returned. <code>openxlsx2</code> should return a data frame of the selected size, even if it empty. If you preferred <code>openxlsx::readWorkbook()</code> this has become <code>wb_read()</code>. All of these are wrappers for the newly introduced function <code>wb_to_df()</code> which provides the most options. <code>read_xlsx()</code> and <code>wb_read()</code> were created for backward comparability.</p>
+<p>As you can see, we return the spreadsheet return codes (e.g., <code>#NUM</code>) in openxlsx2. Another thing to see above, we return the cell row as rowname for the data frame returned. <code>openxlsx2</code> should return a data frame of the selected size, even if it empty. If you preferred <code>openxlsx::readWorkbook()</code> this has become <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_read()</a></code>. All of these are wrappers for the newly introduced function <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code> which provides the most options. <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">read_xlsx()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_read()</a></code> were created for backward comparability.</p>
 </section></section><section id="write-xlsx-files" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="write-xlsx-files">
 <span class="header-section-number">14.2</span> Write xlsx files</h2>
 <p>Basic writing in <code>openxlsx2</code> behaves identical to <code>openxlsx</code>. Though be aware that <code>overwrite</code> is an optional parameter in <code>openxlsx2</code> and just like in other functions like <code>base::write.csv()</code> if you write onto an existing file name, this file will be replaced.</p>
 <p>Setting the output to some temporary xlsx file</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu">temp_xlsx</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/temp_xlsx.html">temp_xlsx</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The previous write function looks like this:</p>
 <div class="cell">
@@ -518,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In <code>openxlsx2</code> loading was changed to:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span>file <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are plenty of functions to interact with workbooks and we will not describe every single one here. A detailed list can be found over at <a href="https://janmarvin.github.io/openxlsx2/reference/index.html">our references</a></p>
 </section><section id="styles" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="styles">
@@ -541,8 +543,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In <code>openxlsx2</code> the same code looks something like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># openxlsx2 chained</span></span>
-<span><span class="va">border_color</span> <span class="op">&lt;-</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"4F81BD"</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span>creator <span class="op">=</span> <span class="st">"My name here"</span><span class="op">)</span><span class="op">$</span></span>
+<span><span class="va">border_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"4F81BD"</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span>creator <span class="op">=</span> <span class="st">"My name here"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Expenditure"</span>, grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">USPersonalExpenditure</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_border</span><span class="op">(</span> <span class="co"># add the outer and inner border</span></span>
@@ -558,55 +560,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">)</span><span class="op">$</span> <span class="co"># remove the value in A1</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, x <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The code above uses chaining. If you prefer piping, we provide the chained functions with the prefix <code>wb_</code> so <code>wb_add_worksheet()</code>, <code>wb_add_data()</code>, <code>wb_add_border()</code> and <code>wb_set_col_widths()</code> would be the functions to use with pipes <code>|&gt;</code> or <code>|&gt;</code>.</p>
+<p>The code above uses chaining. If you prefer piping, we provide the chained functions with the prefix <code>wb_</code> so <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_border.html">wb_add_border()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/col_widths-wb.html">wb_set_col_widths()</a></code> would be the functions to use with pipes <code>|&gt;</code> or <code>%&gt;%</code>.</p>
 <p>With pipes the code from above becomes</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># openxlsx2 with pipes</span></span>
-<span><span class="va">border_color</span> <span class="op">&lt;-</span> <span class="fu">wb_color</span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"4F81BD"</span><span class="op">)</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span>creator <span class="op">=</span> <span class="st">"My name here"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"Expenditure"</span>, grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">USPersonalExpenditure</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_border</span><span class="op">(</span> <span class="co"># add the outer and inner border</span></span>
+<span><span class="va">border_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span>hex <span class="op">=</span> <span class="st">"4F81BD"</span><span class="op">)</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span>creator <span class="op">=</span> <span class="st">"My name here"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"Expenditure"</span>, grid_lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">USPersonalExpenditure</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_border.html">wb_add_border</a></span><span class="op">(</span> <span class="co"># add the outer and inner border</span></span>
 <span>    dims <span class="op">=</span> <span class="st">"A1:F6"</span>,</span>
 <span>    top_border <span class="op">=</span> <span class="st">"thin"</span>, top_color <span class="op">=</span> <span class="va">border_color</span>,</span>
 <span>    bottom_border <span class="op">=</span> <span class="st">"thin"</span>, bottom_color <span class="op">=</span> <span class="va">border_color</span>,</span>
 <span>    inner_hgrid <span class="op">=</span> <span class="st">"thin"</span>, inner_hcolor <span class="op">=</span> <span class="va">border_color</span>,</span>
 <span>    left_border <span class="op">=</span> <span class="st">""</span>, right_border <span class="op">=</span> <span class="st">""</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_set_col_widths</span><span class="op">(</span> <span class="co"># set column width</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/col_widths-wb.html">wb_set_col_widths</a></span><span class="op">(</span> <span class="co"># set column width</span></span>
 <span>    cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span>
 <span>    widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># remove the value in A1</span></span>
-<span>  <span class="fu">wb_add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, x <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, x <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Be aware that chains modify an object in place and pipes do not.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># openxlsx2</span></span>
-<span><span class="va">wbp</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">wbc</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">wbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">wbc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># need to assign wbp</span></span>
-<span><span class="va">wbp</span> <span class="op">&lt;-</span> <span class="va">wbp</span> <span class="op">|&gt;</span> <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
+<span><span class="va">wbp</span> <span class="op">&lt;-</span> <span class="va">wbp</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">wbc</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can re-use styles with <code>wb_get_cell_style()</code> and <code>wb_set_cell_style()</code>. Abandoning <code>stylesObject</code> in <code>openxlsx2</code> has the huge benefit that we can import and export a spreadsheet without changing any cell style. It is still possible to modify a cell style with <code>wb_add_border()</code>, <code>wb_add_fill()</code>, <code>wb_add_font()</code> and <code>wb_add_numfmt()</code>.</p>
+<p>You can re-use styles with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_cell_style.html">wb_get_cell_style()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_cell_style.html">wb_set_cell_style()</a></code>. Abandoning <code>stylesObject</code> in <code>openxlsx2</code> has the huge benefit that we can import and export a spreadsheet without changing any cell style. It is still possible to modify a cell style with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_border.html">wb_add_border()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_fill.html">wb_add_fill()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_font.html">wb_add_font()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_numfmt.html">wb_add_numfmt()</a></code>.</p>
 <p>Additional examples regarding styles can be found in the styles vignette.</p>
 </section><section id="conditional-formatting" class="level3" data-number="14.3.3"><h3 data-number="14.3.3" class="anchored" data-anchor-id="conditional-formatting">
 <span class="header-section-number">14.3.3</span> Conditional formatting</h3>
-<p>See <code>vignette("conditional-formatting")</code> for extended examples on formatting.</p>
+<p>See <code><a href="https://janmarvin.github.io/openxlsx2/articles/conditional-formatting.html">vignette("conditional-formatting")</a></code> for extended examples on formatting.</p>
 <p>Here is a minimal example:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># openxlsx2 with chains</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A4"</span>, rule <span class="op">=</span> <span class="st">"&gt;2"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># openxlsx2 with pipes</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_conditional_formatting</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A4"</span>, rule <span class="op">=</span> <span class="st">"&gt;2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_conditional_formatting.html">wb_add_conditional_formatting</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1:A4"</span>, rule <span class="op">=</span> <span class="st">"&gt;2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="data-validation" class="level3" data-number="14.3.4"><h3 data-number="14.3.4" class="anchored" data-anchor-id="data-validation">
 <span class="header-section-number">14.3.4</span> Data validation</h3>
@@ -624,11 +626,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>looks in <code>openxlsx2</code> something like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># openxlsx2 with chains</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Sheet 1"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data_table</span><span class="op">(</span><span class="fl">1</span>, x <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data_validation</span><span class="op">(</span><span class="fl">1</span>,</span>
-<span>    dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">31</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span>    dims <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">wb_dims</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">31</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
 <span>    <span class="co"># alternatively, dims can also be "A2:C31" if you know the span in your</span></span>
 <span>    <span class="co"># spreadsheet</span></span>
 <span>    type <span class="op">=</span> <span class="st">"whole"</span>,</span>
@@ -637,10 +639,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># openxlsx2 with pipes</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_worksheet</span><span class="op">(</span><span class="st">"Sheet 1"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_data_table</span><span class="op">(</span><span class="fl">1</span>, x <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_data_validation</span><span class="op">(</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="st">"Sheet 1"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data_table.html">wb_add_data_table</a></span><span class="op">(</span><span class="fl">1</span>, x <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data_validation.html">wb_add_data_validation</a></span><span class="op">(</span></span>
 <span>    sheet <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>    dims <span class="op">=</span> <span class="st">"A2:C31"</span>, <span class="co"># alternatively, dims = wb_dims(rows = 2:31, cols = 1:3)</span></span>
 <span>    type <span class="op">=</span> <span class="st">"whole"</span>,</span>
@@ -650,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="saving" class="level3" data-number="14.3.5"><h3 data-number="14.3.5" class="anchored" data-anchor-id="saving">
 <span class="header-section-number">14.3.5</span> Saving</h3>
-<p>Saving has been switched from <code>saveWorbook()</code> to <code>wb_save()</code> and opening a workbook has been switched from <code>openXL()</code> to <code>wb_open()</code>.</p>
+<p>Saving has been switched from <code>saveWorbook()</code> to <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_save.html">wb_save()</a></code> and opening a workbook has been switched from <code>openXL()</code> to <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_open.html">wb_open()</a></code>.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

@@ -455,12 +455,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>The following manual will present various ways to add plots and charts to <code>openxlsx2</code> worksheets and even chartsheets. This assumes that you have basic knowledge how to handle <code>openxlsx2</code> and are familiar with either the default <code>R</code> <code>graphics</code> functions like <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> or <code><a href="https://rdrr.io/r/graphics/barplot.html">barplot()</a></code> and <code>grDevices</code>, or with the packages <a href="https://ggplot2-book.org/"><code>{ggplot2}</code></a>, <a href="https://ardata-fr.github.io/officeverse/">rvg</a> or <a href="https://ardata-fr.github.io/officeverse/charts-with-mschart.html"><code>{mschart}</code></a>. There are plenty of other manuals that cover using these packages better than we could ever tell you to.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## create a workbook</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## create a workbook</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="adding-a-chart-as-an-image-to-a-workbook" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="adding-a-chart-as-an-image-to-a-workbook">
 <span class="header-section-number">7.1</span> Adding a chart as an image to a workbook</h2>
-<p>You can include any image in PNG or JPEG format. Simply open a device and save the output and pass it to the worksheet with <code>wb_add_image()</code>.</p>
+<p>You can include any image in PNG or JPEG format. Simply open a device and save the output and pass it to the worksheet with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_image.html">wb_add_image()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">myplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".jpg"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">jpeg</a></span><span class="op">(</span><span class="va">myplot</span><span class="op">)</span></span>
@@ -490,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="adding-ggplot2-plots-to-a-workbook" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="adding-ggplot2-plots-to-a-workbook">
 <span class="header-section-number">7.2</span> Adding <code>{ggplot2}</code> plots to a workbook</h2>
-<p>You can include <a href="https://ggplot2.tidyverse.org">ggplot2</a> plots similar to how you would include them with <code>openxlsx</code>. Call the plot first and afterwards use <code>wb_add_plot()</code>.</p>
+<p>You can include <a href="https://ggplot2.tidyverse.org">ggplot2</a> plots similar to how you would include them with <code>openxlsx</code>. Call the plot first and afterwards use <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_plot.html">wb_add_plot()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -513,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="adding-plots-via-rvg-or-devemf" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="adding-plots-via-rvg-or-devemf">
 <span class="header-section-number">7.3</span> Adding plots via <code>{rvg}</code> or <code>{devEMF}</code>
 </h2>
-<p>If you want vector graphics that can be modified in spreadsheet software the <code><a href="https://davidgohel.github.io/rvg/reference/dml_xlsx.html">dml_xlsx()</a></code> device comes in handy. You can pass the output via <code>wb_add_drawing()</code>.</p>
+<p>If you want vector graphics that can be modified in spreadsheet software the <code><a href="https://davidgohel.github.io/rvg/reference/dml_xlsx.html">dml_xlsx()</a></code> device comes in handy. You can pass the output via <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_drawing.html">wb_add_drawing()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">rvg</a></span><span class="op">)</span></span>
 <span></span>
@@ -562,11 +564,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="adding-mschart-plots" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="adding-mschart-plots">
 <span class="header-section-number">7.4</span> Adding <code>{mschart}</code> plots</h2>
-<p>If you want native openxml charts, have a look at <a href="https://ardata-fr.github.io/officeverse/">mschart</a>. Create one of the chart files and pass it to the workbook with <code>wb_add_mschart()</code>.</p>
+<p>If you want native openxml charts, have a look at <a href="https://ardata-fr.github.io/officeverse/">mschart</a>. Create one of the chart files and pass it to the workbook with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart()</a></code>.</p>
 <p>There are two options possible.</p>
 <ol type="1">
-<li><p>Either the default <a href="https://ardata-fr.github.io/officeverse/">mschart</a> output identical to the one in <a href="https://ardata-fr.github.io/officeverse/">officer</a>. Passing a data object and let <a href="https://ardata-fr.github.io/officeverse/">mschart</a> prepare the data. In this case <code>wb_add_mschart()</code> will add a new data region.</p></li>
-<li><p>Passing a <code>wb_data()</code> object to <a href="https://ardata-fr.github.io/officeverse/">mschart</a>. This object contains references to the data on the worksheet and allows using data “as is”.</p></li>
+<li><p>Either the default <a href="https://ardata-fr.github.io/officeverse/">mschart</a> output identical to the one in <a href="https://ardata-fr.github.io/officeverse/">officer</a>. Passing a data object and let <a href="https://ardata-fr.github.io/officeverse/">mschart</a> prepare the data. In this case <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart()</a></code> will add a new data region.</p></li>
+<li><p>Passing a <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_data.html">wb_data()</a></code> object to <a href="https://ardata-fr.github.io/officeverse/">mschart</a>. This object contains references to the data on the worksheet and allows using data “as is”.</p></li>
 </ol>
 <section id="add-chart-and-data" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="add-chart-and-data">
 <span class="header-section-number">7.4.1</span> Add chart and data</h3>
@@ -604,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># create wb_data object this will tell this mschart</span></span>
 <span><span class="co"># from this PR to create a file corresponding to openxlsx2</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">wb_data</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="st">"A2:G10"</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_data.html">wb_data</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="st">"A2:G10"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create a few mscharts</span></span>
 <span><span class="va">scatter_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ardata-fr.github.io/mschart/reference/ms_scatterchart.html">ms_scatterchart</a></span><span class="op">(</span></span>
@@ -634,10 +636,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># add the charts to the data</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F4:L20"</span>, graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F21:L37"</span>, graph <span class="op">=</span> <span class="va">bar_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M4:S20"</span>, graph <span class="op">=</span> <span class="va">area_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M21:S37"</span>, graph <span class="op">=</span> <span class="va">line_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F4:L20"</span>, graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"F21:L37"</span>, graph <span class="op">=</span> <span class="va">bar_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M4:S20"</span>, graph <span class="op">=</span> <span class="va">area_plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart</a></span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"M21:S37"</span>, graph <span class="op">=</span> <span class="va">line_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -653,8 +655,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_chartsheet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">wb_add_mschart</span><span class="op">(</span>graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_chartsheet.html">wb_add_chartsheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_mschart.html">wb_add_mschart</a></span><span class="op">(</span>graph <span class="op">=</span> <span class="va">scatter_plot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">

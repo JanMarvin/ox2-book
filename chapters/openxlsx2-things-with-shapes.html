@@ -523,7 +523,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In spreadsheet software that does not support threads, a comment is shown with the information content of the thread and a hint that the comment should not be altered.</p>
 <section id="persons-create-one-or-become-one" class="level3" data-number="13.2.1"><h3 data-number="13.2.1" class="anchored" data-anchor-id="persons-create-one-or-become-one">
 <span class="header-section-number">13.2.1</span> Persons, create one or become one</h3>
-<p>To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with <code>wb_get_person()</code>. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.</p>
+<p>To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with <code>wb_get_person()</code>. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else.</p>
+<p>For now, we will create two persons.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_workbook</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># Add a person to the workbook.</span></span>
@@ -536,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="creating-a-thread" class="level3" data-number="13.2.2"><h3 data-number="13.2.2" class="anchored" data-anchor-id="creating-a-thread">
 <span class="header-section-number">13.2.2</span> Creating a Thread</h3>
-<p>And that’s it. Now we can create a thread as you.</p>
+<p>And that’s it. Now we can create a thread as “you”.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, comment <span class="op">=</span> <span class="st">"wow it works!"</span>, person_id <span class="op">=</span> <span class="va">pid</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_thread</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A2"</span>, comment <span class="op">=</span> <span class="st">"indeed"</span>, person_id <span class="op">=</span> <span class="va">pid</span>, resolve <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>

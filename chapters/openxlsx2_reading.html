@@ -474,18 +474,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><section id="importing-data" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="importing-data">
 <span class="header-section-number">3.1</span> Importing data</h2>
-<p>Coming from <code>openxlsx</code> you might know about <code>read.xlsx()</code> (two functions, one for files and one for workbooks) and <code>readWorkbook()</code>. Functions that do different things, but mostly the same. In <code>openxlsx2</code> we tried our best to reduce the complexity under the hood and for the user as well. In <code>openxlsx2</code> they are replaced with <code>read_xlsx()</code>, <code>wb_read()</code> and they share the same underlying function <code>wb_to_df()</code>.</p>
+<p>Coming from <code>openxlsx</code> you might know about <code>read.xlsx()</code> (two functions, one for files and one for workbooks) and <code>readWorkbook()</code>. Functions that do different things, but mostly the same. In <code>openxlsx2</code> we tried our best to reduce the complexity under the hood and for the user as well. In <code>openxlsx2</code> they are replaced with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">read_xlsx()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_read()</a></code> and they share the same underlying function <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code>.</p>
 <p>For this example we will use example data provided by the package. You can locate it in our “inst/extdata” folder. The files are included with the package source and you can open them in any calculation software as well.</p>
 <section id="basic-import" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="basic-import">
 <span class="header-section-number">3.1.1</span> Basic import</h3>
 <p>We begin with the <code>openxlsx2_example.xlsx</code> file by telling R where to find this file on our system</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The object contains a path to the xlsx file and we pass this file to our function to read the workbook into R</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># import workbook</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -498,13 +500,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 11 FALSE    3   NA  67.3     i 2023-12-25         &lt;NA&gt;       3     &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 12    NA    1   NA   123  &lt;NA&gt; 2023-07-31         &lt;NA&gt;     122     &lt;NA&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The output is created as a data frame and contains data types date, logical, numeric and character. The function to import the file to R, <code>wb_to_df()</code> provides similar options as the <code>openxlsx</code> functions <code>read.xlsx()</code> and <code>readWorkbook()</code> and a few new functions we will go through the options. As you might have noticed, we return the column of the xlsx file as the row name of the data frame returned. Per default the first sheet in the workbook is imported. If you want to switch this, either provide the <code>sheet</code> parameter with the correct index or provide the sheet name.</p>
+<p>The output is created as a data frame and contains data types date, logical, numeric and character. The function to import the file to R, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code> provides similar options as the <code>openxlsx</code> functions <code>read.xlsx()</code> and <code>readWorkbook()</code> and a few new functions we will go through the options. As you might have noticed, we return the column of the xlsx file as the row name of the data frame returned. Per default the first sheet in the workbook is imported. If you want to switch this, either provide the <code>sheet</code> parameter with the correct index or provide the sheet name.</p>
 </section><section id="col_names---first-row-as-column-name" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="col_names---first-row-as-column-name">
 <span class="header-section-number">3.1.2</span> <code>col_names</code> - first row as column name</h3>
 <p>In the previous example the first imported row was used as column name for the data frame. This is the default behavior, but not always wanted or expected. Therefore this behavior can be disabled by the user.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># do not convert first row to column names</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        B    C  D     E     F          G            H       I        J</span></span>
 <span><span class="co">#&gt; 2   Var1 Var2 NA  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1 NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
@@ -523,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The creators of the openxml standard are well known for mistakenly treating something as a date and <code>openxlsx2</code> has built in ways to identify a cell as a date and will try to convert the value for you, but unfortunately this is not always a trivial task and might fail. In such a case we provide an option to disable the date conversion entirely. In this case the underlying numerical value will be returned.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># do not try to identify dates in the data</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, detect_dates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, detect_dates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4  Var5         Var6    Var7       Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 45075 3209324 This #DIV/0! 0.06059028</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 45069         &lt;NA&gt;       0 0.58538194</span></span>
@@ -541,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes things might feel off. This can be because the openxml files are not updating formula results in the sheets unless they are opened in software that provides such functionality as certain tabular calculation software. Therefore the user might be interested in the underlying functions to see what is going on in the sheet. Using <code>show_formula</code> this is possible</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># return the underlying Excel formula instead of their values</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6            Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This            E3/0 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;              C4 14:02:57</span></span>
@@ -559,17 +561,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes the entire worksheet contains to much data, in such case we provide functions to read only a selected dimension range. Such a range consists of either a specific cell like “A1” or a cell range in the notion used in the <code>openxml</code> standard</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read dimension without column names</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="st">"A2:C5"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="st">"A2:C5"</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    A    B    C</span></span>
 <span><span class="co">#&gt; 2 NA Var1 Var2</span></span>
 <span><span class="co">#&gt; 3 NA TRUE    1</span></span>
 <span><span class="co">#&gt; 4 NA TRUE &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 5 NA TRUE    2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Alternatively, if you don’t know the Excel sheet’s address, you can use <code>wb_dims()</code> to specify the dimension. See below or in<code>?wb_dims</code> for more details.</p>
+<p>Alternatively, if you don’t know the Excel sheet’s address, you can use <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">wb_dims()</a></code> to specify the dimension. See below or in<code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">?wb_dims</a></code> for more details.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read dimension without column names with `wb_dims()`</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, dims <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">wb_dims</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    A    B    C</span></span>
 <span><span class="co">#&gt; 2 NA Var1 Var2</span></span>
 <span><span class="co">#&gt; 3 NA TRUE    1</span></span>
@@ -581,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you do not want to read a specific cell, but a cell range you can use the column attribute. This attribute takes a numeric vector as argument</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected cols</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A:B"</span>, <span class="st">"G"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A:B"</span>, <span class="st">"G"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    &lt;NA&gt;  Var1       Var5</span></span>
 <span><span class="co">#&gt; 3    NA  TRUE 2023-05-29</span></span>
 <span><span class="co">#&gt; 4    NA  TRUE 2023-05-23</span></span>
@@ -599,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The same goes with rows. You can select them using numeric vectors</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read selected rows</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5 Var6 Var7     Var8</span></span>
 <span><span class="co">#&gt; 4  TRUE   NA   NA #NUM!     b 2023-05-23   NA    0 14:02:57</span></span>
 <span><span class="co">#&gt; 6 FALSE    2   NA  &lt;NA&gt; #NUM!       &lt;NA&gt;   NA    2 17:24:53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -609,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In xml exists no difference between value types. All values are per default characters. To provide these as numerics, logicals or dates, <code>openxlsx2</code> and every other software dealing with xlsx files has to make assumptions about the cell type. This is especially tricky due to the notion of worksheets. Unlike in a data frame, a worksheet can have a wild mix of all types of data. Even though the conversion process from character to date or numeric is rather solid, sometimes the user might want to see the data without any conversion applied. This might be useful in cases where something unexpected happened or the import created warnings. In such a case you can look at the raw input data. If you want to disable date detection as well, please see the entry above.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert characters to numerics and date (logical too?)</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, convert <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, convert <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1 &lt;NA&gt;     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE &lt;NA&gt; &lt;NA&gt; #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -627,7 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Even though <code>openxlsx2</code> imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentional or empty because they are were formatted, but the cell value was removed afterwards. This was added mostly for backward comparability, but the default has been changed to <code>FALSE</code>. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># erase empty rows from dataset</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">1</span>, skip_empty_rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">1</span>, skip_empty_rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt; Var3  Var4       Var5 Var6 Var7     Var8</span></span>
 <span><span class="co">#&gt; 6  FALSE    2   NA &lt;NA&gt; #NUM!       &lt;NA&gt; &lt;NA&gt;    2 17:24:53</span></span>
 <span><span class="co">#&gt; 7  FALSE    3   NA 1.56     e       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;</span></span>
@@ -641,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The same for columns</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># erase empty columns from dataset</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -659,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes the data source might provide rownames as well. In such a case you can <code>openxlsx2</code> to treat the first column as rowname</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># convert first row to rownames</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">2</span>, dims <span class="op">=</span> <span class="st">"C6:G9"</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, sheet <span class="op">=</span> <span class="fl">2</span>, dims <span class="op">=</span> <span class="st">"C6:G9"</span>, row_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                mpg cyl disp  hp</span></span>
 <span><span class="co">#&gt; Mazda RX4     21.0   6  160 110</span></span>
 <span><span class="co">#&gt; Mazda RX4 Wag 21.0   6  160 110</span></span>
@@ -670,7 +672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If the user know better than the software what type to expect in a worksheet, this can be provided via types. This parameter takes a named numeric. <code>0</code> is character, <code>1</code> is numeric and <code>2</code> is date</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># define type of the data.frame</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Var1"</span> <span class="op">=</span> <span class="fl">0</span>, <span class="st">"Var3"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Var1"</span> <span class="op">=</span> <span class="fl">0</span>, <span class="st">"Var3"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1   Var3</span></span>
 <span><span class="co">#&gt; 3   TRUE   1.00</span></span>
 <span><span class="co">#&gt; 4   TRUE    NaN</span></span>
@@ -688,7 +690,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Often the creator of the worksheet has used a lot of creativity and the data does not begin in the first row, instead it begins somewhere else. To define the row where to begin reading, define it via the <code>start_row</code> parameter</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># start in row 5</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, start_row <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, start_row <span class="op">=</span> <span class="fl">5</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        B  C  D      E     F          G  H       I        J</span></span>
 <span><span class="co">#&gt; 5   TRUE  2 NA   1.34     c 2023-02-01 NA #VALUE! 23:01:02</span></span>
 <span><span class="co">#&gt; 6  FALSE  2 NA     NA #NUM!       &lt;NA&gt; NA       2 17:24:53</span></span>
@@ -704,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There is the “#N/A” string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via <code>na.strings</code></p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># na strings</span></span>
-<span><span class="fu">wb_to_df</span><span class="op">(</span><span class="va">xl</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -725,10 +727,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the file we are going to load</span></span>
 <span><span class="va">xl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
 <span><span class="co"># loading the file into the workbook</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span>file <span class="op">=</span> <span class="va">xl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">xl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The additional options <code>wb_load()</code> provides are for internal use: <code>sheet</code> loads only a selected sheet from the workbook and <code>data_only</code> reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.</p>
-<p>Once a workbook is imported, we provide several functions to interact with and modify it (the <code>wb_to_df()</code> function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).</p>
+<p>The additional options <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load()</a></code> provides are for internal use: <code>sheet</code> loads only a selected sheet from the workbook and <code>data_only</code> reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.</p>
+<p>Once a workbook is imported, we provide several functions to interact with and modify it (the <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code> function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).</p>
 </section></section><section id="example-reading-real-world-data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="example-reading-real-world-data">
 <span class="header-section-number">3.2</span> Example: Reading real world data</h2>
 <p>In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how <code>openxlsx2</code> can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.</p>
@@ -741,18 +743,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="st">"2022/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx"</span></span>
 <span><span class="va">fl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu">wb_load</span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">fl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once the workbook is loaded, we read the entire worksheet and try to get an understanding how it looks like. For this we fill merged cells and remote the column name. After that we can inspect it with <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               skip_empty_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># View(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using this we realize that the table has a few description rows ahead and a few footnotes below. Numeric data starts in row <code>8</code> and ends in <code>605</code>. The table spans columns <code>A</code> to <code>BG</code>. Therefore our dimensions will look like this <code>A7:BG605</code>. We start one row earlier than the data we want to read, because we expect a column name. In addition there are a few missing values that we want to remove.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A7:BG605"</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>               fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="cleaning-the-indents" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="cleaning-the-indents">
@@ -760,8 +762,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Not for every feature there is a custom function, but a lot of things can be done with <code>openxlsx2</code>. The rows are grouped by occupation. This occupation is not visisble in the data frame above. But since the information is available in the data, we can access it.</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## adaption of https://github.com/JanMarvin/openxlsx2/discussions/710</span></span>
-<span><span class="va">description_dims</span> <span class="op">&lt;-</span> <span class="fu">wb_dims</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">description_dims</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">description_dims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">wb_dims</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span>, cols <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">description_dims</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">want</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="va">description_dims</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get the styles for the range</span></span>
@@ -771,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">zeros</span>   <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span> <span class="op">==</span> <span class="st">""</span>, <span class="st">"0"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># now get the indentation alignment from the style</span></span>
-<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">read_xf</span><span class="op">(</span><span class="fu">read_xml</span><span class="op">(</span><span class="va">styles</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">|&gt;</span></span>
+<span><span class="va">indents</span> <span class="op">&lt;-</span> <span class="fu">openxlsx2</span><span class="fu">:::</span><span class="fu">read_xf</span><span class="op">(</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/read_xml.html">read_xml</a></span><span class="op">(</span><span class="va">styles</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">indent</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">zeros</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -834,7 +836,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Since your output contains non consecutive cells, which are basically a square, you can pass them as a single <code>dims</code> string. In the <code>dims</code> string we treat header and column differently. We can check with <code>dims_to_dataframe("A6:B6,D6,H6,A12:B17,D12:D17,H12:H17", fill = TRUE, empty_rm = TRUE)</code> if our <code>dims</code> object works. Since we see no blanks, every cell is matched.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wb_to_df</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span></span>
 <span>  <span class="va">wb</span>,</span>
 <span>  dims <span class="op">=</span> <span class="st">"A6:B6,D6,H6,A12:B17,D12:D17,H12:H17"</span>,</span>
 <span>  fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -858,7 +860,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>To read the orange cells, the following command can be used:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">wb_to_df</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span></span>
 <span>  <span class="va">wb</span>,</span>
 <span>  dims <span class="op">=</span> <span class="st">"A7:A8,L7:M8,P7:Q8"</span>,</span>
 <span>  fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -872,12 +874,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read body</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A8:BG605"</span></span>
-<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read header</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A5:BG7"</span></span>
-<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu">wb_to_df</span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create single header string. remove all spaces, unique values. collapse on dot</span></span>
