@@ -107,16 +107,28 @@ wb <- wb_workbook()$add_worksheet()$
 
 Spreadsheet functions are constantly evolving and similarly extended. Several formulas introduced in the MS365 Excel versions require `_xlfn.` as prefix for the function name. Such formulas will only be evaluated with compatible spreadsheet software. In case of doubt, see [Excel functions (alphabetical)](https://support.microsoft.com/en-us/office/excel-functions-alphabetical-b3944572-255d-4efb-bb96-c6d90033e188) for a list of all functions and an indicator for the software version in which they were introduced.
 
-```{r}
+```{r, warning=FALSE}
 wb <- wb_workbook()$add_worksheet()$
   add_data(x = cars)$
   add_data(dims = "D1", x = "Unique Values of Speed")$
   add_formula(
     dims = wb_dims(x = unique(cars$speed), from_col = "D", from_row = 2),
     x = paste0("_xlfn.UNIQUE(", wb_dims(x = cars, cols = "speed"), ")"),
-    array = TRUE
+    cm = TRUE
   )
 ```
+
+For lambda functions you might need additional parameter prefixes: `_xlpm.`. Below the code for
+`=MAKEARRAY(3,3,LAMBDA(r,c,r*c))`.
+
+```{r, warning=FALSE}
+wb$add_formula(
+  dims = "G2",
+  x = "_xlfn.MAKEARRAY(3,3,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlpm.r*_xlpm.c))",
+  cm = TRUE
+)
+```
+
 
 ## Shared formulas
 
