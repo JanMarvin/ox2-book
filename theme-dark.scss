@@ -17,7 +17,7 @@ $info-text-emphasis: #c298d6;
 $warning-text-emphasis: #ffac74;
 $danger-text-emphasis: #ff6688;
 $light-text-emphasis: #f8f9fa;
-$dark-text-emphasis: #dee2e6;
+$dark-text-emphasis: $secondary-bg; // background inline code
 
 // Background subtle colors
 $primary-bg-subtle: #081a2d;
@@ -75,7 +75,7 @@ $card-color: $body-color;
 // These often benefit from being distinctly darker or having a different hue
 $code-block-bg-alpha: -0.9; // Makes code blocks darker, relative to base
 $code-background: darken($body-bg, 5%); // Even darker background for blocks
-$code-color: #7d12ba;
+$code-color: $light-text-emphasis; // text color of inline code chunks
 $code-bg: $dark-text-emphasis;
 
 // Tables
@@ -121,9 +121,10 @@ body {
 }
 
 .sidebar-title code {
-  color: #000000;
+  color: $light-text-emphasis;
 }
 
+// color of R output e.g. R.version output
 pre code {
   color: #f8f8f8;
 }
