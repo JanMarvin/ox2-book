@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 Contrary to `R`, spreadsheets do not require identical data types. While in `R` a column always consists of a unique type (the base types supported by `openxlsx2` are `character`, `integer`, `numeric`, `Date`, and `POSIXct`/`POSIXlt`), spreadsheets might consist of arbitrary mixes of data types. E.g. it is not uncommon, to have tables consisting of multiple rows. In addition some spreadsheet software has issues identifying certain date types and a well known issue of spreadsheets is the number stored as text error. Below we will describe ways to write data with `openxlsx2` and how to handle the most common types characters and numerics. Though in addition `openxlsx2` also supports dates, date formats and makes use of the `hms` date class.
 
 ```{r}
+library(openxlsx2)
+
 wb <- wb_workbook()
 ```
 

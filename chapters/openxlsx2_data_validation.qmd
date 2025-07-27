@@ -27,6 +27,8 @@ df <- data.frame(
 In the next two code snippets we are going to check for a specific `type` of data, if a condition defined by `operator` is met for a selection or range of `values`. We construct a workbook that will be filled with four sheets of data tables and data validation for the workbook.
 
 ```{r}
+library(openxlsx2)
+
 wb <- wb_workbook()$
   add_worksheet("Sheet 1")$
   add_data_table(x = iris)$
@@ -113,7 +115,7 @@ In the code below we create drop down lists for values directly passed to `wb_ad
 ```{r}
   formula_old <- '=HYPERLINK("#Tab_1!" &amp; CELL("address",
   INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
-  formula_new <- '=HYPERLINK("#Tab_1!" & CELL("address", 
+  formula_new <- '=HYPERLINK("#Tab_1!" & CELL("address",
   INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
 
   wb <- wb_workbook()$
@@ -134,7 +136,7 @@ In the code below we create drop down lists for values directly passed to `wb_ad
     add_data(x = 2017, startCol = 1, startRow = 1, colNames = FALSE)$
     add_data_validation(dims = "A1", type = "list",
                         value = '"2016,2017,2018,2019"')$
-    add_formula(dims = "B1", x = '=HYPERLINK("#Tab_1!" & 
+    add_formula(dims = "B1", x = '=HYPERLINK("#Tab_1!" &
                 CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))),
                 "Go to the selected column")')$
     add_formula(dims = "B2", x = '=IF(2017 = VALUE(A1),

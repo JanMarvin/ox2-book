@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
+library(openxlsx2)
+
 wb <- wb_workbook()$
   add_worksheet()
 
@@ -69,7 +71,9 @@ In spreadsheet software that does not support threads, a comment is shown with t
 
 ### Persons, create one or become one
 
-To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with `wb_get_person()`. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else. For now, we will create two persons.
+To create a comment, you need to be a person assigned with the worksheet. Persons could be corporate accounts with specific Ids (you need to import a worksheet with such an id). Afterwards you can get the persons attached to the worksheet with `wb_get_person()`. While there is an id attached to the person, it is not different compared to an email username. It can be spoofed, and basically, if you select your id from the list of available names, please consider if your company finds it as hilarious as you do, if you decide to create, open or answer threads as someone else.
+
+For now, we will create two persons.
 
 ```{r}
 wb <- wb_workbook()$add_worksheet()
@@ -86,7 +90,7 @@ pid <- wb$get_person(name = "you")$id
 
 ### Creating a Thread
 
-And that's it. Now we can create a thread as you.
+And that's it. Now we can create a thread as "you".
 
 ```{r}
 wb$add_thread(dims = "A1", comment = "wow it works!", person_id = pid)

@@ -22,6 +22,8 @@ Please, though, be a little careful if you start experimenting with pivot table 
 ## Adding pivot tables
 
 ```{r}
+library(openxlsx2)
+
 wb <- wb_workbook()$
   add_worksheet()$
   add_data(x = esoph)

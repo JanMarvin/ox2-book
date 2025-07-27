@@ -18,6 +18,8 @@ When using `openxlsx2` there are multiple ways to modify the workbook including 
 It is possible to copy cells into different regions of the worksheet using `wb_copy_cells()`. There are three ways to copy cells: (1) as is, including styles, (2) as value replacing all formulas and (3) as reference to the cell origin. This can be seen in the following image, the transposed cell contains a formula pointing to the original cell.
 
 ```{r}
+library(openxlsx2)
+
 mm <- matrix(1:6, 2)
 wb <- wb_workbook()$add_worksheet()$
   add_data(x = mm, col_names = FALSE)$

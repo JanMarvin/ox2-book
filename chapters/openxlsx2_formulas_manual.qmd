@@ -16,6 +16,8 @@ Below you find various examples how to create formulas with `openxlsx2`. Though,
 This can be shown in a simple example: We have a spreadsheet with a formula `A1 + B1`. This formula was evaluated with spreadsheet software as `A1 + B1 = 2`. Therefore if we read the cell, we see the value 2. Lets recreate this output in `openxlsx2`
 
 ```{r}
+library(openxlsx2)
+
 # Create artificial xlsx file
 wb <- wb_workbook()$add_worksheet()$add_data(x = t(c(1, 1)), col_names = FALSE)$
   add_formula(dims = "C1", x = "A1 + B1")
@@ -166,7 +168,7 @@ wb <- wb_workbook()$add_worksheet()$
 | 3   | 30          | 11   | 2              |
 | 4   | 40          | 13   | 3              |
 
-Given a basic table like the above, a similarly basic formula for `total_sales` would be "= A2 \* C2" with the row value changing at each row.
+Given a basic table like the above, a similarly basic formula for `total_sales` would be `= A2 * C2` with the row value changing at each row.
 
 An implementation for this formula using `wb_add_formula()` would look this (taken from current documentation) lets say we've read in the data and assigned it to the table `company_sales`
 
@@ -201,7 +203,7 @@ However, if we were to pass this as the text for the formula to be written it wo
 
 In open xml the `dataTable` formula looks like this:
 
-```         
+```
 <calculatedColumnFormula>
   daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
 </calculatedColumnFormula>
@@ -225,7 +227,7 @@ example_data <-
 ## base R method
 example_data$gross_profit       <- "daily_sales[[#This Row],[sales_price]] -
 daily_sales[[#This Row],[COGS]]"
-example_data$total_COGS        <- "daily_sales[[#This Row],[COGS]] * 
+example_data$total_COGS        <- "daily_sales[[#This Row],[COGS]] *
 daily_sales[[#This Row],[sales_quantity]]"
 example_data$total_sales       <- "daily_sales[[#This Row],[sales_price]] *
 daily_sales[[#This Row],[sales_quantity]]"

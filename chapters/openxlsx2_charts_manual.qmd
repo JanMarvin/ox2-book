@@ -11,9 +11,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-The following manual will present various ways to add plots and charts to `openxlsx2` worksheets and even chartsheets. This assumes that you have basic knowledge how to handle `openxlsx2` and are familiar with either the default `R` `graphics` functions like `plot()` or `barplot()` and `grDevices`, or with the packages [`{ggplot2}`](https://ggplot2-book.org/), `{rvg}` or [`{mschart}`](https://ardata-fr.github.io/officeverse/charts-with-mschart.html). There are plenty of other manuals that cover using these packages better than we could ever tell you to.
+The following manual will present various ways to add plots and charts to `openxlsx2` worksheets and even chartsheets. This assumes that you have basic knowledge how to handle `openxlsx2` and are familiar with either the default `R` `graphics` functions like `plot()` or `barplot()` and `grDevices`, or with the packages [`{ggplot2}`](https://ggplot2-book.org/), [`{rvg}`](https://davidgohel.github.io/rvg/), or [`{mschart}`](https://ardata-fr.github.io/officeverse/charts-with-mschart.html). There are plenty of other manuals that cover using these packages better than we could ever tell you to.
 
 ```{r package}
+library(openxlsx2)
+
 ## create a workbook
 wb <- wb_workbook()
 ```
@@ -37,7 +39,7 @@ wb$add_worksheet("add_image")$add_image(file = myplot)
 knitr::include_graphics("../img/chrt_img.png")
 ```
 
-It is possible to use `{ragg}` to create the png files to add to the worksheet:
+It is possible to use [`{ragg}`](https://ragg.r-lib.org/) to create the png files to add to the worksheet:
 
 ```{r}
 library(ragg)
@@ -93,14 +95,12 @@ wb$add_worksheet("add_drawing")$
   add_drawing(xml = tmp, dims = NULL)
 ```
 
-
 ```{r echo=FALSE, warning=FALSE}
 #nolint start
 #| fig-cap: "An rvg chart is a vector graphic that can be modified in spreadsheet software (this screenshot differs from the code above as the second chart below has been removed)"
 knitr::include_graphics("../img/chrt_rvg.png")
 #nolint end
 ```
-
 
 ```{r}
 library(devEMF)

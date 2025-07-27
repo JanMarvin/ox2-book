@@ -35,6 +35,8 @@ Conditional formatting is helpful to visually emphasize trends, outliers, or oth
 We will use the following workbook and the two styles to differentiate in negative and positive values.
 
 ```{r}
+library(openxlsx2)
+
 wb <- wb_workbook()
 wb$add_dxfs_style(name = "negStyle", font_color = wb_color(hex = "FF9C0006"),
                   bg_fill = wb_color(hex = "FFFFC7CE"))

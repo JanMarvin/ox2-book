@@ -20,6 +20,8 @@ Welcome to the `openxlsx2` update vignette. In this vignette we will take some c
 The basic read function changed from `read.xlsx` to `read_xlsx`. Using a default xlsx file included in the package:
 
 ```{r read}
+library(openxlsx2)
+
 file <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
 ```
 
@@ -124,7 +126,7 @@ wb <- wb_workbook(creator = "My name here")$
   add_data(dims = "A1", x = "")
 ```
 
-The code above uses chaining. If you prefer piping, we provide the chained functions with the prefix `wb_` so `wb_add_worksheet()`, `wb_add_data()`, `wb_add_border()` and `wb_set_col_widths()` would be the functions to use with pipes `|>` or `|>`.
+The code above uses chaining. If you prefer piping, we provide the chained functions with the prefix `wb_` so `wb_add_worksheet()`, `wb_add_data()`, `wb_add_border()` and `wb_set_col_widths()` would be the functions to use with pipes `|>` or `%>%`.
 
 With pipes the code from above becomes
 
