@@ -39,7 +39,7 @@ wb_to_df(wb, col_names = FALSE)
 
 What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:
 
-```
+```{XML}
 <c r="C1">
   <f>A1 + B1</f>
   <v>2</v>
@@ -118,8 +118,7 @@ wb <- wb_workbook()$add_worksheet()$
   )
 ```
 
-For lambda functions you might need additional parameter prefixes: `_xlpm.`. Below the code for
-`=MAKEARRAY(3,3,LAMBDA(r,c,r*c))`.
+For lambda functions you might need additional parameter prefixes: `_xlpm.`. Below the code for `=MAKEARRAY(3,3,LAMBDA(r,c,r*c))`.
 
 ```{r, warning=FALSE}
 wb$add_formula(
@@ -128,7 +127,6 @@ wb$add_formula(
   cm = TRUE
 )
 ```
-
 
 ## Shared formulas
 
@@ -213,9 +211,9 @@ If we are writing the formula outside of the `dataTable` we have to reference th
 
 However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that open xml requires for selecting the current row is different.
 
-In open xml the `dataTable` formula looks like this:
+In openxml the `dataTable` formula looks like this:
 
-```
+```{XML}
 <calculatedColumnFormula>
   daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
 </calculatedColumnFormula>

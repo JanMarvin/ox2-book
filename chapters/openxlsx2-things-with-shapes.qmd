@@ -30,9 +30,9 @@ wb$add_comment(
 )
 ```
 
-It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^openxlsx2-things-with-shapes1] For this we are going to remove this previous comment.
+It is possible to style the comment, the manual page provides a few examples of this. `openxlsx2` provides additional niche features such as background images for comments.[^openxlsx2-things-with-shapes-1] For this we are going to remove this previous comment.
 
-[^openxlsx2-things-with-shapes1]: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.
+[^openxlsx2-things-with-shapes-1]: Since there is no dialog option for this on MS365 for Mac, I was not even sure what the user requesting this feature, was even talking about.
 
 ```{r}
 # eh what was it again?

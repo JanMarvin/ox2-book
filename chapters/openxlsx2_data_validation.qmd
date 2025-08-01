@@ -112,6 +112,7 @@ In the code below we create drop down lists for values directly passed to `wb_ad
 ## Examples combining data validation and formulas
 
 ### Example 1: hyperlink to selected value
+
 ```{r}
   formula_old <- '=HYPERLINK("#Tab_1!" &amp; CELL("address",
   INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'
@@ -129,6 +130,7 @@ In the code below we create drop down lists for values directly passed to `wb_ad
 ```
 
 ### Example 2: create hyperlink to github
+
 ```{r}
   wb <- wb_workbook()$
     add_worksheet("Tab_1", zoom = 80, gridLines = FALSE)$

@@ -108,7 +108,7 @@ wb_to_df(xl, convert = FALSE)
 
 ### `skip_empty_rows` - remove empty rows
 
-Even though `openxlsx2` imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentional or empty because they are were formatted, but the cell value was removed afterwards. This was added mostly for backward comparability, but the default has been changed to `FALSE`. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty
+Even though `openxlsx2` imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentional or empty because they contain a cell format, but the cell value was removed. This was added mostly for backward comparability, but the default has been changed to `FALSE`. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty
 
 ```{r}
 # erase empty rows from dataset
@@ -135,7 +135,7 @@ wb_to_df(xl, sheet = 2, dims = "C6:G9", row_names = TRUE)
 
 ### `types` - convert column to specific type
 
-If the user know better than the software what type to expect in a worksheet, this can be provided via types. This parameter takes a named numeric. `0` is character, `1` is numeric and `2` is date
+If the user wants to explicitly convert a column into a specific type, it is possible to pass the type via the `types` argument. This parameter takes a named numeric of any or all variables in the data frame. the output type can be specified via numeric values, `0` is character, `1` is numeric, `2` is date, `3` is datetime (POSIXct), and `4` is logical. Similar users can specify the type as character string, e.g. `"numeric"`, `"Date"`, `"POSIXct"`.
 
 ```{r}
 # define type of the data.frame
@@ -162,7 +162,7 @@ wb_to_df(xl, na.strings = "")
 
 ### Importing as workbook
 
-In addition to importing directly from xlsx or xlsm files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire the openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
+In addition to importing directly from xlsx, xlsm or xlsb files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire the openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
 
 Importing a file into a workbook looks like this:
 
@@ -181,10 +181,9 @@ Once a workbook is imported, we provide several functions to interact with and m
 
 In the lines above we have seen various ways how to read data. There is just one downside, actual real world data is usually not as nice and simple as the data we have seen above. Real world data has often features that help us humans to understand and interpret tables, like headlines that span across multiple rows and columns, or descriptions before the data, and footnotes after the data. In addition it is often mixed with totals and subtotals, so even if the data is imported, it still requires a lot of data cleaning. There are ways how `openxlsx2` can help in this regard. And while not necessarily required, actually looking at the data in a spreadsheet software can help with its understanding.
 
-The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: <https://www.census.gov/data/tables/2022/demo/acs-2022.html>. The table is rather large with multiple groups in columns and rows.
-[^openxlsx2-reading-1].
+The file we use is part of the publications from the US Census. "Table 1. Full-Time, Year-Round Workers by Education, Sex, and Detailed Occupation: ACS 2022." At the time available at: <https://www.census.gov/data/tables/2022/demo/acs-2022.html>. The table is rather large with multiple groups in columns and rows. [^openxlsx2_reading-1].
 
-[^openxlsx2-reading-1]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx>.
+[^openxlsx2_reading-1]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/Detailed_occupation_by_sex_and_education_ACS_2022_tab1.xlsx>.
 
 ### Reading the data table
 

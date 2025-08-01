@@ -39,25 +39,28 @@ wb <- wb_load("your_file.xlsx")
 
 We usually name workbook objects `wb` in our documentation, but this is no obligation, you can name your workbook object whatever you like to call them.
 
-If you do not have a workbook yet, it is possible to create one. In the next line we will use three wrapper functions `wb_workbook()`, `wb_add_worksheet()`, and `wb_add_data()`. The wrapper functions are piped together using `R`'s native pipe operator `|>`, but similarly you can use the classic `magrittr` pipe operator `%>%`. [^nopipe] We assume that you have a dataset `your_data`, either a vector, a matrix or a data frame and want to write this in a worksheet:
+If you do not have a workbook yet, it is possible to create one. In the next line we will use three wrapper functions `wb_workbook()`, `wb_add_worksheet()`, and `wb_add_data()`. The wrapper functions are piped together using `R`'s native pipe operator `|>`, but similarly you can use the classic `magrittr` pipe operator `%>%`. [^openxlsx2_basic_manual-1] We assume that you have a dataset `your_data`, either a vector, a matrix or a data frame and want to write this in a worksheet:
+
+[^openxlsx2_basic_manual-1]: Basically a pipe operator allows to write code from left to right. Without pipes the code would look like this:
+
+    ```{r, eval = FALSE}
+    wb <- wb_add_data(wb_add_worksheet(wb_workbook()), x = your_data)
+    ```
 
 ```{r, eval = FALSE}
 wb <- wb_workbook() |> wb_add_worksheet() |> wb_add_data(x = your_data)
 ```
 
-[^nopipe]: Basically a pipe operator allows to write code from left to right. Without pipes the code would look like this:
-    ```{r, eval = FALSE}
-    wb <- wb_add_data(wb_add_worksheet(wb_workbook()), x = your_data)
-    ```
-
 Okay, now you have a workbook object, but what have we actually done? Let's work along the pipe syntax: (1) first we have created the workbook object `wb_worbkook()`, (2) next we have assigned it a worksheet `wb_add_worksheet()`, and (3) we have written data onto the worksheet.
 
 Let's try this with actual data. We use the `mtcars` dataset. In the code we switch the fictional `your_data` with `mtcars`:
+
 ```{r}
 wb <- wb_workbook() |> wb_add_worksheet() |> wb_add_data(x = mtcars)
 ```
 
 Let's see what the output looks like:
+
 ```{r}
 wb
 ```
@@ -72,6 +75,7 @@ wb <- wb_workbook() |>
 ```
 
 This will create two sheets `"Sheet 1"` and `"Sheet 2"` and the data will be written to the second sheet.
+
 ```{r}
 wb
 ```
@@ -107,6 +111,7 @@ wb <- wb_workbook()
 wb_add_worksheet(wb, sheet = "USexp")
 wb_add_data(wb, "USexp", USPersonalExpenditure)
 ```
+
 ```{r, echo = FALSE}
 wb <- wb_workbook()
 wb_add_worksheet(wb, sheet = "USexp")
@@ -120,6 +125,7 @@ wb |> wb_get_sheet_names()
 ```
 
 Once we assign a sheet, this changes, and the data was correctly written:
+
 ```{r}
 wb <- wb_workbook()
 wb <- wb_add_worksheet(wb, sheet = "USexp")
@@ -142,6 +148,7 @@ Whether you use wrapper functions or chain functions is up to you and personal p
 In addition to importing directly from xlsx or xlsm files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire the openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
 
 Importing a file into a workbook looks like this:
+
 ```{r}
 # the file we are going to load
 file <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")

@@ -27,6 +27,14 @@ packageVersion("openxlsx2")
 
 Graphics might reflect earlier states and are not constantly updated. If you find any irregularities where our code produces different output than expected, please let us know in the issue tracker at <https://github.com/JanMarvin/openxlsx2/>.
 
+This manual is available online at
+
+<https://JanMarvin.github.io/ox2-book>
+
+or as PDF version at
+
+<https://JanMarvin.github.io/ox2-book/The-%60openxlsx2%60-book.pdf>
+
 ## Additional examples
 
 For many more examples of what `openxlsx2` can do, have a look at the `Show and tell` section of the `openxlsx2` discussion board: <https://github.com/JanMarvin/openxlsx2/discussions/categories/show-and-tell>

@@ -40,11 +40,9 @@ wb$copy_cells(dims = "I9", data = dat, transpose = TRUE, as_ref   = TRUE)
 if (interactive()) wb$open()
 ```
 
-
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/copy_cells.png")
 ```
-
 
 ## Cloning worksheets
 
@@ -60,4 +58,3 @@ wb_from$clone_worksheet(old = "SUM", new = "NOT_SUM")
 # clone worksheet across workbooks including styles and shared strings
 wb$clone_worksheet(old = "SUM", new = "SUM", from = wb_from)
 ```
-

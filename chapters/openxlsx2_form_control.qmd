@@ -13,6 +13,56 @@ knitr::opts_chunk$set(
 
 This chapter delves into the `wb_add_form_control()` function, a versatile tool for embedding interactive elements directly into your workbook. It will show how to seamlessly integrate various form controls, including checkboxes[^openxlsx2_form_control-1], radio buttons, and dropdowns, to enhance user interaction and data input within your spreadsheets.
 
+[^openxlsx2_form_control-1]: In 2024 a new checkbox was added in Excel. This makes use of the feature property bag and works slightly different compared to the form control checkbox. Basically it is a logical value (0 or 1) that takes an overlay to display a checked or unchecked box. They have the benefit that they are rather lightweight and stick to the cell like any other embedded cell content, whereas the form control elements float over the spreadsheet. There is no API for this yet, but you can use the new checkboxes like this:
+
+    ```{r, eval = FALSE}
+    library(openxlsx2)
+
+    wb <- wb_workbook()$add_worksheet()
+
+    # add feature property bag
+    wb$featurePropertyBag <- '<FeaturePropertyBags xmlns=
+    "http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag">
+     <bag type="Checkbox" />
+     <bag type="XFControls">
+      <bagId k="CellControl">0</bagId>
+     </bag>
+     <bag type="XFComplement">
+      <bagId k="XFControls">1</bagId>
+     </bag>
+     <bag type="XFComplements" extRef="XFComplementsMapperExtRef">
+      <a k="MappedFeaturePropertyBags">
+       <bagId>2</bagId>
+      </a>
+     </bag>
+    </FeaturePropertyBags>'
+    wb$append("workbook.xml.rels",
+      '<Relationship Id="rId5" Type=
+      "http://schemas.microsoft.com/office/2022/11/relationships/FeaturePropertyBag"
+      Target="featurePropertyBag/featurePropertyBag.xml"/>')
+    wb$append("Content_Types",
+          '<Override PartName="/xl/featurePropertyBag/featurePropertyBag.xml"
+          ContentType="application/vnd.ms-excel.featurepropertybag+xml"/>')
+
+    # add style
+    extLst <- '<extLst>
+     <ext xmlns:xfpb=
+     "http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag"
+     uri="{C7286773-470A-42A8-94C5-96B5CB345126}">
+      <xfpb:xfComplement i="0" />
+     </ext>
+    </extLst>'
+    sty <- create_cell_style(ext_lst = extLst)
+    wb$styles_mgr$add(sty, "checkbox_sty")
+    xf_sty <- wb$styles_mgr$get_xf_id("checkbox_sty")
+
+    # add data and assign style
+    wb$add_data(x = matrix(sample(c(TRUE, FALSE), 5, TRUE), 5, 2))
+    wb$set_cell_style(dims = "A2:A6", style = xf_sty)
+
+    # wb$open()
+    ```
+
 There are a few function's parameter, available, to set or retrieve the form control value. This allows the creation of dynamic and user-friendly workbooks that go beyond static data display, enabling more engaging and efficient data management.
 
 ## What Are Form Controls?
@@ -42,56 +92,6 @@ There are other form controls that are not yet implemented in `openxlsx2`, mostl
 -   Version Compatibility: The appearance and behavior of form controls can sometimes vary slightly across different versions of spreadsheet software, which might lead to minor display or functionality issues if shared across diverse user environments.
 
 ## Checkboxes
-
-[^openxlsx2_form_control-1]: In 2024 a new checkbox was added in Excel. This makes use of the feature property bag and works slightly different compared to the form control checkbox. Basically it is a logical value (0 or 1) that takes an overlay to display a checked or unchecked box. They have the benefit that they are rather lightweight and stick to the cell like any other embedded cell content, whereas the form control elements float over the spreadsheet. There is no API for this yet, but you can use the new checkboxes like this:
-
-    ```{r, eval = FALSE}
-library(openxlsx2)
-
-wb <- wb_workbook()$add_worksheet()
-
-# add feature property bag
-wb$featurePropertyBag <- '<FeaturePropertyBags xmlns=
-"http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag">
- <bag type="Checkbox" />
- <bag type="XFControls">
-  <bagId k="CellControl">0</bagId>
- </bag>
- <bag type="XFComplement">
-  <bagId k="XFControls">1</bagId>
- </bag>
- <bag type="XFComplements" extRef="XFComplementsMapperExtRef">
-  <a k="MappedFeaturePropertyBags">
-   <bagId>2</bagId>
-  </a>
- </bag>
-</FeaturePropertyBags>'
-wb$append("workbook.xml.rels",
-  '<Relationship Id="rId5" Type=
-  "http://schemas.microsoft.com/office/2022/11/relationships/FeaturePropertyBag"
-  Target="featurePropertyBag/featurePropertyBag.xml"/>')
-wb$append("Content_Types",
-          '<Override PartName="/xl/featurePropertyBag/featurePropertyBag.xml"
-          ContentType="application/vnd.ms-excel.featurepropertybag+xml"/>')
-
-# add style
-extLst <- '<extLst>
- <ext xmlns:xfpb=
- "http://schemas.microsoft.com/office/spreadsheetml/2022/featurepropertybag"
- uri="{C7286773-470A-42A8-94C5-96B5CB345126}">
-  <xfpb:xfComplement i="0" />
- </ext>
-</extLst>'
-sty <- create_cell_style(ext_lst = extLst)
-wb$styles_mgr$add(sty, "checkbox_sty")
-xf_sty <- wb$styles_mgr$get_xf_id("checkbox_sty")
-
-# add data and assign style
-wb$add_data(x = matrix(sample(c(TRUE, FALSE), 5, TRUE), 5, 2))
-wb$set_cell_style(dims = "A2:A6", style = xf_sty)
-
-# wb$open()
-    ```
 
 ```{r}
 library(openxlsx2)
