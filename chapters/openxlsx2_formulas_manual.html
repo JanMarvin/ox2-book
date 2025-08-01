@@ -476,10 +476,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 1 2 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What happened? Even though we see cells <code>A1</code> and <code>B1</code> show a value of <code>2</code> and <code>1</code> our formula in <code>C1</code> was not updated. It still shows a value of <code>2</code>. This is because <code>openxlsx2</code> does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:</p>
-<pre><code>&lt;c r="C1"&gt;
-  &lt;f&gt;A1 + B1&lt;/f&gt;
-  &lt;v&gt;2&lt;/v&gt;
-&lt;/c&gt;</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">c</span><span class="ot"> r=</span><span class="st">"C1"</span>&gt;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">f</span>&gt;A1 + B1&lt;/<span class="kw">f</span>&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">v</span>&gt;2&lt;/<span class="kw">v</span>&gt;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">c</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>And when we read from this cell, we always return the value of <code>v</code>. In this case it is obvious, but still wrong and it is a good idea to check if underlying fields contain formulas.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -654,10 +656,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>One of the advantages of the open xml <code>dataTable</code> syntax is that we don’t have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These <code>dataTable</code> have named columns that we can use instead of letters. When writing the formulas within the <code>dataTable</code> we would use the following syntax <code>[@[column_name]]</code> to reference the current row. So the <code>total_sales</code> formula written in open xml in <code>dataTable</code> would look like this; <code>=[@[sales_price]] * [@[sales_quantity]]</code></p>
 <p>If we are writing the formula outside of the <code>dataTable</code> we have to reference the table name. In this case lets say the table name is ‘daily_sales’ <code>=daily_sales[@[sales_price]] * daily_sales[@[sales_quantity]]</code></p>
 <p>However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that open xml requires for selecting the current row is different.</p>
-<p>In open xml the <code>dataTable</code> formula looks like this:</p>
-<pre><code>&lt;calculatedColumnFormula&gt;
-  daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
-&lt;/calculatedColumnFormula&gt;</code></pre>
+<p>In openxml the <code>dataTable</code> formula looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">calculatedColumnFormula</span>&gt;</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">calculatedColumnFormula</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now we can see that open xml replaces <code>[@[sales_price]]</code> with <code>daily_sales[[#This Row],[sales_price]]</code> We must then use this syntax when writing formulas for <code>dataTable</code></p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Because we want the `dataTable` formula to propagate down the entire column</span></span>
