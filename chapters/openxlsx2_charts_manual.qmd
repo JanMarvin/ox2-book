@@ -203,6 +203,8 @@ wb <- wb |>
 knitr::include_graphics("../img/chrt_mschart4.png")
 ```
 
+There is a branch with a [`ms_combochart()`](https://janmarvin.r-universe.dev/mschart/doc/manual.html#ms_combochart) function that allows for a second horizontal or vertical axis at <https://github.com/JanMarvin/mschart/tree/sec_y_axis>.
+
 ### Add and fill a chartsheet
 
 Finally it is possible to add `mschart` charts on a so called chartsheet. These are special sheets that contain only a chart object, referencing data from another sheet.

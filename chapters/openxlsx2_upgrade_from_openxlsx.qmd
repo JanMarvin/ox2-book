@@ -233,3 +233,8 @@ wb <- wb_workbook() |>
 ### Saving
 
 Saving has been switched from `saveWorbook()` to `wb_save()` and opening a workbook has been switched from `openXL()` to `wb_open()`.
+
+
+### Style helper
+
+There is a custom style helper `wb_add_style()` available at <https://github.com/JanMarvin/openxlsx2/discussions/1418>, not to be confused with the `openxlsx2` function with an identical name, meaningful function names are hard to find). With this, it should be possible to keep the `openxlsx` style objects and convert them to `openxlsx2` style functions when saving. This function uses some internal `openxlsx2` functions and should only be used for a transition phase, when switching from `openxlsx` to `openxlsx2`.
