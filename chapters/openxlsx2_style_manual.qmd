@@ -712,6 +712,20 @@ wb$add_data(dims = dims, x = name)
 knitr::include_graphics("../img/sy_namedstyle.png")
 ```
 
+## Switching themes
+
+It's also possible to change the entire theme of the workbook. This impacts the default colors and fonts in a workbook. `openxlsx2` ships a few styles from older and current spreadsheet software releases. If one wants to use the `LibreOffice` style sheet, this can be changed as follows:
+```{r}
+wb <- wb_workbook(theme = "LibreOffice")$add_worksheet()
+wb$get_base_colors()
+```
+
+An example how `openxlsx2` got the themes and colors from spreadsheets can be found in the `inst` folder, this should make it possible to extract or create custom themes, for example, aligned with corporate identity.
+
+```r
+system.file("extdata/themes.R", package = "openxlsx2")
+```
+
 ## Styled columns / rows
 
 In addition to individually styled cells, spreadsheets can also have styled columns and rows. Though, these column and row styles are overridden by cell styles. Therefore, if a row is filled with yellow, initialized cells in this row are not impacted by the yellow color. Therefore it is required to individually style these cells too.
