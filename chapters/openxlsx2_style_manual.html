@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>5&nbsp; Styling of worksheets – The `openxlsx2` book</title>
 <style>
@@ -69,14 +69,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5fd9db47a040b21ac2cac9a0b3b722ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-400f866d7f43f28ddb960dcb60547df5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-5fd9db47a040b21ac2cac9a0b3b722ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9414a286c18468503cc2891b435e24f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -455,8 +455,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#style-strings" id="toc-style-strings" class="nav-link" data-scroll-target="#style-strings"><span class="header-section-number">5.7</span> Style strings</a></li>
   <li><a href="#create-custom-table-styles" id="toc-create-custom-table-styles" class="nav-link" data-scroll-target="#create-custom-table-styles"><span class="header-section-number">5.8</span> Create custom table styles</a></li>
   <li><a href="#named-styles" id="toc-named-styles" class="nav-link" data-scroll-target="#named-styles"><span class="header-section-number">5.9</span> Named styles</a></li>
-  <li><a href="#styled-columns-rows" id="toc-styled-columns-rows" class="nav-link" data-scroll-target="#styled-columns-rows"><span class="header-section-number">5.10</span> Styled columns / rows</a></li>
-  <li><a href="#styling-with-dims" id="toc-styling-with-dims" class="nav-link" data-scroll-target="#styling-with-dims"><span class="header-section-number">5.11</span> Styling with <code>dims</code></a></li>
+  <li><a href="#switching-themes" id="toc-switching-themes" class="nav-link" data-scroll-target="#switching-themes"><span class="header-section-number">5.10</span> Switching themes</a></li>
+  <li><a href="#styled-columns-rows" id="toc-styled-columns-rows" class="nav-link" data-scroll-target="#styled-columns-rows"><span class="header-section-number">5.11</span> Styled columns / rows</a></li>
+  <li><a href="#styling-with-dims" id="toc-styling-with-dims" class="nav-link" data-scroll-target="#styling-with-dims"><span class="header-section-number">5.12</span> Styling with <code>dims</code></a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_style_manual.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -1211,11 +1212,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="styled-columns-rows" class="level2" data-number="5.10"><h2 data-number="5.10" class="anchored" data-anchor-id="styled-columns-rows">
-<span class="header-section-number">5.10</span> Styled columns / rows</h2>
+</section><section id="switching-themes" class="level2" data-number="5.10"><h2 data-number="5.10" class="anchored" data-anchor-id="switching-themes">
+<span class="header-section-number">5.10</span> Switching themes</h2>
+<p>It’s also possible to change the entire theme of the workbook. This impacts the default colors and fonts in a workbook. <code>openxlsx2</code> ships a few styles from older and current spreadsheet software releases. If one wants to use the <code>LibreOffice</code> style sheet, this can be changed as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="st">"LibreOffice"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">get_base_colors</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $LibreOffice</span></span>
+<span><span class="co">#&gt;      a:dk1      a:lt1      a:dk2      a:lt2  a:accent1  a:accent2  a:accent3 </span></span>
+<span><span class="co">#&gt;  "#000000"  "#ffffff"  "#000000"  "#ffffff"  "#18a303"  "#0369a3"  "#a33e03" </span></span>
+<span><span class="co">#&gt;  a:accent4  a:accent5  a:accent6    a:hlink a:folHlink </span></span>
+<span><span class="co">#&gt;  "#8e03a3"  "#c99c00"  "#c9211e"  "#0000ee"  "#551a8b"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An example how <code>openxlsx2</code> got the themes and colors from spreadsheets can be found in the <code>inst</code> folder:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"inst/extdata/themes.R"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="styled-columns-rows" class="level2" data-number="5.11"><h2 data-number="5.11" class="anchored" data-anchor-id="styled-columns-rows">
+<span class="header-section-number">5.11</span> Styled columns / rows</h2>
 <p>In addition to individually styled cells, spreadsheets can also have styled columns and rows. Though, these column and row styles are overridden by cell styles. Therefore, if a row is filled with yellow, initialized cells in this row are not impacted by the yellow color. Therefore it is required to individually style these cells too.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># make the entire thing yellow (pick the style from an exisisting cell)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"cols"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_fill</span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span><span class="st">"yellow"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1251,7 +1266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Styling columns and rows is quicker and memory efficient. In the first example all columns are modified, but the entire modification can be boiled down to a single XML string.</p>
 <p>A neat example of this is the following: a user wanted to lock certain cells on a worksheet. To achieve this, we have to apply an unlocked style to the entire worksheet. Afterwards we can select a few cells that we want to lock.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create an unlocked cell style</span></span>
 <span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/create_cell_style.html">create_cell_style</a></span><span class="op">(</span>locked <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -1281,12 +1296,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">protect_worksheet</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">protect</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="styling-with-dims" class="level2" data-number="5.11"><h2 data-number="5.11" class="anchored" data-anchor-id="styling-with-dims">
-<span class="header-section-number">5.11</span> Styling with <code>dims</code>
+</section><section id="styling-with-dims" class="level2" data-number="5.12"><h2 data-number="5.12" class="anchored" data-anchor-id="styling-with-dims">
+<span class="header-section-number">5.12</span> Styling with <code>dims</code>
 </h2>
 <p>It is possible to style multiple cells at once using <code>dims</code>. This is way faster than looping over rows, columns or both as would be required in the example below.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="fl">2500</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">50</span>, <span class="fl">50</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">zeros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">mm</span> <span class="op">==</span> <span class="fl">0</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
