@@ -437,6 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conditional-formatting" id="toc-conditional-formatting" class="nav-link" data-scroll-target="#conditional-formatting"><span class="header-section-number">14.3.3</span> Conditional formatting</a></li>
   <li><a href="#data-validation" id="toc-data-validation" class="nav-link" data-scroll-target="#data-validation"><span class="header-section-number">14.3.4</span> Data validation</a></li>
   <li><a href="#saving" id="toc-saving" class="nav-link" data-scroll-target="#saving"><span class="header-section-number">14.3.5</span> Saving</a></li>
+  <li><a href="#style-helper" id="toc-style-helper" class="nav-link" data-scroll-target="#style-helper"><span class="header-section-number">14.3.6</span> Style helper</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_upgrade_from_openxlsx.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -653,6 +654,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="saving" class="level3" data-number="14.3.5"><h3 data-number="14.3.5" class="anchored" data-anchor-id="saving">
 <span class="header-section-number">14.3.5</span> Saving</h3>
 <p>Saving has been switched from <code>saveWorbook()</code> to <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_save.html">wb_save()</a></code> and opening a workbook has been switched from <code>openXL()</code> to <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_open.html">wb_open()</a></code>.</p>
+</section><section id="style-helper" class="level3" data-number="14.3.6"><h3 data-number="14.3.6" class="anchored" data-anchor-id="style-helper">
+<span class="header-section-number">14.3.6</span> Style helper</h3>
+<p>There is a custom style helper <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_style.html">wb_add_style()</a></code> available at <a href="https://github.com/JanMarvin/openxlsx2/discussions/1418" class="uri">https://github.com/JanMarvin/openxlsx2/discussions/1418</a>, not to be confused with the <code>openxlsx2</code> function with an identical name, meaningful function names are hard to find). With this, it should be possible to keep the <code>openxlsx</code> style objects and convert them to <code>openxlsx2</code> style functions when saving. This function uses some internal <code>openxlsx2</code> functions and should only be used for a transition phase, when switching from <code>openxlsx</code> to <code>openxlsx2</code>.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
