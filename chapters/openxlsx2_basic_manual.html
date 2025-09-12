@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>2&nbsp; Basics – The `openxlsx2` book</title>
 <style>
@@ -65,18 +65,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/01_introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9414a286c18468503cc2891b435e24f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-91f105ff5d749bc3768c76881bf3f8dd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -291,7 +292,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The <code>openxlsx2</code> book</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -459,83 +462,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.1</span> First steps</h2>
 <p>First let’s assume that you have a working installation of <code>openxlsx2</code> otherwise run the lines below to install the latest CRAN release:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openxlsx2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openxlsx2"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we load the library:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="handling-workbooks" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="handling-workbooks">
 <span class="header-section-number">2.2</span> Handling workbooks</h2>
 <p>The foundation of <code>openxlsx2</code> is a workbook object. You can think of this object as a workbook loaded in a spreadsheet software. We import the entire thing. Every sheet, every chart, image, column, formula style, conditional formatting, pivot table and whatever else a spreadsheet file is allowed to carry. Therefore if you have a file that you want to work with, you can load it with:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="st">"your_file.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="st">"your_file.xlsx"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We usually name workbook objects <code>wb</code> in our documentation, but this is no obligation, you can name your workbook object whatever you like to call them.</p>
 <p>If you do not have a workbook yet, it is possible to create one. In the next line we will use three wrapper functions <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook()</a></code>, <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet()</a></code>, and <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data()</a></code>. The wrapper functions are piped together using <code>R</code>’s native pipe operator <code>|&gt;</code>, but similarly you can use the classic <code>magrittr</code> pipe operator <code>%&gt;%</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> We assume that you have a dataset <code>your_data</code>, either a vector, a matrix or a data frame and want to write this in a worksheet:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Okay, now you have a workbook object, but what have we actually done? Let’s work along the pipe syntax: (1) first we have created the workbook object <code>wb_worbkook()</code>, (2) next we have assigned it a worksheet <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet()</a></code>, and (3) we have written data onto the worksheet.</p>
 <p>Let’s try this with actual data. We use the <code>mtcars</code> dataset. In the code we switch the fictional <code>your_data</code> with <code>mtcars</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s see what the output looks like:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span></span>
 <span><span class="co">#&gt; A Workbook object.</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt; Worksheets:</span></span>
 <span><span class="co">#&gt;  Sheets: Sheet 1 </span></span>
-<span><span class="co">#&gt;  Write order: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  Write order: 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The output looks a little cryptic, it simply tells the name of the worksheet: <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet()</a></code> created a default worksheet name <code>"Sheet 1"</code>. In the code above you can see that we do not use <code>sheet</code> to tell <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data()</a></code> where it should write the data. This is because internally we use a waiver <code><a href="https://janmarvin.github.io/openxlsx2/reference/waivers.html">current_sheet()</a></code> so that we do not have to write <code>sheet = "Sheet 1"</code> whenever we work on the same worksheet. Basically the current sheet is updated whenever a new worksheet is added to the workbook.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This will create two sheets <code>"Sheet 1"</code> and <code>"Sheet 2"</code> and the data will be written to the second sheet.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span></span>
 <span><span class="co">#&gt; A Workbook object.</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt; Worksheets:</span></span>
 <span><span class="co">#&gt;  Sheets: Sheet 1, Sheet 2 </span></span>
-<span><span class="co">#&gt;  Write order: 1, 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  Write order: 1, 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>So how can we access the data on the sheet? Either with <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code> our internal handler to read from workbooks (this is the underlying function for <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_read()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">read_xlsx()</a></code> which are mere aliases for <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code>). So lets have a look at the top of the output:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; sheet found, but contains no data</span></span>
-<span><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Ah! The output is on the second sheet. We need either <code>sheet = 2</code> or <code>sheet = "Sheet 2"</code>. We go with the second variant, because the sheet index position and their name might differ.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"Sheet 2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span>sheet <span class="op">=</span> <span class="st">"Sheet 2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
 <span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
 <span><span class="co">#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
 <span><span class="co">#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
 <span><span class="co">#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
 <span><span class="co">#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span><span class="co">#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This looks like the head of the <code>mtcars</code> dataset. So we have successfully read from the workbook. Now you want to export the workbook to a file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_save.html">wb_save</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"my_first_worksheet.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_save.html">wb_save</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"my_first_worksheet.xlsx"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Alternatively you can directly open it in a spreadsheet software (if you have one installed):</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_open.html">wb_open</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_open.html">wb_open</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once again, lets try this with the <code>USPersonalExpenditure</code> dataset:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="st">"USexp"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"USexp"</span>, <span class="va">USPersonalExpenditure</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"USexp"</span>, <span class="va">USPersonalExpenditure</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <pre><code>#&gt; Error : Can't add data to a workbook with no worksheet.
@@ -543,12 +546,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Dang! What did we do? We’ve added a worksheet, but wait, did we? No, you have to assign wrapper functions to an object for them to have an effect. Wrapper functions do not alter the workbook objects they are executed on. You can check that the workbook has no worksheets:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/sheet_names-wb.html">wb_get_sheet_names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; named character(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/sheet_names-wb.html">wb_get_sheet_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; named character(0)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once we assign a sheet, this changes, and the data was correctly written:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="va">wb</span>, sheet <span class="op">=</span> <span class="st">"USexp"</span><span class="op">)</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span><span class="va">wb</span>, <span class="st">"USexp"</span>, <span class="va">USPersonalExpenditure</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/sheet_names-wb.html">wb_get_sheet_names</a></span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span>
@@ -560,18 +563,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 3 10.500 15.500 29.00 36.5 46.20</span></span>
 <span><span class="co">#&gt; 4  3.530  5.760  9.71 14.0 21.10</span></span>
 <span><span class="co">#&gt; 5  1.040  1.980  2.45  3.4  5.40</span></span>
-<span><span class="co">#&gt; 6  0.341  0.974  1.80  2.6  3.64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6  0.341  0.974  1.80  2.6  3.64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now you’re probably thinking, I don’t want to assign the workbook object all the time and all the <code>wb_</code> functions are a little tedious to type. There is an alternative for you and it is called chaining. Since the workbook is a <code>R6</code> object internally, you can make use of chains. Basically every function that starts with <code>wb_</code> should have a underlying function of the same name without the prefix. So our data writing example from above can be written as:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"USexp"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">USPersonalExpenditure</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"USexp"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">USPersonalExpenditure</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     1940   1945  1950 1955  1960</span></span>
 <span><span class="co">#&gt; 2 22.200 44.500 59.60 73.2 86.80</span></span>
 <span><span class="co">#&gt; 3 10.500 15.500 29.00 36.5 46.20</span></span>
 <span><span class="co">#&gt; 4  3.530  5.760  9.71 14.0 21.10</span></span>
 <span><span class="co">#&gt; 5  1.040  1.980  2.45  3.4  5.40</span></span>
-<span><span class="co">#&gt; 6  0.341  0.974  1.80  2.6  3.64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; 6  0.341  0.974  1.80  2.6  3.64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Whether you use wrapper functions or chain functions is up to you and personal preference. There is just one thing to remember, the documentation is exclusively written for the wrapper function. So if you want to know the arguments for the <code>wb$add_data()</code> part, you have to lookup the wrapper functions man page <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">?wb_add_data</a></code>.</p>
 </section><section id="importing-as-workbook" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="importing-as-workbook">
@@ -579,10 +582,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In addition to importing directly from xlsx or xlsm files, <code>openxlsx2</code> provides the <code>wbWorkbook</code> class used for importing and modifying entire the openxml files in <code>R</code>. This <code>workbook</code> class is the heart of <code>openxlsx2</code> and probably the reason why you are reading this manual in the first place.</p>
 <p>Importing a file into a workbook looks like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the file we are going to load</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the file we are going to load</span></span>
 <span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"openxlsx2_example.xlsx"</span>, package <span class="op">=</span> <span class="st">"openxlsx2"</span><span class="op">)</span></span>
 <span><span class="co"># loading the file into the workbook</span></span>
-<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The additional options <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load()</a></code> provides are for internal use: <code>sheet</code> loads only a selected sheet from the workbook and <code>data_only</code> reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.</p>
 <p>Once a workbook is imported, we provide several functions to interact with and modify it (the <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df()</a></code> function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).</p>
@@ -592,25 +595,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.1</span> Exporting data frames or vectors</h2>
 <p>If you want to export a data frame from R, you can use <code><a href="https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html">write_xlsx()</a></code> which will create an xlsx file. This file can be tweaked further. See <code><a href="https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html">?write_xlsx</a></code> to see all the options. (further explanation and examples will follow).</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html">write_xlsx</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, file <span class="op">=</span> <span class="st">"mtcars.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/write_xlsx.html">write_xlsx</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mtcars</span>, file <span class="op">=</span> <span class="st">"mtcars.xlsx"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="exporting-a-wbworkbook" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="exporting-a-wbworkbook">
 <span class="header-section-number">3.2</span> Exporting a <code>wbWorkbook</code>
 </h2>
 <p>Imported workbooks can be saved as xlsx or xlsm files with the wrapper <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_save.html">wb_save()</a></code> or with <code>wb$save()</code>. Both functions take the filename and an optional <code>overwrite</code> option. If the latter is set, an optional guard is provided to check if the file you want to write already exists. But be careful, this is optional. The default is to save the file and replace an existing file. Of course, on Windows, files that are locked (for example, if they were opened by another process) will not be replaced.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># replace the existing file</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># replace the existing file</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span><span class="st">"mtcars.xlsx"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># do not overwrite the existing file</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span><span class="st">"mtcars.xlsx"</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span><span class="op">$</span><span class="fu">save</span><span class="op">(</span><span class="st">"mtcars.xlsx"</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="dims-wb_dims" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="dims-wb_dims">
 <span class="header-section-number">3.3</span> <code>dims</code>/ <code>wb_dims()</code>
 </h2>
-<p>In <code>openxlsx2</code> functions that interact with worksheet cells are using <code>dims</code> as argument and require the users to provide these. <code>dims</code> are cells or cell ranges in A1 notation. The single argument <code>dims</code> hereby replaces <code>col</code>/<code>row</code>, <code>cols</code>/<code>rows</code> and <code>xy</code>. Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:</p>
+<p>In <code>openxlsx2</code> functions that interact with worksheet cells are using <code>dims</code> as argument and require the users to provide these. <code>dims</code> are cells or cell ranges in A1 notation. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># various options</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># various options</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_dims.html">wb_dims</a></span><span class="op">(</span>from_row <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "A4"</span></span>
 <span></span>
@@ -675,7 +678,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu">add_fill</span><span class="op">(</span></span>
 <span>    dims <span class="op">=</span> <span class="fu">wb_dims_custom</span><span class="op">(</span>select <span class="op">=</span> <span class="st">"col_names"</span><span class="op">)</span>,</span>
 <span>    color <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span><span class="st">"cyan2"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -684,10 +687,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li id="fn1">
 <p>Basically a pipe operator allows to write code from left to right. Without pipes the code would look like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
 </li>
+<li id="fn2"><p>The single argument <code>dims</code> hereby replaces the mix of <code>col</code>/<code>row</code>, <code>cols</code>/<code>rows</code> and <code>xy</code> used in <code>openxlsx</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>No rule without an exception: some functions still accept <code>cols</code> or <code>rows</code>, but only if <code>dims</code> would not make sense.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -752,13 +757,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

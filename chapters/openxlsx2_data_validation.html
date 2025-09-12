@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.24">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>10&nbsp; Data Validation – The `openxlsx2` book</title>
 <style>
@@ -65,18 +65,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../chapters/openxlsx2_pivot_tables.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9414a286c18468503cc2891b435e24f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-91f105ff5d749bc3768c76881bf3f8dd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -291,7 +292,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">The <code>openxlsx2</code> book</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -456,16 +459,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>Contrary to R objects like vectors or data frames, spreadsheets can contain various types of data in any type of order. A string followed by a date and a formula is not uncommon in spreadsheets. Thankfully even spreadsheets provide a tool to validate some input. This is called data validation. A tool that enhances data integrity and accuracy. By setting specific criteria and constraints for data entry, users can ensure that the data entered into cells meets predefined standards and rules. These rules apply to cells that expect data entry as well as cells that already contain data. Using data validation can help to prevent errors, maintain consistency, and streamline data even in a flexible environment such as a spreadsheet. Key aspects of data validation include creating drop-down lists for easy selection, applying date and number constraints to ensure appropriate data ranges, and using custom formulas to enforce complex validation rules. Understanding and implementing data validation can protect the user from otherwise hard to spot mistakes.</p>
 <p>We begin with a small dataset that we want to test with data validation.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  <span class="st">"d"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2016-01-01"</span><span class="op">)</span> <span class="op">+</span> <span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span>,</span>
 <span>  <span class="st">"t"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="st">"2016-01-01"</span><span class="op">)</span> <span class="op">+</span> <span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span> <span class="op">*</span> <span class="fl">10000</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="checking-numeric-ranges-and-text-lengths" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="checking-numeric-ranges-and-text-lengths">
 <span class="header-section-number">10.1</span> Checking numeric ranges and text lengths</h2>
 <p>In the next two code snippets we are going to check for a specific <code>type</code> of data, if a condition defined by <code>operator</code> is met for a selection or range of <code>values</code>. We construct a workbook that will be filled with four sheets of data tables and data validation for the workbook.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Sheet 1"</span><span class="op">)</span><span class="op">$</span></span>
@@ -477,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="co"># text width 7-9 is fine</span></span>
 <span>  <span class="fu">add_data_validation</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"E2:E151"</span>, type <span class="op">=</span> <span class="st">"textLength"</span>,</span>
 <span>                      operator <span class="op">=</span> <span class="st">"between"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">9</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the screenshot below, the green flag in the top left corner indicates a warning thrown by the data validation rule implemented.</p>
 <div class="cell">
@@ -492,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">10.2</span> Date and Time cell validation</h2>
 <p>In the code below we use a new data operator <code>greaterThanOrEqual</code>, all operators can be found in the documentation for <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data_validation.html">wb_add_data_validation()</a></code>. Here we add checks for a specific date and a range of timestamps that are allowed.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Sheet 2"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data_table</span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="co"># date &gt;= 2016-01-01 is fine</span></span>
@@ -503,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="co"># a few timestamps are fine</span></span>
 <span>  <span class="fu">add_data_validation</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2:B12"</span>, type <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>                      operator <span class="op">=</span> <span class="st">"between"</span>, value <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">t</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">)</span><span class="op">]</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There are many warnings in here too.</p>
 <div class="cell">
@@ -518,13 +521,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">10.3</span> validate list: validate inputs on one sheet with another</h2>
 <p>In the code below we create a sample list from the <code>iris</code> dataset on <code>Sheet 4</code> and reference this a list options for column <code>A</code> on <code>Sheet 3</code>. Our references do not have to be from the same dataset, it can be anything else. This helps, if you do not want to store the values in the <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data_validation.html">wb_add_data_validation()</a></code> step and or want to be able to quickly adjust the possible values.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Sheet 3"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data_table</span><span class="op">(</span>x <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Sheet 4"</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_data_validation</span><span class="op">(</span><span class="st">"Sheet 3"</span>, dims <span class="op">=</span> <span class="st">"A2:A31"</span>, type <span class="op">=</span> <span class="st">"list"</span>,</span>
-<span>                      value <span class="op">=</span> <span class="st">"'Sheet 4'!$A$1:$A$10"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                      value <span class="op">=</span> <span class="st">"'Sheet 4'!$A$1:$A$10"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Below is the drop down list and the input used to populate it.</p>
 <div class="cell">
@@ -545,20 +548,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">10.4</span> validate list: validate inputs with values</h2>
 <p>In the code below we create drop down lists for values directly passed to <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data_validation.html">wb_add_data_validation()</a></code>. In the upper cell range options <code>"O1"</code> and <code>"O2"</code> are available, in the lower cell range <code>"O2"</code> and <code>"O3"</code>. Using values directly is helpful if there are only a few values and it is not required to provide a list of values on a spreadsheet.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>sheet <span class="op">=</span> <span class="fl">2</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data_validation</span><span class="op">(</span>sheet <span class="op">=</span> <span class="fl">1</span>, dims <span class="op">=</span> <span class="st">"A2:A11"</span>, type <span class="op">=</span> <span class="st">"list"</span>,</span>
 <span>                        value <span class="op">=</span> <span class="st">'"O1,O2"'</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data_validation</span><span class="op">(</span>sheet <span class="op">=</span> <span class="fl">1</span>, dims <span class="op">=</span> <span class="st">"A12:A21"</span>, type <span class="op">=</span> <span class="st">"list"</span>,</span>
-<span>                        value <span class="op">=</span> <span class="st">'"O2,O3"'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                        value <span class="op">=</span> <span class="st">'"O2,O3"'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="examples-combining-data-validation-and-formulas" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="examples-combining-data-validation-and-formulas">
 <span class="header-section-number">10.5</span> Examples combining data validation and formulas</h2>
 <section id="example-1-hyperlink-to-selected-value" class="level3" data-number="10.5.1"><h3 data-number="10.5.1" class="anchored" data-anchor-id="example-1-hyperlink-to-selected-value">
 <span class="header-section-number">10.5.1</span> Example 1: hyperlink to selected value</h3>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">formula_old</span> <span class="op">&lt;-</span> <span class="st">'=HYPERLINK("#Tab_1!" &amp;amp; CELL("address",</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">formula_old</span> <span class="op">&lt;-</span> <span class="st">'=HYPERLINK("#Tab_1!" &amp;amp; CELL("address",</span></span>
 <span><span class="st">  INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'</span></span>
 <span>  <span class="va">formula_new</span> <span class="op">&lt;-</span> <span class="st">'=HYPERLINK("#Tab_1!" &amp; CELL("address",</span></span>
 <span><span class="st">  INDEX(C1:F1, MATCH(A1, C1:F1, 0))), "Go to the selected column")'</span></span>
@@ -570,12 +573,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">add_data_validation</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span>, type <span class="op">=</span> <span class="st">"list"</span>,</span>
 <span>                        value <span class="op">=</span> <span class="st">'"2016,2017,2018,2019"'</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_formula</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B1"</span>, x <span class="op">=</span> <span class="va">formula_old</span><span class="op">)</span><span class="op">$</span></span>
-<span>    <span class="fu">add_formula</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, x <span class="op">=</span> <span class="va">formula_new</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">add_formula</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, x <span class="op">=</span> <span class="va">formula_new</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="example-2-create-hyperlink-to-github" class="level3" data-number="10.5.2"><h3 data-number="10.5.2" class="anchored" data-anchor-id="example-2-create-hyperlink-to-github">
 <span class="header-section-number">10.5.2</span> Example 2: create hyperlink to github</h3>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>  <span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"Tab_1"</span>, zoom <span class="op">=</span> <span class="fl">80</span>, gridLines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"C1:F1"</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">:</span><span class="fl">2019</span><span class="op">)</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2017</span>, startCol <span class="op">=</span> <span class="fl">1</span>, startRow <span class="op">=</span> <span class="fl">1</span>, colNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span></span>
@@ -585,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">                CELL("address", INDEX(C1:F1, MATCH(A1, C1:F1, 0))),</span></span>
 <span><span class="st">                "Go to the selected column")'</span><span class="op">)</span><span class="op">$</span></span>
 <span>    <span class="fu">add_formula</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"B2"</span>, x <span class="op">=</span> <span class="st">'=IF(2017 = VALUE(A1),</span></span>
-<span><span class="st">                HYPERLINK("github.com","github.com"), A1)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="st">                HYPERLINK("github.com","github.com"), A1)'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -653,13 +656,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
