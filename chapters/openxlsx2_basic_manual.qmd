@@ -184,7 +184,7 @@ try(wb$save("mtcars.xlsx", overwrite = FALSE))
 
 ## `dims`/ `wb_dims()`
 
-In `openxlsx2` functions that interact with worksheet cells are using `dims` as argument and require the users to provide these. `dims` are cells or cell ranges in A1 notation. The single argument `dims` hereby replaces `col`/`row`, `cols`/`rows` and `xy`. Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:
+In `openxlsx2` functions that interact with worksheet cells are using `dims` as argument and require the users to provide these. `dims` are cells or cell ranges in A1 notation. [^openxlsx2_basic_manual-2] [^openxlsx2_basic_manual-3] Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:
 
 ```{r}
 # various options
@@ -242,3 +242,7 @@ wb <- wb_workbook()$
     color = wb_color("cyan2")
   )
 ```
+
+[^openxlsx2_basic_manual-2]: The single argument `dims` hereby replaces the mix of `col`/`row`, `cols`/`rows` and `xy` used in `openxlsx`.
+
+[^openxlsx2_basic_manual-3]: No rule without an exception: some functions still accept `cols` or `rows`, but only if `dims` would not make sense.
