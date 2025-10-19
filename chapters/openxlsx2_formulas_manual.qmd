@@ -37,7 +37,7 @@ wb$add_data(x = 2)
 wb_to_df(wb, col_names = FALSE)
 ```
 
-What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the open xml style the cell looks something like this:
+What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the openxml style the cell looks something like this:
 
 ```{XML}
 <c r="C1">
@@ -67,6 +67,8 @@ wb <- wb_workbook()$add_worksheet()$
   add_formula(x = "A2 + B2", dims = "D3")
 ```
 
+If a function that normally works in spreadsheet software does not behave as expected when written using `wb_add_formula()`, e.g., if spurious `@` symbols appear in the formula, it is likely that the formula is either an array formula or requires a future function prefix. In modern spreadsheet software, it is no longer straightforward to detect whether a formula is an array formula, since this hidden in cell metadata (cm). Therefore, a formula like `SUM(1+(A1:A2))` will not be displayed as `{SUM(1+(A1:A2))}`.
+
 ## Array formulas
 
 Array formulas in openxml spreadsheets allow performing multiple calculations on a data vector or 'array' instead of a single cell. An array is similar to a vector in R. Unlike regular formulas that operate on a single value, array formulas can process multiple values simultaneously. An important distinction is that that you need array formulas, whenever the formula evaluates an array, even if the output creates only a single cell. So something like this `SUM(ABS(A2:A11))` would require an array formula, because the `SUM()` function is called on a function that returns an array `ABS(A2:A11)`. If the previous formula in written as basic formula, spreadsheet software is likely to mess it up and tries to insert `@` characters in the formula.
@@ -75,6 +77,16 @@ Array formulas in openxml spreadsheets allow performing multiple calculations on
 wb <- wb_workbook()$add_worksheet()$
   add_data(x = head(cars))$
   add_formula(x = "A2:A7 * B2:B7", dims = "C2:C7", array = TRUE)
+```
+
+## cells metadata (cm) formulas
+
+Similar to array formulas, these cell metadata (cm) formulas hide to the user that they are array formulas. Using these is implemented in `openxlsx2` \> 0.6.1:
+
+```{r}
+wb <- wb_workbook()$add_worksheet()$
+  add_data(x = head(cars))$
+  add_formula(x = 'SUM(ABS(A2:A7))', dims = "D2", cm = TRUE)
 ```
 
 ## Array formulas creating multiple fields
@@ -140,7 +152,7 @@ df <- data.frame(
 
 wb <-  wb_workbook()$add_worksheet()$add_data(x = df)$
   add_formula(x = "=A2/B2", dims = "C2:C6", shared = TRUE)$
-  add_formula(x = "=A$2/B$2", dims   = "D2:D6", shared = TRUE)
+  add_formula(x = "=A$2/B$2", dims = "D2:D6", shared = TRUE)
 
 wb_to_df(wb, show_formula = TRUE)
 ```
@@ -154,17 +166,6 @@ wb <- wb_workbook()$add_worksheet()$
   add_data(dims = "B1", x = t(c(1, 2, 3)), colNames = FALSE)$
   add_formula(dims = "A1", x = "SUM(B1:C1)")$
   add_ignore_error(dims = "A1", formulaRange = TRUE)
-```
-
-## cells metadata (cm) formulas
-
-Similar to array formulas, these cell metadata (cm) formulas hide to the user that they are array formulas. Using these is implemented in `openxlsx2` \> 0.6.1:
-
-```{r}
-wb <- wb_workbook()$add_worksheet()$
-  add_data(x = head(cars))$
-  add_formula(x = 'SUM(ABS(A2:A7))', dims = "D2", cm = TRUE)
-# wb$open()
 ```
 
 ## `dataTable` formulas[^openxlsx2_formulas_manual-1]
@@ -205,11 +206,11 @@ wb <- wb_workbook()$
 
 Then we create the workbook, worksheet, and use `wb_add_data_table()`.
 
-One of the advantages of the open xml `dataTable` syntax is that we don't have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These `dataTable` have named columns that we can use instead of letters. When writing the formulas within the `dataTable` we would use the following syntax `[@[column_name]]` to reference the current row. So the `total_sales` formula written in open xml in `dataTable` would look like this; `=[@[sales_price]] * [@[sales_quantity]]`
+One of the advantages of the openxml `dataTable` syntax is that we don't have to specify row numbers or columns as letters. The table also grows dynamically, adding new rows as new data is appended and extending formulas to the new rows. These `dataTable` have named columns that we can use instead of letters. When writing the formulas within the `dataTable` we would use the following syntax `[@[column_name]]` to reference the current row. So the `total_sales` formula written in openxml in `dataTable` would look like this; `=[@[sales_price]] * [@[sales_quantity]]`
 
 If we are writing the formula outside of the `dataTable` we have to reference the table name. In this case lets say the table name is 'daily_sales' `=daily_sales[@[sales_price]] * daily_sales[@[sales_quantity]]`
 
-However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that open xml requires for selecting the current row is different.
+However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that openxml requires for selecting the current row is different.
 
 In openxml the `dataTable` formula looks like this:
 
@@ -219,7 +220,7 @@ In openxml the `dataTable` formula looks like this:
 </calculatedColumnFormula>
 ```
 
-Now we can see that open xml replaces `[@[sales_price]]` with `daily_sales[[#This Row],[sales_price]]` We must then use this syntax when writing formulas for `dataTable`
+Now we can see that openxml replaces `[@[sales_price]]` with `daily_sales[[#This Row],[sales_price]]` We must then use this syntax when writing formulas for `dataTable`
 
 ```{r}
 ## Because we want the `dataTable` formula to propagate down the entire column
@@ -328,3 +329,21 @@ wb$add_formula(
 )
 # wb$open()
 ```
+
+## Example: Third party helper
+
+A helper for debugging spreadsheet formulas is `tidyxl::xlex()`.
+```{r}
+wb <- wb_workbook()$
+  add_worksheet()$
+  add_data(x = mtcars, row_names = TRUE)$
+  add_formula(
+    dims = "N2",
+    x = 'VLOOKUP("Valiant", $A$1:$L$33, MATCH("wt", $1:$1, 0), FALSE)'
+  )
+
+wb$to_df(dims = "N2", show_formula = TRUE, col_names = FALSE) |> 
+  unlist() |> 
+  tidyxl::xlex()
+```
+
