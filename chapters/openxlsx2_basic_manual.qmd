@@ -145,7 +145,7 @@ Whether you use wrapper functions or chain functions is up to you and personal p
 
 ## Importing as workbook
 
-In addition to importing directly from xlsx or xlsm files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire the openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
+In addition to importing directly from xlsx or xlsm files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying the entire openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
 
 Importing a file into a workbook looks like this:
 
@@ -185,6 +185,10 @@ try(wb$save("mtcars.xlsx", overwrite = FALSE))
 ## `dims`/ `wb_dims()`
 
 In `openxlsx2` functions that interact with worksheet cells are using `dims` as argument and require the users to provide these. `dims` are cells or cell ranges in A1 notation. [^openxlsx2_basic_manual-2] [^openxlsx2_basic_manual-3] Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:
+
+[^openxlsx2_basic_manual-2]: The single argument `dims` hereby replaces the mix of `col`/`row`, `cols`/`rows` and `xy` used in `openxlsx`.
+
+[^openxlsx2_basic_manual-3]: No rule without an exception: some functions still accept `cols` or `rows`, but only if `dims` would not make sense.
 
 ```{r}
 # various options
@@ -242,7 +246,3 @@ wb <- wb_workbook()$
     color = wb_color("cyan2")
   )
 ```
-
-[^openxlsx2_basic_manual-2]: The single argument `dims` hereby replaces the mix of `col`/`row`, `cols`/`rows` and `xy` used in `openxlsx`.
-
-[^openxlsx2_basic_manual-3]: No rule without an exception: some functions still accept `cols` or `rows`, but only if `dims` would not make sense.
