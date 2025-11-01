@@ -75,9 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3584025bd2775ba93d20b6dabf7256d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7649146ba921d5849482b4b1eb457dfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3584025bd2775ba93d20b6dabf7256d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0b7c93c9d260c6b781cf333850c654df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -579,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Whether you use wrapper functions or chain functions is up to you and personal preference. There is just one thing to remember, the documentation is exclusively written for the wrapper function. So if you want to know the arguments for the <code>wb$add_data()</code> part, you have to lookup the wrapper functions man page <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">?wb_add_data</a></code>.</p>
 </section><section id="importing-as-workbook" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="importing-as-workbook">
 <span class="header-section-number">2.3</span> Importing as workbook</h2>
-<p>In addition to importing directly from xlsx or xlsm files, <code>openxlsx2</code> provides the <code>wbWorkbook</code> class used for importing and modifying entire the openxml files in <code>R</code>. This <code>workbook</code> class is the heart of <code>openxlsx2</code> and probably the reason why you are reading this manual in the first place.</p>
+<p>In addition to importing directly from xlsx or xlsm files, <code>openxlsx2</code> provides the <code>wbWorkbook</code> class used for importing and modifying the entire openxml files in <code>R</code>. This <code>workbook</code> class is the heart of <code>openxlsx2</code> and probably the reason why you are reading this manual in the first place.</p>
 <p>Importing a file into a workbook looks like this:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># the file we are going to load</span></span>
