@@ -600,6 +600,16 @@
     ]
   },
   {
+    "objectID": "chapters/openxlsx2_formulas_manual.html#example-whatever-i-try-my-formula-wont-work-what-to-do",
+    "href": "chapters/openxlsx2_formulas_manual.html#example-whatever-i-try-my-formula-wont-work-what-to-do",
+    "title": "\n8  Spreadsheet formulas\n",
+    "section": "\n8.10 Example: Whatever I try, my formula wont work, what to do?",
+    "text": "8.10 Example: Whatever I try, my formula wont work, what to do?\nSometimes a formula doesn’t behave as expected. You may notice unexpected “@” symbols appearing when you type it, or the formula simply looks wrong. What can you do? The easiest approach is to enter the formula directly into a spreadsheet, verify that it works, save the file, and then load it using wb_to_df(show_formula = TRUE, ...) as shown earlier.\nFor a deeper look, you can load the workbook with wb &lt;- wb_load(...). Once loaded, you can inspect the internal cc data frame, which contains all cell information. If your workbook has only one worksheet, the code below allows you to examine exactly how the formula is represented in the file and how you might reconstruct it if needed.\n\n# from the wb_to_df() manual page:\nexample_file &lt;- system.file(\"extdata\", \"openxlsx2_example.xlsx\", package = \"openxlsx2\")\nwb &lt;- wb_load(example_file)\n\ncc &lt;- wb$worksheets[[1]]$sheet_data$cc\n\n# inspect a cell with a formula\ncc[cc$r == \"I11\", ]\n#&gt;      r row_r c_r c_s c_t v               f f_attr is\n#&gt; 57 I11    11   I         3 PRODUCT(C11,E3)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Spreadsheet formulas</span>"
+    ]
+  },
+  {
     "objectID": "chapters/openxlsx2_formulas_manual.html#footnotes",
     "href": "chapters/openxlsx2_formulas_manual.html#footnotes",
     "title": "\n8  Spreadsheet formulas\n",
@@ -904,7 +914,7 @@
     "href": "chapters/openxlsx2_extending.html",
     "title": "\n15  Extending openxlsx2\n",
     "section": "",
-    "text": "15.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpdwJVwV/temp_xlsx_2aa929922f0b.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Error : Unable to open and load file:  /tmp/RtmpdwJVwV/temp_xlsx_2aa929922f0b.xlsx\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpdwJVwV/temp_xlsx_2aa929922f0b.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() |&gt; head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1",
+    "text": "15.1 msoc - Encrypting / Decrypting workbooks\nYou might want to look at msoc (Garbuszus 2023) for openxml file level encryption/decryption.\nlibrary(msoc)\n\nxlsx &lt;- temp_xlsx()\n\n# let us write some worksheet\nwb_workbook()$add_worksheet()$add_data(x = mtcars)$save(xlsx)\n\n# now we can encrypt it\nencrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpI37HAT/temp_xlsx_25fe4aeee364.xlsx\"\n\n# the file is encrypted, we can not read it\ntry(wb &lt;- wb_load(xlsx))\n#&gt; Error : Unable to open and load file:  /tmp/RtmpI37HAT/temp_xlsx_25fe4aeee364.xlsx\n\n# we have to decrypt it first\ndecrypt(xlsx, xlsx, pass = \"msoc\")\n#&gt; [1] \"/tmp/RtmpI37HAT/temp_xlsx_25fe4aeee364.xlsx\"\n\n# now we can load it again\nwb_load(xlsx)$to_df() |&gt; head()\n#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; 2 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; 3 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; 4 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; 5 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; 6 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; 7 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Extending `openxlsx2`</span>"
     ]
