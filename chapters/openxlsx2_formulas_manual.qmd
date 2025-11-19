@@ -333,6 +333,7 @@ wb$add_formula(
 ## Example: Third party helper
 
 A helper for debugging spreadsheet formulas is `tidyxl::xlex()`.
+
 ```{r}
 wb <- wb_workbook()$
   add_worksheet()$
@@ -347,3 +348,19 @@ wb$to_df(dims = "N2", show_formula = TRUE, col_names = FALSE) |>
   tidyxl::xlex()
 ```
 
+## Example: Whatever I try, my formula wont work, what to do?
+
+Sometimes a formula doesn’t behave as expected. You may notice unexpected "@" symbols appearing when you type it, or the formula simply looks wrong. What can you do? The easiest approach is to enter the formula directly into a spreadsheet, verify that it works, save the file, and then load it using `wb_to_df(show_formula = TRUE, ...)` as shown earlier.
+
+For a deeper look, you can load the workbook with `wb <- wb_load(...)`. Once loaded, you can inspect the internal `cc` data frame, which contains all cell information. If your workbook has only one worksheet, the code below allows you to examine exactly how the formula is represented in the file and how you might reconstruct it if needed.
+
+```{r}
+# from the wb_to_df() manual page:
+example_file <- system.file("extdata", "openxlsx2_example.xlsx", package = "openxlsx2")
+wb <- wb_load(example_file)
+
+cc <- wb$worksheets[[1]]$sheet_data$cc
+
+# inspect a cell with a formula
+cc[cc$r == "I11", ]
+```
