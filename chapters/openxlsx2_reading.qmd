@@ -381,3 +381,33 @@ rownames(tab) <- NULL
 aggregate(Total.Estimate ~ Supergroup, data = tab, sum)
 aggregate(Total.Estimate ~ Group, data = tab, sum)
 ```
+
+## Another real world data
+
+Since release 1.22 it is possible to use `+` and `-` as wildcards in `dims`. This allows reading the following file is a single `wb_to_df()` call, even though the data is rather "untidy" spread on the sheet. Months are spread horizontally and there is a gap between the row names, the column names, and the data.  [^openxlsx2_reading-2].
+
+[^openxlsx2_reading-2]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/cpb-world-trade-monitor-september-2025.xlsx>.
+
+```{r}
+fl <- "https://www.cpb.nl/system/files/cpbmedia/cpb-world-trade-monitor-september-2025.xlsx"
+
+wb <- wb_load(fl)
+
+# there is a space between the dim names and the data
+df <- wb$to_df(dims = "B4,F4:+4,B8,F8:+8", skip_empty_cols = TRUE, row_names = TRUE)
+
+# the data is spread horizontally
+df <- as.data.frame(t(df))
+df$date <- paste0(rownames(df), "d01")
+df$date <- as.Date(df$date, format = "%Ym%md%d")
+
+plot(
+  df$date, df$`World trade`, 
+  main = "CPB.nl: World Trade seasonally adjusted",
+  xlab = "Months",
+  ylab = "Volumes (USD bln, 2021 = 100)",
+  type = "l",
+  panel.first = grid()
+)
+```
+
