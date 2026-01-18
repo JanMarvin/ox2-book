@@ -151,13 +151,13 @@ Often the creator of the worksheet has used a lot of creativity and the data doe
 wb_to_df(xl, start_row = 5, col_names = FALSE)
 ```
 
-### `na.strings` - define missing values
+### `na` - define missing values
 
-There is the "#N/A" string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via `na.strings`
+There is the "#N/A" string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via `na`
 
 ```{r}
 # na strings
-wb_to_df(xl, na.strings = "")
+wb_to_df(xl, na = "")
 ```
 
 ### Importing as workbook
@@ -209,7 +209,7 @@ Using this we realize that the table has a few description rows ahead and a few 
 
 ```{r}
 dims <- "A7:BG605"
-df <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+df <- wb_to_df(wb, dims = dims, na = c("-", "**", "#N/A"),
                fill_merged_cells = TRUE)
 ```
 
@@ -298,12 +298,12 @@ Using only the last row right above the data, can result in many duplicated colu
 ```{r}
 # read body
 dims <- "A8:BG605"
-df_body <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+df_body <- wb_to_df(wb, dims = dims, na = c("-", "**", "#N/A"),
                     fill_merged_cells = TRUE, col_names = FALSE)
 
 # read header
 dims <- "A5:BG7"
-df_head <- wb_to_df(wb, dims = dims, na.strings = c("-", "**", "#N/A"),
+df_head <- wb_to_df(wb, dims = dims, na = c("-", "**", "#N/A"),
                     fill_merged_cells = TRUE, col_names = FALSE)
 
 # create single header string. remove all spaces, unique values. collapse on dot
@@ -384,7 +384,7 @@ aggregate(Total.Estimate ~ Group, data = tab, sum)
 
 ## Another real world data
 
-Since release 1.22 it is possible to use `+` and `-` as wildcards in `dims`. This allows reading the following file is a single `wb_to_df()` call, even though the data is rather "untidy" spread on the sheet. Months are spread horizontally and there is a gap between the row names, the column names, and the data.  [^openxlsx2_reading-2].
+Since release 1.22 it is possible to use `+` and `-` as wildcards in `dims`. This allows reading the following file is a single `wb_to_df()` call, even though the data is rather "untidy" spread on the sheet. Months are spread horizontally and there is a gap between the row names, the column names, and the data. [^openxlsx2_reading-2].
 
 [^openxlsx2_reading-2]: A backup of the file can be found here <https://janmarvin.github.io/openxlsx-data/cpb-world-trade-monitor-september-2025.xlsx>.
 
@@ -410,4 +410,3 @@ plot(
   panel.first = grid()
 )
 ```
-

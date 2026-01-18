@@ -263,7 +263,7 @@ knitr::include_graphics("../img/pv_pivottabler.png")
 ```{r}
 # use A:P
 wb <- wb_workbook()$add_worksheet()$add_data(x = pivottabler::bhmtrains,
-                                             na.strings = NULL)
+                                             na = NULL)
 df <- wb_data(wb, dims = "A:P")
 
 # use TrainCategory on column and data

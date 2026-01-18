@@ -38,7 +38,7 @@ wb$add_worksheet("dat")$add_data(x = dat)
 
 ## Writing missing values
 
-Writing missing values to a spreadsheet (`NA`, `NA_character_`, `NA_integer_`, and `NA_real_`) results in the missing value to appear as the `#N/A` expression in spreadsheet software. Still there are multiple ways to create missing values, below are the three common solutions. If the default is unwanted `na.strings = NULL`, creates a blank cell and `na.strings = "N/A"` creates a character string `"N/A"`. There is a subtle difference between `na.strings = NULL` and `na.strings = ""`. The latter creates a string `""` whereas the former leaves the cell mostly untouched, aka there is no cell type attached to it. Unless some form of styling is attached to such a cell, it will be omitted when saving the file as `xlsx`. This reduces the file size of these sparse matrices significantly, because only cells that contain some kind of information will be written to the output.
+Writing missing values to a spreadsheet (`NA`, `NA_character_`, `NA_integer_`, and `NA_real_`) results in the missing value to appear as the `#N/A` expression in spreadsheet software. Still there are multiple ways to create missing values, below are the three common solutions. If the default is unwanted `na = NULL`, creates a blank cell and `na = "N/A"` creates a character string `"N/A"`. There is a subtle difference between `na = NULL` and `na = ""`. The latter creates a string `""` whereas the former leaves the cell mostly untouched, aka there is no cell type attached to it. Unless some form of styling is attached to such a cell, it will be omitted when saving the file as `xlsx`. This reduces the file size of these sparse matrices significantly, because only cells that contain some kind of information will be written to the output.
 
 ```{r}
 # example matrix
@@ -53,9 +53,9 @@ wb$add_worksheet("missings")
 # the default writes the expression #NA
 wb$add_data(dims = dims_1, x = mm)$add_border(dims = dims_1)
 # writes nothing, keeps the cell blank
-wb$add_data(dims = dims_2, x = mm, na.strings = NULL)$add_border(dims = dims_2)
+wb$add_data(dims = dims_2, x = mm, na = NULL)$add_border(dims = dims_2)
 # writes the string N/A
-wb$add_data(dims = dims_3, x = mm, na.strings = "N/A")$add_border(dims = dims_3)
+wb$add_data(dims = dims_3, x = mm, na = "N/A")$add_border(dims = dims_3)
 ```
 
 ```{r echo=FALSE, warning=FALSE}

@@ -388,8 +388,8 @@ knitr::include_graphics("../img/cf_blanks.png")
 
 ```{r}
 wb$add_worksheet("contains blanks")
-wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na.strings = NULL)
-wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na.strings = NULL,
+wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na = NULL)
+wb$add_data(x = c(NA, 1, 2, ''), col_names = FALSE, na = NULL,
             start_col = 2)
 wb$add_conditional_formatting(dims = "A1:A4", type = "containsBlanks")
 wb$add_conditional_formatting(dims = "B1:B4", type = "notContainsBlanks")
