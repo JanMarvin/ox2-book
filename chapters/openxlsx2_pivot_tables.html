@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>9&nbsp; Pivot tables – The `openxlsx2` book</title>
 <style>
@@ -90,9 +90,9 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -662,6 +662,10 @@ div.csl-indent {
 <span>      numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
+<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
+<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
+<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -742,7 +746,7 @@ div.csl-indent {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># use A:P</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">add_data</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">pivottabler</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pivottabler/man/bhmtrains.html">bhmtrains</a></span>,</span>
-<span>                                             na.strings <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span>                                             na <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_data.html">wb_data</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="st">"A:P"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># use TrainCategory on column and data</span></span>
@@ -784,7 +788,9 @@ div.csl-indent {
 <span>  fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="st">"count"</span><span class="op">)</span>,</span>
 <span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"$ ###"</span>, formatCode <span class="op">=</span> <span class="st">"#"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
+<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="adding-slicers-to-pivot-tables" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="adding-slicers-to-pivot-tables">
 <span class="header-section-number">9.2</span> Adding slicers to pivot tables</h2>
@@ -881,6 +887,8 @@ div.csl-indent {
 <span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>alcgp <span class="op">=</span> <span class="st">'x %in% c("40-79", "80-119")'</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
+<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>

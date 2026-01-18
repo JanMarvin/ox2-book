@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>3&nbsp; Reading to data frames – The `openxlsx2` book</title>
 <style>
@@ -70,9 +70,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#row_names---keep-rownames-from-input" id="toc-row_names---keep-rownames-from-input" class="nav-link" data-scroll-target="#row_names---keep-rownames-from-input"><span class="header-section-number">3.1.11</span> <code>row_names</code> - keep rownames from input</a></li>
   <li><a href="#types---convert-column-to-specific-type" id="toc-types---convert-column-to-specific-type" class="nav-link" data-scroll-target="#types---convert-column-to-specific-type"><span class="header-section-number">3.1.12</span> <code>types</code> - convert column to specific type</a></li>
   <li><a href="#start_row---where-to-begin" id="toc-start_row---where-to-begin" class="nav-link" data-scroll-target="#start_row---where-to-begin"><span class="header-section-number">3.1.13</span> <code>start_row</code> - where to begin</a></li>
-  <li><a href="#na.strings---define-missing-values" id="toc-na.strings---define-missing-values" class="nav-link" data-scroll-target="#na.strings---define-missing-values"><span class="header-section-number">3.1.14</span> <code>na.strings</code> - define missing values</a></li>
+  <li><a href="#na---define-missing-values" id="toc-na---define-missing-values" class="nav-link" data-scroll-target="#na---define-missing-values"><span class="header-section-number">3.1.14</span> <code>na</code> - define missing values</a></li>
   <li><a href="#importing-as-workbook" id="toc-importing-as-workbook" class="nav-link" data-scroll-target="#importing-as-workbook"><span class="header-section-number">3.1.15</span> Importing as workbook</a></li>
   </ul>
 </li>
@@ -703,12 +703,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 11 FALSE  3 NA  67.30     i 2023-12-25 NA       3     &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; 12    NA  1 NA 123.00  &lt;NA&gt; 2023-07-31 NA     122     &lt;NA&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="na.strings---define-missing-values" class="level3" data-number="3.1.14"><h3 data-number="3.1.14" class="anchored" data-anchor-id="na.strings---define-missing-values">
-<span class="header-section-number">3.1.14</span> <code>na.strings</code> - define missing values</h3>
-<p>There is the “#N/A” string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via <code>na.strings</code></p>
+</section><section id="na---define-missing-values" class="level3" data-number="3.1.14"><h3 data-number="3.1.14" class="anchored" data-anchor-id="na---define-missing-values">
+<span class="header-section-number">3.1.14</span> <code>na</code> - define missing values</h3>
+<p>There is the “#N/A” string, but often the user will be faced with custom missing values and other values we are not interested. Such strings can be passed as character vector via <code>na</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># na strings</span></span>
-<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, na.strings <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">xl</span>, na <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Var1 Var2 &lt;NA&gt;  Var3  Var4       Var5         Var6    Var7     Var8</span></span>
 <span><span class="co">#&gt; 3   TRUE    1   NA     1     a 2023-05-29 3209324 This #DIV/0! 01:27:15</span></span>
 <span><span class="co">#&gt; 4   TRUE   NA   NA #NUM!     b 2023-05-23         &lt;NA&gt;       0 14:02:57</span></span>
@@ -756,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using this we realize that the table has a few description rows ahead and a few footnotes below. Numeric data starts in row <code>8</code> and ends in <code>605</code>. The table spans columns <code>A</code> to <code>BG</code>. Therefore our dimensions will look like this <code>A7:BG605</code>. We start one row earlier than the data we want to read, because we expect a column name. In addition there are a few missing values that we want to remove.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A7:BG605"</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>               fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="cleaning-the-indents" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="cleaning-the-indents">
@@ -876,12 +876,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read body</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A8:BG605"</span></span>
-<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read header</span></span>
 <span><span class="va">dims</span> <span class="op">&lt;-</span> <span class="st">"A5:BG7"</span></span>
-<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na.strings <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
+<span><span class="va">df_head</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, dims <span class="op">=</span> <span class="va">dims</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-"</span>, <span class="st">"**"</span>, <span class="st">"#N/A"</span><span class="op">)</span>,</span>
 <span>                    fill_merged_cells <span class="op">=</span> <span class="cn">TRUE</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create single header string. remove all spaces, unique values. collapse on dot</span></span>
