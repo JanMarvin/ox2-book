@@ -11,17 +11,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-Welcome to the styling manual for `openxlsx2`. In this manual you will learn how to use `openxlsx2` to style your worksheets. data from xlsx-files to R as well as how to export data from R to xlsx, and how to import and modify these openxml workbooks in R.
+Welcome to the `openxlsx2` styling manual. This guide demonstrates how to transform raw data into professional reports by applying custom styles to your worksheets. You will learn how to manage colors, fonts, and borders using both high-level convenience functions and 'bare-metal' technical approaches, as well as how to modify existing openxml workbooks directly within R.
 
 ## Colors, text rotation and number formats
 
-Below we show you two ways how to create styled tables with `openxlsx2` one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table. We show both ways to create styles in `openxlsx2` to show how you could build on our functions or create your very own functions.
+Below we show you two ways how to create styled tables with `openxlsx2` one using the high-level functions to style worksheet areas and one using the bare-metal approach of creating the identical table. We show both ways to create styles in `openxlsx2` to show how you could build on our functions or create your very own functions.
 
 ```{r echo=FALSE, warning=FALSE, out.width="100%", fig.cap="The example below, with increased column width."}
 knitr::include_graphics("../img/worksheet_styling.png")
 ```
 
-### the quick way: using high level functions
+### the quick way: using high-level functions
 
 ```{r}
 library(openxlsx2)
@@ -33,7 +33,7 @@ colnames(mat) <- make.names(seq_len(ncol(mat)))
 border_col <- wb_color(theme = 1)
 border_sty <- "thin"
 
-# prepare workbook with data and formated first row
+# prepare workbook with data and formatted first row
 wb <- wb_workbook() |>
   wb_add_worksheet("test") |>
   wb_add_data(x = mat) |>
@@ -64,7 +64,7 @@ for (i in seq_along(x)) {
 # wb$open()
 ```
 
-### the long way: using bare metal functions
+### the long way: using bare-metal functions
 
 ```{r}
 # create workbook
@@ -212,7 +212,7 @@ df <- data.frame(
   "numeric" = 1
 )
 
-## openxlsx will apply default Excel styling for these classes
+## openxlsx will apply default spreadsheet styling for these classes
 class(df$Cash) <- c(class(df$Cash), "currency")
 class(df$Cash2) <- c(class(df$Cash2), "accounting")
 class(df$hLink) <- "hyperlink"
@@ -249,7 +249,7 @@ wb <- wb |>
   wb_set_col_widths(cols = cols_2, widths = 10)
 ```
 
-### wb_set_row_heigths
+### wb_set_row_heights
 
 ```{r}
 wb <- wb |>
@@ -291,13 +291,13 @@ knitr::include_graphics("../img/ws_border_4.png")
 
 ### styled table
 
-Below we show you two ways how to create styled tables with `openxlsx2` one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table.
+Below we show you two ways how to create styled tables with `openxlsx2` one using the high-level functions to style worksheet areas and one using the bare-metal approach of creating the identical table.
 
 ```{r echo=FALSE, warning=FALSE}
 knitr::include_graphics("../img/styled_table.png")
 ```
 
-#### the quick way: using high level functions
+#### the quick way: using high-level functions
 
 ```{r}
 # add some dummy data to the worksheet
@@ -376,7 +376,7 @@ wb <- wb |> wb_set_cell_style(dims = cell,
 
 ## Use workbook colors and modify them
 
-The loop below will apply the tint attribute to the fill color
+The loop below will apply the tint attribute to the fill color.
 
 ```{r echo=FALSE, warning=FALSE, out.width="100%", fig.cap="Tint variations of the theme colors."}
 knitr::include_graphics("../img/color_tint.png")
@@ -715,6 +715,7 @@ knitr::include_graphics("../img/sy_namedstyle.png")
 ## Switching themes
 
 It's also possible to change the entire theme of the workbook. This impacts the default colors and fonts in a workbook. `openxlsx2` ships a few styles from older and current spreadsheet software releases. If one wants to use the `LibreOffice` style sheet, this can be changed as follows:
+
 ```{r}
 wb <- wb_workbook(theme = "LibreOffice")$add_worksheet()
 wb$get_base_colors()
@@ -722,7 +723,7 @@ wb$get_base_colors()
 
 An example how `openxlsx2` got the themes and colors from spreadsheets can be found in the `inst` folder, this should make it possible to extract or create custom themes, for example, aligned with corporate identity.
 
-```r
+``` r
 system.file("extdata/themes.R", package = "openxlsx2")
 ```
 
@@ -733,7 +734,7 @@ In addition to individually styled cells, spreadsheets can also have styled colu
 ```{r}
 wb <- wb_workbook()
 
-# make the entire thing yellow (pick the style from an exisisting cell)
+# make the entire thing yellow (pick the style from an existing cell)
 wb$add_worksheet("cols")$add_fill(color = wb_color("yellow"))
 wb$set_cell_style_across(cols = "A:XFD", style = wb$get_cell_style(dims = "A1"))
 
