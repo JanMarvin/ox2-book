@@ -643,7 +643,7 @@ div.csl-indent {
 <span>    <span class="va">df</span>, dims <span class="op">=</span> <span class="st">"A3"</span>, sheet <span class="op">=</span> <span class="st">"table"</span>,</span>
 <span>    rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span>, cols <span class="op">=</span> <span class="st">"gear"</span>, data <span class="op">=</span> <span class="st">"disp"</span>,</span>
 <span>    fun <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>no_style <span class="op">=</span> <span class="cn">TRUE</span>, numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>no_style <span class="op">=</span> <span class="cn">TRUE</span>, numfmts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>  <span class="co"># Applied a few params and use auto_format_id</span></span>
@@ -659,13 +659,9 @@ div.csl-indent {
 <span>      apply_pattern_formats      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>      apply_width_height_formats <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>      auto_format_id             <span class="op">=</span> <span class="fl">4099</span>,</span>
-<span>      numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span></span>
+<span>      numfmts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"##0.0"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
-<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
-<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
-<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -787,10 +783,8 @@ div.csl-indent {
 <span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"disp"</span>, <span class="st">"hp"</span><span class="op">)</span>,</span>
 <span>  fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sum"</span>, <span class="st">"count"</span><span class="op">)</span>,</span>
 <span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"$ ###"</span>, formatCode <span class="op">=</span> <span class="st">"#"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
-<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>    numfmts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"$ ###"</span>, formatCode <span class="op">=</span> <span class="st">"#"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="adding-slicers-to-pivot-tables" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="adding-slicers-to-pivot-tables">
 <span class="header-section-number">9.2</span> Adding slicers to pivot tables</h2>
@@ -873,7 +867,7 @@ div.csl-indent {
 <span>    slicer <span class="op">=</span> <span class="st">"alcgp"</span>, pivot_table <span class="op">=</span> <span class="st">"pt1"</span>,</span>
 <span>    param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>      show_data_as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"percentOfRow"</span><span class="op">)</span>,</span>
-<span>      numfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"0.0%"</span><span class="op">)</span>,</span>
+<span>      numfmts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>formatCode <span class="op">=</span> <span class="st">"0.0%"</span><span class="op">)</span>,</span>
 <span>      compact <span class="op">=</span> <span class="cn">FALSE</span>, outline <span class="op">=</span> <span class="cn">FALSE</span>, compact_data <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>      row_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>, col_grand_totals <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>agegp <span class="op">=</span> <span class="st">'x &gt; "25-34"'</span><span class="op">)</span></span>
@@ -887,8 +881,6 @@ div.csl-indent {
 <span>      choose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>alcgp <span class="op">=</span> <span class="st">'x %in% c("40-79", "80-119")'</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in standardize_case_names(params, arguments = arguments, return =</span></span>
-<span><span class="co">#&gt; TRUE): unused arguments (numfmt)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
