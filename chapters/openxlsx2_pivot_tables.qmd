@@ -172,7 +172,7 @@ wb <- wb |>
     df, dims = "A3", sheet = "table",
     rows = c("cyl", "am"), cols = "gear", data = "disp",
     fun = "average",
-    params = list(no_style = TRUE, numfmt = c(formatCode = "##0.0"))
+    params = list(no_style = TRUE, numfmts = c(formatCode = "##0.0"))
   ) |>
 
   # Applied a few params and use auto_format_id
@@ -188,7 +188,7 @@ wb <- wb |>
       apply_pattern_formats      = TRUE,
       apply_width_height_formats = TRUE,
       auto_format_id             = 4099,
-      numfmt = c(formatCode = "##0.0")
+      numfmts = c(formatCode = "##0.0")
     )
   )
 
@@ -301,7 +301,7 @@ wb$add_pivot_table(
   data = c("disp", "hp"),
   fun = c("sum", "count"),
   params = list(
-    numfmt = c(formatCode = "$ ###", formatCode = "#")
+    numfmts = c(formatCode = "$ ###", formatCode = "#")
   ))
 ```
 
@@ -392,7 +392,7 @@ wb <- wb |>
     slicer = "alcgp", pivot_table = "pt1",
     param = list(
       show_data_as = c("percentOfRow"),
-      numfmt = c(formatCode = "0.0%"),
+      numfmts = c(formatCode = "0.0%"),
       compact = FALSE, outline = FALSE, compact_data = FALSE,
       row_grand_totals = FALSE, col_grand_totals = FALSE,
       choose = c(agegp = 'x > "25-34"')
