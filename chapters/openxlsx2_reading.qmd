@@ -65,7 +65,7 @@ wb_to_df(xl, show_formula = TRUE)
 
 ### `dims` - read specific dimension
 
-Sometimes the entire worksheet contains to much data, in such case we provide functions to read only a selected dimension range. Such a range consists of either a specific cell like "A1" or a cell range in the notion used in the `openxml` standard
+Sometimes the entire worksheet contains too much data, in such case we provide functions to read only a selected dimension range. Such a range consists of either a specific cell like "A1" or a cell range in the notion used in the openxml standard
 
 ```{r}
 # read dimension without column names
@@ -108,7 +108,7 @@ wb_to_df(xl, convert = FALSE)
 
 ### `skip_empty_rows` - remove empty rows
 
-Even though `openxlsx2` imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentional or empty because they contain a cell format, but the cell value was removed. This was added mostly for backward comparability, but the default has been changed to `FALSE`. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty
+Even though `openxlsx2` imports everything as requested, sometimes it might be helpful to remove empty lines from the data. These might be either left empty intentionally or empty because they contain a cell format, but the cell value was removed. This was added mostly for backward compatibility, but the default has been changed to `FALSE`. The behavior has changed a bit as well. Previously empty cells were removed prior to the conversion to R data frames, now they are removed after the conversion and are removed only if they are completely empty
 
 ```{r}
 # erase empty rows from dataset
@@ -126,7 +126,7 @@ wb_to_df(xl, skip_empty_cols = TRUE)
 
 ### `row_names` - keep rownames from input
 
-Sometimes the data source might provide rownames as well. In such a case you can `openxlsx2` to treat the first column as rowname
+Sometimes the data source might provide rownames as well. In such a case you can tell `openxlsx2` to treat the first column as rowname
 
 ```{r}
 # convert first row to rownames
@@ -162,7 +162,7 @@ wb_to_df(xl, na = "")
 
 ### Importing as workbook
 
-In addition to importing directly from xlsx, xlsm or xlsb files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire the openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
+In addition to importing directly from xlsx, xlsm or xlsb files, `openxlsx2` provides the `wbWorkbook` class used for importing and modifying entire openxml files in `R`. This `workbook` class is the heart of `openxlsx2` and probably the reason why you are reading this manual in the first place.
 
 Importing a file into a workbook looks like this:
 
@@ -175,7 +175,7 @@ wb <- wb_load(file = xl)
 
 The additional options `wb_load()` provides are for internal use: `sheet` loads only a selected sheet from the workbook and `data_only` reads only the data parts from a workbook and ignores any additional graphics or pivot tables. Both functions create workbook objects that can only be used to read data, and we do not recommend end users to use them. Especially not if they intend to re-export the workbook afterwards.
 
-Once a workbook is imported, we provide several functions to interact with and modify it (the `wb_to_df()` function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages and the additional style vignette (more vignettes to follow).
+Once a workbook is imported, we provide several functions to interact with and modify it (the `wb_to_df()` function mentioned above works the same way for an imported workbook). It is possible to add new sheets and remove sheets, as well as to add or remove data. R-plots can be inserted and also the style of the workbook can be changed, new fonts, background colors and number formats. There is a wealth of options explained in the man pages, the additional style vignette or the style chapter of this book.
 
 ## Example: Reading real world data
 
@@ -215,10 +215,10 @@ df <- wb_to_df(wb, dims = dims, na = c("-", "**", "#N/A"),
 
 ### Cleaning the indents
 
-Not for every feature there is a custom function, but a lot of things can be done with `openxlsx2`. The rows are grouped by occupation. This occupation is not visisble in the data frame above. But since the information is available in the data, we can access it.
+Not for every feature there is a custom function, but a lot of things can be done with `openxlsx2`. The rows are grouped by occupation. This occupation is not visible in the data frame above. But since the information is available in the data, we can access it.
 
 ```{r}
-## adaption of https://github.com/JanMarvin/openxlsx2/discussions/710
+## adaptation of https://github.com/JanMarvin/openxlsx2/discussions/710
 description_dims <- wb_dims(rows = as.integer(rownames(df)), cols = 1)
 text <- wb_to_df(wb, dims = description_dims, col_names = FALSE)[[1]]
 want <- wb$get_cell_style(dims = description_dims)
