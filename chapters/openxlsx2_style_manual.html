@@ -426,8 +426,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <a href="#colors-text-rotation-and-number-formats" id="toc-colors-text-rotation-and-number-formats" class="nav-link active" data-scroll-target="#colors-text-rotation-and-number-formats"><span class="header-section-number">5.1</span> Colors, text rotation and number formats</a>
   <ul class="collapse">
-<li><a href="#the-quick-way-using-high-level-functions" id="toc-the-quick-way-using-high-level-functions" class="nav-link" data-scroll-target="#the-quick-way-using-high-level-functions"><span class="header-section-number">5.1.1</span> the quick way: using high level functions</a></li>
-  <li><a href="#the-long-way-using-bare-metal-functions" id="toc-the-long-way-using-bare-metal-functions" class="nav-link" data-scroll-target="#the-long-way-using-bare-metal-functions"><span class="header-section-number">5.1.2</span> the long way: using bare metal functions</a></li>
+<li><a href="#the-quick-way-using-high-level-functions" id="toc-the-quick-way-using-high-level-functions" class="nav-link" data-scroll-target="#the-quick-way-using-high-level-functions"><span class="header-section-number">5.1.1</span> the quick way: using high-level functions</a></li>
+  <li><a href="#the-long-way-using-bare-metal-functions" id="toc-the-long-way-using-bare-metal-functions" class="nav-link" data-scroll-target="#the-long-way-using-bare-metal-functions"><span class="header-section-number">5.1.2</span> the long way: using bare-metal functions</a></li>
   </ul>
 </li>
   <li>
@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#modifying-the-column-and-row-widths" id="toc-modifying-the-column-and-row-widths" class="nav-link" data-scroll-target="#modifying-the-column-and-row-widths"><span class="header-section-number">5.3</span> Modifying the column and row widths</a>
   <ul class="collapse">
 <li><a href="#wb_set_col_widths" id="toc-wb_set_col_widths" class="nav-link" data-scroll-target="#wb_set_col_widths"><span class="header-section-number">5.3.1</span> wb_set_col_widths</a></li>
-  <li><a href="#wb_set_row_heigths" id="toc-wb_set_row_heigths" class="nav-link" data-scroll-target="#wb_set_row_heigths"><span class="header-section-number">5.3.2</span> wb_set_row_heigths</a></li>
+  <li><a href="#wb_set_row_heights" id="toc-wb_set_row_heights" class="nav-link" data-scroll-target="#wb_set_row_heights"><span class="header-section-number">5.3.2</span> wb_set_row_heights</a></li>
   </ul>
 </li>
   <li>
@@ -479,10 +479,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Welcome to the styling manual for <code>openxlsx2</code>. In this manual you will learn how to use <code>openxlsx2</code> to style your worksheets. data from xlsx-files to R as well as how to export data from R to xlsx, and how to import and modify these openxml workbooks in R.</p>
+</header><p>Welcome to the <code>openxlsx2</code> styling manual. This guide demonstrates how to transform raw data into professional reports by applying custom styles to your worksheets. You will learn how to manage colors, fonts, and borders using both high-level convenience functions and ‘bare-metal’ technical approaches, as well as how to modify existing openxml workbooks directly within R.</p>
 <section id="colors-text-rotation-and-number-formats" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="colors-text-rotation-and-number-formats">
 <span class="header-section-number">5.1</span> Colors, text rotation and number formats</h2>
-<p>Below we show you two ways how to create styled tables with <code>openxlsx2</code> one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table. We show both ways to create styles in <code>openxlsx2</code> to show how you could build on our functions or create your very own functions.</p>
+<p>Below we show you two ways how to create styled tables with <code>openxlsx2</code> one using the high-level functions to style worksheet areas and one using the bare-metal approach of creating the identical table. We show both ways to create styles in <code>openxlsx2</code> to show how you could build on our functions or create your very own functions.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="the-quick-way-using-high-level-functions" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="the-quick-way-using-high-level-functions">
-<span class="header-section-number">5.1.1</span> the quick way: using high level functions</h3>
+<span class="header-section-number">5.1.1</span> the quick way: using high-level functions</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
 <span></span>
@@ -503,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">border_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">border_sty</span> <span class="op">&lt;-</span> <span class="st">"thin"</span></span>
 <span></span>
-<span><span class="co"># prepare workbook with data and formated first row</span></span>
+<span><span class="co"># prepare workbook with data and formatted first row</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -534,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># wb$open()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="the-long-way-using-bare-metal-functions" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="the-long-way-using-bare-metal-functions">
-<span class="header-section-number">5.1.2</span> the long way: using bare metal functions</h3>
+<span class="header-section-number">5.1.2</span> the long way: using bare-metal functions</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create workbook</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span></span>
@@ -681,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="st">"numeric"</span> <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## openxlsx will apply default Excel styling for these classes</span></span>
+<span><span class="co">## openxlsx will apply default spreadsheet styling for these classes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Cash</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Cash</span><span class="op">)</span>, <span class="st">"currency"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Cash2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Cash2</span><span class="op">)</span>, <span class="st">"accounting"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">hLink</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"hyperlink"</span></span>
@@ -719,8 +719,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/col_widths-wb.html">wb_set_col_widths</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_1</span>, widths <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/col_widths-wb.html">wb_set_col_widths</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">cols_2</span>, widths <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="wb_set_row_heigths" class="level3" data-number="5.3.2"><h3 data-number="5.3.2" class="anchored" data-anchor-id="wb_set_row_heigths">
-<span class="header-section-number">5.3.2</span> wb_set_row_heigths</h3>
+</section><section id="wb_set_row_heights" class="level3" data-number="5.3.2"><h3 data-number="5.3.2" class="anchored" data-anchor-id="wb_set_row_heights">
+<span class="header-section-number">5.3.2</span> wb_set_row_heights</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/row_heights-wb.html">wb_set_row_heights</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, heights <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -778,7 +778,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="styled-table" class="level3" data-number="5.4.2"><h3 data-number="5.4.2" class="anchored" data-anchor-id="styled-table">
 <span class="header-section-number">5.4.2</span> styled table</h3>
-<p>Below we show you two ways how to create styled tables with <code>openxlsx2</code> one using the high level functions to style worksheet areas and one using the bare metal approach of creating the identical table.</p>
+<p>Below we show you two ways how to create styled tables with <code>openxlsx2</code> one using the high-level functions to style worksheet areas and one using the bare-metal approach of creating the identical table.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -788,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="the-quick-way-using-high-level-functions-1" class="level4" data-number="5.4.2.1"><h4 data-number="5.4.2.1" class="anchored" data-anchor-id="the-quick-way-using-high-level-functions-1">
-<span class="header-section-number">5.4.2.1</span> the quick way: using high level functions</h4>
+<span class="header-section-number">5.4.2.1</span> the quick way: using high-level functions</h4>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add some dummy data to the worksheet</span></span>
 <span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -864,7 +864,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section></section><section id="use-workbook-colors-and-modify-them" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="use-workbook-colors-and-modify-them">
 <span class="header-section-number">5.5</span> Use workbook colors and modify them</h2>
-<p>The loop below will apply the tint attribute to the fill color</p>
+<p>The loop below will apply the tint attribute to the fill color.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1233,7 +1233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># make the entire thing yellow (pick the style from an exisisting cell)</span></span>
+<span><span class="co"># make the entire thing yellow (pick the style from an existing cell)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"cols"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_fill</span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color</a></span><span class="op">(</span><span class="st">"yellow"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">wb</span><span class="op">$</span><span class="fu">set_cell_style_across</span><span class="op">(</span>cols <span class="op">=</span> <span class="st">"A:XFD"</span>, style <span class="op">=</span> <span class="va">wb</span><span class="op">$</span><span class="fu">get_cell_style</span><span class="op">(</span>dims <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
