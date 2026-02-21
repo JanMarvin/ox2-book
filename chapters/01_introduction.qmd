@@ -104,6 +104,20 @@ Note that there are at least two cases where `openxlsx2` constructs potentially 
 
 Therefore, if you are faced with an unreasonably large dataset, either give yourself enough time, use another package to write the xlsx output (`openxlsx2` was not written with the intention of working with maximum memory efficiency), and by all means use other ways to store data (binary file formats or a database). However, we are always happy to improve, so if you have found a way to improve what we are currently doing, please let us know and open an issue or a pull request.
 
+## Installation Requirements
+
+We strive to limit our dependencies to the bare minimum required to run the package. Currently, these are `R6`, `Rcpp`, and `stringi`. All three are dependency-free themselves (apart from depending on R) and should be available on any recent R setup that includes `devtools`. (In fact, many popular packages with extensive dependency trees—such as the `tidyverse`, `roxygen2`, `quarto`, or `shiny`—already include at least two of these).
+
+In addition, the `zip` package is required to create xlsx output files if a system tool like `zip` or `bsdtar` (or `tar` on Windows) is unavailable. To build `openxlsx2` from source, a C++11 compatible compiler must be available. Other dependencies are optional and limited to specific features, or to our test suite, involving `ggplot2`, `mschart`, `openssl`, or `rvg`.
+
+```{r}
+db <- tools::CRAN_package_db()
+deps <- tools::package_dependencies(package="openxlsx2", recursive=TRUE, db = db)$openxlsx2
+# ignore packages shipped by R
+setdiff(deps, c("grDevices", "utils", "methods", "tools", "stats"))
+```
+
+
 ## Invitation to contribute
 
 We have put a lot of work into `openxlsx2` to make it useful for our needs, improving what we found useful about `openxlsx` and removing what we didn't need. We do not claim to be omniscient about all the things you can do with spreadsheet software, nor do we claim to be omniscient about all the things you can do in `openxlsx2`. Nevertheless, we are quite fond of our little package and invite others to try it out and comment on what they like and of course what they think we are missing or if something doesn't work. `openxlsx2` is a complex piece of software that certainly does not work bug-free, even if we did our best. If you want to contribute to the development of `openxlsx2`, please be our guest on our Github. Join or open a discussion, post or fix issues or write us a mail.
