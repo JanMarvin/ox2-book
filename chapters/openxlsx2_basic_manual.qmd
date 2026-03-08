@@ -182,6 +182,13 @@ wb$save("mtcars.xlsx")
 try(wb$save("mtcars.xlsx", overwrite = FALSE))
 ```
 
+Prior to release 1.22, `wb_save()` relied on the `zip` package [@zip] to create the output `xlsx` file. Later releases prioritize system tools for zipping the output. 
+
+The default is `utils::zip()`, which requires a zip tool to be available via `Sys.which("zip")` or `Sys.getenv("R_ZIPCMD")`. An alternative is `bsdtar`, which typically requires `Sys.which("bsdtar")` on Mac and Linux. On recent Windows versions, the binary is called `tar` and should be available via `Sys.which("tar")`.
+
+On Windows, it is also possible to use the open-source utility `7zip` if it is configured in `R_ZIPCMD`. If none of these system-level tools work for your environment, falling back to the `zip` package is still supported. These configuration options are documented in the `wb_save()` manual pages. This entire approach was refined in subsequent releases and should work as intended starting from release 1.25.
+
+
 ## `dims`/ `wb_dims()`
 
 In `openxlsx2` functions that interact with worksheet cells are using `dims` as argument and require the users to provide these. `dims` are cells or cell ranges in A1 notation. [^openxlsx2_basic_manual-2] [^openxlsx2_basic_manual-3] Since A1 notation is rather simple in the first few columns it might get confusing after the 26. Therefore we provide a wrapper to construct it:
