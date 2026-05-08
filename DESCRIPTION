@@ -19,6 +19,7 @@ LinkingTo:
 Suggests:
     devEMF,
     downlit,
+    encharter,
     flexlsx,
     flextable,
     ggplot2,
