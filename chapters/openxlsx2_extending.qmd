@@ -72,7 +72,6 @@ Early in development, `openxlsx2Extras` [@openxlsx2Extras] allows extending vari
 One example (more can be found on the project github and pkgdown pages) is the following.
 
 ```{r}
-library(openxlsx2)
 library(openxlsx2Extras)
 
 wb_new_workbook(
@@ -94,4 +93,48 @@ vba <- wb$vbaProject
 
 code <- ovbars::ovbar_out(name = vba)
 message(code["Sheet1"])
+```
+
+## `spaghetti` - Helpers for spreadsheet formulas
+
+Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here `spaghetti` [@spaghetti] should be a help.
+
+```{r}
+library(spaghetti)
+
+# Some data to work with
+products <- data.frame(
+  id    = c(3, 1, 2, 1, 3, 2),
+  name  = c("Apple", "Banana", "Cherry", "Banana", "Apple", "Cherry"),
+  sales = c(120, 85, 200, 95, 110, 175)
+)
+
+wb <- wb_workbook() |>
+  wb_add_worksheet("Data") |>
+  wb_add_data(x = products, dims = "A1")
+
+# UNIQUE + SORT: deduplicated sorted product list spilling from E2
+wb <- wb |>
+  wb_add_data(
+    dims = "E1", x = "Unique Products"
+  ) |>
+  wb_add_formula(
+    dims = "E2",
+    x = spaghetti::to_xml("=UNIQUE(SORT(B2:B7))"),
+    cm = TRUE
+  )
+
+# XLOOKUP: look up the first sales value for each unique product using the spill
+# ref. to_xml() works with single formulas or vectors
+wb <- wb |>
+  wb_add_data(
+    dims = "F1", x = "Total Sales"
+  ) |>
+  wb_add_formula(
+    dims = "F2",
+    x = spaghetti::to_xml("=SUM(XLOOKUP(E2#, B2:B7, C2:C7, 0, 0))"),
+    cm = TRUE
+  )
+
+if (interactive()) wb$open()
 ```
