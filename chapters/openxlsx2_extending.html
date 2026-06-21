@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>15&nbsp; Extending openxlsx2 – The `openxlsx2` book</title>
 <style>
@@ -91,14 +91,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-989ec24fb428afe14e43d11b938d7b49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-046b2062c01d53a643b1ef935fbc2693.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -448,6 +448,7 @@ div.csl-indent {
   <li><a href="#flexlsx---exporting-flextable-to-workbooks" id="toc-flexlsx---exporting-flextable-to-workbooks" class="nav-link" data-scroll-target="#flexlsx---exporting-flextable-to-workbooks"><span class="header-section-number">15.2</span> <code>flexlsx</code> - Exporting <code>flextable</code> to workbooks</a></li>
   <li><a href="#openxlsx2extras---extending-openxlsx2" id="toc-openxlsx2extras---extending-openxlsx2" class="nav-link" data-scroll-target="#openxlsx2extras---extending-openxlsx2"><span class="header-section-number">15.3</span> <code>openxlsx2Extras</code> - Extending <code>openxlsx2</code></a></li>
   <li><a href="#ovbars---reading-the-vbaproject.bin" id="toc-ovbars---reading-the-vbaproject.bin" class="nav-link" data-scroll-target="#ovbars---reading-the-vbaproject.bin"><span class="header-section-number">15.4</span> <code>ovbars</code> - Reading the <code>vbaProject.bin</code></a></li>
+  <li><a href="#sec-spaghetti" id="toc-sec-spaghetti" class="nav-link" data-scroll-target="#sec-spaghetti"><span class="header-section-number">15.5</span> <code>spaghetti</code> - Helpers for spreadsheet formulas</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/JanMarvin/ox2-book/edit/main/chapters/openxlsx2_extending.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/JanMarvin/openxlsx2/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -484,15 +485,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmptkraTo/temp_xlsx_21c176183e17.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmptkraTo/temp_xlsx_21c176183e17.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmptkraTo/temp_xlsx_21c176183e17.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -536,8 +537,7 @@ div.csl-indent {
 <p>Early in development, <code>openxlsx2Extras</code> <span class="citation" data-cites="openxlsx2Extras">(<a href="../references.html#ref-openxlsx2Extras" role="doc-biblioref">Pousson 2024</a>)</span> allows extending various functions for user convenience or for features, that are more focused on working along <code>openxlsx2</code> and therefore are not necessary a requirement for the package itself.</p>
 <p>One example (more can be found on the project github and pkgdown pages) is the following.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/openxlsx2/">openxlsx2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/elipousson/openxlsx2Extras">openxlsx2Extras</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/elipousson/openxlsx2Extras">openxlsx2Extras</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://elipousson.github.io/openxlsx2Extras/reference/wb_new_workbook.html">wb_new_workbook</a></span><span class="op">(</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Workbook created with wb_new_workbook"</span>,</span>
@@ -574,6 +574,49 @@ div.csl-indent {
 <span><span class="co">#&gt;     #donothing</span></span>
 <span><span class="co">#&gt; End Sub</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section><section id="sec-spaghetti" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="sec-spaghetti">
+<span class="header-section-number">15.5</span> <code>spaghetti</code> - Helpers for spreadsheet formulas</h2>
+<p>Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here <code>spaghetti</code> <span class="citation" data-cites="spaghetti">(<a href="../references.html#ref-spaghetti" role="doc-biblioref">Garbuszus, n.d.</a>)</span> should be a help.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">spaghetti</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Some data to work with</span></span>
+<span><span class="va">products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  name  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Apple"</span>, <span class="st">"Banana"</span>, <span class="st">"Cherry"</span>, <span class="st">"Banana"</span>, <span class="st">"Apple"</span>, <span class="st">"Cherry"</span><span class="op">)</span>,</span>
+<span>  sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">85</span>, <span class="fl">200</span>, <span class="fl">95</span>, <span class="fl">110</span>, <span class="fl">175</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_workbook.html">wb_workbook</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_worksheet.html">wb_add_worksheet</a></span><span class="op">(</span><span class="st">"Data"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">products</span>, dims <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># UNIQUE + SORT: deduplicated sorted product list spilling from E2</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span></span>
+<span>    dims <span class="op">=</span> <span class="st">"E1"</span>, x <span class="op">=</span> <span class="st">"Unique Products"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_formula.html">wb_add_formula</a></span><span class="op">(</span></span>
+<span>    dims <span class="op">=</span> <span class="st">"E2"</span>,</span>
+<span>    x <span class="op">=</span> <span class="fu">spaghetti</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/spaghetti/man/to_xml.html">to_xml</a></span><span class="op">(</span><span class="st">"=UNIQUE(SORT(B2:B7))"</span><span class="op">)</span>,</span>
+<span>    cm <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># MAP: identical to =SUMIF(B2:B7, E2#, C2:C7) just showing some modern functions</span></span>
+<span><span class="co"># ref. to_xml() works with single formulas or vectors</span></span>
+<span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_data.html">wb_add_data</a></span><span class="op">(</span></span>
+<span>    dims <span class="op">=</span> <span class="st">"F1"</span>, x <span class="op">=</span> <span class="st">"Total Sales"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_formula.html">wb_add_formula</a></span><span class="op">(</span></span>
+<span>    dims <span class="op">=</span> <span class="st">"F2"</span>,</span>
+<span>    x <span class="op">=</span> <span class="fu">spaghetti</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/spaghetti/man/to_xml.html">to_xml</a></span><span class="op">(</span><span class="st">"=MAP(E2#, LAMBDA(p, SUM((B2:B7=p)*C2:C7)))"</span><span class="op">)</span>,</span>
+<span>    cm <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="va">wb</span><span class="op">$</span><span class="fu">open</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It also provides a linter and can handle translations.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -582,6 +625,9 @@ Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office Open Xml Fi
 </div>
 <div id="ref-ovbars" class="csl-entry" role="listitem">
 Garbuszus, Jan Marvin. 2024. <em>Ovbars: Accesses the ’Ovba’ Rust Library to Extract Vba Binary Files</em>. <a href="https://janmarvin.github.io/ovbars/">https://janmarvin.github.io/ovbars/</a>.
+</div>
+<div id="ref-spaghetti" class="csl-entry" role="listitem">
+Garbuszus, Jan Marvin. n.d. <em>Spaghetti: Bidirectional Spreadsheet-Formula to OOXML Translator</em>.
 </div>
 <div id="ref-flextable" class="csl-entry" role="listitem">
 Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.

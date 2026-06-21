@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>8&nbsp; Spreadsheet formulas – The `openxlsx2` book</title>
 <style>
@@ -72,14 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-989ec24fb428afe14e43d11b938d7b49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-046b2062c01d53a643b1ef935fbc2693.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -481,12 +481,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 1 2 1 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What happened? Even though we see cells <code>A1</code> and <code>B1</code> show a value of <code>2</code> and <code>1</code> our formula in <code>C1</code> was not updated. It still shows a value of <code>2</code>. This is because <code>openxlsx2</code> does not evaluate formulas and workbooks on a more general scale. In the openxml style the cell looks something like this:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">c</span> <span class="ot">r=</span><span class="st">"C1"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">c</span> <span class="ot">r=</span><span class="st">"C1"</span>&gt;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">f</span>&gt;A1 + B1&lt;/<span class="kw">f</span>&gt;</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">v</span>&gt;2&lt;/<span class="kw">v</span>&gt;</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">c</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>And when we read from this cell, we always return the value of <code>v</code>. In this case it is obvious, but still wrong and it is a good idea to check if underlying fields contain formulas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_to_df.html">wb_to_df</a></span><span class="op">(</span><span class="va">wb</span>, col_names <span class="op">=</span> <span class="cn">FALSE</span>, show_formula <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -566,6 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  cm <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>There is a helper package to support modern spreadsheet formulas called <code>spaghetti</code> see <a href="openxlsx2_extending.html#sec-spaghetti" class="quarto-xref"><span>Section 15.5</span></a>.</p>
 </section><section id="shared-formulas" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="shared-formulas">
 <span class="header-section-number">8.6</span> Shared formulas</h2>
 <p>A neat feature in spreadsheet software is that you can drag cells around to fill cells with content of other cells. Whenever you are dragging a cell containing a formula, this formula will be extended onto other cell regions. This is called a shared formula. In <code>openxlsx2</code> you can use shared formulas starting with release <code>1.9</code>.</p>
@@ -660,11 +659,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If we are writing the formula outside of the <code>dataTable</code> we have to reference the table name. In this case lets say the table name is ‘daily_sales’ <code>=daily_sales[@[sales_price]] * daily_sales[@[sales_quantity]]</code></p>
 <p>However, if we were to pass this as the text for the formula to be written it would cause an error because the syntax that openxml requires for selecting the current row is different.</p>
 <p>In openxml the <code>dataTable</code> formula looks like this:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">calculatedColumnFormula</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">calculatedColumnFormula</span>&gt;</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">calculatedColumnFormula</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>Now we can see that openxml replaces <code>[@[sales_price]]</code> with <code>daily_sales[[#This Row],[sales_price]]</code> We must then use this syntax when writing formulas for <code>dataTable</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Because we want the `dataTable` formula to propagate down the entire column</span></span>
@@ -967,8 +964,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="co"># inspect a cell with a formula</span></span>
 <span><span class="va">cc</span><span class="op">[</span><span class="va">cc</span><span class="op">$</span><span class="va">r</span> <span class="op">==</span> <span class="st">"I11"</span>, <span class="op">]</span></span>
-<span><span class="co">#&gt;      r row_r c_r c_s c_t v               f f_attr is</span></span>
-<span><span class="co">#&gt; 57 I11    11   I         3 PRODUCT(C11,E3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt;       key   r row_r c_r c_s c_t v               f f_attr is</span></span>
+<span><span class="co">#&gt; 57 180233 I11    11   I         3 PRODUCT(C11,E3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
