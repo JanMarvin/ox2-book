@@ -39,7 +39,7 @@ wb_to_df(wb, col_names = FALSE)
 
 What happened? Even though we see cells `A1` and `B1` show a value of `2` and `1` our formula in `C1` was not updated. It still shows a value of `2`. This is because `openxlsx2` does not evaluate formulas and workbooks on a more general scale. In the openxml style the cell looks something like this:
 
-```{XML}
+```XML
 <c r="C1">
   <f>A1 + B1</f>
   <v>2</v>
@@ -140,6 +140,8 @@ wb$add_formula(
 )
 ```
 
+There is a helper package to support modern spreadsheet formulas called `spaghetti` see @sec-spaghetti.
+
 ## Shared formulas
 
 A neat feature in spreadsheet software is that you can drag cells around to fill cells with content of other cells. Whenever you are dragging a cell containing a formula, this formula will be extended onto other cell regions. This is called a shared formula. In `openxlsx2` you can use shared formulas starting with release `1.9`.
@@ -214,7 +216,7 @@ However, if we were to pass this as the text for the formula to be written it wo
 
 In openxml the `dataTable` formula looks like this:
 
-```{XML}
+```XML
 <calculatedColumnFormula>
   daily_sales[[#This Row],[sales_price]]*daily_sales[[#ThisRow],[sales_quantity]]
 </calculatedColumnFormula>
@@ -350,7 +352,7 @@ wb$to_df(dims = "N2", show_formula = TRUE, col_names = FALSE) |>
 
 ## Example: Whatever I try, my formula wont work, what to do?
 
-Sometimes a formula doesn’t behave as expected. You may notice unexpected "@" symbols appearing when you type it, or the formula simply looks wrong. What can you do? The easiest approach is to enter the formula directly into a spreadsheet, verify that it works, save the file, and then load it using `wb_to_df(show_formula = TRUE, ...)` as shown earlier.
+Sometimes a formula doesn’t behave as expected. You may notice unexpected "\@" symbols appearing when you type it, or the formula simply looks wrong. What can you do? The easiest approach is to enter the formula directly into a spreadsheet, verify that it works, save the file, and then load it using `wb_to_df(show_formula = TRUE, ...)` as shown earlier.
 
 For a deeper look, you can load the workbook with `wb <- wb_load(...)`. Once loaded, you can inspect the internal `cc` data frame, which contains all cell information. If your workbook has only one worksheet, the code below allows you to examine exactly how the formula is represented in the file and how you might reconstruct it if needed.
 

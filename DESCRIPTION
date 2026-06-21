@@ -45,4 +45,5 @@ Encoding: UTF-8
 Remotes:
     JanMarvin/msoc,
     elipousson/openxlsx2Extras,
-    JanMarvin/ovbars
+    JanMarvin/ovbars,
+    JanMarvin/spaghetti

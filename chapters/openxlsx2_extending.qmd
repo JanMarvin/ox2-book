@@ -95,7 +95,7 @@ code <- ovbars::ovbar_out(name = vba)
 message(code["Sheet1"])
 ```
 
-## `spaghetti` - Helpers for spreadsheet formulas
+## `spaghetti` - Helpers for spreadsheet formulas {#sec-spaghetti}
 
 Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here `spaghetti` [@spaghetti] should be a help.
 
@@ -124,7 +124,7 @@ wb <- wb |>
     cm = TRUE
   )
 
-# XLOOKUP: look up the first sales value for each unique product using the spill
+# MAP: identical to =SUMIF(B2:B7, E2#, C2:C7) just showing some modern functions
 # ref. to_xml() works with single formulas or vectors
 wb <- wb |>
   wb_add_data(
@@ -132,9 +132,11 @@ wb <- wb |>
   ) |>
   wb_add_formula(
     dims = "F2",
-    x = spaghetti::to_xml("=SUM(XLOOKUP(E2#, B2:B7, C2:C7, 0, 0))"),
+    x = spaghetti::to_xml("=MAP(E2#, LAMBDA(p, SUM((B2:B7=p)*C2:C7)))"),
     cm = TRUE
   )
 
 if (interactive()) wb$open()
 ```
+
+It also provides a linter and can handle translations.
