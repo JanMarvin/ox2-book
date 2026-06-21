@@ -485,15 +485,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpbCua7r/temp_xlsx_281d4d2169b5.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -576,7 +576,7 @@ div.csl-indent {
 </div>
 </section><section id="sec-spaghetti" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="sec-spaghetti">
 <span class="header-section-number">15.5</span> <code>spaghetti</code> - Helpers for spreadsheet formulas</h2>
-<p>Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here <code>spaghetti</code> <span class="citation" data-cites="spaghetti">(<a href="../references.html#ref-spaghetti" role="doc-biblioref">Garbuszus, n.d.</a>)</span> should be a help.</p>
+<p>Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here <code>spaghetti</code> <span class="citation" data-cites="spaghetti">(<a href="../references.html#ref-spaghetti" role="doc-biblioref">Garbuszus 2026</a>)</span> should be a help.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">spaghetti</span><span class="op">)</span></span>
 <span></span>
@@ -627,7 +627,7 @@ Garbuszus, Jan Marvin. 2023. <em>Msoc: Encrypt and Decrypt of Office Open Xml Fi
 Garbuszus, Jan Marvin. 2024. <em>Ovbars: Accesses the ’Ovba’ Rust Library to Extract Vba Binary Files</em>. <a href="https://janmarvin.github.io/ovbars/">https://janmarvin.github.io/ovbars/</a>.
 </div>
 <div id="ref-spaghetti" class="csl-entry" role="listitem">
-Garbuszus, Jan Marvin. n.d. <em>Spaghetti: Bidirectional Spreadsheet-Formula to OOXML Translator</em>.
+Garbuszus, Jan Marvin. 2026. <em>Spaghetti: Bidirectional Spreadsheet-Formula to OOXML Translator</em>. <a href="https://janmarvin.github.io/spaghetti/">https://janmarvin.github.io/spaghetti/</a>.
 </div>
 <div id="ref-flextable" class="csl-entry" role="listitem">
 Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.
