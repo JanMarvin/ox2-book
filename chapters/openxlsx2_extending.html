@@ -96,9 +96,9 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-046b2062c01d53a643b1ef935fbc2693.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-82cb5808e81da3454e8042d903791e03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-38d145acf44b8abc87fe2c933d14cb80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-82cb5808e81da3454e8042d903791e03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -485,15 +485,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp7l4REh/temp_xlsx_276e544cdde1.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/Rtmp7l4REh/temp_xlsx_276e544cdde1.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmphs0Bvm/temp_xlsx_2191829ade7.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp7l4REh/temp_xlsx_276e544cdde1.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>

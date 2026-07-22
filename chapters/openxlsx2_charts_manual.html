@@ -96,9 +96,9 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-046b2062c01d53a643b1ef935fbc2693.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3f70bac5631458d474a321d4182f9338.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-82cb5808e81da3454e8042d903791e03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-38d145acf44b8abc87fe2c933d14cb80.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-82cb5808e81da3454e8042d903791e03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -446,7 +446,7 @@ div.csl-indent {
   <ul>
 <li><a href="#adding-a-chart-as-an-image-to-a-workbook" id="toc-adding-a-chart-as-an-image-to-a-workbook" class="nav-link active" data-scroll-target="#adding-a-chart-as-an-image-to-a-workbook"><span class="header-section-number">7.1</span> Adding a chart as an image to a workbook</a></li>
   <li><a href="#adding-ggplot2-plots-to-a-workbook" id="toc-adding-ggplot2-plots-to-a-workbook" class="nav-link" data-scroll-target="#adding-ggplot2-plots-to-a-workbook"><span class="header-section-number">7.2</span> Adding <code>{ggplot2}</code> plots to a workbook</a></li>
-  <li><a href="#adding-plots-via-rvg-or-devemf" id="toc-adding-plots-via-rvg-or-devemf" class="nav-link" data-scroll-target="#adding-plots-via-rvg-or-devemf"><span class="header-section-number">7.3</span> Adding plots via <code>{rvg}</code> or <code>{devEMF}</code></a></li>
+  <li><a href="#adding-plots-via-rvg-devemf-or-easeling" id="toc-adding-plots-via-rvg-devemf-or-easeling" class="nav-link" data-scroll-target="#adding-plots-via-rvg-devemf-or-easeling"><span class="header-section-number">7.3</span> Adding plots via <code>{rvg}</code>, <code>{devEMF}</code> or <code>{easeling}</code></a></li>
   <li>
 <a href="#adding-encharter-plots" id="toc-adding-encharter-plots" class="nav-link" data-scroll-target="#adding-encharter-plots"><span class="header-section-number">7.4</span> Adding <code>{encharter}</code> plots</a>
   <ul class="collapse">
@@ -533,12 +533,38 @@ div.csl-indent {
 </div>
 </div>
 </div>
-</section><section id="adding-plots-via-rvg-or-devemf" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="adding-plots-via-rvg-or-devemf">
-<span class="header-section-number">7.3</span> Adding plots via <code>{rvg}</code> or <code>{devEMF}</code>
+</section><section id="adding-plots-via-rvg-devemf-or-easeling" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="adding-plots-via-rvg-devemf-or-easeling">
+<span class="header-section-number">7.3</span> Adding plots via <code>{rvg}</code>, <code>{devEMF}</code> or <code>{easeling}</code>
 </h2>
-<p>If you want vector graphics that can be modified in spreadsheet software the <code><a href="https://davidgohel.github.io/rvg/reference/dml_xlsx.html">dml_xlsx()</a></code> device comes in handy. You can pass the output via <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_drawing.html">wb_add_drawing()</a></code>.</p>
+<p>If you want vector graphics that can be modified in spreadsheet software, all three packages provide a custom device that can be used with the majority of R plots. The packages differ in the way they construct the output, either as XML or EMF, their dependencies and slightly in the number of supported plotting features. The youngest of the three <code>{easeling}</code> <span class="citation" data-cites="easeling">(<a href="../references.html#ref-easeling" role="doc-biblioref">Garbuszus 2026a</a>)</span> does not require additional dependencies and supports several chart types.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">rvg</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://grantmcdermott.com/tinyplot/">tinyplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">easeling</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://grantmcdermott.com/tinyplot/man/tinytheme.html">tinytheme</a></span><span class="op">(</span><span class="st">"clean2"</span><span class="op">)</span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/easeling/man/easel_dev.html">easel_dev</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://grantmcdermott.com/tinyplot/man/tinyplot.html">plt</a></span><span class="op">(</span></span>
+<span>  <span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Petal.Length</span> <span class="op">|</span> <span class="va">Sepal.Length</span>, data <span class="op">=</span> <span class="va">iris</span>,</span>
+<span>  facet <span class="op">=</span> <span class="op">~</span><span class="va">Species</span>, pch <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">"Faceted flowers"</span>, sub <span class="op">=</span> <span class="st">"Brought to you by tinyplot"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; png </span></span>
+<span><span class="co">#&gt;   2</span></span>
+<span></span>
+<span><span class="va">wb</span><span class="op">$</span><span class="fu">add_worksheet</span><span class="op">(</span><span class="st">"add_easeling"</span><span class="op">)</span><span class="op">$</span><span class="fu">add_drawing</span><span class="op">(</span>xml <span class="op">=</span> <span class="va">f</span>, dims <span class="op">=</span> <span class="st">"A1"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="../img/chrt_easeling.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For <a href="https://ardata-fr.github.io/officeverse/">rvg</a> <span class="citation" data-cites="rvg">(<a href="../references.html#ref-rvg" role="doc-biblioref">Gohel 2026b</a>)</span> , the <code><a href="https://davidgohel.github.io/rvg/reference/dml_xlsx.html">dml_xlsx()</a></code> device comes in handy. You can pass the output via <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_drawing.html">wb_add_drawing()</a></code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">rvg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## create rvg example</span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".xml"</span><span class="op">)</span></span>
@@ -556,16 +582,9 @@ div.csl-indent {
 <span>  <span class="fu">add_drawing</span><span class="op">(</span>xml <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span><span class="op">$</span></span>
 <span>  <span class="fu">add_drawing</span><span class="op">(</span>xml <span class="op">=</span> <span class="va">tmp</span>, dims <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Similarly for <a href="https://github.com/plfjohnson/devEMF">devEMF</a> <span class="citation" data-cites="devemf">(<a href="../references.html#ref-devemf" role="doc-biblioref">Johnson 2026</a>)</span>:</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="../img/chrt_rvg.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/plfjohnson/devEMF">devEMF</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/plfjohnson/devEMF">devEMF</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tmp_emf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".emf"</span><span class="op">)</span></span>
 <span><span class="fu">devEMF</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devEMF/man/emf.html">emf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">tmp_emf</span><span class="op">)</span></span>
@@ -584,7 +603,7 @@ div.csl-indent {
 </section><section id="adding-encharter-plots" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="adding-encharter-plots">
 <span class="header-section-number">7.4</span> Adding <code>{encharter}</code> plots</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/encharter/">encharter</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://janmarvin.github.io/encharter/">encharter</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df_bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  Product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Software"</span>, <span class="st">"Services"</span>, <span class="st">"Hardware"</span>, <span class="st">"Support"</span><span class="op">)</span>,</span>
@@ -631,21 +650,21 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A broad selection of potential chart types available to <a href="https://janmarvin.github.io/encharter/">encharter</a> <span class="citation" data-cites="encharter">(<a href="../references.html#ref-encharter" role="doc-biblioref">Garbuszus 2026</a>)</span> can be found in the project homepage: “https://github.com/JanMarvin/encharter” and in its examples folder. The package was created specifically to support various chart types in <code>openxlsx2</code>. This includes combo charts, as well as several chart features such as trend lines, secondary axis and modern spreadsheet charts such as Box and Whisker charts. The package supports the <code>openxlsx2</code> functions <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/fmt_txt.html">fmt_txt()</a></code> to tweak colors and text.</p>
+<p>A broad selection of potential chart types available to <a href="https://janmarvin.github.io/encharter/">encharter</a> <span class="citation" data-cites="encharter">(<a href="../references.html#ref-encharter" role="doc-biblioref">Garbuszus 2026b</a>)</span> can be found in the project homepage: “https://github.com/JanMarvin/encharter” and in its examples folder. The package was created specifically to support various chart types in <code>openxlsx2</code>. This includes combo charts, as well as several chart features such as trend lines, secondary axis and modern spreadsheet charts such as Box and Whisker charts. The package supports the <code>openxlsx2</code> functions <code><a href="https://janmarvin.github.io/openxlsx2/reference/wb_color.html">wb_color()</a></code> and <code><a href="https://janmarvin.github.io/openxlsx2/reference/fmt_txt.html">fmt_txt()</a></code> to tweak colors and text.</p>
 <section id="add-and-fill-a-chartsheet" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="add-and-fill-a-chartsheet">
 <span class="header-section-number">7.4.1</span> Add and fill a chartsheet</h3>
 <p>Finally it is possible to add <code>encharter</code> objects into chartsheets. These are special sheets that contain only a chart object, referencing data from another sheet.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add chartsheet</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="va">wb</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_chartsheet.html">wb_add_chartsheet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_add_encharter.html">wb_add_encharter</a></span><span class="op">(</span>graph <span class="op">=</span> <span class="va">chart</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="adding-mschart-plots" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="adding-mschart-plots">
 <span class="header-section-number">7.5</span> Adding <code>{mschart}</code> plots</h2>
-<p>Support for the <a href="https://ardata-fr.github.io/officeverse/">mschart</a> <span class="citation" data-cites="mschart">(<a href="../references.html#ref-mschart" role="doc-biblioref">Gohel 2026</a>)</span> package provides functionality to add charts that can be used with spreadsheets. This might be useful for users of the <a href="https://ardata-fr.github.io/officeverse/">officer</a> package <span class="citation" data-cites="officer">(<a href="../references.html#ref-officer" role="doc-biblioref">Gohel et al. 2026</a>)</span>.</p>
+<p>Support for the <a href="https://ardata-fr.github.io/officeverse/">mschart</a> <span class="citation" data-cites="mschart">(<a href="../references.html#ref-mschart" role="doc-biblioref">Gohel 2026a</a>)</span> package provides functionality to add charts that can be used with spreadsheets. This might be useful for users of the <a href="https://ardata-fr.github.io/officeverse/">officer</a> package <span class="citation" data-cites="officer">(<a href="../references.html#ref-officer" role="doc-biblioref">Gohel et al. 2026</a>)</span>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">mschart</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/officeverse/">mschart</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'mschart'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
@@ -673,14 +692,23 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-easeling" class="csl-entry" role="listitem">
+Garbuszus, Jan Marvin. 2026a. <em>Easeling: Minimal DrawingML Graphics Device for Openxlsx2</em>. <a href="https://janmarvin.github.io/easeling/">https://janmarvin.github.io/easeling/</a>.
+</div>
 <div id="ref-encharter" class="csl-entry" role="listitem">
-Garbuszus, Jan Marvin. 2026. <em>Encharter: Enhanced Office Open XML Charting for ’Openxlsx2’</em>. <a href="https://janmarvin.github.io/encharter/">https://janmarvin.github.io/encharter/</a>.
+Garbuszus, Jan Marvin. 2026b. <em>Encharter: Enhanced Office Open XML Charting for ’Openxlsx2’</em>. <a href="https://janmarvin.github.io/encharter/">https://janmarvin.github.io/encharter/</a>.
 </div>
 <div id="ref-mschart" class="csl-entry" role="listitem">
-Gohel, David. 2026. <em>Mschart: Chart Generation for ’Microsoft Word’, ’Microsoft Excel’ and ’Microsoft PowerPoint’ Documents</em>. <a href="https://doi.org/10.32614/CRAN.package.mschart">https://doi.org/10.32614/CRAN.package.mschart</a>.
+Gohel, David. 2026a. <em>Mschart: Chart Generation for ’Microsoft Word’, ’Microsoft Excel’ and ’Microsoft PowerPoint’ Documents</em>. <a href="https://doi.org/10.32614/CRAN.package.mschart">https://doi.org/10.32614/CRAN.package.mschart</a>.
+</div>
+<div id="ref-rvg" class="csl-entry" role="listitem">
+Gohel, David. 2026b. <em>Rvg: R Graphics Devices for ’Office’ Vector Graphics Output</em>. <a href="https://doi.org/10.32614/CRAN.package.rvg">https://doi.org/10.32614/CRAN.package.rvg</a>.
 </div>
 <div id="ref-officer" class="csl-entry" role="listitem">
 Gohel, David, Stefan Moog, and Mark Heckmann. 2026. <em>Officer: Manipulation of Microsoft Word and PowerPoint Documents</em>. <a href="https://doi.org/10.32614/CRAN.package.officer">https://doi.org/10.32614/CRAN.package.officer</a>.
+</div>
+<div id="ref-devemf" class="csl-entry" role="listitem">
+Johnson, Philip. 2026. <em>devEMF: EMF Graphics Output Device</em>. <a href="https://doi.org/10.32614/CRAN.package.devEMF">https://doi.org/10.32614/CRAN.package.devEMF</a>.
 </div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
