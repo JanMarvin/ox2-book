@@ -19,6 +19,7 @@ LinkingTo:
 Suggests:
     devEMF,
     downlit,
+    easeling,
     encharter,
     flexlsx,
     flextable,
