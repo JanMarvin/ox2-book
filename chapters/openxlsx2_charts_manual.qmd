@@ -73,9 +73,34 @@ wb$add_worksheet("add_plot")$
 knitr::include_graphics("../img/chrt_ggplot2.png")
 ```
 
-## Adding plots via `{rvg}` or `{devEMF}`
+## Adding plots via `{rvg}`, `{devEMF}` or `{easeling}`
 
-If you want vector graphics that can be modified in spreadsheet software the `dml_xlsx()` device comes in handy. You can pass the output via `wb_add_drawing()`.
+If you want vector graphics that can be modified in spreadsheet software, all three packages provide a custom device that can be used with the majority of R plots. The packages differ in the way they construct the output, either as XML or EMF, their dependencies and slightly in the number of supported plotting features. The youngest of the three `{easeling}` [@easeling]  does not require additional dependencies and supports several chart types.
+
+```{r}
+library(tinyplot)
+library(easeling)
+
+tinytheme("clean2")
+f <- easel_dev(width = 6, height = 4)
+plt(
+  Sepal.Length ~ Petal.Length | Sepal.Length, data = iris,
+  facet = ~Species, pch = 19,
+  main = "Faceted flowers", sub = "Brought to you by tinyplot"
+)
+dev.off()
+
+wb$add_worksheet("add_easeling")$add_drawing(xml = f, dims = "A1")
+```
+
+```{r echo=FALSE, warning=FALSE}
+#nolint start
+#| fig-cap: "An easeling chart is a vector graphic that can be modified in spreadsheet software"
+knitr::include_graphics("../img/chrt_easeling.png")
+#nolint end
+```
+
+For `{rvg}` [@rvg] , the `dml_xlsx()` device comes in handy. You can pass the output via `wb_add_drawing()`.
 
 ```{r rvg}
 library(rvg)
@@ -95,13 +120,7 @@ wb$add_worksheet("add_drawing")$
   add_drawing(xml = tmp, dims = NULL)
 ```
 
-```{r echo=FALSE, warning=FALSE}
-#nolint start
-#| fig-cap: "An rvg chart is a vector graphic that can be modified in spreadsheet software (this screenshot differs from the code above as the second chart below has been removed)"
-knitr::include_graphics("../img/chrt_rvg.png")
-#nolint end
-```
-
+Similarly for `{devEMF}` [@devemf]:
 ```{r}
 library(devEMF)
 

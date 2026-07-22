@@ -39,11 +39,13 @@ Suggests:
     testthat,
     tidyr,
     tidyxl,
+    tinyplot,
     waldo
 VignetteBuilder:
     knitr
 Encoding: UTF-8
 Remotes:
+    JanMarvin/easeling,
     JanMarvin/msoc,
     elipousson/openxlsx2Extras,
     JanMarvin/ovbars,
