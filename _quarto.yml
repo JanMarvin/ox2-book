@@ -28,6 +28,7 @@ book:
     - chapters/openxlsx2-things-with-shapes.qmd
     - chapters/openxlsx2_upgrade_from_openxlsx.qmd
     - chapters/openxlsx2_extending.qmd
+    - chapters/openxlsx2_money.qmd
     - references.qmd
 
 bibliography: references.bib

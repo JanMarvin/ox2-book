@@ -1,0 +1,29 @@
+---
+title: "Let’s talk about money"
+---
+
+*Disclaimer: The following chapter reflects the personal views, impressions, and experiences of the author and maintainer, and does not necessarily represent the official stance of all openxlsx2 contributors.*
+
+Once you’ve reached this chapter of the book, you have probably been using `openxlsx2` for a while and have seen a constant inflow of updates and new features, along with additional packages developed along the way. By now, you are likely wondering: Why is this developed? What drives development? Who is funding this? And perhaps, can you or your organization contribute?
+
+Therefore, we have to talk about money, and what open source means to me as the main developer and maintainer of `openxlsx2`. Developing this package obviously costs money. And more than money, it costs time. Financially, I bought a MacBook, several one-year licenses for MS 365, a year of GitHub Pro (used in the early days when the project was still private), and one month of ChatGPT when I had the initial idea to create a numfmt-to-R conversion. It is not nothing, but those costs have long been written off.
+
+More important is time: time to develop, work on issues, write documentation, and review pull requests. This is my free time, spent in the afternoon, often late at night, in the morning before work, during lunch breaks, and across many hours on weekends, holidays, and vacations. It is time well spent because of everything I’ve learned over the years. (By now, it is probably no understatement to say that very few people outside of a software company building spreadsheet applications possess this much knowledge about the internals of the Office Open XML format.) It is also time well spent because of the connections I’ve made, starting with Jordan from the US, Olivier from Canada, and people from all over the world who by now have interact with me because of `openxlsx2`.
+
+## Why isn’t there a donations button?
+
+This boils down to my *personal* beliefs about open source. I do it because I can and because I want to. Luckily, I have a job that pays my bills. I am not required to sell my open source work, and it’s unlikely I would work on a project purely for funds. Furthermore, I realized early on that it is highly unlikely anyone would pay me enough to make open-source development viable full-time. Let’s face it: only a fraction of R package developers work on this full-time.
+
+Thus, why bother setting up a system to receive and track funds? Why create the false impression that donating money means I will prioritize specific issues, pull requests, or feature requests? I take the liberty of working on a project whenever I want, and I want users to have that same liberty. They should be able to use my code in their projects, for their work, and enjoy it as much as I enjoy the open-source work of others. In 2026 I have been using Linux-based operating systems for almost 20 years now. Have I donated money to projects? Yes, a few times to Thunderbird. I’m a regular donor to the R Foundation and a paying member of a German LaTeX group. Maybe I’ve spent a few extra euros here and there, but for the majority of open-source software I use, I paid nothing.
+
+## The bigger picture
+
+Lastly, while I like working on `openxlsx2` and R projects, I do not consider it the most important thing in life. I do it because open-source work is fun and somewhat addictive, but mainly because I want to do *less* work inside spreadsheet software. I want my workflows to be reliable, and clicking around in a spreadsheet application contradicts that goal. If you use `openxlsx2`, you probably use it for something work-related. If it helps you solve a problem, saves you time, and allows you to do things you previously couldn’t, then its goal is fulfilled.
+
+The project will not live forever. One day, there will be a successor to the Office Open XML format, or spreadsheets altogether. Maybe I will switch jobs, lose interest in `openxlsx2`, or someone else will come along with `openxlsx3` (or whatever it will be called).
+
+Therefore, if you have money to give, give it to a good cause. I regularly donate to a local street newspaper, immigration advocacies, a media watchblog, an NGO that helps people leave Neo-Nazism, lifeguards, and lately, a local group fighting child poverty. I haven’t named specific organizations because you probably wouldn't know them, and you likely have local groups or projects that would benefit even more from your support. And I don't want anyone to feel obligated to donate anything for using `openxlsx2`. Not to me, nor to the organizations I support.
+
+If you want to support the project, tell someone else about it. Let me know if you appreciate it. Report issues. And be kind to one another.
+
+--- Jan Marvin Garbuszus, Duesseldorf July 2026
