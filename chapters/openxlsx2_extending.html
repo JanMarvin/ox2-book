@@ -496,15 +496,15 @@ div.csl-indent {
 <span></span>
 <span><span class="co"># now we can encrypt it</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">encrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpmKwA0g/temp_xlsx_290c18adda9.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpiG1OzC/temp_xlsx_234c17382ac0.xlsx"</span></span>
 <span></span>
 <span><span class="co"># the file is encrypted, we can not read it</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpmKwA0g/temp_xlsx_290c18adda9.xlsx</span></span>
+<span><span class="co">#&gt; Error : Unable to open and load file:  /tmp/RtmpiG1OzC/temp_xlsx_234c17382ac0.xlsx</span></span>
 <span></span>
 <span><span class="co"># we have to decrypt it first</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/msoc/reference/msoc.html">decrypt</a></span><span class="op">(</span><span class="va">xlsx</span>, <span class="va">xlsx</span>, pass <span class="op">=</span> <span class="st">"msoc"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpmKwA0g/temp_xlsx_290c18adda9.xlsx"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpiG1OzC/temp_xlsx_234c17382ac0.xlsx"</span></span>
 <span></span>
 <span><span class="co"># now we can load it again</span></span>
 <span><span class="fu"><a href="https://janmarvin.github.io/openxlsx2/reference/wb_load.html">wb_load</a></span><span class="op">(</span><span class="va">xlsx</span><span class="op">)</span><span class="op">$</span><span class="fu">to_df</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -624,7 +624,7 @@ div.csl-indent {
 </div>
 </section><section id="sec-spaghetti" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="sec-spaghetti">
 <span class="header-section-number">15.6</span> <code>spaghetti</code> - Helpers for spreadsheet formulas</h2>
-<p>Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here <code>spaghetti</code> <span class="citation" data-cites="spaghetti">(<a href="../references.html#ref-spaghetti" role="doc-biblioref">Garbuszus 2026b</a>)</span> should be a help.</p>
+<p>Modern spreadsheet formulas look differently on the XML level and that is just the beginning of the many wonderful issues that come along with spreadsheet formulas. Here <code>spaghetti</code> <span class="citation" data-cites="spaghetti">(<a href="../references.html#ref-spaghetti" role="doc-biblioref">Garbuszus 2026c</a>)</span> should be a help.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">spaghetti</span><span class="op">)</span></span>
 <span></span>
@@ -667,7 +667,7 @@ div.csl-indent {
 <p>It also provides a linter and can handle translations.</p>
 </section><section id="oxview---view-wbworkbooks-in-html" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="oxview---view-wbworkbooks-in-html">
 <span class="header-section-number">15.7</span> <code>oxview</code> - view <code>wbWorkbook</code>s in html</h2>
-<p><span class="citation" data-cites="oxview">(<a href="../references.html#ref-oxview" role="doc-biblioref"><strong>oxview?</strong></a>)</span> bundles the javascript library <code>office-open-xml-viewer</code> (https://github.com/yukiyokotani/office-open-xml-viewer) in an R package that allows viewing and interacting with spreadsheets via the RStudio viewer pane or any html browser. The library allows not only viewing <code>openxlsx2</code> files, but all Office Open XML files. So <code>pptx</code> and <code>docx</code> are supported as well. At the moment (Sep 2026) the library is actively developed and there are still various fixes implemented.</p>
+<p><span class="citation" data-cites="oxview">(<a href="../references.html#ref-oxview" role="doc-biblioref">Garbuszus 2026b</a>)</span> bundles the javascript library <code>office-open-xml-viewer</code> (https://github.com/yukiyokotani/office-open-xml-viewer) in an R package that allows viewing and interacting with spreadsheets via the RStudio viewer pane or any html browser. The library allows not only viewing <code>openxlsx2</code> files, but all Office Open XML files. So <code>pptx</code> and <code>docx</code> are supported as well. At the moment (Sep 2026) the library is actively developed and there are still various fixes implemented.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu">oxview</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/oxview/man/ox_view.html">ox_view</a></span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -683,8 +683,11 @@ Garbuszus, Jan Marvin. 2024. <em>Ovbars: Accesses the ’Ovba’ Rust Library to
 <div id="ref-gtxlsx" class="csl-entry" role="listitem">
 Garbuszus, Jan Marvin. 2026a. <em>Gtxlsx: Write ’Gt’ and HTML Tables into ’Openxlsx2’ Workbooks</em>. <a href="https://github.com/JanMarvin/gtxlsx">https://github.com/JanMarvin/gtxlsx</a>.
 </div>
+<div id="ref-oxview" class="csl-entry" role="listitem">
+Garbuszus, Jan Marvin. 2026b. <em>Oxview: Local Canvas Preview for Xlsx, Docx, and Pptx Files</em>. <a href="https://github.com/JanMarvin/oxview">https://github.com/JanMarvin/oxview</a>.
+</div>
 <div id="ref-spaghetti" class="csl-entry" role="listitem">
-Garbuszus, Jan Marvin. 2026b. <em>Spaghetti: Bidirectional Spreadsheet-Formula to OOXML Translator</em>. <a href="https://janmarvin.github.io/spaghetti/">https://janmarvin.github.io/spaghetti/</a>.
+Garbuszus, Jan Marvin. 2026c. <em>Spaghetti: Bidirectional Spreadsheet-Formula to OOXML Translator</em>. <a href="https://janmarvin.github.io/spaghetti/">https://janmarvin.github.io/spaghetti/</a>.
 </div>
 <div id="ref-flextable" class="csl-entry" role="listitem">
 Gohel, David, and Panagiotis Skintzos. 2023. <em>Flextable: Functions for Tabular Reporting</em>. <a href="https://ardata-fr.github.io/flextable-book/">https://ardata-fr.github.io/flextable-book/</a>.
