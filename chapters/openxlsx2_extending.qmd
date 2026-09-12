@@ -65,6 +65,48 @@ if (interactive()) wb$open()
 knitr::include_graphics("../img/ex_flextable.png")
 ```
 
+
+## `gtxlsx` - Exporting `gt`, `lt` and html to workbooks
+
+Using `gtxlsx` [@gtxlsx] you can extend `openxlsx2` to write `gt` objects [@gt], `lt` objects [@lt] and html to spreadsheets. Various styling options are supported.
+
+```{r}
+library(gt)
+library(gtxlsx)
+
+tbl <- gt::gt(head(gtcars[, c("mfr", "model", "year", "msrp")])) |>
+  gt::tab_header(title = md("The Cars of **gtcars**")) |>
+  gt::fmt_currency(columns = msrp, decimals = 0) |>
+  gt::tab_style(
+    style = list(cell_fill(color = "lightblue"), cell_text(weight = "bold")),
+    locations = gt::cells_body(columns = msrp, rows = msrp > 100000)
+  )
+
+wb <- wb_workbook()$add_worksheet(grid_lines = FALSE)
+wb <- gtxlsx::wb_add_gt(wb, tbl, dims = "B2")
+
+if (interactive()) wb$open()
+```
+
+```{r}
+html <- '
+<style>
+  th { background-color: #204060; color: white; }
+  td.num { text-align: right; }
+</style>
+<table>
+  <tr><th>Account</th><th>Change</th></tr>
+  <tr><td>Cash</td><td class="num">1,204.50</td></tr>
+  <tr><td><b>Net</b></td><td class="num">-2,705.50</td></tr>
+</table>'
+
+wb <- wb_workbook()$add_worksheet()
+wb <- gtxlsx::wb_add_html(wb, html, dims = "A1")
+
+if (interactive()) wb$open()
+```
+
+
 ## `openxlsx2Extras` - Extending `openxlsx2`
 
 Early in development, `openxlsx2Extras` [@openxlsx2Extras] allows extending various functions for user convenience or for features, that are more focused on working along `openxlsx2` and therefore are not necessary a requirement for the package itself.
@@ -140,3 +182,12 @@ if (interactive()) wb$open()
 ```
 
 It also provides a linter and can handle translations.
+
+
+## `oxview` - view `wbWorkbook`s in html
+
+[@oxview] bundles the javascript library `office-open-xml-viewer` (https://github.com/yukiyokotani/office-open-xml-viewer) in an R package that allows viewing and interacting with spreadsheets via the RStudio viewer pane or any html browser. The library allows not only viewing `openxlsx2` files, but all Office Open XML files. So `pptx` and `docx` are supported as well. At the moment (Sep 2026) the library is actively developed and there are still various fixes implemented.
+
+```{r}
+if (interactive()) oxview::ox_view(wb)
+```
