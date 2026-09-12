@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -59,14 +62,14 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-514c3c5c645fecdfd9acb6a6b9a944a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-763c5560fed4adfb057dd69b2245f60d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-514c3c5c645fecdfd9acb6a6b9a944a6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-16b2b9eb99b59e801d75db3c3c197f26.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -504,8 +507,12 @@ Device for Openxlsx2</em>. <a href="https://janmarvin.github.io/easeling/">https
 Garbuszus, Jan Marvin. 2026b. <em>Encharter: Enhanced Office Open XML
 Charting for ’Openxlsx2’</em>. <a href="https://janmarvin.github.io/encharter/">https://janmarvin.github.io/encharter/</a>.
 </div>
+<div id="ref-gtxlsx" class="csl-entry" role="listitem">
+Garbuszus, Jan Marvin. 2026c. <em>Gtxlsx: Write ’Gt’ and HTML Tables
+into ’Openxlsx2’ Workbooks</em>. <a href="https://github.com/JanMarvin/gtxlsx">https://github.com/JanMarvin/gtxlsx</a>.
+</div>
 <div id="ref-spaghetti" class="csl-entry" role="listitem">
-Garbuszus, Jan Marvin. 2026c. <em>Spaghetti: Bidirectional
+Garbuszus, Jan Marvin. 2026d. <em>Spaghetti: Bidirectional
 Spreadsheet-Formula to OOXML Translator</em>. <a href="https://janmarvin.github.io/spaghetti/">https://janmarvin.github.io/spaghetti/</a>.
 </div>
 <div id="ref-tidyxl" class="csl-entry" role="listitem">
@@ -546,6 +553,10 @@ Henze, Felix. 2024. <em>SheetReader: Parse Xlsx Files</em>. <a href="https://doi
 Hilderson, Nicholas. 2025. <em>Xlr: Create Table Summaries and Export
 Neat Tables to ’Excel’</em>. <a href="https://doi.org/10.32614/CRAN.package.xlr">https://doi.org/10.32614/CRAN.package.xlr</a>.
 </div>
+<div id="ref-gt" class="csl-entry" role="listitem">
+Iannone, Richard, Joe Cheng, Barret Schloerke, et al. 2026. <em>Gt:
+Easily Create Presentation-Ready Display Tables</em>. <a href="https://doi.org/10.32614/CRAN.package.gt">https://doi.org/10.32614/CRAN.package.gt</a>.
+</div>
 <div id="ref-devemf" class="csl-entry" role="listitem">
 Johnson, Philip. 2026. <em>devEMF: EMF Graphics Output Device</em>. <a href="https://doi.org/10.32614/CRAN.package.devEMF">https://doi.org/10.32614/CRAN.package.devEMF</a>.
 </div>
@@ -583,6 +594,10 @@ to Create Excel 2003 (XLS) and Excel 2007 (XLSX) Files</em>. <a href="https://CR
 <div id="ref-readxl" class="csl-entry" role="listitem">
 Wickham, Hadley, and Jennifer Bryan. 2023. <em>Readxl: Read Excel
 Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-lt" class="csl-entry" role="listitem">
+Xie, Yihui. 2026. <em>Lt: Lightweight Tables via JSON Specs and
+JavaScript</em>. <a href="https://doi.org/10.32614/CRAN.package.lt">https://doi.org/10.32614/CRAN.package.lt</a>.
 </div>
 </div>
 
