@@ -186,7 +186,7 @@ wb$add_worksheet("containsText")
 wb$add_data("containsText", sapply(1:10, fn))
 wb$add_conditional_formatting(
   "containsText",
-  dim = "A1:A10",
+  dims = "A1:A10",
   type = "containsText",
   rule = "A"
 )
@@ -204,7 +204,7 @@ fn <- function(x) paste(sample(LETTERS, 10), collapse = "-")
 wb$add_data("notcontainsText", x = sapply(1:10, fn))
 wb$add_conditional_formatting(
   "notcontainsText",
-  dim = "A1:A10",
+  dims = "A1:A10",
   type = "notContainsText",
   rule = "A"
 )
@@ -222,7 +222,7 @@ wb$add_worksheet("beginsWith")
 wb$add_data("beginsWith", x = sapply(1:100, fn))
 wb$add_conditional_formatting(
   "beginsWith",
-  dim = "A1:A100",
+  dims = "A1:A100",
   type = "beginsWith",
   rule = "A"
 )
@@ -240,7 +240,7 @@ wb$add_worksheet("endsWith")
 wb$add_data("endsWith", x = sapply(1:100, fn))
 wb$add_conditional_formatting(
   "endsWith",
-  dim = "A1:A100",
+  dims = "A1:A100",
   type = "endsWith",
   rule = "A"
 )
@@ -406,7 +406,7 @@ wb$add_worksheet("contains errors")
 wb$add_data(x = c(1, NaN), colNames = FALSE)
 wb$add_data(x = c(1, NaN), colNames = FALSE, start_col = 2)
 wb$add_conditional_formatting(dims = "A1:A3", type = "containsErrors")
-wb$add_conditional_formatting(dims = "A1:A3", type = "notContainsErrors")
+wb$add_conditional_formatting(dims = "B1:B3", type = "notContainsErrors")
 ```
 
 ### Iconset
